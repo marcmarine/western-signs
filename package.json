@@ -4,6 +4,18 @@
   "license": "MIT",
   "description": "Explore topics related to the western world.",
   "author": "Marc Mariné <shenobi@gmail.com>",
+  "homepage": "https://github.com/marcmarine/western-signs",
+  "bugs": "https://github.com/marcmarine/western-signs/issues/new",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/marcmarine/western-signs.git"
+  },
+  "keywords": [
+    "astrology",
+    "zodiac",
+    "horoscope",
+    "western-signs"
+  ],
   "type": "module",
   "exports": {
     ".": "./dist/index.js"
