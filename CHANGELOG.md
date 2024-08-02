@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/marcmarine/western-signs/compare/v1.0.0...v1.1.0) (2024-08-02)
+
+
+### Features
+
+* **data:** Enhance sign information with additional details ([dd985ce](https://github.com/marcmarine/western-signs/commit/dd985ced556ced626f2f1d9cfccbc33075a07f62))
+
 # 1.0.0 (2024-07-23)
 
 
