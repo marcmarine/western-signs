@@ -35,6 +35,7 @@ It should returns an object with the following properties:
   modality: 'Fixed',
   rulingPlanet: 'Venus',
   symbol: '♉'
+  [...]
 }
 ```
 

@@ -6,7 +6,11 @@ import type {
   Language,
   Modalities,
   Planets,
-  Signs
+  Signs,
+  BodyParts,
+  Characters,
+  Polarities,
+  Seasons
 } from './definitions'
 
 /**
@@ -29,6 +33,7 @@ import type {
  * //   modality: 'Fixed',
  * //   rulingPlanet: 'Venus',
  * //   symbol: '♉'
+ * //   [...]
  * // }
  */
 export default function getSignByName(
@@ -42,9 +47,14 @@ export default function getSignByName(
 
   return {
     name: dictionary[sign],
+    bodyPart: dictionary[signData.bodyPart as BodyParts],
+    character: dictionary[signData.character as Characters],
+    number: signData.number,
+    pole: dictionary[signData.pole as Polarities],
+    season: dictionary[signData.season as Seasons],
     element: dictionary[signData.element as Elements],
     modality: dictionary[signData.modality as Modalities],
     rulingPlanet: dictionary[signData.rulingPlanet as Planets],
-    symbol: signData.symbol
+    glyph: signData.glyph
   }
 }

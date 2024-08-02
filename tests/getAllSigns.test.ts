@@ -1,6 +1,6 @@
 import signs from '@/data/signs'
 import { getAllSigns } from '@/src/index'
-import type { Signs } from '@/src/types'
+import type { Signs } from '@/src/definitions'
 import { expect, it, describe } from 'bun:test'
 
 describe('getAllSigns', () => {

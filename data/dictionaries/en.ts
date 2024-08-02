@@ -32,7 +32,41 @@ const en = {
   jupiter: 'Jupiter',
   saturn: 'Saturn',
   uranus: 'Uranus',
-  neptune: 'Neptune'
+  neptune: 'Neptune',
+
+  positive: 'Positive',
+  negative: 'Negative',
+
+  head: 'Head',
+  throat: 'Throat',
+  lungs: 'Lungs',
+  stomach: 'Stomach',
+  heart: 'Heart',
+  bowels: 'Bowels',
+  reins: 'Reins',
+  secrets: 'Secrets',
+  thighs: 'Thighs',
+  knees: 'Knees',
+  ankles: 'Ankles',
+  feet: 'Feet',
+
+  ram: 'Ram',
+  bull: 'Bull',
+  twins: 'Twins',
+  crab: 'Crab',
+  lion: 'Lion',
+  virgin: 'Virgin',
+  balance: 'Balance',
+  scorpion: 'Scorpion',
+  archer: 'Archer',
+  goat: 'Goat',
+  'the-man': 'The Man',
+  'the-fishes': 'The Fishes',
+
+  spring: 'Spring',
+  summer: 'Summer',
+  autumn: 'Autumn',
+  winter: 'Winter'
 } as Dictionary
 
 export default en

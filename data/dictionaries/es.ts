@@ -32,7 +32,41 @@ const es = {
   jupiter: 'Júpiter',
   saturn: 'Saturno',
   uranus: 'Urano',
-  neptune: 'Neptuno'
+  neptune: 'Neptuno',
+
+  positive: 'Positivo',
+  negative: 'Negativo',
+
+  head: 'Cabeza',
+  throat: 'Garganta',
+  lungs: 'Pulmones',
+  stomach: 'Estómago',
+  heart: 'Corazón',
+  bowels: 'Intestinos',
+  reins: 'Riñones',
+  secrets: 'Genitales',
+  thighs: 'Muslos',
+  knees: 'Rodillas',
+  ankles: 'Tobillos',
+  feet: 'Pies',
+
+  ram: 'Carnero',
+  bull: 'Toro',
+  twins: 'Gemelos',
+  crab: 'Cangrejo',
+  lion: 'León',
+  virgin: 'Virgen',
+  balance: 'Balanza',
+  scorpion: 'Escorpión',
+  archer: 'Arquero',
+  goat: 'Cabra',
+  'the-man': 'El Hombre',
+  'the-fishes': 'Los Peces',
+
+  spring: 'Primavera',
+  summer: 'Verano',
+  autumn: 'Otoño',
+  winter: 'Invierno'
 } as Dictionary
 
 export default es

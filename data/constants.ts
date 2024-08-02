@@ -38,3 +38,45 @@ export const ELEMENTS = {
   AIR: 'air',
   WATER: 'water'
 } as const
+
+export const POLARITIES = {
+  POSITIVE: 'positive',
+  NEGATIVE: 'negative'
+} as const
+
+export const BODY_PARTS = {
+  HEAD: 'head',
+  THORAT: 'throat',
+  LUNGS: 'lungs',
+  STOMACH: 'stomach',
+  HEART: 'heart',
+  BOWELS: 'bowels',
+  REINS: 'reins',
+  SECRETS: 'secrets',
+  THIGHS: 'thighs',
+  KNEES: 'knees',
+  ANKLES: 'ankles',
+  FEET: 'feet'
+} as const
+
+export const CHARACTERS = {
+  RAM: 'ram',
+  BULL: 'bull',
+  TWINS: 'twins',
+  CRAB: 'crab',
+  LION: 'lion',
+  VIRGIN: 'virgin',
+  BALANCE: 'balance',
+  SCORPION: 'scorpion',
+  ARCHER: 'archer',
+  GOAT: 'goat',
+  THE_MAN: 'the-man',
+  THE_FISHES: 'the-fishes'
+} as const
+
+export const SEASONS = {
+  SPRING: 'spring',
+  SUMMER: 'summer',
+  AUTUMN: 'autumn',
+  WINTER: 'winter'
+} as const
