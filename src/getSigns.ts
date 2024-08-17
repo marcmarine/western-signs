@@ -3,16 +3,17 @@ import signs from '../data/signs'
 import type { Dictionary, Sign, Language, Signs } from './definitions'
 
 /**
+
  * Get all astrological signs with their translations for a specified language.
  *
  * @param {Language} [lang='en']  - The language code for which translations are needed. Defaults to 'en'.
  * @returns {Sign[]} An array of Sign objects with translated values based on the specified language.
  *
  * @example
- * import { getAllSigns } from 'western-signs';
+ * import { getSigns } from 'western-signs';
  *
  * // Retrieve information about all signs in English
- * const data = getAllSigns();
+ * const data = getSigns();
  * console.log(data);
  * // Output:
  * // [
@@ -33,7 +34,7 @@ import type { Dictionary, Sign, Language, Signs } from './definitions'
  * //  ...
  * // ]
  */
-export default function getAllSigns(lang: Language = 'en'): Sign[] {
+export function getSigns(lang: Language = 'en'): Sign[] {
   return Object.keys(signs).map(sign => {
     const signData: Partial<Sign> = {}
 
