@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/marcmarine/western-signs/compare/v1.1.0...v1.1.1) (2024-08-18)
+
+
+### Bug Fixes
+
+* **methods:** Rename `getAllSigns` to `getSigns` ([09fbb93](https://github.com/marcmarine/western-signs/commit/09fbb93dbbad56dee31bcc748103fe2873575bd0))
+
 # [1.1.0](https://github.com/marcmarine/western-signs/compare/v1.0.0...v1.1.0) (2024-08-02)
 
 
