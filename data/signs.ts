@@ -24,7 +24,7 @@ const signs: Record<Signs, Sign> = {
     season: SEASONS.SPRING
   },
   taurus: {
-    bodyPart: BODY_PARTS.THORAT,
+    bodyPart: BODY_PARTS.THROAT,
     character: CHARACTERS.BULL,
     element: ELEMENTS.EARTH,
     glyph: '♉',

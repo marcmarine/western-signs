@@ -46,7 +46,7 @@ export const POLARITIES = {
 
 export const BODY_PARTS = {
   HEAD: 'head',
-  THORAT: 'throat',
+  THROAT: 'throat',
   LUNGS: 'lungs',
   STOMACH: 'stomach',
   HEART: 'heart',
