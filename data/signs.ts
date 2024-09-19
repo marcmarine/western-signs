@@ -15,145 +15,169 @@ const signs: Record<Signs, Sign> = {
     bodyPart: BODY_PARTS.HEAD,
     character: CHARACTERS.RAM,
     element: ELEMENTS.FIRE,
+    endDate: new Date(2020, 3, 20),
     glyph: '♈',
     modality: MODALITIES.CARDINAL,
     name: SIGNS.ARIES,
     number: 1,
     pole: POLARITIES.POSITIVE,
     rulingPlanet: PLANETS.MARS,
-    season: SEASONS.SPRING
+    season: SEASONS.SPRING,
+    startDate: new Date(2020, 2, 20)
   },
   taurus: {
     bodyPart: BODY_PARTS.THROAT,
     character: CHARACTERS.BULL,
     element: ELEMENTS.EARTH,
+    endDate: new Date(2020, 4, 21),
     glyph: '♉',
     modality: MODALITIES.FIXED,
     name: SIGNS.TAURUS,
     number: 2,
     pole: POLARITIES.NEGATIVE,
     rulingPlanet: PLANETS.VENUS,
-    season: SEASONS.SPRING
+    season: SEASONS.SPRING,
+    startDate: new Date(2020, 3, 21)
   },
   gemini: {
     bodyPart: BODY_PARTS.LUNGS,
     character: CHARACTERS.TWINS,
     element: ELEMENTS.AIR,
+    endDate: new Date(2020, 5, 22),
     glyph: '♊',
     modality: MODALITIES.MUTABLE,
     name: SIGNS.GEMINI,
     number: 3,
     pole: POLARITIES.POSITIVE,
     rulingPlanet: PLANETS.MERCURY,
-    season: SEASONS.SPRING
+    season: SEASONS.SPRING,
+    startDate: new Date(2020, 4, 22)
   },
   cancer: {
     bodyPart: BODY_PARTS.STOMACH,
     character: CHARACTERS.CRAB,
     element: ELEMENTS.WATER,
+    endDate: new Date(2020, 6, 22),
     glyph: '♋',
     modality: MODALITIES.CARDINAL,
     name: SIGNS.CANCER,
     number: 4,
     pole: POLARITIES.NEGATIVE,
     rulingPlanet: PLANETS.MOON,
-    season: SEASONS.SUMMER
+    season: SEASONS.SUMMER,
+    startDate: new Date(2020, 5, 23)
   },
   leo: {
     bodyPart: BODY_PARTS.HEART,
     character: CHARACTERS.LION,
     element: ELEMENTS.FIRE,
+    endDate: new Date(2020, 7, 22),
     glyph: '♌',
     modality: MODALITIES.FIXED,
     name: SIGNS.LEO,
     number: 5,
     pole: POLARITIES.POSITIVE,
     rulingPlanet: PLANETS.SUN,
-    season: SEASONS.SUMMER
+    season: SEASONS.SUMMER,
+    startDate: new Date(2020, 6, 23)
   },
   virgo: {
     bodyPart: BODY_PARTS.BOWELS,
     character: CHARACTERS.VIRGIN,
     element: ELEMENTS.EARTH,
+    endDate: new Date(2020, 8, 22),
     glyph: '♍',
     modality: MODALITIES.MUTABLE,
     name: SIGNS.VIRGO,
     number: 6,
     pole: POLARITIES.NEGATIVE,
     rulingPlanet: PLANETS.MERCURY,
-    season: SEASONS.SUMMER
+    season: SEASONS.SUMMER,
+    startDate: new Date(2020, 7, 23)
   },
   libra: {
     bodyPart: BODY_PARTS.REINS,
     character: CHARACTERS.BALANCE,
     element: ELEMENTS.AIR,
+    endDate: new Date(2020, 9, 22),
     glyph: '♎',
     modality: MODALITIES.CARDINAL,
     name: SIGNS.LIBRA,
     number: 7,
     pole: POLARITIES.POSITIVE,
     rulingPlanet: PLANETS.VENUS,
-    season: SEASONS.AUTUMN
+    season: SEASONS.AUTUMN,
+    startDate: new Date(2020, 8, 23)
   },
   scorpio: {
     bodyPart: BODY_PARTS.SECRETS,
     character: CHARACTERS.SCORPION,
     element: ELEMENTS.WATER,
+    endDate: new Date(2020, 10, 22),
     glyph: '♏',
     modality: MODALITIES.FIXED,
     name: SIGNS.SCORPIO,
     number: 8,
     pole: POLARITIES.NEGATIVE,
     rulingPlanet: PLANETS.PLUTO,
-    season: SEASONS.AUTUMN
+    season: SEASONS.AUTUMN,
+    startDate: new Date(2020, 9, 23)
   },
   sagittarius: {
     bodyPart: BODY_PARTS.THIGHS,
     character: CHARACTERS.ARCHER,
     element: ELEMENTS.FIRE,
+    endDate: new Date(2020, 11, 22),
     glyph: '♐',
     modality: MODALITIES.MUTABLE,
     name: SIGNS.SAGITTARIUS,
     number: 9,
     pole: POLARITIES.POSITIVE,
     rulingPlanet: PLANETS.JUPITER,
-    season: SEASONS.AUTUMN
+    season: SEASONS.AUTUMN,
+    startDate: new Date(2020, 10, 23)
   },
   capricorn: {
     bodyPart: BODY_PARTS.KNEES,
     character: CHARACTERS.GOAT,
     element: ELEMENTS.EARTH,
+    endDate: new Date(2020, 1, 21),
     glyph: '♑',
     modality: MODALITIES.CARDINAL,
     name: SIGNS.CAPRICORN,
     number: 10,
     pole: POLARITIES.NEGATIVE,
     rulingPlanet: PLANETS.SATURN,
-    season: SEASONS.WINTER
+    season: SEASONS.WINTER,
+    startDate: new Date(2019, 11, 23)
   },
   aquarius: {
     bodyPart: BODY_PARTS.ANKLES,
     character: CHARACTERS.THE_MAN,
     element: ELEMENTS.AIR,
+    endDate: new Date(2020, 2, 20),
     glyph: '♒',
     modality: MODALITIES.FIXED,
     name: SIGNS.AQUARIUS,
     number: 11,
     pole: POLARITIES.POSITIVE,
     rulingPlanet: PLANETS.URANUS,
-    season: SEASONS.WINTER
+    season: SEASONS.WINTER,
+    startDate: new Date(2020, 1, 22)
   },
   pisces: {
     bodyPart: BODY_PARTS.FEET,
     character: CHARACTERS.THE_FISHES,
     element: ELEMENTS.WATER,
+    endDate: new Date(2020, 2, 19),
     glyph: '♓',
     modality: MODALITIES.MUTABLE,
     name: SIGNS.PISCES,
     number: 12,
     pole: POLARITIES.NEGATIVE,
     rulingPlanet: PLANETS.NEPTUNE,
-    season: SEASONS.WINTER
+    season: SEASONS.WINTER,
+    startDate: new Date(2020, 2, 21)
   }
 } as const
 

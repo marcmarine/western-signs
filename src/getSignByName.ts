@@ -46,15 +46,17 @@ export default function getSignByName(
   if (!signData || !dictionaries) return null
 
   return {
-    name: dictionary[sign],
     bodyPart: dictionary[signData.bodyPart as BodyParts],
     character: dictionary[signData.character as Characters],
+    element: dictionary[signData.element as Elements],
+    endDate: signData.endDate,
+    glyph: signData.glyph,
+    modality: dictionary[signData.modality as Modalities],
+    name: dictionary[sign],
     number: signData.number,
     pole: dictionary[signData.pole as Polarities],
-    season: dictionary[signData.season as Seasons],
-    element: dictionary[signData.element as Elements],
-    modality: dictionary[signData.modality as Modalities],
     rulingPlanet: dictionary[signData.rulingPlanet as Planets],
-    glyph: signData.glyph
+    season: dictionary[signData.season as Seasons],
+    startDate: signData.startDate
   }
 }
