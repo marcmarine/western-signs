@@ -1,3 +1,15 @@
+# [1.3.0](https://github.com/marcmarine/western-signs/compare/v1.2.0...v1.3.0) (2024-09-21)
+
+
+### Bug Fixes
+
+* **data:** Correct date ranges for signs ([82bb180](https://github.com/marcmarine/western-signs/commit/82bb18012f7a40c00f158d8565497472885b3240))
+
+
+### Features
+
+* **methods:** Add `getSignByDate` method with tests ([7dfb74e](https://github.com/marcmarine/western-signs/commit/7dfb74ed31f2bef03fd89cdc21fb12aed508544b))
+
 # [1.2.0](https://github.com/marcmarine/western-signs/compare/v1.1.1...v1.2.0) (2024-09-19)
 
 
