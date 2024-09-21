@@ -141,7 +141,7 @@ const signs: Record<Signs, Sign> = {
     bodyPart: BODY_PARTS.KNEES,
     character: CHARACTERS.GOAT,
     element: ELEMENTS.EARTH,
-    endDate: new Date(2020, 1, 21),
+    endDate: new Date(2021, 0, 21),
     glyph: '♑',
     modality: MODALITIES.CARDINAL,
     name: SIGNS.CAPRICORN,
@@ -149,13 +149,13 @@ const signs: Record<Signs, Sign> = {
     pole: POLARITIES.NEGATIVE,
     rulingPlanet: PLANETS.SATURN,
     season: SEASONS.WINTER,
-    startDate: new Date(2019, 11, 23)
+    startDate: new Date(2020, 11, 23)
   },
   aquarius: {
     bodyPart: BODY_PARTS.ANKLES,
     character: CHARACTERS.THE_MAN,
     element: ELEMENTS.AIR,
-    endDate: new Date(2020, 2, 20),
+    endDate: new Date(2020, 1, 20),
     glyph: '♒',
     modality: MODALITIES.FIXED,
     name: SIGNS.AQUARIUS,
@@ -163,7 +163,7 @@ const signs: Record<Signs, Sign> = {
     pole: POLARITIES.POSITIVE,
     rulingPlanet: PLANETS.URANUS,
     season: SEASONS.WINTER,
-    startDate: new Date(2020, 1, 22)
+    startDate: new Date(2020, 0, 22)
   },
   pisces: {
     bodyPart: BODY_PARTS.FEET,
@@ -177,7 +177,7 @@ const signs: Record<Signs, Sign> = {
     pole: POLARITIES.NEGATIVE,
     rulingPlanet: PLANETS.NEPTUNE,
     season: SEASONS.WINTER,
-    startDate: new Date(2020, 2, 21)
+    startDate: new Date(2020, 1, 21)
   }
 } as const
 
