@@ -1,0 +1,9 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "navigationLinks": {
+    "GitHub": "https://github.com/marcmarine/western-signs"
+  },
+  "validation": {
+    "notExported": false
+  }
+}
