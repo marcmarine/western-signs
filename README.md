@@ -5,7 +5,7 @@ Simple interface for [western astrological](https://en.wikipedia.org/wiki/Wester
 ![NPM Version](https://img.shields.io/npm/v/western-signs)
 ![GitHub License](https://img.shields.io/github/license/marcmarine/western-signs)
 
-![West Art](/WestArt.gif)
+![West Art](https://github.com/marcmarine/western-signs/raw/main/WestArt.gif)
 
 The **Western Signs** library provides detailed information about each astrological sign, including its `name`, `element`, `modality`, `rulingPlanet` and `glyph`, among other things. Additionally, you can specify the language for translations.
 
@@ -43,6 +43,10 @@ It should returns an object with the following properties:
   [...]
 }
 ```
+
+## API Reference
+
+For detailed API information, please check out the [documentation generated with TypeDoc](https://marcmarine.github.io/western-signs).
 
 ## License
 
