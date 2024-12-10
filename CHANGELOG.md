@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/marcmarine/western-signs/compare/v1.3.0...v1.4.0) (2024-12-10)
+
+
+### Features
+
+* Introduce astrological houses ([0894e74](https://github.com/marcmarine/western-signs/commit/0894e74436df7cf4bf9968183179a7e64cfd3c7c))
+
 # [1.3.0](https://github.com/marcmarine/western-signs/compare/v1.2.0...v1.3.0) (2024-09-21)
 
 
