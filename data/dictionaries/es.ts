@@ -66,7 +66,37 @@ const es = {
   spring: 'Primavera',
   summer: 'Verano',
   autumn: 'Otoño',
-  winter: 'Invierno'
+  winter: 'Invierno',
+
+  houseTitles: [
+    'La personalidad individual',
+    'Valores y Posesiones',
+    'Comunicación',
+    'Raíces y Orígenes',
+    'Placer y Creatividad',
+    'Trabajo y Rutina',
+    'Relacionarse',
+    'Pérdida y Propiedad Común',
+    'Filosofías y Países Lejanos',
+    'Ocupación y Vocación',
+    'Amigos y Conocidos',
+    'Más Allá de lo Personal'
+  ],
+
+  houseKeywords: [
+    ['Autoimagen', 'Identidad', 'Impresiones en los demás', 'Personalidad'],
+    ['Recursos personales', 'Valores', 'Seguridad', 'Posesiones'],
+    ['Entorno', 'Hermanos', 'Comunicación', 'Conocimiento'],
+    ['Hogar', 'Familia', 'El pasado', 'Raíces'],
+    ['Niños', 'Creatividad', 'Expresión', 'Placer'],
+    ['Rutinas', 'Servicio', 'Salud', 'Productividad'],
+    ['Asociaciones', 'Relaciones', 'Equilibrio', 'Colaboración'],
+    ['Transformaciones', 'Crisis', 'Inicios', 'Renacimiento'],
+    ['Filosofía', 'Viajes', 'Apertura', 'Sabiduría'],
+    ['Público', 'Legado', 'Carrera', 'Ambición'],
+    ['Amigos', 'Comunidad', 'Sueños', 'Aspiraciones'],
+    ['Inconsciente', 'Fantasías', 'Conexiones', 'Sanación']
+  ]
 } as Dictionary
 
 export default es

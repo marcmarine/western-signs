@@ -13,7 +13,8 @@ import type {
   Polarities,
   Seasons,
   Translations,
-  Dictionary
+  Dictionary,
+  House
 } from './definitions'
 
 export const getLanguageName = ISO6391.getName
@@ -85,4 +86,19 @@ export function isDateInRange(
     (month === endMonth && day <= endDay) ||
     (startMonth > endMonth && (month > startMonth || month < endMonth))
   )
+}
+
+export function translateHouseData(houseData: House, lang: Language): House {
+  const dictionary = dictionaries[lang]
+
+  const [, titleKey] = houseData.title.split('-')
+  const [, keywordsKey] = (houseData.keywords as string).split('-')
+
+  return {
+    number: houseData.number,
+    title: dictionary.houseTitles[Number(titleKey) - 1],
+    sign: dictionary[houseData.sign as Signs],
+    rulingPlanet: dictionary[houseData.rulingPlanet as Planets],
+    keywords: dictionary.houseKeywords[Number(keywordsKey) - 1]
+  }
 }

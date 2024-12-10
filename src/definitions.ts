@@ -109,16 +109,56 @@ export interface Sign extends Record<string, any> {
   startDate: Date
 }
 
+export interface House extends Record<string, any> {
+  /**
+   * Number of the astrological house (1-12).
+   * Represents different areas of life experience.
+   * Example: House 1 (The individual personality), House 7 (Relating).
+   */
+  number: number
+
+  /**
+   * Descriptive title of the house.
+   * Provides an official or formal name representing the area of life it governs.
+   * Examples: "The individual personality", "Values and Possessions".
+   */
+  title: string
+
+  /**
+   * Zodiac sign associated with this house.
+   * Represents the natural energy of the house.
+   * Example: "Aries", "Taurus".
+   */
+  sign: string
+
+  /**
+   * Ruling planet of the house.
+   * Indicates the dominant planetary influence.
+   * Example: "Mars", "Venus".
+   */
+  rulingPlanet: string
+
+  /**
+   * Representative keywords.
+   * Fundamental concepts associated.
+   * Example: ['Self-image', 'Identity', 'Impressions on others', 'Personality'].
+   */
+  keywords: string[] | string // This type adds support for internal use
+}
+
 export type Translations = Record<Language, Sign>
-export type Dictionary = Record<
-  | Signs
-  | Elements
-  | Modalities
-  | Planets
-  | Polarities
-  | BodyParts
-  | Characters
-  | Seasons,
-  string
->
+export type Dictionary = {
+  [key in
+    | Signs
+    | Elements
+    | Modalities
+    | Planets
+    | Polarities
+    | BodyParts
+    | Characters
+    | Seasons]: string
+} & {
+  houseTitles: string[]
+  houseKeywords: string[][]
+}
 export type Dictionaries = Record<Language, Dictionary>

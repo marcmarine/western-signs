@@ -80,3 +80,33 @@ export const SEASONS = {
   AUTUMN: 'autumn',
   WINTER: 'winter'
 } as const
+
+export const HOUSE_TITLES = [
+  'houseTitles-1',
+  'houseTitles-2',
+  'houseTitles-3',
+  'houseTitles-4',
+  'houseTitles-5',
+  'houseTitles-6',
+  'houseTitles-7',
+  'houseTitles-8',
+  'houseTitles-9',
+  'houseTitles-10',
+  'houseTitles-11',
+  'houseTitles-12'
+] as const
+
+export const HOUSE_KEYWORDS = [
+  'houseKeywords-1',
+  'houseKeywords-2',
+  'houseKeywords-3',
+  'houseKeywords-4',
+  'houseKeywords-5',
+  'houseKeywords-6',
+  'houseKeywords-7',
+  'houseKeywords-8',
+  'housKeywordss-9',
+  'houseKeywords-10',
+  'houseKeywords-11',
+  'houseKeywords-12'
+] as const
