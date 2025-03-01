@@ -2,8 +2,8 @@
 
 Simple interface for [western astrological](https://en.wikipedia.org/wiki/Western_astrology) signs.
 
-![NPM Version](https://img.shields.io/npm/v/western-signs)
-![GitHub License](https://img.shields.io/github/license/marcmarine/western-signs)
+[![NPM Version](https://img.shields.io/npm/v/western-signs)](https://www.npmjs.com/package/western-signs)
+[![GitHub License](https://img.shields.io/github/license/marcmarine/western-signs)](LICENSE)
 
 ![West Art](https://github.com/marcmarine/western-signs/raw/main/WestArt.gif)
 
@@ -35,13 +35,20 @@ It should returns an object with the following properties:
 
 ```js
 {
-  name: 'Taurus',
+  bodyPart: 'Throat',
+  character: 'Bull',
   element: 'Earth',
+  endDate: 2020-05-20T22:00:00.000Z,
+  glyph: '♉',
   modality: 'Fixed',
+  name: 'Taurus',
+  number: 2,
+  pole: 'Negative',
   rulingPlanet: 'Venus',
-  glyph: '♉'
-  [...]
+  season: 'Spring',
+  startDate: 2020-04-20T22:00:00.000Z
 }
+
 ```
 
 ## API Reference
