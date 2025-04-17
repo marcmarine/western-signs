@@ -5,9 +5,14 @@ Simple interface for [western astrological](https://en.wikipedia.org/wiki/Wester
 [![NPM Version](https://img.shields.io/npm/v/western-signs)](https://www.npmjs.com/package/western-signs)
 [![GitHub License](https://img.shields.io/github/license/marcmarine/western-signs)](LICENSE)
 
+The **Western Signs** library provides detailed information about each astrological sign, including its `name`, `element`, `modality`, `rulingPlanet` and `glyph`, among other things. Additionally, you can specify the language for translations.
+
+<details close>
+<summary>WordArt</summary>
+
 ![West Art](https://github.com/marcmarine/western-signs/raw/main/WestArt.gif)
 
-The **Western Signs** library provides detailed information about each astrological sign, including its `name`, `element`, `modality`, `rulingPlanet` and `glyph`, among other things. Additionally, you can specify the language for translations.
+</details>
 
 ## Installation
 
