@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/marcmarine/western-signs/compare/v1.4.0...v1.4.1) (2025-04-17)
+
+
+### Bug Fixes
+
+* **docs:** Add collapsible WordArt section ([dce3aee](https://github.com/marcmarine/western-signs/commit/dce3aee5875563c1feda842f6eaed153e666b1b3))
+
 # [1.4.0](https://github.com/marcmarine/western-signs/compare/v1.3.0...v1.4.0) (2024-12-10)
 
 
