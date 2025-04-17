@@ -12,9 +12,9 @@
     "@types/bun": "latest",
     "iso-639-1": "^3.1.2",
     "semantic-release": "^24.0.0",
-    "typedoc": "0.27.5",
+    "typedoc": "^0.28.2",
     "upgradeps": "^2.0.6",
-    "varvara-typedoc-theme": "^0.1.3"
+    "varvara-typedoc-theme": "^0.3.0"
   },
   "peerDependencies": {
     "typescript": "^5.5.3"
@@ -39,7 +39,8 @@
     "access": "public"
   },
   "scripts": {
-    "build": "bun build.ts"
+    "build": "bun build.ts",
+    "build:docs": "bunx typedoc"
   },
   "type": "module"
 }
