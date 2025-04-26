@@ -14,7 +14,7 @@
     "semantic-release": "^24.0.0",
     "typedoc": "^0.28.2",
     "upgradeps": "^2.0.6",
-    "varvara-typedoc-theme": "^0.3.0"
+    "varvara-typedoc-theme": "^0.3.1"
   },
   "peerDependencies": {
     "typescript": "^5.5.3"
