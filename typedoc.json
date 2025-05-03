@@ -2,7 +2,7 @@
   "$schema": "https://typedoc.org/schema.json",
   "entryPoints": ["./src/index.ts"],
   "plugin": ["varvara-typedoc-theme"],
-  "theme": "varvara",
+  "theme": "varvara-css",
   "includeVersion": true,
   "navigationLinks": {
     "GitHub": "https://github.com/marcmarine/western-signs"
