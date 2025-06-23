@@ -17,17 +17,17 @@ import { translateHouseData } from './utils'
  * // Output:
  * // [
  * //  {
-          number: 1,
-          title: 'The individual personality',
-          sign: 'Aries',
-          rulingPlanet: 'Mars',
-          keywords: [
-            'Self-image',
-            'Identity',
-            'Impressions on others',
-            'Personality'
-          ]
-        },
+ * //     number: 1,
+ * //     title: 'The individual personality',
+ * //     sign: 'Aries',
+ * //     rulingPlanet: 'Mars',
+ * //     keywords: [
+ * //       'Self-image',
+ * //       'Identity',
+ * //       'Impressions on others',
+ * //       'Personality'
+ * //     ]
+ * //   },
  * //  ...
  * // ]
  */
