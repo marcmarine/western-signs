@@ -4,7 +4,8 @@ Simple interface for [western astrological](https://en.wikipedia.org/wiki/Wester
 
 [![NPM Version](https://img.shields.io/npm/v/western-signs)](https://www.npmjs.com/package/western-signs)
 [![GitHub License](https://img.shields.io/github/license/marcmarine/western-signs)](LICENSE)
-[![TypeDoc](https://img.shields.io/badge/documentation-western--signs-white.svg)](https://marcmarine.github.io/western-signs)
+[![View Changelog](https://img.shields.io/badge/view-CHANGELOG.md-red.svg)](https://github.com/marcmarine/western-signs/releases)
+[![TypeDoc](https://img.shields.io/badge/view-docs-yellow.svg)](https://marcmarine.github.io/western-signs)
 
 The **Western Signs** library provides detailed information about each astrological sign, including its `name`, `element`, `modality`, `rulingPlanet` and `glyph`, among other things. Additionally, you can specify the language for translations.
 
@@ -54,12 +55,23 @@ It should returns an object with the following properties:
   season: 'Spring',
   startDate: 2020-04-20T22:00:00.000Z
 }
-
 ```
 
 ## API Reference
 
-For detailed API information, please check out the [documentation generated with TypeDoc](https://marcmarine.github.io/western-signs).
+### Functions
+
+- [getHouses](https://marcmarine.github.io/western-signs/functions/getHouses)
+- [getSignByDate](https://marcmarine.github.io/western-signs/functions/getSignByDate)
+- [getSignByName](https://marcmarine.github.io/western-signs/functions/getSignByName)
+- [getSigns](https://marcmarine.github.io/western-signs/functions/getSigns)
+
+### Interfaces
+
+- [House](https://marcmarine.github.io/western-signs/interfaces/House)
+- [Sign](https://marcmarine.github.io/western-signs/interfaces/Sign)
+
+For more detailed API information, please check out the [documentation](https://marcmarine.github.io/western-signs).
 
 ## License
 
