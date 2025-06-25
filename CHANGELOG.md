@@ -1,3 +1,11 @@
+# [1.5.0](https://github.com/marcmarine/western-signs/compare/v1.4.1...v1.5.0) (2025-06-25)
+
+
+### Features
+
+* Add translations in Catalan ([7e7e06d](https://github.com/marcmarine/western-signs/commit/7e7e06d90c41a2032ebf128335ddb08398bfef71))
+* Add TypeScript declaration generation with plugin ([831188c](https://github.com/marcmarine/western-signs/commit/831188cd3fad7405fc1a0f53ef13e596a3ed1ae0))
+
 ## [1.4.1](https://github.com/marcmarine/western-signs/compare/v1.4.0...v1.4.1) (2025-04-17)
 
 
