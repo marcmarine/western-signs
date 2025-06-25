@@ -7,7 +7,15 @@
   "navigationLinks": {
     "GitHub": "https://github.com/marcmarine/western-signs"
   },
+  "router": "kind-dir",
+  "groupOrder": ["Functions", "*"],
   "validation": {
     "notExported": false
+  },
+  "headings": {
+    "readme": false
+  },
+  "navigation": {
+    "includeGroups": true
   }
 }
