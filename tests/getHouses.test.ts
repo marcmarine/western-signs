@@ -1,6 +1,6 @@
-import { getHouses } from '@/src/index'
-import { expect, it, describe } from 'bun:test'
+import { describe, expect, it } from 'bun:test'
 import signs from '@/data/signs'
+import { getHouses } from '@/src/index'
 
 describe('getHouses', () => {
   it('should return an array of 12 houses', () => {

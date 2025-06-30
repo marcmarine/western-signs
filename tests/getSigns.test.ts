@@ -1,7 +1,7 @@
+import { describe, expect, it } from 'bun:test'
 import signs from '@/data/signs'
-import { getSigns } from '@/src/index'
 import type { Signs } from '@/src/definitions'
-import { expect, it, describe } from 'bun:test'
+import { getSigns } from '@/src/index'
 
 describe('getSigns', () => {
   it('should return an array of signs with the same order', () => {

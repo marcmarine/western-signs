@@ -1,16 +1,12 @@
-import { expect, it, describe } from 'bun:test'
+import { describe, expect, it } from 'bun:test'
+import type { Language, Sign, Signs } from '@/src/definitions'
 import { getSignByName, SIGNS } from '@/src/index'
-import type { Sign, Language, Signs } from '@/src/definitions'
-import {
-  capitalizeString,
-  getAllSignWithTranslations,
-  getLanguageName
-} from '@/src/utils'
+import { capitalizeString, getAllSignWithTranslations, getLanguageName } from '@/src/utils'
 
 const signs = getAllSignWithTranslations()
 
 const mappedSigns = Object.entries(signs).flatMap(([sign, data]) =>
-  Object.entries(data).map(([lang, expectedData]) => [sign, lang, expectedData])
+  Object.entries(data).map(([lang, expectedData]) => [sign, lang, expectedData]),
 )
 
 describe('getSignByName', () => {
@@ -28,9 +24,7 @@ describe('getSignByName', () => {
   })
 
   describe.each(mappedSigns)('should return', (sign, lang, expectedData) => {
-    it(`${capitalizeString(sign as Signs)} data in ${getLanguageName(
-      lang as string
-    )} `, () => {
+    it(`${capitalizeString(sign as Signs)} data in ${getLanguageName(lang as string)} `, () => {
       const result = getSignByName(sign as Signs, lang as Language)
       expect(result).toEqual(expectedData as Sign)
     })

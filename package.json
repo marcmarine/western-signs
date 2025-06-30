@@ -7,6 +7,7 @@
     "url": "https://github.com/marcmarine/western-signs.git"
   },
   "devDependencies": {
+    "@biomejs/biome": "2.0.6",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "@types/bun": "latest",
@@ -39,7 +40,8 @@
   "license": "MIT",
   "scripts": {
     "build": "bun build.ts",
-    "build:docs": "bunx typedoc"
+    "build:docs": "bunx typedoc",
+    "format": "biome check --write"
   },
   "type": "module"
 }

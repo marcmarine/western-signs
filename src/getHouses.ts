@@ -32,7 +32,7 @@ import { translateHouseData } from './utils'
  * // ]
  */
 export function getHouses(lang: Language = 'en'): House[] {
-  return houses.map(house => {
+  return houses.map((house) => {
     return translateHouseData(house, lang)
   })
 }

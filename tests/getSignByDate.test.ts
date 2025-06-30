@@ -1,6 +1,6 @@
+import { describe, expect, it } from 'bun:test'
 import type { Sign } from '@/src/definitions'
 import { getSignByDate } from '@/src/index'
-import { expect, it, describe } from 'bun:test'
 
 describe('getSignByDate', () => {
   it('returns correct zodiac signs for various dates', () => {
@@ -18,7 +18,7 @@ describe('getSignByDate', () => {
       { date: new Date(1947, 11, 21), expected: 'Sagittarius' },
       { date: new Date(1929, 0, 15), expected: 'Capricorn' },
       { date: new Date(1882, 0, 25), expected: 'Aquarius' },
-      { date: new Date(1788, 1, 22), expected: 'Pisces' }
+      { date: new Date(1788, 1, 22), expected: 'Pisces' },
     ]
 
     testCases.forEach(({ date, expected }) => {

@@ -1,5 +1,16 @@
-import type { BODY_PARTS, CHARACTERS, ELEMENTS, HEMISPHERES, HOUSE_MODALITIES, MODALITIES, PLANETS, POLARITIES, SEASONS, SIGNS } from '../data/constants'
-import { dictionaries } from '../data/dictionaries'
+import type {
+  BODY_PARTS,
+  CHARACTERS,
+  ELEMENTS,
+  HEMISPHERES,
+  HOUSE_MODALITIES,
+  MODALITIES,
+  PLANETS,
+  POLARITIES,
+  SEASONS,
+  SIGNS,
+} from '../data/constants'
+import type { dictionaries } from '../data/dictionaries'
 
 export type Language = keyof typeof dictionaries
 
@@ -16,7 +27,7 @@ export type Seasons = ObjectValues<typeof SEASONS>
 export type Hemispheres = ObjectValues<typeof HEMISPHERES>
 export type HouseModalities = ObjectValues<typeof HOUSE_MODALITIES>
 
-export interface Sign extends Record<string, any> {
+export interface Sign {
   /**
    * The body part associated with the zodiac sign.
    * Indicates the areas of the body influenced by the sign.
@@ -102,7 +113,7 @@ export interface Sign extends Record<string, any> {
   startDate: Date
 }
 
-export interface House extends Record<string, any> {
+export interface House {
   /**
    * Element associated with the house’s natural zodiac sign.
    *
@@ -192,7 +203,17 @@ export interface House extends Record<string, any> {
 
 export type Translations = Record<Language, Sign>
 export type Dictionary = {
-  [key in Signs | Element | Modalities | Planets | Polarities | BodyParts | Characters | Seasons | Hemispheres | HouseModalities]: string
+  [key in
+    | Signs
+    | Element
+    | Modalities
+    | Planets
+    | Polarities
+    | BodyParts
+    | Characters
+    | Seasons
+    | Hemispheres
+    | HouseModalities]: string
 } & {
   houseTitles: string[]
   houseKeywords: string[][]

@@ -29,7 +29,7 @@ import { isDateInRange, translateSignData } from './utils'
 export function getSignByDate(date: Date, lang: Language = 'en'): Sign | null {
   if (!(date instanceof Date)) throw new Error('Invalid date')
 
-  for (let key of Object.keys(signs)) {
+  for (const key of Object.keys(signs)) {
     const sign = signs[key as Signs]
     const { startDate, endDate } = sign
 

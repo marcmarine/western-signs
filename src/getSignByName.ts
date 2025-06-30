@@ -1,5 +1,5 @@
 import signs from '../data/signs'
-import type { Sign, Language, Signs } from './definitions'
+import type { Language, Sign, Signs } from './definitions'
 import { translateSignData } from './utils'
 
 /**
