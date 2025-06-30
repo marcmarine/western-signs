@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/marcmarine/western-signs/compare/v1.5.0...v1.6.0) (2025-06-30)
+
+
+### Features
+
+* Add house details and translations ([80ad3ab](https://github.com/marcmarine/western-signs/commit/80ad3abc828ce235655a072fd8d2e839889a8e24))
+
 # [1.5.0](https://github.com/marcmarine/western-signs/compare/v1.4.1...v1.5.0) (2025-06-25)
 
 
