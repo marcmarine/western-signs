@@ -96,7 +96,14 @@ const ca = {
     ['Públic', 'Llegat', 'Carrera', 'Ambició'],
     ['Amics', 'Comunitat', 'Somnis', 'Aspiracions'],
     ['Inconscient', 'Fantasies', 'Connexions', 'Sanació']
-  ]
+  ],
+
+  lower: 'Inferior',
+  upper: 'Superior',
+
+  angular: 'Angular',
+  succedent: 'Successiva',
+  cadent: 'Cadent'
 } as Dictionary
 
 export default ca

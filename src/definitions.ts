@@ -1,13 +1,4 @@
-import type {
-  BODY_PARTS,
-  CHARACTERS,
-  ELEMENTS,
-  MODALITIES,
-  PLANETS,
-  POLARITIES,
-  SEASONS,
-  SIGNS
-} from '../data/constants'
+import type { BODY_PARTS, CHARACTERS, ELEMENTS, HEMISPHERES, HOUSE_MODALITIES, MODALITIES, PLANETS, POLARITIES, SEASONS, SIGNS } from '../data/constants'
 import { dictionaries } from '../data/dictionaries'
 
 export type Language = keyof typeof dictionaries
@@ -15,13 +6,15 @@ export type Language = keyof typeof dictionaries
 type ObjectValues<T> = T[keyof T]
 
 export type Signs = ObjectValues<typeof SIGNS>
-export type Elements = ObjectValues<typeof ELEMENTS>
+export type Element = ObjectValues<typeof ELEMENTS>
 export type Modalities = ObjectValues<typeof MODALITIES>
 export type Planets = ObjectValues<typeof PLANETS>
 export type Polarities = ObjectValues<typeof POLARITIES>
 export type BodyParts = ObjectValues<typeof BODY_PARTS>
 export type Characters = ObjectValues<typeof CHARACTERS>
 export type Seasons = ObjectValues<typeof SEASONS>
+export type Hemispheres = ObjectValues<typeof HEMISPHERES>
+export type HouseModalities = ObjectValues<typeof HOUSE_MODALITIES>
 
 export interface Sign extends Record<string, any> {
   /**
@@ -44,7 +37,7 @@ export interface Sign extends Record<string, any> {
    * Also known as triplicities in astrology.
    * Examples: "Fire" for Aries, "Earth" for Taurus.
    */
-  element: string
+  element: Element
 
   /**
    * The end date of the zodiac sign period.
@@ -111,52 +104,95 @@ export interface Sign extends Record<string, any> {
 
 export interface House extends Record<string, any> {
   /**
-   * Number of the astrological house (1-12).
-   * Represents different areas of life experience.
-   * Example: House 1 (The individual personality), House 7 (Relating).
+   * Element associated with the house’s natural zodiac sign.
+   *
+   * Represents one of the four classical elements — Fire, Earth, Air, or Water — reflecting the essential nature and mode of expression of the house.
+   *
+   * Example: "Fire" for House 1 (Aries), "Earth" for House 2 (Taurus)
+   */
+  element: Element
+
+  /**
+   * Hemisphere division based on the horizon line.
+   *
+   * - **Lower/Northern Hemisphere (Houses 1–6):** Known as the *Personal Houses*, these focus on individual development, personal identity, and foundational life needs.
+   * - **Upper/Southern Hemisphere (Houses 7–12):** Known as the *Collective Houses*, these reflect relationships with others, society, and broader humanity.
+   */
+  hemisphere: Hemispheres
+
+  /**
+   * Key themes and associated concepts.
+   *
+   * Represents the core ideas or psychological themes governed by the house.
+   * Example: ['Self-image', 'Identity', 'Impressions on others', 'Personality']
+   */
+  keywords: string[] | string // This type adds support for internal use
+
+  /**
+   * Number of the astrological house (1–12).
+   *
+   * Each house corresponds to a specific domain of life experience.
+   * Example: 1 = Self and identity, 7 = Partnerships and relating.
    */
   number: number
 
   /**
-   * Descriptive title of the house.
-   * Provides an official or formal name representing the area of life it governs.
-   * Examples: "The individual personality", "Values and Possessions".
+   * Developmental phase grouping.
+   *
+   * - **Phase I (Houses 1–4):** Focus on self-awareness and personal foundation — the “me-in-here”.
+   * - **Phase II (Houses 5–8):** Development of the autonomous self in relationship — the “me” meets the “you”.
+   * - **Phase III (Houses 9–12):** Expansion of self toward collective consciousness and universal understanding.
    */
-  title: string
+  phase: 1 | 2 | 3
 
   /**
-   * Zodiac sign associated with this house.
-   * Represents the natural energy of the house.
-   * Example: "Aries", "Taurus".
+   * Quadrant of the chart based on the intersection of horizon and meridian axes.
+   *
+   * - **Quadrant I (Houses 1–3):** Formation of personal identity through the body, possessions, and environment.
+   * - **Quadrant II (Houses 4–6):** Further development of self via family, creativity, and refinement of skills.
+   * - **Quadrant III (Houses 7–9):** Expansion through relationships, transformation, and new vision of self.
+   * - **Quadrant IV (Houses 10–12):** Integration into society and pursuit of collective and spiritual purpose.
    */
-  sign: string
+  quadrant: 1 | 2 | 3 | 4
 
   /**
    * Ruling planet of the house.
-   * Indicates the dominant planetary influence.
-   * Example: "Mars", "Venus".
+   *
+   * Indicates the primary planetary influence over the house’s themes.
+   * Example: "Mars", "Venus"
    */
   rulingPlanet: string
 
   /**
-   * Representative keywords.
-   * Fundamental concepts associated.
-   * Example: ['Self-image', 'Identity', 'Impressions on others', 'Personality'].
+   * Zodiac sign associated with the house.
+   *
+   * Reflects the natural energy or archetype that aligns with the house.
+   * Example: "Aries", "Taurus"
    */
-  keywords: string[] | string // This type adds support for internal use
+  sign: string
+
+  /**
+   * Title or name of the house.
+   *
+   * A formal or descriptive label that captures the house’s core function or domain.
+   * Example: "The Individual Personality", "Values and Possessions"
+   */
+  title: string
+
+  /**
+   * Modalities of the houses (Angular, Succedent, Cadent).
+   *
+   * Traditional classification describing the house’s dynamic strength and function:
+   * - **Angular (Houses 1, 4, 7, 10):** Active, initiating, most powerful.
+   * - **Succedent (Houses 2, 5, 8, 11):** Stabilizing, sustaining what was initiated.
+   * - **Cadent (Houses 3, 6, 9, 12):** Transitional, preparatory, often more internal or mental.
+   */
+  modality: HouseModalities
 }
 
 export type Translations = Record<Language, Sign>
 export type Dictionary = {
-  [key in
-    | Signs
-    | Elements
-    | Modalities
-    | Planets
-    | Polarities
-    | BodyParts
-    | Characters
-    | Seasons]: string
+  [key in Signs | Element | Modalities | Planets | Polarities | BodyParts | Characters | Seasons | Hemispheres | HouseModalities]: string
 } & {
   houseTitles: string[]
   houseKeywords: string[][]

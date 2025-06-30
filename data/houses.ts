@@ -1,90 +1,150 @@
 import type { House } from '@/src/definitions'
-import { HOUSE_KEYWORDS, HOUSE_TITLES, PLANETS, SIGNS } from './constants'
+import { ELEMENTS, HEMISPHERES, HOUSE_KEYWORDS, HOUSE_TITLES, HOUSE_MODALITIES, PLANETS, SIGNS } from './constants'
 
 const houses: House[] = [
   {
+    element: ELEMENTS.FIRE,
+    hemisphere: HEMISPHERES.LOWER,
+    keywords: HOUSE_KEYWORDS[0],
     number: 1,
-    sign: SIGNS.ARIES,
+    phase: 1,
+    quadrant: 1,
     rulingPlanet: PLANETS.MARS,
+    sign: SIGNS.ARIES,
     title: HOUSE_TITLES[0],
-    keywords: HOUSE_KEYWORDS[0]
+    modality: HOUSE_MODALITIES.ANGULAR
   },
   {
+    element: ELEMENTS.EARTH,
+    hemisphere: HEMISPHERES.LOWER,
+    keywords: HOUSE_KEYWORDS[1],
+    modality: HOUSE_MODALITIES.SUCCEDENT,
     number: 2,
+    phase: 1,
+    quadrant: 1,
+    rulingPlanet: PLANETS.VENUS,
     sign: SIGNS.TAURUS,
-    rulingPlanet: PLANETS.VENUS,
-    title: HOUSE_TITLES[1],
-    keywords: HOUSE_KEYWORDS[1]
+    title: HOUSE_TITLES[1]
   },
   {
+    element: ELEMENTS.AIR,
+    hemisphere: HEMISPHERES.LOWER,
+    keywords: HOUSE_KEYWORDS[2],
+    modality: HOUSE_MODALITIES.CADENT,
     number: 3,
+    phase: 1,
+    quadrant: 1,
+    rulingPlanet: PLANETS.MERCURY,
     sign: SIGNS.GEMINI,
-    rulingPlanet: PLANETS.MERCURY,
-    title: HOUSE_TITLES[2],
-    keywords: HOUSE_KEYWORDS[2]
+    title: HOUSE_TITLES[2]
   },
   {
+    element: ELEMENTS.WATER,
+    hemisphere: HEMISPHERES.LOWER,
+    keywords: HOUSE_KEYWORDS[3],
+    modality: HOUSE_MODALITIES.ANGULAR,
     number: 4,
-    sign: SIGNS.CANCER,
+    phase: 1,
+    quadrant: 2,
     rulingPlanet: PLANETS.MOON,
-    title: HOUSE_TITLES[3],
-    keywords: HOUSE_KEYWORDS[3]
+    sign: SIGNS.CANCER,
+    title: HOUSE_TITLES[3]
   },
   {
+    element: ELEMENTS.FIRE,
+    hemisphere: HEMISPHERES.LOWER,
+    keywords: HOUSE_KEYWORDS[4],
+    modality: HOUSE_MODALITIES.SUCCEDENT,
     number: 5,
-    sign: SIGNS.LEO,
+    phase: 2,
+    quadrant: 2,
     rulingPlanet: PLANETS.SUN,
-    title: HOUSE_TITLES[4],
-    keywords: HOUSE_KEYWORDS[4]
+    sign: SIGNS.LEO,
+    title: HOUSE_TITLES[4]
   },
   {
+    element: ELEMENTS.EARTH,
+    hemisphere: HEMISPHERES.LOWER,
+    keywords: HOUSE_KEYWORDS[5],
+    modality: HOUSE_MODALITIES.CADENT,
     number: 6,
-    sign: SIGNS.VIRGO,
+    phase: 2,
+    quadrant: 2,
     rulingPlanet: PLANETS.MERCURY,
-    title: HOUSE_TITLES[5],
-    keywords: HOUSE_KEYWORDS[5]
+    sign: SIGNS.VIRGO,
+    title: HOUSE_TITLES[5]
   },
   {
+    element: ELEMENTS.AIR,
+    hemisphere: HEMISPHERES.UPPER,
+    keywords: HOUSE_KEYWORDS[6],
+    modality: HOUSE_MODALITIES.ANGULAR,
     number: 7,
-    sign: SIGNS.LIBRA,
+    phase: 2,
+    quadrant: 3,
     rulingPlanet: PLANETS.VENUS,
-    title: HOUSE_TITLES[6],
-    keywords: HOUSE_KEYWORDS[6]
+    sign: SIGNS.LIBRA,
+    title: HOUSE_TITLES[6]
   },
   {
+    element: ELEMENTS.WATER,
+    hemisphere: HEMISPHERES.UPPER,
+    keywords: HOUSE_KEYWORDS[7],
+    modality: HOUSE_MODALITIES.SUCCEDENT,
     number: 8,
-    sign: SIGNS.SCORPIO,
+    phase: 2,
+    quadrant: 3,
     rulingPlanet: PLANETS.PLUTO,
-    title: HOUSE_TITLES[7],
-    keywords: HOUSE_KEYWORDS[7]
+    sign: SIGNS.SCORPIO,
+    title: HOUSE_TITLES[7]
   },
   {
+    element: ELEMENTS.FIRE,
+    hemisphere: HEMISPHERES.UPPER,
+    keywords: HOUSE_KEYWORDS[8],
+    modality: HOUSE_MODALITIES.CADENT,
     number: 9,
-    sign: SIGNS.SAGITTARIUS,
+    phase: 3,
+    quadrant: 3,
     rulingPlanet: PLANETS.JUPITER,
-    title: HOUSE_TITLES[8],
-    keywords: HOUSE_KEYWORDS[8]
+    sign: SIGNS.SAGITTARIUS,
+    title: HOUSE_TITLES[8]
   },
   {
+    element: ELEMENTS.EARTH,
+    hemisphere: HEMISPHERES.UPPER,
+    keywords: HOUSE_KEYWORDS[9],
+    modality: HOUSE_MODALITIES.ANGULAR,
     number: 10,
-    sign: SIGNS.CAPRICORN,
+    phase: 3,
+    quadrant: 4,
     rulingPlanet: PLANETS.SATURN,
-    title: HOUSE_TITLES[9],
-    keywords: HOUSE_KEYWORDS[9]
+    sign: SIGNS.CAPRICORN,
+    title: HOUSE_TITLES[9]
   },
   {
+    element: ELEMENTS.AIR,
+    hemisphere: HEMISPHERES.UPPER,
+    keywords: HOUSE_KEYWORDS[10],
+    modality: HOUSE_MODALITIES.SUCCEDENT,
     number: 11,
-    sign: SIGNS.AQUARIUS,
+    phase: 3,
+    quadrant: 4,
     rulingPlanet: PLANETS.URANUS,
-    title: HOUSE_TITLES[10],
-    keywords: HOUSE_KEYWORDS[10]
+    sign: SIGNS.AQUARIUS,
+    title: HOUSE_TITLES[10]
   },
   {
+    element: ELEMENTS.WATER,
+    hemisphere: HEMISPHERES.UPPER,
+    keywords: HOUSE_KEYWORDS[11],
+    modality: HOUSE_MODALITIES.CADENT,
     number: 12,
-    sign: SIGNS.PISCES,
+    phase: 3,
+    quadrant: 4,
     rulingPlanet: PLANETS.NEPTUNE,
-    title: HOUSE_TITLES[11],
-    keywords: HOUSE_KEYWORDS[11]
+    sign: SIGNS.PISCES,
+    title: HOUSE_TITLES[11]
   }
 ]
 

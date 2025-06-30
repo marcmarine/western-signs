@@ -3,13 +3,6 @@ export { getSignByDate } from './getSignByDate'
 export { getSigns } from './getSigns'
 export { getHouses } from './getHouses'
 
-export { SIGNS, ELEMENTS, MODALITIES, PLANETS } from '@/data/constants'
+export { ELEMENTS, HEMISPHERES, HOUSE_MODALITIES, MODALITIES, PLANETS, SIGNS } from '@/data/constants'
 
-export type {
-  Sign,
-  Signs,
-  Planets,
-  Modalities,
-  Elements,
-  House
-} from './definitions'
+export type { Element, Hemispheres, House, HouseModalities, Modalities, Planets, Sign, Signs } from './definitions'

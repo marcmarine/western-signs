@@ -1,21 +1,7 @@
 import ISO6391 from 'iso-639-1'
 import signs from '../data/signs'
 import { dictionaries } from '../data/dictionaries'
-import type {
-  Elements,
-  Sign,
-  Language,
-  Modalities,
-  Planets,
-  Signs,
-  BodyParts,
-  Characters,
-  Polarities,
-  Seasons,
-  Translations,
-  Dictionary,
-  House
-} from './definitions'
+import type { Element, Sign, Language, Modalities, Planets, Signs, BodyParts, Characters, Polarities, Seasons, Translations, Dictionary, House, Hemispheres, HouseModalities } from './definitions'
 
 export const getLanguageName = ISO6391.getName
 
@@ -55,7 +41,7 @@ export function translateSignData(signData: Sign, lang: Language): Sign {
   return {
     bodyPart: dictionary[signData.bodyPart as BodyParts],
     character: dictionary[signData.character as Characters],
-    element: dictionary[signData.element as Elements],
+    element: dictionary[signData.element as Element] as Element,
     endDate: signData.endDate,
     glyph: signData.glyph,
     modality: dictionary[signData.modality as Modalities],
@@ -68,11 +54,7 @@ export function translateSignData(signData: Sign, lang: Language): Sign {
   }
 }
 
-export function isDateInRange(
-  startDate: Date,
-  endDate: Date,
-  currentDate: Date
-): boolean {
+export function isDateInRange(startDate: Date, endDate: Date, currentDate: Date): boolean {
   const month = currentDate.getMonth() + 1
   const day = currentDate.getDate()
 
@@ -81,11 +63,7 @@ export function isDateInRange(
   const endMonth = endDate.getMonth() + 1
   const endDay = endDate.getDate()
 
-  return (
-    (month === startMonth && day >= startDay) ||
-    (month === endMonth && day <= endDay) ||
-    (startMonth > endMonth && (month > startMonth || month < endMonth))
-  )
+  return (month === startMonth && day >= startDay) || (month === endMonth && day <= endDay) || (startMonth > endMonth && (month > startMonth || month < endMonth))
 }
 
 export function translateHouseData(houseData: House, lang: Language): House {
@@ -99,6 +77,11 @@ export function translateHouseData(houseData: House, lang: Language): House {
     title: dictionary.houseTitles[Number(titleKey) - 1],
     sign: dictionary[houseData.sign as Signs],
     rulingPlanet: dictionary[houseData.rulingPlanet as Planets],
-    keywords: dictionary.houseKeywords[Number(keywordsKey) - 1]
+    keywords: dictionary.houseKeywords[Number(keywordsKey) - 1],
+    element: dictionary[houseData.element as Element] as Element,
+    hemisphere: dictionary[houseData.hemisphere as Hemispheres] as Hemispheres,
+    phase: houseData.phase,
+    quadrant: houseData.quadrant,
+    modality: dictionary[houseData.modality as HouseModalities] as HouseModalities
   }
 }

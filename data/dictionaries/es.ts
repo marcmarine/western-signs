@@ -96,7 +96,14 @@ const es = {
     ['Público', 'Legado', 'Carrera', 'Ambición'],
     ['Amigos', 'Comunidad', 'Sueños', 'Aspiraciones'],
     ['Inconsciente', 'Fantasías', 'Conexiones', 'Sanación']
-  ]
+  ],
+
+  lower: 'Inferior',
+  upper: 'Superior',
+
+  angular: 'Angular',
+  succedent: 'Sucedente',
+  cadent: 'Cadente'
 } as Dictionary
 
 export default es

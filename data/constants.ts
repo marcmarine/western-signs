@@ -110,3 +110,14 @@ export const HOUSE_KEYWORDS = [
   'houseKeywords-11',
   'houseKeywords-12'
 ] as const
+
+export const HEMISPHERES = {
+  LOWER: 'lower',
+  UPPER: 'upper'
+} as const
+
+export const HOUSE_MODALITIES = {
+  ANGULAR: 'angular',
+  SUCCEDENT: 'succedent',
+  CADENT: 'cadent'
+} as const
