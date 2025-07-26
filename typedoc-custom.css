@@ -1,0 +1,43 @@
+:root {
+  --va-button-padding: var(--va-space-1);
+  --va-collapse-padding: var(--va-space-1);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --va-foreground-color-default: DimGray;
+    --va-background-color-default: WhiteSmoke;
+    --va-border-color: Gainsboro;
+    --va-icon-color: Fuchsia;
+    background-image: url('https://blob.gifcities.org/gifcities/JPS7536GTTXS234TMTDSWHYPOSTK5GWC.gif');
+  }
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --va-foreground-color-default: Silver;
+    --va-background-color-default: Black;
+    --va-border-color: Gray;
+    --va-icon-color: Tomato;
+    background-image: url('https://blob.gifcities.org/gifcities/ETVQLJBLDA55K576FZQI654FT3XCNAOX.gif');
+  }
+}
+
+[data-theme='light'] {
+  --va-foreground-color-default: DimGray;
+  --va-background-color-default: WhiteSmoke;
+  --va-border-color: Gainsboro;
+  --va-icon-color: Fuchsia;
+  background-image: url('https://blob.gifcities.org/gifcities/JPS7536GTTXS234TMTDSWHYPOSTK5GWC.gif');
+}
+
+[data-theme='dark'] {
+  --va-foreground-color-default: Silver;
+  --va-background-color-default: Black;
+  --va-border-color: Gray;
+  --va-icon-color: Tomato;
+  background-image: url('https://blob.gifcities.org/gifcities/ETVQLJBLDA55K576FZQI654FT3XCNAOX.gif');
+}
+
+body {
+  background: inherit;
+}

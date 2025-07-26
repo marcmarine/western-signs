@@ -1,4 +1,4 @@
-# Western Signs
+# Western ✨ Signs
 
 Simple interface for [western astrological](https://en.wikipedia.org/wiki/Western_astrology) signs.
 

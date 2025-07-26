@@ -12,6 +12,7 @@
   "validation": {
     "notExported": false
   },
+  "customCss": "./typedoc-custom.css",
   "headings": {
     "readme": false
   },

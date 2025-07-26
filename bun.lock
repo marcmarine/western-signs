@@ -13,7 +13,7 @@
         "semantic-release": "^24.2.5",
         "typedoc": "^0.28.5",
         "upgradeps": "^2.0.8",
-        "varvara-typedoc-theme": "^0.3.6",
+        "varvara-typedoc-theme": "^0.3.8",
       },
       "peerDependencies": {
         "typescript": "^5.8.3",
@@ -799,9 +799,9 @@
 
     "validate-npm-package-name": ["validate-npm-package-name@6.0.0", "", {}, "sha512-d7KLgL1LD3U3fgnvWEY1cQXoO/q6EQ1BSz48Sa149V/5zVTAbgmZIpyI8TRi6U9/JNyeYLlTKsEMPtLC27RFUg=="],
 
-    "varvara-css": ["varvara-css@0.7.4", "", { "peerDependencies": { "typescript": "^5.0.0" } }, "sha512-tDQz9x9jyKR7XxYQnRcaJZgXmTJBsuGwTf+4UTt9E142YLDaAihtEXnSNEvszJXjFZVTMANCsUouN8bIBK9Srw=="],
+    "varvara-css": ["varvara-css@0.8.0", "", { "peerDependencies": { "typescript": "^5.0.0" } }, "sha512-uWDixKQw2ZN7xwWvUg2hyeycxDo2IvIed6Esx14wGWU9kwTkk8MLrij28rwMFWbvj1kvB0PMKmviNVIXroKjVg=="],
 
-    "varvara-typedoc-theme": ["varvara-typedoc-theme@0.3.6", "", { "dependencies": { "varvara-css": "^0.7.4" }, "peerDependencies": { "typedoc": "^0.28.0", "typescript": "^5.0.0" } }, "sha512-n0SkSldusNpMnTCHDc5yC7ypaH+P5GbzN5DREmBxI/dfdwymPXkkg94qwN+gj3nIIHpwF2FxDp2+TOg/48zfcg=="],
+    "varvara-typedoc-theme": ["varvara-typedoc-theme@0.3.8", "", { "dependencies": { "varvara-css": "^0.8.0" }, "peerDependencies": { "typedoc": "^0.28.0", "typescript": "^5.0.0" } }, "sha512-Rj51pkN27M575zBXVAcIH+V55xVOiUlGM1/6wAo0pa4U1eGEzPv86JkUmjOsPjCFKdcrvNOiQ02x9w/v7XVBmg=="],
 
     "which": ["which@2.0.2", "", { "dependencies": { "isexe": "^2.0.0" }, "bin": { "node-which": "./bin/node-which" } }, "sha512-BLI3Tl1TW3Pvl70l3yq3Y64i+awpwXqsGBYWkkqMtnbXgrMD+yj7rhW0kuEDxzJaYXGjEW5ogapKNMEKNMjibA=="],
 
