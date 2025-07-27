@@ -21,13 +21,15 @@
     "typescript": "^5.8.3"
   },
   "exports": {
-    ".": "./dist/index.js"
+    ".": "./dist/index.js",
+    "./*": "./assets/*"
   },
   "types": "./dist/index.d.ts",
   "bugs": "https://github.com/marcmarine/western-signs/issues/new",
   "description": "Simple interface for western astrological signs.",
   "files": [
-    "dist"
+    "dist",
+    "assets"
   ],
   "homepage": "https://github.com/marcmarine/western-signs",
   "keywords": [
