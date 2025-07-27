@@ -1,3 +1,11 @@
+# [1.7.0](https://github.com/marcmarine/western-signs/compare/v1.6.0...v1.7.0) (2025-07-27)
+
+
+### Features
+
+* Add planet details and translations ([5fd6f92](https://github.com/marcmarine/western-signs/commit/5fd6f92d9b2568d1f43a3f2790a291f4c47a99be))
+* Add zodiac SVG assets and getSymbol utility ([04da156](https://github.com/marcmarine/western-signs/commit/04da156636674371c88e19e2597c6519a762bebc))
+
 # [1.6.0](https://github.com/marcmarine/western-signs/compare/v1.5.0...v1.6.0) (2025-06-30)
 
 
