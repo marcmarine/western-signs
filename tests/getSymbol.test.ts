@@ -18,7 +18,10 @@ describe('getSymbol', () => {
     const signNames = Object.keys(signs)
 
     signNames.forEach(signName => {
-      const svgString = getSymbol(signName as Signs, { stroke: 'red', strokeWidth: '3' })
+      const svgString = getSymbol(signName as Signs, {
+        stroke: 'red',
+        strokeWidth: '3',
+      })
 
       expect(svgString).toContain('stroke="red"')
       expect(svgString).toContain('stroke-width="3"')
@@ -32,6 +35,8 @@ describe('getSymbol', () => {
   })
 
   test('should throw an error if the file does not exist', () => {
-    expect(() => getSymbol('notexist' as Signs)).toThrow('Icon "notexist" not found.')
+    expect(() => getSymbol('notexist' as Signs)).toThrow(
+      'Icon "notexist" not found.',
+    )
   })
 })

@@ -17,7 +17,10 @@ export interface SymbolOptions {
  * @param {SymbolOptions} options Options to modify attributes or return as a Data URL
  * @returns SVG as string or Data URL
  */
-export function getSymbol(signName: Signs, options: SymbolOptions = {}): string {
+export function getSymbol(
+  signName: Signs,
+  options: SymbolOptions = {},
+): string {
   const iconPath = path.join(__dirname, '../assets', `${signName}.svg`)
 
   if (!existsSync(iconPath)) {
@@ -27,11 +30,17 @@ export function getSymbol(signName: Signs, options: SymbolOptions = {}): string 
   let svgString = readFileSync(iconPath, 'utf8')
 
   if (options.stroke) {
-    svgString = svgString.replace(/stroke="[^"]*"/g, `stroke="${options.stroke}"`)
+    svgString = svgString.replace(
+      /stroke="[^"]*"/g,
+      `stroke="${options.stroke}"`,
+    )
   }
 
   if (options.strokeWidth) {
-    svgString = svgString.replace(/stroke-width="[^"]*"/g, `stroke-width="${options.strokeWidth}"`)
+    svgString = svgString.replace(
+      /stroke-width="[^"]*"/g,
+      `stroke-width="${options.strokeWidth}"`,
+    )
   }
 
   if (options.dataUrl) {

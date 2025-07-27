@@ -1,11 +1,21 @@
 import { describe, expect, it } from 'bun:test'
 import type { Language, Sign, Signs } from '@/src/definitions'
 import { getSignByName, SIGNS } from '@/src/index'
-import { capitalizeString, getAllSignWithTranslations, getLanguageName } from '@/src/utils'
+import {
+  capitalizeString,
+  getAllSignWithTranslations,
+  getLanguageName,
+} from '@/src/utils'
 
 const signs = getAllSignWithTranslations()
 
-const mappedSigns = Object.entries(signs).flatMap(([sign, data]) => Object.entries(data).map(([lang, expectedData]) => [sign, lang, expectedData]))
+const mappedSigns = Object.entries(signs).flatMap(([sign, data]) =>
+  Object.entries(data).map(([lang, expectedData]) => [
+    sign,
+    lang,
+    expectedData,
+  ]),
+)
 
 describe('getSignByName', () => {
   it('should work by passing a constant', () => {

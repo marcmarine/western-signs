@@ -30,11 +30,12 @@ import type { Dictionary, Language, Planet, Planets } from './definitions'
  * // ]
  */
 export function getPlanets(lang: Language = 'en'): Planet[] {
-  return Object.keys(planets).map((sign) => {
+  return Object.keys(planets).map(sign => {
     const planetData: Partial<Planet> = {}
 
     Object.entries(planets[sign as Planets]).forEach(([key, value]) => {
-      const translatedValue = dictionaries[lang as Language][value as keyof Dictionary]
+      const translatedValue =
+        dictionaries[lang as Language][value as keyof Dictionary]
 
       planetData[key as keyof Planet] = translatedValue || value
     })

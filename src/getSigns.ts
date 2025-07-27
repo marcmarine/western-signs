@@ -35,13 +35,14 @@ import type { Dictionary, Language, Sign, Signs } from './definitions'
  * // ]
  */
 export function getSigns(lang: Language = 'en'): Sign[] {
-  return Object.keys(signs).map((sign) => {
+  return Object.keys(signs).map(sign => {
     const signData: Partial<Sign> = {}
 
     Object.entries(signs[sign as Signs]).forEach(([key, value]) => {
-      const dictionaryValue = dictionaries[lang as Language][value as keyof Dictionary]
+      const translatedValue =
+        dictionaries[lang as Language][value as keyof Dictionary]
 
-      signData[key as keyof Sign] = dictionaryValue || value
+      signData[key as keyof Sign] = translatedValue || value
     })
 
     return signData as Sign

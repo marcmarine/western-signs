@@ -32,11 +32,11 @@ export const getLanguageName = (code: Language) => {
 export function getAllSignWithTranslations() {
   const signData: Partial<Record<Signs, Translations>> = {}
 
-  Object.keys(signs).forEach((signKey) => {
+  Object.keys(signs).forEach(signKey => {
     const sign = signKey as Signs
     const translationData: Translations = {} as Translations
 
-    Object.keys(dictionaries).forEach((langKey) => {
+    Object.keys(dictionaries).forEach(langKey => {
       const lang = langKey as Language
       const translatedSign: Partial<Sign> = {}
 
@@ -78,7 +78,11 @@ export function translateSignData(signData: Sign, lang: Language): Sign {
   }
 }
 
-export function isDateInRange(startDate: Date, endDate: Date, currentDate: Date): boolean {
+export function isDateInRange(
+  startDate: Date,
+  endDate: Date,
+  currentDate: Date,
+): boolean {
   const month = currentDate.getMonth() + 1
   const day = currentDate.getDate()
 
@@ -110,6 +114,8 @@ export function translateHouseData(houseData: House, lang: Language): House {
     hemisphere: dictionary[houseData.hemisphere as Hemispheres] as Hemispheres,
     phase: houseData.phase,
     quadrant: houseData.quadrant,
-    modality: dictionary[houseData.modality as HouseModalities] as HouseModalities,
+    modality: dictionary[
+      houseData.modality as HouseModalities
+    ] as HouseModalities,
   }
 }

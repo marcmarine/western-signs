@@ -1,4 +1,16 @@
-import type { BODY_PARTS, CHARACTERS, ELEMENTS, HEMISPHERES, HOUSE_MODALITIES, MODALITIES, PLANET_TYPE, PLANETS, POLARITIES, SEASONS, SIGNS } from '../data/constants'
+import type {
+  BODY_PARTS,
+  CHARACTERS,
+  ELEMENTS,
+  HEMISPHERES,
+  HOUSE_MODALITIES,
+  MODALITIES,
+  PLANET_TYPE,
+  PLANETS,
+  POLARITIES,
+  SEASONS,
+  SIGNS,
+} from '../data/constants'
 import type { dictionaries } from '../data/dictionaries'
 
 export type Language = keyof typeof dictionaries
@@ -214,7 +226,18 @@ export interface Planet {
 export type Translations = Record<Language, Sign>
 
 export type Dictionary = {
-  [key in Signs | Element | Modalities | Planets | Polarities | BodyParts | Characters | Seasons | Hemispheres | HouseModalities | PlanetType]: string
+  [key in
+    | Signs
+    | Element
+    | Modalities
+    | Planets
+    | Polarities
+    | BodyParts
+    | Characters
+    | Seasons
+    | Hemispheres
+    | HouseModalities
+    | PlanetType]: string
 } & {
   houseTitles: string[]
   houseKeywords: string[][]
