@@ -8,7 +8,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 export interface SymbolOptions {
   dataUrl?: boolean
   stroke?: string
-  strokeWidth?: string
+  strokeWidth?: number | string
 }
 
 /**
@@ -39,7 +39,7 @@ export function getSymbol(
   if (options.strokeWidth) {
     svgString = svgString.replace(
       /stroke-width="[^"]*"/g,
-      `stroke-width="${options.strokeWidth}"`,
+      `stroke-width="${Number(options.strokeWidth)}"`,
     )
   }
 
