@@ -103,7 +103,13 @@ const en = {
 
   angular: 'Angular',
   succedent: 'Succedent',
-  cadent: 'Cadent'
+  cadent: 'Cadent',
+
+  luminary: 'Luminary',
+  personal: 'Personal',
+  social: 'Social',
+  transpersonal: 'Transpersonal',
+  other: 'Other'
 } as Dictionary
 
 export default en

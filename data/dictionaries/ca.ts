@@ -103,7 +103,13 @@ const ca = {
 
   angular: 'Angular',
   succedent: 'Successiva',
-  cadent: 'Cadent'
+  cadent: 'Cadent',
+
+  luminary: 'Lluminaria',
+  personal: 'Personal',
+  social: 'Social',
+  transpersonal: 'Transpersonal',
+  other: 'Altres'
 } as Dictionary
 
 export default ca

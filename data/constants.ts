@@ -121,3 +121,11 @@ export const HOUSE_MODALITIES = {
   SUCCEDENT: 'succedent',
   CADENT: 'cadent'
 } as const
+
+export const PLANET_TYPE = {
+  LUMINARY: 'luminary',
+  PERSONAL: 'personal',
+  SOCIAL: 'social',
+  TRANSPERSONAL: 'transpersonal',
+  OTHER: 'other'
+} as const

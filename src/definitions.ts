@@ -1,15 +1,4 @@
-import type {
-  BODY_PARTS,
-  CHARACTERS,
-  ELEMENTS,
-  HEMISPHERES,
-  HOUSE_MODALITIES,
-  MODALITIES,
-  PLANETS,
-  POLARITIES,
-  SEASONS,
-  SIGNS,
-} from '../data/constants'
+import type { BODY_PARTS, CHARACTERS, ELEMENTS, HEMISPHERES, HOUSE_MODALITIES, MODALITIES, PLANET_TYPE, PLANETS, POLARITIES, SEASONS, SIGNS } from '../data/constants'
 import type { dictionaries } from '../data/dictionaries'
 
 export type Language = keyof typeof dictionaries
@@ -26,6 +15,7 @@ export type Characters = ObjectValues<typeof CHARACTERS>
 export type Seasons = ObjectValues<typeof SEASONS>
 export type Hemispheres = ObjectValues<typeof HEMISPHERES>
 export type HouseModalities = ObjectValues<typeof HOUSE_MODALITIES>
+export type PlanetType = ObjectValues<typeof PLANET_TYPE>
 
 export interface Sign {
   /**
@@ -201,21 +191,33 @@ export interface House {
   modality: HouseModalities
 }
 
+export interface Planet {
+  /**
+   * The name of the celestial body.
+   * Examples: "Sun", "Moon".
+   */
+  name: string
+
+  /**
+   * The glyph or symbol associated with the celestial body.
+   * Examples: "☉" for the Sun, "☽" for the Moon, "♂" for Mars.
+   */
+  glyph: string
+
+  /**
+   * The type or category of the celestial body.
+   * Examples: "Personal", "Luminary".
+   */
+  type: PlanetType
+}
+
 export type Translations = Record<Language, Sign>
+
 export type Dictionary = {
-  [key in
-    | Signs
-    | Element
-    | Modalities
-    | Planets
-    | Polarities
-    | BodyParts
-    | Characters
-    | Seasons
-    | Hemispheres
-    | HouseModalities]: string
+  [key in Signs | Element | Modalities | Planets | Polarities | BodyParts | Characters | Seasons | Hemispheres | HouseModalities | PlanetType]: string
 } & {
   houseTitles: string[]
   houseKeywords: string[][]
 }
+
 export type Dictionaries = Record<Language, Dictionary>
