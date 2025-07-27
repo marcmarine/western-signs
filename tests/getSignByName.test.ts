@@ -5,9 +5,7 @@ import { capitalizeString, getAllSignWithTranslations, getLanguageName } from '@
 
 const signs = getAllSignWithTranslations()
 
-const mappedSigns = Object.entries(signs).flatMap(([sign, data]) =>
-  Object.entries(data).map(([lang, expectedData]) => [sign, lang, expectedData]),
-)
+const mappedSigns = Object.entries(signs).flatMap(([sign, data]) => Object.entries(data).map(([lang, expectedData]) => [sign, lang, expectedData]))
 
 describe('getSignByName', () => {
   it('should work by passing a constant', () => {
@@ -24,7 +22,7 @@ describe('getSignByName', () => {
   })
 
   describe.each(mappedSigns)('should return', (sign, lang, expectedData) => {
-    it(`${capitalizeString(sign as Signs)} data in ${getLanguageName(lang as string)} `, () => {
+    it(`${capitalizeString(sign as Signs)} data in ${getLanguageName(lang as Language)} `, () => {
       const result = getSignByName(sign as Signs, lang as Language)
       expect(result).toEqual(expectedData as Sign)
     })

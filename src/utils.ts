@@ -1,34 +1,26 @@
-import ISO6391 from 'iso-639-1'
 import { dictionaries } from '../data/dictionaries'
 import signs from '../data/signs'
-import type {
-  BodyParts,
-  Characters,
-  Dictionary,
-  Element,
-  Hemispheres,
-  House,
-  HouseModalities,
-  Language,
-  Modalities,
-  Planets,
-  Polarities,
-  Seasons,
-  Sign,
-  Signs,
-  Translations,
-} from './definitions'
+import type { BodyParts, Characters, Dictionary, Element, Hemispheres, House, HouseModalities, Language, Modalities, Planets, Polarities, Seasons, Sign, Signs, Translations } from './definitions'
 
-export const getLanguageName = ISO6391.getName
+export const getLanguageName = (code: Language) => {
+  switch (code) {
+    case 'es':
+      return 'Español'
+    case 'ca':
+      return 'Català'
+    default:
+      return 'English'
+  }
+}
 
 export function getAllSignWithTranslations() {
   const signData: Partial<Record<Signs, Translations>> = {}
 
-  Object.keys(signs).forEach((signKey) => {
+  Object.keys(signs).forEach(signKey => {
     const sign = signKey as Signs
     const translationData: Translations = {} as Translations
 
-    Object.keys(dictionaries).forEach((langKey) => {
+    Object.keys(dictionaries).forEach(langKey => {
       const lang = langKey as Language
       const translatedSign: Partial<Sign> = {}
 
@@ -66,7 +58,7 @@ export function translateSignData(signData: Sign, lang: Language): Sign {
     pole: dictionary[signData.pole as Polarities],
     rulingPlanet: dictionary[signData.rulingPlanet as Planets],
     season: dictionary[signData.season as Seasons],
-    startDate: signData.startDate,
+    startDate: signData.startDate
   }
 }
 
@@ -79,11 +71,7 @@ export function isDateInRange(startDate: Date, endDate: Date, currentDate: Date)
   const endMonth = endDate.getMonth() + 1
   const endDay = endDate.getDate()
 
-  return (
-    (month === startMonth && day >= startDay) ||
-    (month === endMonth && day <= endDay) ||
-    (startMonth > endMonth && (month > startMonth || month < endMonth))
-  )
+  return (month === startMonth && day >= startDay) || (month === endMonth && day <= endDay) || (startMonth > endMonth && (month > startMonth || month < endMonth))
 }
 
 export function translateHouseData(houseData: House, lang: Language): House {
@@ -102,6 +90,6 @@ export function translateHouseData(houseData: House, lang: Language): House {
     hemisphere: dictionary[houseData.hemisphere as Hemispheres] as Hemispheres,
     phase: houseData.phase,
     quadrant: houseData.quadrant,
-    modality: dictionary[houseData.modality as HouseModalities] as HouseModalities,
+    modality: dictionary[houseData.modality as HouseModalities] as HouseModalities
   }
 }
