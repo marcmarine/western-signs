@@ -20,7 +20,11 @@ export interface SymbolOptions {
 export function getSymbol(
   signName: Signs,
   options: SymbolOptions = {},
-): string {
+): string | undefined {
+  if (typeof window !== 'undefined') {
+    return
+  }
+
   const iconPath = path.join(__dirname, '../assets', `${signName}.svg`)
 
   if (!existsSync(iconPath)) {
