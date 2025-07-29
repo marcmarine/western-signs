@@ -6,7 +6,7 @@ import type { Dictionary, Language, Sign, Signs } from './definitions'
 
  * Get all astrological signs with their translations for a specified language.
  *
- * @param {Language} [lang='en']  - The language code for which translations are needed. Defaults to 'en'.
+ * @param {Language} [language='en']  - The language code for which translations are needed. Defaults to 'en'.
  * @returns {Sign[]} An array of Sign objects with translated values based on the specified language.
  *
  * @example
@@ -34,17 +34,19 @@ import type { Dictionary, Language, Sign, Signs } from './definitions'
  * //  ...
  * // ]
  */
-export function getSigns(lang: Language = 'en'): Sign[] {
-  return Object.keys(signs).map(sign => {
-    const signData: Partial<Sign> = {}
+export function getSigns(language: Language = 'en'): Sign[] {
+  const translatedSigns = Object.keys(signs).map(signKey => {
+    const sign = signs[signKey as Signs]
 
-    Object.entries(signs[sign as Signs]).forEach(([key, value]) => {
-      const translatedValue =
-        dictionaries[lang as Language][value as keyof Dictionary]
+    const translatedSign = Object.fromEntries(
+      Object.entries(sign).map(([key, value]) => [
+        key,
+        dictionaries[language as Language][value as keyof Dictionary] || value,
+      ]),
+    ) as Sign
 
-      signData[key as keyof Sign] = translatedValue || value
-    })
-
-    return signData as Sign
+    return translatedSign
   })
+
+  return translatedSigns
 }

@@ -1,11 +1,11 @@
+import { dictionaries } from '@/data/dictionaries'
 import houses from '../data/houses'
-import type { House, Language } from './definitions'
-import { translateHouseData } from './utils'
+import type { Dictionary, House, Language } from './definitions'
 
 /**
  * Get all astrological houses with their translations for a specified language.
  *
- * @param {Language} [lang='en'] - The language code for which translations are needed. Defaults to 'en'.
+ * @param {Language} [language='en'] - The language code for which translations are needed. Defaults to 'en'.
  * @returns {House[]} An array of House objects with translated values based on the specified language.
  *
  * @example
@@ -31,8 +31,17 @@ import { translateHouseData } from './utils'
  * //  ...
  * // ]
  */
-export function getHouses(lang: Language = 'en'): House[] {
-  return houses.map(house => {
-    return translateHouseData(house, lang)
+export function getHouses(language: Language = 'en'): House[] {
+  const translatedHouses = houses.map(house => {
+    const translatedHouse = Object.fromEntries(
+      Object.entries(house).map(([key, value]) => [
+        key,
+        dictionaries[language as Language][value as keyof Dictionary] || value,
+      ]),
+    ) as House
+
+    return translatedHouse
   })
+
+  return translatedHouses
 }

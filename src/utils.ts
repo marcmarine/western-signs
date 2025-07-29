@@ -1,18 +1,13 @@
 import { dictionaries } from '../data/dictionaries'
 import signs from '../data/signs'
 import type {
-  BodyParts,
-  Characters,
   Dictionary,
   Element,
   Hemispheres,
   House,
   HouseModalities,
   Language,
-  Modalities,
   Planets,
-  Polarities,
-  Seasons,
   Sign,
   Signs,
   Translations,
@@ -57,25 +52,6 @@ export function getAllSignWithTranslations() {
 export function capitalizeString(string: string) {
   if (string.length === 0) return string
   return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase()
-}
-
-export function translateSignData(signData: Sign, lang: Language): Sign {
-  const dictionary = dictionaries[lang]
-
-  return {
-    bodyPart: dictionary[signData.bodyPart as BodyParts],
-    character: dictionary[signData.character as Characters],
-    element: dictionary[signData.element as Element] as Element,
-    endDate: signData.endDate,
-    glyph: signData.glyph,
-    modality: dictionary[signData.modality as Modalities],
-    name: dictionary[signData.name as Signs],
-    number: signData.number,
-    pole: dictionary[signData.pole as Polarities],
-    rulingPlanet: dictionary[signData.rulingPlanet as Planets],
-    season: dictionary[signData.season as Seasons],
-    startDate: signData.startDate,
-  }
 }
 
 export function isDateInRange(

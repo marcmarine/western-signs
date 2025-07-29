@@ -1,12 +1,12 @@
+import { dictionaries } from '@/data/dictionaries'
 import signs from '../data/signs'
-import type { Language, Sign, Signs } from './definitions'
-import { translateSignData } from './utils'
+import type { Dictionary, Language, Sign, Signs } from './definitions'
 
 /**
  * Get the astrological sign by its name with translations for the specified language.
  *
- * @param {Signs} sign - The name of the astrological sign to retrieve.
- * @param {Language} [lang='en'] - The language code for which translations are needed. Defaults to 'en'.
+ * @param {Signs} signKey - The name of the astrological sign to retrieve.
+ * @param {Language} [language='en'] - The language code for which translations are needed. Defaults to 'en'.
  * @returns {Sign | null} An object representing the sign with translated values or null if the sign or dictionary is not found.
  *
  * @example
@@ -25,10 +25,20 @@ import { translateSignData } from './utils'
  * //   [...]
  * // }
  */
-export function getSignByName(sign: Signs, lang: Language = 'en'): Sign | null {
-  const signData = signs[sign]
+export function getSignByName(
+  signKey: Signs,
+  language: Language = 'en',
+): Sign | null {
+  const sign = signs[signKey]
 
-  if (!signData) return null
+  if (!sign) return null
 
-  return translateSignData(signData, lang)
+  const translatedSign = Object.fromEntries(
+    Object.entries(sign).map(([key, value]) => [
+      key,
+      dictionaries[language as Language][value as keyof Dictionary] || value,
+    ]),
+  ) as Sign
+
+  return translatedSign
 }
