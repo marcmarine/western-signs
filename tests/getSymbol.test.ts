@@ -1,23 +1,28 @@
-import { describe, expect, test } from 'bun:test'
+import { describe, expect, it, test } from 'bun:test'
 import planets from '@/data/planets'
 import signs from '@/data/signs'
-import type { Planets, Signs } from '@/src/definitions'
-import { getSymbol } from '@/src/index'
+import { getSymbol, type Symbols } from '@/src/index'
+import { ASPECTS } from '@/data/constants'
+import { capitalizeString } from '@/src/utils'
+
+const symbolNames = [...Object.keys(signs), ...Object.keys(planets), ...Object.values(ASPECTS)]
 
 describe('getSymbol', () => {
-  test('should read an SVG as string for every sign', () => {
-    ;[...Object.keys(signs), ...Object.keys(planets)].forEach(signName => {
-      const svgString = getSymbol(signName as Signs | Planets)
-
+  describe.each(symbolNames)('should read an SVG as string for', (symbolName) => {
+    it(`${capitalizeString(symbolName)}`, () => {
+      const svgString = getSymbol(symbolName as Symbols)
+    
       expect(svgString).toContain('<svg')
+      expect(svgString).toContain('stroke="currentColor"')
+      expect(svgString).toContain('stroke-width="1"')
     })
   })
 
   test('should modify stroke and stroke-width', () => {
-    ;[...Object.keys(signs), ...Object.keys(planets)].forEach(signName => {
-      const svgString = getSymbol(signName as Signs | Planets, {
+    symbolNames.forEach(symbolName => {
+      const svgString = getSymbol(symbolName as Symbols, {
         stroke: 'red',
-        strokeWidth: '3'
+        strokeWidth: '3',
       })
 
       expect(svgString).toContain('stroke="red"')
@@ -32,6 +37,9 @@ describe('getSymbol', () => {
   })
 
   test('should throw an error if the file does not exist', () => {
-    expect(() => getSymbol('notexist' as Signs | Planets)).toThrow('Icon "notexist" not found.')
+    expect(() => getSymbol('notexist' as Symbols)).toThrow(
+      'Icon "notexist" not found.',
+    )
   })
+  
 })

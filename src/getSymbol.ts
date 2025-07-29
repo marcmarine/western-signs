@@ -1,7 +1,7 @@
 import { existsSync, readFileSync } from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import type { Planets, Signs } from './definitions'
+import type { Symbols } from './definitions'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
@@ -13,11 +13,14 @@ export interface SymbolOptions {
 
 /**
  * Gets an SVG as a string or as a Data URL, with option to modify attributes.
- * @param {Signs | Planets} symbolName Name of the icon without extension .svg
+ * @param {Symbols} symbolName Name of the icon without extension .svg
  * @param {SymbolOptions} options Options to modify attributes or return as a Data URL
  * @returns SVG as string or Data URL
  */
-export function getSymbol(symbolName: Signs | Planets, options: SymbolOptions = {}): string | undefined {
+export function getSymbol(
+  symbolName: Symbols,
+  options: SymbolOptions = {},
+): string | undefined {
   if (typeof window !== 'undefined') {
     return
   }
@@ -31,11 +34,17 @@ export function getSymbol(symbolName: Signs | Planets, options: SymbolOptions = 
   let svgString = readFileSync(iconPath, 'utf8')
 
   if (options.stroke) {
-    svgString = svgString.replace(/stroke="[^"]*"/g, `stroke="${options.stroke}"`)
+    svgString = svgString.replace(
+      /stroke="[^"]*"/g,
+      `stroke="${options.stroke}"`,
+    )
   }
 
   if (options.strokeWidth) {
-    svgString = svgString.replace(/stroke-width="[^"]*"/g, `stroke-width="${Number(options.strokeWidth)}"`)
+    svgString = svgString.replace(
+      /stroke-width="[^"]*"/g,
+      `stroke-width="${Number(options.strokeWidth)}"`,
+    )
   }
 
   if (options.dataUrl) {

@@ -1,4 +1,5 @@
 import type {
+  ASPECTS,
   BODY_PARTS,
   CHARACTERS,
   ELEMENTS,
@@ -28,6 +29,7 @@ export type Seasons = ObjectValues<typeof SEASONS>
 export type Hemispheres = ObjectValues<typeof HEMISPHERES>
 export type HouseModalities = ObjectValues<typeof HOUSE_MODALITIES>
 export type PlanetType = ObjectValues<typeof PLANET_TYPE>
+export type Aspects = ObjectValues<typeof ASPECTS>
 
 export interface Sign {
   /**
@@ -242,5 +244,7 @@ export type Dictionary = {
   houseTitles: string[]
   houseKeywords: string[][]
 }
+
+export type Symbols = Signs | Planets | Aspects
 
 export type Dictionaries = Record<Language, Dictionary>

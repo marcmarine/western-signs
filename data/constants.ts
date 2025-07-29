@@ -129,3 +129,13 @@ export const PLANET_TYPE = {
   TRANSPERSONAL: 'transpersonal',
   OTHER: 'other'
 } as const
+
+export const ASPECTS = {
+  0: 'conjunction',
+  30: 'semisextile',
+  60: 'sextile',
+  90: 'quadrature',
+  120: 'trigone',
+  150: 'quincunx',
+  180: 'opposition'
+} as const
