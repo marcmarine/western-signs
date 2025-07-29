@@ -63,6 +63,8 @@ It should returns an object with the following properties:
 ### Functions
 
 - [getHouses](https://marcmarine.github.io/western-signs/functions/getHouses)
+- [getPlanet](https://marcmarine.github.io/western-signs/functions/getPlanet)
+- [getPlanets](https://marcmarine.github.io/western-signs/functions/getPlanets)
 - [getSignByDate](https://marcmarine.github.io/western-signs/functions/getSignByDate)
 - [getSignByName](https://marcmarine.github.io/western-signs/functions/getSignByName)
 - [getSigns](https://marcmarine.github.io/western-signs/functions/getSigns)
@@ -70,6 +72,7 @@ It should returns an object with the following properties:
 ### Interfaces
 
 - [House](https://marcmarine.github.io/western-signs/interfaces/House)
+- [Planet](https://marcmarine.github.io/western-signs/interfaces/Planet)
 - [Sign](https://marcmarine.github.io/western-signs/interfaces/Sign)
 
 For more detailed API information, please check out the [documentation](https://marcmarine.github.io/western-signs).
