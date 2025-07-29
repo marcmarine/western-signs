@@ -7,7 +7,7 @@ export {
   SIGNS,
 } from '@/data/constants'
 export type {
-  Element,
+  Elements,
   Hemispheres,
   House,
   HouseModalities,

@@ -18,7 +18,7 @@ export type Language = keyof typeof dictionaries
 type ObjectValues<T> = T[keyof T]
 
 export type Signs = ObjectValues<typeof SIGNS>
-export type Element = ObjectValues<typeof ELEMENTS>
+export type Elements = ObjectValues<typeof ELEMENTS>
 export type Modalities = ObjectValues<typeof MODALITIES>
 export type Planets = ObjectValues<typeof PLANETS>
 export type Polarities = ObjectValues<typeof POLARITIES>
@@ -50,7 +50,7 @@ export interface Sign {
    * Also known as triplicities in astrology.
    * Examples: "Fire" for Aries, "Earth" for Taurus.
    */
-  element: Element
+  element: Elements
 
   /**
    * The end date of the zodiac sign period.
@@ -123,7 +123,7 @@ export interface House {
    *
    * Example: "Fire" for House 1 (Aries), "Earth" for House 2 (Taurus)
    */
-  element: Element
+  element: Elements
 
   /**
    * Hemisphere division based on the horizon line.
@@ -228,7 +228,7 @@ export type Translations = Record<Language, Sign>
 export type Dictionary = {
   [key in
     | Signs
-    | Element
+    | Elements
     | Modalities
     | Planets
     | Polarities
