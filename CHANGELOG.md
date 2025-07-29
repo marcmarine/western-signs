@@ -1,3 +1,21 @@
+# [1.8.0](https://github.com/marcmarine/western-signs/compare/v1.7.0...v1.8.0) (2025-07-29)
+
+
+### Bug Fixes
+
+* Allow numeric strokeWidth in SymbolOptions ([069e980](https://github.com/marcmarine/western-signs/commit/069e9809b60e625840881be14faf0e8b0458d216))
+* Handle non-browser environments in getSymbol ([670cb0c](https://github.com/marcmarine/western-signs/commit/670cb0c6e0a5433ea62c27f81eb36e0775facf5a))
+* Handle unknown planets gracefully in getPlanet ([a3840bd](https://github.com/marcmarine/western-signs/commit/a3840bda8c76be5b42ea3187d87d1661b164d5c0))
+* Update glyph symbols in zodiac signs ([c6220f9](https://github.com/marcmarine/western-signs/commit/c6220f9fc4d5c3c21416084466e1759ed6652f61))
+* Update SVG stroke color to use currentColor ([20cccbe](https://github.com/marcmarine/western-signs/commit/20cccbe4aef53923775d9551edd9e62554b8cc2b))
+
+
+### Features
+
+* Add getPlanet function with translation support ([56e8d4d](https://github.com/marcmarine/western-signs/commit/56e8d4d908179e73b9d7d7868fbc389d994094db))
+* Add planets SVGs and update symbol tests ([67bc91a](https://github.com/marcmarine/western-signs/commit/67bc91a83eb7b3a73382e293b770fab8ac63f711))
+* Add SVG assets for various aspects ([9c456a9](https://github.com/marcmarine/western-signs/commit/9c456a9967b5bc7b9e0fe3cd540df10fd78d935c))
+
 # [1.7.0](https://github.com/marcmarine/western-signs/compare/v1.6.0...v1.7.0) (2025-07-27)
 
 
