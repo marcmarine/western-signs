@@ -18,6 +18,7 @@ export type {
   Signs,
 } from './definitions'
 export { getHouses } from './getHouses'
+export { getPlanet } from './getPlanet'
 export { getPlanets } from './getPlanets'
 export { getSignByDate } from './getSignByDate'
 export { getSignByName } from './getSignByName'
