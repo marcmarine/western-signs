@@ -1,3 +1,10 @@
+## [1.8.1](https://github.com/marcmarine/western-signs/compare/v1.8.0...v1.8.1) (2025-07-29)
+
+
+### Bug Fixes
+
+* Adjust sun SVG path formatting ([71f9898](https://github.com/marcmarine/western-signs/commit/71f989807f2d0c718d8998572f5bef1544c0d099))
+
 # [1.8.0](https://github.com/marcmarine/western-signs/compare/v1.7.0...v1.8.0) (2025-07-29)
 
 
