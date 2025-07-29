@@ -5,8 +5,10 @@ import type { Dictionary, Language, Planet, Planets } from './definitions'
 export function getPlanet(
   planetKey: Planets,
   language: Language = 'en',
-): Planet {
+): Planet | null {
   const planet = planets[planetKey]
+
+  if (!planet) return null
 
   const translatedPlanet = Object.fromEntries(
     Object.entries(planet).map(([key, value]) => [

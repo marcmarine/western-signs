@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'bun:test'
 import { dictionaries } from '@/data/dictionaries'
 import planets from '@/data/planets'
-import type { Dictionary, Language, Planet } from '@/src/definitions'
+import type { Dictionary, Language, Planet, Planets } from '@/src/definitions'
 import { getPlanet, PLANETS } from '@/src/index'
 
 describe('getPlanet', () => {
@@ -9,7 +9,7 @@ describe('getPlanet', () => {
     const planet = PLANETS.SATURN
     const language: Language = 'es'
 
-    const result: Planet = getPlanet(planet, language)
+    const result = getPlanet(planet, language)
 
     const originalData = planets[planet]
     const expected: Planet = {} as Planet
@@ -21,5 +21,13 @@ describe('getPlanet', () => {
     }
 
     expect(result).toEqual(expected)
+  })
+
+  it('should handle unknown planet gracefully', () => {
+    const planetKey = 'unknown'
+
+    const result = getPlanet(planetKey as Planets)
+
+    expect(result).toBeNull()
   })
 })
