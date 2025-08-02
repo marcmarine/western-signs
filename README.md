@@ -58,6 +58,30 @@ It should returns an object with the following properties:
 }
 ```
 
+### Translations
+
+You can easily translate aspects and other astrology-related terms using the `t` function provided by the library. The `t` function takes template strings and values to be translated based on the current language setting.
+
+To translate an aspect into the current language:
+
+```js
+import { ASPECTS, i18n } from 'western-signs'
+
+const aspect = i18n.t`${ASPECTS.CONJUNCTION}`
+console.log(aspect)
+// Output: Conjunction
+```
+
+To change the language, use the `setLanguage` function:
+
+```js
+i18n.setLanguage('es')
+const aspectInSpanish = i18n.t`${ASPECTS.CONJUNCTION}`
+console.log(aspectInSpanish)
+// Output: Conjunción
+```
+
+
 ## API Reference
 
 ### Functions

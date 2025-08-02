@@ -24,9 +24,9 @@ export function getLanguage(): Language {
  * @returns {string} The translated string.
  *
  * @example
- * import { SIGNS, i18n, setLanguage } from 'western-signs'
+ * import { SIGNS, i18n } from 'western-signs'
  *
- * setLanguage('es')
+ * i18n.setLanguage('es')
  *
  * const taurus = i18n.t`${SIGNS.TAURUS}`
  * console.log(taurus)
