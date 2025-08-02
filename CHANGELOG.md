@@ -1,3 +1,16 @@
+# [1.9.0](https://github.com/marcmarine/western-signs/compare/v1.8.1...v1.9.0) (2025-08-02)
+
+
+### Bug Fixes
+
+* Set default language to English in i18n module ([2c1ae72](https://github.com/marcmarine/western-signs/commit/2c1ae72256852b6f8429007c98362272f344ecac))
+
+
+### Features
+
+* Add basic i18n support with language switching and tests ([0d6ac53](https://github.com/marcmarine/western-signs/commit/0d6ac5376833228c41c85222a5a95f348ee4c7fe))
+* Refactor ASPECTS to use named keys and add translations ([828bdb1](https://github.com/marcmarine/western-signs/commit/828bdb15cf37b423d175756a503b2d0fb17fd4fc))
+
 ## [1.8.1](https://github.com/marcmarine/western-signs/compare/v1.8.0...v1.8.1) (2025-07-29)
 
 
