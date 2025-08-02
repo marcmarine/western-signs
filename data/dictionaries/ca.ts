@@ -109,7 +109,15 @@ const ca = {
   personal: 'Personal',
   social: 'Social',
   transpersonal: 'Transpersonal',
-  other: 'Altres'
+  other: 'Altres',
+
+  conjunction: 'Conjunció',
+  semisextile: 'Semisextil',
+  sextile: 'Sextil',
+  quadrature: 'Quadratura',
+  trigone: 'Trigó',
+  quincunx: 'Quincunci',
+  opposition: 'Oposició'
 } as Dictionary
 
 export default ca

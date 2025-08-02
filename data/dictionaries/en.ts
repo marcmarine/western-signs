@@ -109,7 +109,15 @@ const en = {
   personal: 'Personal',
   social: 'Social',
   transpersonal: 'Transpersonal',
-  other: 'Other'
+  other: 'Other',
+
+  conjunction: 'Conjunction',
+  semisextile: 'Semisextile',
+  sextile: 'Sextile',
+  quadrature: 'Quadrature',
+  trigone: 'Trigone',
+  quincunx: 'Quincunx',
+  opposition: 'Opposition'
 } as Dictionary
 
 export default en

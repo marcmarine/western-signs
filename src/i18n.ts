@@ -17,18 +17,17 @@ export function setLanguage(language: Language): void {
  */
 export function getLanguage(): Language {
   return currentLanguage
-}
-
-/**
+} /**
  * Translates template strings into the current language using the provided values.
  * @param {TemplateStringsArray} strings - The template strings to be translated.
  * @param {string[]} values - The values to be translated within the template.
  * @returns {string} The translated string.
  *
  * @example
- * import { SIGNS, i18n } from 'western-signs'
+ * import { SIGNS, i18n, setLanguage } from 'western-signs'
  *
- * // The assigned default language is Spanish.
+ * setLanguage('es')
+ *
  * const taurus = i18n.t`${SIGNS.TAURUS}`
  * console.log(taurus)
  * // Output: Tauro
