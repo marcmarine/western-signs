@@ -1,7 +1,7 @@
 import { dictionaries } from '@/data/dictionaries'
 import type { Dictionary, Language } from './definitions'
 
-let currentLanguage: Language = 'es'
+let currentLanguage: Language = 'en'
 
 /**
  * Sets the current language to the provided language.
