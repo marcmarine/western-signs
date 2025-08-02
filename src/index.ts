@@ -7,6 +7,7 @@ export {
   SIGNS,
 } from '@/data/constants'
 export type {
+  Aspects,
   Elements,
   Hemispheres,
   House,
@@ -16,8 +17,7 @@ export type {
   Planets,
   Sign,
   Signs,
-  Aspects,
-  Symbols
+  Symbols,
 } from './definitions'
 export { getHouses } from './getHouses'
 export { getPlanet } from './getPlanet'
@@ -26,3 +26,4 @@ export { getSignByDate } from './getSignByDate'
 export { getSignByName } from './getSignByName'
 export { getSigns } from './getSigns'
 export { getSymbol } from './getSymbol'
+export * as i18n from './i18n'
