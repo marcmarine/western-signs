@@ -1,4 +1,4 @@
-import { afterAll, beforeEach, describe, expect, it, mock } from 'bun:test'
+import { beforeEach, describe, expect, it } from 'bun:test'
 import { i18n } from '@/src/index'
 
 const { t, setLanguage } = i18n
@@ -6,46 +6,28 @@ const { t, setLanguage } = i18n
 describe('Translate function with dynamic language', () => {
   const defaultLanguage = 'en'
 
-  mock.module('@/data/dictionaries', () => ({
-    dictionaries: {
-      en: {
-        hello: 'hello',
-        world: 'world',
-      },
-      es: {
-        hello: 'hola',
-        world: 'mundo',
-      },
-      ca: {
-        hello: 'hola',
-        world: 'món',
-      },
-    },
-  }))
-
   beforeEach(() => {
     setLanguage(defaultLanguage)
   })
 
-  afterAll(() => {
-    mock.restore()
-  })
-
   it('should translate template literal strings using the default language', () => {
-    const result = t`${'hello'} ${'world'}`
-    expect(result).toBe('hello world')
+    const result = t`${'capricorn'}`
+
+    expect(result).toBe('Capricorn')
   })
 
   it('should translate template literal strings correctly in Spanish', () => {
     setLanguage('es')
-    const result = t`${'hello'} ${'world'}`
-    expect(result).toBe('hola mundo')
+    const result = t`${'taurus'}`
+
+    expect(result).toBe('Tauro')
   })
 
   it('should translate template literal strings correctly in Catalan', () => {
     setLanguage('ca')
-    const result = t`${'hello'} ${'world'}`
-    expect(result).toBe('hola món')
+    const result = t`${'pisces'}`
+
+    expect(result).toBe('Peixos')
   })
 
   it('should return the original string if no translation is found', () => {
