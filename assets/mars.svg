@@ -1,8 +1,10 @@
-<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+  <path d="M10.4373 5.56271L14.6667 1.33337" stroke="currentColor" stroke-width="1" />
+  <path d="M12.3067 1.33337H14.6667V3.69337" stroke="currentColor" stroke-width="1" />
   <path
-    d="M10.4373 5.56271L14.6667 1.33337M14.6667 1.33337H12.3067M14.6667 1.33337V3.69337M12 9.33337C12 6.39071 9.60933 4.00004 6.66666 4.00004C3.72399 4.00004 1.33333 6.39071 1.33333 9.33337C1.33333 12.276 3.72399 14.6667 6.66666 14.6667C9.60933 14.6667 12 12.276 12 9.33337Z"
+    d="M12 9.33339C12 6.39073 9.60934 4.00006 6.66667 4.00006C3.724 4.00006 1.33334 6.39073 1.33334 9.33339C1.33334 12.276 3.724 14.6667 6.66667 14.6667C9.60934 14.6667 12 12.276 12 9.33339Z"
     stroke="currentColor"
     stroke-width="1"
-    stroke-linejoin="round"
+    stroke-linejoin="miter"
   />
 </svg>

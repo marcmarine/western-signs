@@ -4,6 +4,6 @@
     stroke="currentColor"
     stroke-width="1"
     stroke-linecap="square"
-    stroke-linejoin="round"
+    stroke-linejoin="miter"
   />
 </svg>
