@@ -15,6 +15,7 @@ describe('getSymbol', () => {
   describe.each(symbolNames)('should read an SVG as string for', symbolName => {
     it(`${capitalizeString(symbolName)}`, () => {
       const symbol = getSymbol(symbolName as Symbols)
+
       const svgString = symbol?.toString()
 
       expect(svgString).toContain('<svg')

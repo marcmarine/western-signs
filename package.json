@@ -21,15 +21,13 @@
     "typescript": "^5.8.3"
   },
   "exports": {
-    ".": "./dist/index.js",
-    "./*": "./assets/*"
+    ".": "./dist/index.js"
   },
   "types": "./dist/index.d.ts",
   "bugs": "https://github.com/marcmarine/western-signs/issues/new",
   "description": "Simple interface for western astrological signs.",
   "files": [
-    "dist",
-    "assets"
+    "dist"
   ],
   "homepage": "https://github.com/marcmarine/western-signs",
   "keywords": [
@@ -42,7 +40,8 @@
   "scripts": {
     "build": "bun build.ts",
     "build:docs": "bunx typedoc",
-    "format": "biome check --write"
+    "format": "biome check --write",
+    "prebuild": "bun build-symbols.ts"
   },
   "type": "module"
 }

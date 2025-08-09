@@ -1,6 +1,4 @@
-import { existsSync, readFileSync } from 'node:fs'
-import path from 'node:path'
-import { fileURLToPath } from 'node:url'
+import { SYMBOLS } from '@/data/symbols'
 import type { Symbols } from './definitions'
 
 export interface SymbolOptions {
@@ -31,18 +29,11 @@ export interface SymbolOptions {
  * @throws Will throw an error if the specified SVG file is not found
  */
 export function getSymbol(symbolName: Symbols, options: SymbolOptions = {}) {
-  if (typeof window !== 'undefined') {
-    return undefined
-  }
-
-  const __dirname = path.dirname(fileURLToPath(import.meta.url))
-  const iconPath = path.join(__dirname, '../assets', `${symbolName}.svg`)
-
-  if (!existsSync(iconPath)) {
+  const base64Content = SYMBOLS[symbolName]
+  if (!base64Content) {
     throw new Error(`Icon "${symbolName}" not found.`)
   }
-
-  const svgString = readFileSync(iconPath, 'utf8')
+  const svgString = Buffer.from(base64Content, 'base64').toString('utf8')
 
   return createSymbol(svgString, options)
 }
