@@ -58,6 +58,37 @@ It should returns an object with the following properties:
 }
 ```
 
+### Symbols
+
+The `getSymbol` function allows you to retrieve SVG representations of astrological symbols, with options to customize their appearance.
+
+```js
+import { getSymbol, SIGNS } from 'western-signs'
+
+const symbol = getSymbol(SIGNS.TAURUS, {
+  stroke: 'brown',
+  strokeWidth: 2,
+})
+
+console.log(symbol.toString())
+// Outputs: An SVG string with customized attributes
+
+console.log(symbol.toDataURL())
+// Outputs: A Data URL representation of the SVG
+```
+
+Use method chaining to modify the attributes of the symbol for a more fluent coding style.
+
+```js
+const chainedSymbol = getSymbol('taurus')
+  .setStroke('orange')
+  .setStrokeWidth(3)
+
+console.log(chainedSymbol.toString())
+// Outputs: The SVG string with updated stroke attributes
+```
+
+
 ### Translations
 
 You can easily translate aspects and other astrology-related terms using the `t` function provided by the library. The `t` function takes template strings and values to be translated based on the current language setting.
@@ -92,6 +123,7 @@ console.log(aspectInSpanish)
 - [getSignByDate](https://marcmarine.github.io/western-signs/functions/getSignByDate)
 - [getSignByName](https://marcmarine.github.io/western-signs/functions/getSignByName)
 - [getSigns](https://marcmarine.github.io/western-signs/functions/getSigns)
+- [getSymbol](https://marcmarine.github.io/western-signs/functions/getSymbol)
 
 ### Interfaces
 
