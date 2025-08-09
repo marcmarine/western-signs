@@ -3,8 +3,6 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import type { Symbols } from './definitions'
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url))
-
 export interface SymbolOptions {
   dataUrl?: boolean
   stroke?: string
@@ -25,6 +23,7 @@ export function getSymbol(
     return
   }
 
+  const __dirname = path.dirname(fileURLToPath(import.meta.url))
   const iconPath = path.join(__dirname, '../assets', `${symbolName}.svg`)
 
   if (!existsSync(iconPath)) {

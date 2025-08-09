@@ -1,17 +1,21 @@
 import { describe, expect, it, test } from 'bun:test'
+import { ASPECTS } from '@/data/constants'
 import planets from '@/data/planets'
 import signs from '@/data/signs'
 import { getSymbol, type Symbols } from '@/src/index'
-import { ASPECTS } from '@/data/constants'
 import { capitalizeString } from '@/src/utils'
 
-const symbolNames = [...Object.keys(signs), ...Object.keys(planets), ...Object.values(ASPECTS)]
+const symbolNames = [
+  ...Object.keys(signs),
+  ...Object.keys(planets),
+  ...Object.values(ASPECTS),
+]
 
 describe('getSymbol', () => {
-  describe.each(symbolNames)('should read an SVG as string for', (symbolName) => {
+  describe.each(symbolNames)('should read an SVG as string for', symbolName => {
     it(`${capitalizeString(symbolName)}`, () => {
       const svgString = getSymbol(symbolName as Symbols)
-    
+
       expect(svgString).toContain('<svg')
       expect(svgString).toContain('stroke="currentColor"')
       expect(svgString).toContain('stroke-width="1"')
@@ -41,5 +45,4 @@ describe('getSymbol', () => {
       'Icon "notexist" not found.',
     )
   })
-  
 })
