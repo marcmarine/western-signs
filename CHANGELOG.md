@@ -1,3 +1,10 @@
+## [1.10.1](https://github.com/marcmarine/western-signs/compare/v1.10.0...v1.10.1) (2025-08-10)
+
+
+### Bug Fixes
+
+* Use atob to decode base64 SVG strings ([3407f96](https://github.com/marcmarine/western-signs/commit/3407f96e6e98537504990ba7f29f256ba2a92172))
+
 # [1.10.0](https://github.com/marcmarine/western-signs/compare/v1.9.0...v1.10.0) (2025-08-10)
 
 
