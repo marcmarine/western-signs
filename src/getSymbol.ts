@@ -33,7 +33,7 @@ export function getSymbol(symbolName: Symbols, options: SymbolOptions = {}) {
   if (!base64Content) {
     throw new Error(`Icon "${symbolName}" not found.`)
   }
-  const svgString = Buffer.from(base64Content, 'base64').toString('utf8')
+  const svgString = atob(base64Content)
 
   return createSymbol(svgString, options)
 }
