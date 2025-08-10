@@ -1,3 +1,18 @@
+# [1.10.0](https://github.com/marcmarine/western-signs/compare/v1.9.0...v1.10.0) (2025-08-10)
+
+
+### Bug Fixes
+
+* Move __dirname inside getSymbol ([4082ad6](https://github.com/marcmarine/western-signs/commit/4082ad6ca761638c402f0cbb0350734c7da4bd0d))
+* Set stroke-linejoin to miter in all SVG assets ([85a540b](https://github.com/marcmarine/western-signs/commit/85a540b70bbc121018a937672c03fef7ded7cbe7))
+* Simplify gemini.svg path elements ([452f802](https://github.com/marcmarine/western-signs/commit/452f802f28f7e41f57668831ae1adf45d6575c20))
+
+
+### Features
+
+* Add build script to embed SVG symbols ([6c46da4](https://github.com/marcmarine/western-signs/commit/6c46da4265829a7638a44b62454d48136a93dd8f))
+* Refactor getSymbol to support method chaining ([a5083f0](https://github.com/marcmarine/western-signs/commit/a5083f04cddb544a44a9deb7b8d80b8f1c7ac4e0))
+
 # [1.9.0](https://github.com/marcmarine/western-signs/compare/v1.8.1...v1.9.0) (2025-08-02)
 
 
