@@ -1,3 +1,17 @@
+# [1.11.0](https://github.com/marcmarine/western-signs/compare/v1.10.1...v1.11.0) (2025-08-27)
+
+
+### Bug Fixes
+
+* Refactor houseKeywords to individual strings by key ([4b9ce5c](https://github.com/marcmarine/western-signs/commit/4b9ce5c739034f3808285c4db4310be22363fa6d))
+* Update translations to use keyed titles ([09b97ea](https://github.com/marcmarine/western-signs/commit/09b97eaf3ec5aca5929b2dc4fa3a3582b7c113ff))
+
+
+### Features
+
+* Add ascendant symbol and update types and tests ([56d97c5](https://github.com/marcmarine/western-signs/commit/56d97c54a197e4341ccc92f807b162b541a7aace))
+* Add house names into house data and dictionaries ([3da349c](https://github.com/marcmarine/western-signs/commit/3da349c7c4b776d2bc07fa45186726348cad162b))
+
 ## [1.10.1](https://github.com/marcmarine/western-signs/compare/v1.10.0...v1.10.1) (2025-08-10)
 
 
