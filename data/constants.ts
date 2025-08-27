@@ -97,18 +97,18 @@ export const HOUSE_TITLES = [
 ] as const
 
 export const HOUSE_KEYWORDS = [
-  'houseKeywords-1',
-  'houseKeywords-2',
-  'houseKeywords-3',
-  'houseKeywords-4',
-  'houseKeywords-5',
-  'houseKeywords-6',
-  'houseKeywords-7',
-  'houseKeywords-8',
-  'housKeywordss-9',
-  'houseKeywords-10',
-  'houseKeywords-11',
-  'houseKeywords-12'
+  'houseKeywords1',
+  'houseKeywords2',
+  'houseKeywords3',
+  'houseKeywords4',
+  'houseKeywords5',
+  'houseKeywords6',
+  'houseKeywords7',
+  'houseKeywords8',
+  'houseKeywords9',
+  'houseKeywords10',
+  'houseKeywords11',
+  'houseKeywords12'
 ] as const
 
 export const HEMISPHERES = {

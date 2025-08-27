@@ -30,9 +30,7 @@ describe('getHouses', () => {
 
         result.forEach((house, index) => {
           const expectedTitleKey = `houseTitle${index + 1}`
-          const expectedTitle = dict[
-            expectedTitleKey as keyof typeof dict
-          ] as string
+          const expectedTitle = dict[expectedTitleKey as keyof typeof dict]
 
           expect(house).toHaveProperty('title')
           expect(house.title).toBe(expectedTitle)

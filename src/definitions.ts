@@ -4,6 +4,7 @@ import type {
   CHARACTERS,
   ELEMENTS,
   HEMISPHERES,
+  HOUSE_KEYWORDS,
   HOUSE_MODALITIES,
   HOUSE_TITLES,
   MODALITIES,
@@ -32,6 +33,7 @@ export type HouseModalities = ObjectValues<typeof HOUSE_MODALITIES>
 export type PlanetType = ObjectValues<typeof PLANET_TYPE>
 export type Aspects = ObjectValues<typeof ASPECTS>
 export type HouseTitles = (typeof HOUSE_TITLES)[number]
+export type HouseKeywords = (typeof HOUSE_KEYWORDS)[number]
 
 export interface Sign {
   /**
@@ -242,9 +244,8 @@ export type Dictionary = {
     | Hemispheres
     | HouseModalities
     | PlanetType
-    | HouseTitles]: string
-} & {
-  houseKeywords: string[][]
+    | HouseTitles
+    | HouseKeywords]: string
 }
 
 export type Symbols = Signs | Planets | Aspects
