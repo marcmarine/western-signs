@@ -34,20 +34,21 @@ describe('getSymbol', () => {
     },
   )
 
-  it('should modify stroke and stroke-width correctly', () => {
-    symbolNames.forEach(symbolName => {
+  it.each(symbolNames)(
+    'should modify stroke and stroke-width for symbol "%s"',
+    symbolName => {
       const options = {
         stroke: 'red',
         strokeWidth: '3',
       }
-      const symbol = getSymbol(symbolName as Symbols, options)
+      const symbol = getSymbol(symbolName, options)
 
       const svgString = symbol?.toString()
 
       expect(svgString).toContain(`stroke="${options.stroke}"`)
       expect(svgString).toContain(`stroke-width="${options.strokeWidth}"`)
-    })
-  })
+    },
+  )
 
   it('should return as Data URL (base64)', () => {
     const symbol = getSymbol('taurus')

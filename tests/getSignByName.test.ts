@@ -1,11 +1,7 @@
 import { describe, expect, it } from 'bun:test'
 import type { Language, Sign, Signs } from '@/src/definitions'
 import { getSignByName, SIGNS } from '@/src/index'
-import {
-  capitalizeString,
-  getAllSignWithTranslations,
-  getLanguageName,
-} from '@/src/utils'
+import { getAllSignWithTranslations } from '@/src/utils'
 
 const signs = getAllSignWithTranslations()
 
@@ -31,10 +27,11 @@ describe('getSignByName', () => {
     expect(result).toBeNull()
   })
 
-  describe.each(mappedSigns)('should return', (sign, lang, expectedData) => {
-    it(`${capitalizeString(sign as Signs)} data in ${getLanguageName(lang as Language)} `, () => {
+  it.each(mappedSigns)(
+    'should return "%s" in "%s"',
+    (sign, lang, expectedData) => {
       const result = getSignByName(sign as Signs, lang as Language)
       expect(result).toEqual(expectedData as Sign)
-    })
-  })
+    },
+  )
 })

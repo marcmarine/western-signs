@@ -9,16 +9,20 @@ describe('getHouses', () => {
     expect(result).toBeArrayOfSize(12)
   })
 
-  it('should have houses with the correct signs in order', () => {
-    const signNames = Object.keys(signs)
-    const result = getHouses()
+  const housesWithSign = Object.keys(signs).map(
+    (sign, index): [number, string] => [index + 1, sign],
+  )
 
-    result.forEach((house, index) => {
-      const expectedSign = signNames[index]
+  it.each(housesWithSign)(
+    'house %i should have sign matching "%s"',
+    (number, expectedSign) => {
+      const result = getHouses()
+      const house = result[number - 1]
+
       expect(house).toHaveProperty('sign')
       expect(house.sign).toMatch(new RegExp(expectedSign, 'i'))
-    })
-  })
+    },
+  )
 
   describe('translations', () => {
     for (const language of Object.keys(

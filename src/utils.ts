@@ -8,17 +8,6 @@ import type {
   Translations,
 } from './definitions'
 
-export const getLanguageName = (code: Language) => {
-  switch (code) {
-    case 'es':
-      return 'Español'
-    case 'ca':
-      return 'Català'
-    default:
-      return 'English'
-  }
-}
-
 export function getAllSignWithTranslations() {
   const signData: Partial<Record<Signs, Translations>> = {}
 
@@ -42,11 +31,6 @@ export function getAllSignWithTranslations() {
   })
 
   return signData
-}
-
-export function capitalizeString(string: string) {
-  if (string.length === 0) return string
-  return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase()
 }
 
 export function isDateInRange(
