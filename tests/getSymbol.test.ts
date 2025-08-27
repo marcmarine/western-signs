@@ -9,6 +9,7 @@ const symbolNames = [
   ...Object.keys(signs),
   ...Object.keys(planets),
   ...Object.values(ASPECTS),
+  'ascendant',
 ]
 
 describe('getSymbol', () => {

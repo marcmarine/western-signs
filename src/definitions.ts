@@ -258,6 +258,6 @@ export type Dictionary = {
     | HouseKeywords]: string
 }
 
-export type Symbols = Signs | Planets | Aspects
+export type Symbols = 'ascendant' | Signs | Planets | Aspects
 
 export type Dictionaries = Record<Language, Dictionary>
