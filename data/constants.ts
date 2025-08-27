@@ -82,18 +82,18 @@ export const SEASONS = {
 } as const
 
 export const HOUSE_TITLES = [
-  'houseTitles-1',
-  'houseTitles-2',
-  'houseTitles-3',
-  'houseTitles-4',
-  'houseTitles-5',
-  'houseTitles-6',
-  'houseTitles-7',
-  'houseTitles-8',
-  'houseTitles-9',
-  'houseTitles-10',
-  'houseTitles-11',
-  'houseTitles-12'
+  'houseTitle1',
+  'houseTitle2',
+  'houseTitle3',
+  'houseTitle4',
+  'houseTitle5',
+  'houseTitle6',
+  'houseTitle7',
+  'houseTitle8',
+  'houseTitle9',
+  'houseTitle10',
+  'houseTitle11',
+  'houseTitle12'
 ] as const
 
 export const HOUSE_KEYWORDS = [

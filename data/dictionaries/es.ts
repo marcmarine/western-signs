@@ -68,20 +68,18 @@ const es = {
   autumn: 'Otoño',
   winter: 'Invierno',
 
-  houseTitles: [
-    'La personalidad individual',
-    'Valores y Posesiones',
-    'Comunicación',
-    'Raíces y Orígenes',
-    'Placer y Creatividad',
-    'Trabajo y Rutina',
-    'Relacionarse',
-    'Pérdida y Propiedad Común',
-    'Filosofías y Países Lejanos',
-    'Ocupación y Vocación',
-    'Amigos y Conocidos',
-    'Más Allá de lo Personal'
-  ],
+  houseTitle1: 'La personalidad individual',
+  houseTitle2:'Valores y Posesiones',
+  houseTitle3:'Comunicación',
+  houseTitle4:'Raíces y Orígenes',
+  houseTitle5:'Placer y Creatividad',
+  houseTitle6:'Trabajo y Rutina',
+  houseTitle7:'Relacionarse',
+  houseTitle8:'Pérdida y Propiedad Común',
+  houseTitle9:'Filosofías y Países Lejanos',
+  houseTitle10:'Ocupación y Vocación',
+  houseTitle11:'Amigos y Conocidos',
+  houseTitle12:'Más Allá de lo Personal',
 
   houseKeywords: [
     ['Autoimagen', 'Identidad', 'Impresiones en los demás', 'Personalidad'],

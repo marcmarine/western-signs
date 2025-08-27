@@ -68,20 +68,18 @@ const ca = {
   autumn: 'Tardor',
   winter: 'Hivern',
 
-  houseTitles: [
-    'La personalitat individual',
-    'Valors i possessions',
-    'Comunicació',
-    'Arrels i orígens',
-    'Plaer i creativitat',
-    'Feina i rutina',
-    'Relacionar-se',
-    'Pèrdua i propietat comuna',
-    'Filosofia i països llunyans',
-    'Ocupació i vocació',
-    'Amics i coneguts',
-    'Més enllà del personal'
-  ],
+  houseTitle1: 'La personalitat individual',
+  houseTitle2: 'Valors i possessions',
+  houseTitle3: 'Comunicació',
+  houseTitle4: 'Arrels i orígens',
+  houseTitle5: 'Plaer i creativitat',
+  houseTitle6: 'Feina i rutina',
+  houseTitle7: 'Relacionar-se',
+  houseTitle8: 'Pèrdua i propietat comuna',
+  houseTitle9: 'Filosofia i països llunyans',
+  houseTitle10: 'Ocupació i vocació',
+  houseTitle11: 'Amics i coneguts',
+  houseTitle12: 'Més enllà del personal',
 
   houseKeywords: [
     ['Autoimatge', 'Identitat', 'Impressions als altres', 'Personalitat'],

@@ -68,20 +68,18 @@ const en = {
   autumn: 'Autumn',
   winter: 'Winter',
 
-  houseTitles: [
-    'The individual personality',
-    'Values and Possessions',
-    'Communication',
-    'Roots and Origins',
-    'Pleasure and Creativity',
-    'Work and Routine',
-    'Relating',
-    'Loss and Common Property',
-    'Philosophies and Far Countries',
-    'Occupation and Calling',
-    'Friends and Acquaintances',
-    'Beyond the Personal'
-  ],
+  houseTitle1: 'The individual personality',
+  houseTitle2: 'Values and Possessions',
+  houseTitle3: 'Communication',
+  houseTitle4: 'Roots and Origins',
+  houseTitle5: 'Pleasure and Creativity',
+  houseTitle6: 'Work and Routine',
+  houseTitle7: 'Relating',
+  houseTitle8: 'Loss and Common Property',
+  houseTitle9: 'Philosophies and Far Countries',
+  houseTitle10: 'Occupation and Calling',
+  houseTitle11: 'Friends and Acquaintances',
+  houseTitle12: 'Beyond the Personal',
 
   houseKeywords: [
     ['Self-image', 'Identity', 'Impressions on others', 'Personality'],
