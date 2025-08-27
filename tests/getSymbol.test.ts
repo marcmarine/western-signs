@@ -1,20 +1,29 @@
-import { describe, expect, it, test } from 'bun:test'
+import { describe, expect, it } from 'bun:test'
 import { ASPECTS } from '@/data/constants'
 import planets from '@/data/planets'
 import signs from '@/data/signs'
-import { getSymbol, type Symbols } from '@/src/index'
-import { capitalizeString } from '@/src/utils'
+import { SYMBOLS } from '@/data/symbols'
+import type { Aspects, Planets, Signs, Symbols } from '@/src/index'
+import { getSymbol } from '@/src/index'
 
-const symbolNames = [
-  ...Object.keys(signs),
-  ...Object.keys(planets),
-  ...Object.values(ASPECTS),
+const symbolNames: Symbols[] = [
+  ...(Object.keys(signs) as Signs[]),
+  ...(Object.keys(planets) as Planets[]),
+  ...(Object.values(ASPECTS) as Aspects[]),
   'ascendant',
 ]
 
 describe('getSymbol', () => {
-  describe.each(symbolNames)('should read an SVG as string for', symbolName => {
-    it(`${capitalizeString(symbolName)}`, () => {
+  it('symbolNames should include all SYMBOLS keys', () => {
+    const allSymbols = Object.keys(SYMBOLS).sort() as Symbols[]
+    const testedSymbols = symbolNames.slice().sort()
+
+    expect(testedSymbols).toEqual(allSymbols)
+  })
+
+  it.each(symbolNames)(
+    'should read an SVG string for symbol "%s"',
+    symbolName => {
       const symbol = getSymbol(symbolName as Symbols)
 
       const svgString = symbol?.toString()
@@ -22,10 +31,10 @@ describe('getSymbol', () => {
       expect(svgString).toContain('<svg')
       expect(svgString).toContain('stroke="currentColor"')
       expect(svgString).toContain('stroke-width="1"')
-    })
-  })
+    },
+  )
 
-  test('should modify stroke and stroke-width correctly', () => {
+  it('should modify stroke and stroke-width correctly', () => {
     symbolNames.forEach(symbolName => {
       const options = {
         stroke: 'red',
@@ -40,7 +49,7 @@ describe('getSymbol', () => {
     })
   })
 
-  test('should return as Data URL (base64)', () => {
+  it('should return as Data URL (base64)', () => {
     const symbol = getSymbol('taurus')
 
     const dataUrl = symbol?.toDataURL()
@@ -48,13 +57,13 @@ describe('getSymbol', () => {
     expect(dataUrl?.startsWith('data:image/svg+xml;base64,')).toBe(true)
   })
 
-  test('should throw an error if the file does not exist', () => {
+  it('should throw an error if the file does not exist', () => {
     expect(() => getSymbol('notexist' as Symbols)).toThrow(
       'Icon "notexist" not found.',
     )
   })
 
-  test('should allow for method chaining', () => {
+  it('should allow for method chaining', () => {
     const symbol = getSymbol('taurus')
     const modifiedSymbol = symbol?.setStroke('green').setStrokeWidth('2')
 

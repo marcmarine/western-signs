@@ -1,3 +1,4 @@
+import type { SYMBOLS } from '@/data/symbols'
 import type {
   ASPECTS,
   BODY_PARTS,
@@ -36,6 +37,7 @@ export type Aspects = ObjectValues<typeof ASPECTS>
 export type HouseTitles = (typeof HOUSE_TITLES)[number]
 export type HouseKeywords = (typeof HOUSE_KEYWORDS)[number]
 export type Houses = (typeof HOUSES)[number]
+export type Symbols = keyof typeof SYMBOLS
 
 export interface Sign {
   /**
@@ -257,7 +259,5 @@ export type Dictionary = {
     | HouseTitles
     | HouseKeywords]: string
 }
-
-export type Symbols = 'ascendant' | Signs | Planets | Aspects
 
 export type Dictionaries = Record<Language, Dictionary>
