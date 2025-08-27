@@ -81,6 +81,21 @@ export const SEASONS = {
   WINTER: 'winter'
 } as const
 
+export const HOUSES = [
+  'house1',
+  'house2',
+  'house3',
+  'house4',
+  'house5',
+  'house6',
+  'house7',
+  'house8',
+  'house9',
+  'house10',
+  'house11',
+  'house12',
+] as const
+
 export const HOUSE_TITLES = [
   'houseTitle1',
   'houseTitle2',

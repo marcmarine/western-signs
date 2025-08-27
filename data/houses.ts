@@ -1,18 +1,19 @@
 import type { House } from '@/src/definitions'
-import { ELEMENTS, HEMISPHERES, HOUSE_KEYWORDS, HOUSE_TITLES, HOUSE_MODALITIES, PLANETS, SIGNS } from './constants'
+import { ELEMENTS, HEMISPHERES, HOUSE_KEYWORDS, HOUSE_TITLES, HOUSE_MODALITIES, PLANETS, SIGNS, HOUSES } from './constants'
 
 const houses: House[] = [
   {
     element: ELEMENTS.FIRE,
     hemisphere: HEMISPHERES.LOWER,
     keywords: HOUSE_KEYWORDS[0],
+    modality: HOUSE_MODALITIES.ANGULAR,
     number: 1,
     phase: 1,
     quadrant: 1,
     rulingPlanet: PLANETS.MARS,
     sign: SIGNS.ARIES,
     title: HOUSE_TITLES[0],
-    modality: HOUSE_MODALITIES.ANGULAR
+    name: HOUSES[0]
   },
   {
     element: ELEMENTS.EARTH,
@@ -24,7 +25,8 @@ const houses: House[] = [
     quadrant: 1,
     rulingPlanet: PLANETS.VENUS,
     sign: SIGNS.TAURUS,
-    title: HOUSE_TITLES[1]
+    title: HOUSE_TITLES[1],
+    name: HOUSES[1]
   },
   {
     element: ELEMENTS.AIR,
@@ -36,7 +38,8 @@ const houses: House[] = [
     quadrant: 1,
     rulingPlanet: PLANETS.MERCURY,
     sign: SIGNS.GEMINI,
-    title: HOUSE_TITLES[2]
+    title: HOUSE_TITLES[2],
+    name: HOUSES[2]
   },
   {
     element: ELEMENTS.WATER,
@@ -48,7 +51,8 @@ const houses: House[] = [
     quadrant: 2,
     rulingPlanet: PLANETS.MOON,
     sign: SIGNS.CANCER,
-    title: HOUSE_TITLES[3]
+    title: HOUSE_TITLES[3],
+    name: HOUSES[3]
   },
   {
     element: ELEMENTS.FIRE,
@@ -60,7 +64,8 @@ const houses: House[] = [
     quadrant: 2,
     rulingPlanet: PLANETS.SUN,
     sign: SIGNS.LEO,
-    title: HOUSE_TITLES[4]
+    title: HOUSE_TITLES[4],
+    name: HOUSES[4]
   },
   {
     element: ELEMENTS.EARTH,
@@ -72,7 +77,8 @@ const houses: House[] = [
     quadrant: 2,
     rulingPlanet: PLANETS.MERCURY,
     sign: SIGNS.VIRGO,
-    title: HOUSE_TITLES[5]
+    title: HOUSE_TITLES[5],
+    name: HOUSES[5]
   },
   {
     element: ELEMENTS.AIR,
@@ -84,7 +90,8 @@ const houses: House[] = [
     quadrant: 3,
     rulingPlanet: PLANETS.VENUS,
     sign: SIGNS.LIBRA,
-    title: HOUSE_TITLES[6]
+    title: HOUSE_TITLES[6],
+    name: HOUSES[6]
   },
   {
     element: ELEMENTS.WATER,
@@ -96,7 +103,8 @@ const houses: House[] = [
     quadrant: 3,
     rulingPlanet: PLANETS.PLUTO,
     sign: SIGNS.SCORPIO,
-    title: HOUSE_TITLES[7]
+    title: HOUSE_TITLES[7],
+    name: HOUSES[7]
   },
   {
     element: ELEMENTS.FIRE,
@@ -108,7 +116,8 @@ const houses: House[] = [
     quadrant: 3,
     rulingPlanet: PLANETS.JUPITER,
     sign: SIGNS.SAGITTARIUS,
-    title: HOUSE_TITLES[8]
+    title: HOUSE_TITLES[8],
+    name: HOUSES[8]
   },
   {
     element: ELEMENTS.EARTH,
@@ -120,7 +129,8 @@ const houses: House[] = [
     quadrant: 4,
     rulingPlanet: PLANETS.SATURN,
     sign: SIGNS.CAPRICORN,
-    title: HOUSE_TITLES[9]
+    title: HOUSE_TITLES[9],
+    name: HOUSES[9]
   },
   {
     element: ELEMENTS.AIR,
@@ -132,7 +142,8 @@ const houses: House[] = [
     quadrant: 4,
     rulingPlanet: PLANETS.URANUS,
     sign: SIGNS.AQUARIUS,
-    title: HOUSE_TITLES[10]
+    title: HOUSE_TITLES[10],
+    name: HOUSES[10]
   },
   {
     element: ELEMENTS.WATER,
@@ -144,7 +155,8 @@ const houses: House[] = [
     quadrant: 4,
     rulingPlanet: PLANETS.NEPTUNE,
     sign: SIGNS.PISCES,
-    title: HOUSE_TITLES[11]
+    title: HOUSE_TITLES[11],
+    name: HOUSES[11]
   }
 ]
 

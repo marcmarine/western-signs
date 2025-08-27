@@ -7,6 +7,7 @@ import type {
   HOUSE_KEYWORDS,
   HOUSE_MODALITIES,
   HOUSE_TITLES,
+  HOUSES,
   MODALITIES,
   PLANET_TYPE,
   PLANETS,
@@ -34,6 +35,7 @@ export type PlanetType = ObjectValues<typeof PLANET_TYPE>
 export type Aspects = ObjectValues<typeof ASPECTS>
 export type HouseTitles = (typeof HOUSE_TITLES)[number]
 export type HouseKeywords = (typeof HOUSE_KEYWORDS)[number]
+export type Houses = (typeof HOUSES)[number]
 
 export interface Sign {
   /**
@@ -207,6 +209,13 @@ export interface House {
    * - **Cadent (Houses 3, 6, 9, 12):** Transitional, preparatory, often more internal or mental.
    */
   modality: HouseModalities
+
+  /**
+   * The name of the astrological house.
+   * Refers to its designated number in the zodiac cycle, such as "First House", "Second House", etc.
+   * Examples: "First House", "Second House", "Third House", ... "Twelfth House".
+   */
+  name: Houses
 }
 
 export interface Planet {
@@ -244,6 +253,7 @@ export type Dictionary = {
     | Hemispheres
     | HouseModalities
     | PlanetType
+    | Houses
     | HouseTitles
     | HouseKeywords]: string
 }
