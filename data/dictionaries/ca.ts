@@ -126,7 +126,9 @@ const ca = {
   quadrature: 'Quadratura',
   trigone: 'Trigó',
   quincunx: 'Quincunci',
-  opposition: 'Oposició'
+  opposition: 'Oposició',
+
+  ascendant: 'Ascendent'
 } as Dictionary
 
 export default ca

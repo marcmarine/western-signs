@@ -126,7 +126,9 @@ const en = {
   quadrature: 'Quadrature',
   trigone: 'Trigone',
   quincunx: 'Quincunx',
-  opposition: 'Opposition'
+  opposition: 'Opposition',
+
+  ascendant: 'Ascendant'
 } as Dictionary
 
 export default en
