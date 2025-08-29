@@ -1,3 +1,10 @@
+## [1.11.1](https://github.com/marcmarine/western-signs/compare/v1.11.0...v1.11.1) (2025-08-29)
+
+
+### Bug Fixes
+
+* Add missing ascendant entry to dictionaries ([094cf73](https://github.com/marcmarine/western-signs/commit/094cf73bd4d9996d58a0f2464cf6eae7c7596ecf))
+
 # [1.11.0](https://github.com/marcmarine/western-signs/compare/v1.10.1...v1.11.0) (2025-08-27)
 
 
