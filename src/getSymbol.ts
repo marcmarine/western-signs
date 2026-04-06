@@ -4,6 +4,8 @@ import type { Symbols } from './definitions'
 export interface SymbolOptions {
   stroke?: string
   strokeWidth?: number | string
+  width?: number | string
+  height?: number | string
 }
 
 /**
@@ -41,6 +43,8 @@ export function getSymbol(symbolName: Symbols, options: SymbolOptions = {}) {
 function createSymbol(svgString: string, options: SymbolOptions = {}) {
   let currentStroke = options.stroke
   let currentStrokeWidth = options.strokeWidth
+  let currentWidth = options.width
+  let currentHeight = options.height
 
   const setStroke = (stroke: string) => {
     currentStroke = stroke
@@ -49,6 +53,16 @@ function createSymbol(svgString: string, options: SymbolOptions = {}) {
 
   const setStrokeWidth = (strokeWidth: number | string) => {
     currentStrokeWidth = strokeWidth
+    return api
+  }
+
+  const setWidth = (width: number | string) => {
+    currentWidth = width
+    return api
+  }
+
+  const setHeight = (height: number | string) => {
+    currentHeight = height
     return api
   }
 
@@ -66,6 +80,18 @@ function createSymbol(svgString: string, options: SymbolOptions = {}) {
         `stroke-width="${currentStrokeWidth}"`,
       )
     }
+    if (currentWidth) {
+      modifiedSvgString = modifiedSvgString.replace(
+        /width="[^"]*"/g,
+        `width="${currentWidth}"`,
+      )
+    }
+    if (currentHeight) {
+      modifiedSvgString = modifiedSvgString.replace(
+        /height="[^"]*"/g,
+        `height="${currentHeight}"`,
+      )
+    }
     return modifiedSvgString
   }
 
@@ -77,6 +103,8 @@ function createSymbol(svgString: string, options: SymbolOptions = {}) {
   const api = {
     setStroke,
     setStrokeWidth,
+    setWidth,
+    setHeight,
     toString,
     toDataURL,
   }
