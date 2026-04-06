@@ -18,6 +18,7 @@ export type {
   Planets,
   Sign,
   Signs,
+  SymbolOptions,
   Symbols,
 } from './definitions'
 export { getHouses } from './getHouses'

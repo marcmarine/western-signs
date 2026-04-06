@@ -1,15 +1,9 @@
 import { SYMBOLS } from '@/data/symbols'
-import type { Symbols } from './definitions'
-
-export interface SymbolOptions {
-  stroke?: string
-  strokeWidth?: number | string
-  width?: number | string
-  height?: number | string
-}
+import type { SymbolOptions, Symbols } from './definitions'
 
 /**
  * Gets an SVG as a string or as a Data URL, with option to modify attributes.
+ *
  * @param {Symbols} symbolName Name of the icon without extension .svg
  * @param {SymbolOptions} options Options to modify attributes or return as a Data URL
  * @returns SVG as string or Data URL
