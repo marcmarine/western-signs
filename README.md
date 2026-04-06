@@ -66,8 +66,10 @@ The `getSymbol` function allows you to retrieve SVG representations of astrologi
 import { getSymbol, SIGNS } from 'western-signs'
 
 const symbol = getSymbol(SIGNS.TAURUS, {
-  stroke: 'brown',
-  strokeWidth: 2,
+  width: 16,
+  height: 16,
+  stroke: 'currentColor',
+  strokeWidth: 1,
 })
 
 console.log(symbol.toString())
@@ -81,8 +83,10 @@ Use method chaining to modify the attributes of the symbol for a more fluent cod
 
 ```js
 const chainedSymbol = getSymbol('taurus')
-  .setStroke('orange')
-  .setStrokeWidth(3)
+  .setWidth(16)
+  .setHeight(16)
+  .setStroke('currentColor')
+  .setStrokeWidth(1)
 
 console.log(chainedSymbol.toString())
 // Outputs: The SVG string with updated stroke attributes
