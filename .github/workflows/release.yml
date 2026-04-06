@@ -46,4 +46,4 @@ jobs:
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: bunx --package semantic-release --package @semantic-release/git --package @semantic-release/changelog semantic-release
+        run: bunx semantic-release
