@@ -17,7 +17,9 @@ export function setLanguage(language: Language): void {
  */
 export function getLanguage(): Language {
   return currentLanguage
-} /**
+}
+
+/**
  * Translates template strings into the current language using the provided values.
  * @param {TemplateStringsArray} strings - The template strings to be translated.
  * @param {string[]} values - The values to be translated within the template.
