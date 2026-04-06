@@ -1,3 +1,10 @@
+## [1.12.1](https://github.com/marcmarine/western-signs/compare/v1.12.0...v1.12.1) (2026-04-06)
+
+
+### Bug Fixes
+
+* Update type definitions and exports for symbol options ([5c0164d](https://github.com/marcmarine/western-signs/commit/5c0164dd029febdac178ad9474d663277c6595bc))
+
 # [1.12.0](https://github.com/marcmarine/western-signs/compare/v1.11.1...v1.12.0) (2026-04-06)
 
 
