@@ -34,7 +34,8 @@
     "astrology",
     "zodiac",
     "horoscope",
-    "western-signs"
+    "western-signs",
+    "signs"
   ],
   "license": "MIT",
   "scripts": {
