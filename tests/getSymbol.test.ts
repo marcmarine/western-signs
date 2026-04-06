@@ -50,6 +50,22 @@ describe('getSymbol', () => {
     },
   )
 
+  it.each(symbolNames)(
+    'should modify width and height for symbol "%s"',
+    symbolName => {
+      const options = {
+        width: '32',
+        height: '32',
+      }
+      const symbol = getSymbol(symbolName, options)
+
+      const svgString = symbol?.toString()
+
+      expect(svgString).toContain(`width="${options.width}"`)
+      expect(svgString).toContain(`height="${options.height}"`)
+    },
+  )
+
   it('should return as Data URL (base64)', () => {
     const symbol = getSymbol('taurus')
 
