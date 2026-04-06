@@ -76,8 +76,8 @@ function createSymbol(svgString: string, options: SymbolOptions = {}) {
     }
     if (currentWidth) {
       modifiedSvgString = modifiedSvgString.replace(
-        /width="[^"]*"/g,
-        `width="${currentWidth}"`,
+        /(\s)width="[^"]*"/g,
+        `$1width="${currentWidth}"`,
       )
     }
     if (currentHeight) {
