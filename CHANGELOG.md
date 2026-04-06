@@ -1,3 +1,10 @@
+# [1.12.0](https://github.com/marcmarine/western-signs/compare/v1.11.1...v1.12.0) (2026-04-06)
+
+
+### Features
+
+* Add width and height options to symbol creation ([8196a1c](https://github.com/marcmarine/western-signs/commit/8196a1cda2653cd424007877dad02135c585c201))
+
 ## [1.11.1](https://github.com/marcmarine/western-signs/compare/v1.11.0...v1.11.1) (2025-08-29)
 
 
