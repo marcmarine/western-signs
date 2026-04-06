@@ -41,7 +41,7 @@ jobs:
         run: bun run build
 
       - name: Verify the integrity of provenance attestations and registry signatures for installed dependencies
-        run: bunx upgradeps # temporary alternative until bun audit
+        run: bun audit
 
       - name: Release
         env:
