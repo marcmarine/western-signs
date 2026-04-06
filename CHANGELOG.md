@@ -1,3 +1,10 @@
+## [1.12.2](https://github.com/marcmarine/western-signs/compare/v1.12.1...v1.12.2) (2026-04-06)
+
+
+### Bug Fixes
+
+* Update width without affecting stroke-width ([1af30f8](https://github.com/marcmarine/western-signs/commit/1af30f879f6069d3b531837fe5bc4ac08a02ec9e))
+
 ## [1.12.1](https://github.com/marcmarine/western-signs/compare/v1.12.0...v1.12.1) (2026-04-06)
 
 
