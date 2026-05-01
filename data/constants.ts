@@ -14,16 +14,16 @@ export const SIGNS = {
 } as const
 
 export const PLANETS = {
-  MARS: 'mars',
-  VENUS: 'venus',
-  MERCURY: 'mercury',
-  MOON: 'moon',
   SUN: 'sun',
-  PLUTO: 'pluto',
+  MOON: 'moon',
+  MERCURY: 'mercury',
+  VENUS: 'venus',
+  MARS: 'mars',
   JUPITER: 'jupiter',
   SATURN: 'saturn',
   URANUS: 'uranus',
-  NEPTUNE: 'neptune'
+  NEPTUNE: 'neptune',
+  PLUTO: 'pluto',
 } as const
 
 export const MODALITIES = {
