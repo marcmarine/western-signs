@@ -1,5 +1,15 @@
-import { SYMBOLS } from '@/data/symbols'
+import { SYMBOLS } from '@/data/symbols.ts'
 import type { SymbolOptions, Symbols } from './definitions'
+
+const DEFAULT_ATTRIBUTES = {
+  xmlns: 'http://www.w3.org/2000/svg',
+  width: 24,
+  height: 24,
+  viewBox: '0 0 24 24',
+  fill: 'none',
+  stroke: 'currentColor',
+  'stroke-width': 1,
+}
 
 /**
  * Gets an SVG as a string or as a Data URL, with option to modify attributes.
@@ -9,12 +19,10 @@ import type { SymbolOptions, Symbols } from './definitions'
  * @returns SVG as string or Data URL
  *
  * @example
- * import { getSymbol } from 'western-signs'
+ * import { getSymbol, SIGNS } from 'western-signs'
  *
  * // Get the symbol with initial options
- * const initialSymbol = getSymbol('taurus', { stroke: 'blue', strokeWidth: 2 })
- * // Modify attributes using method chaining
- * const modifiedSymbol = initialSymbol.setStroke('green').setStrokeWidth(3)
+ * const symbol = getSymbol(SIGNS.TAURUS, { stroke: 'blue', stroke-width: 2 })
  *
  * // Log the modified SVG as a string
  * console.log(symbol.toString())
@@ -24,84 +32,45 @@ import type { SymbolOptions, Symbols } from './definitions'
  *
  * @throws Will throw an error if the specified SVG file is not found
  */
-export function getSymbol(symbolName: Symbols, options: SymbolOptions = {}) {
-  const base64Content = SYMBOLS[symbolName]
-  if (!base64Content) {
+export function getSymbol(symbolName: Symbols, options?: SymbolOptions) {
+  const serializedPaths = SYMBOLS[symbolName as keyof typeof SYMBOLS]
+
+  if (!serializedPaths) {
     throw new Error(`Icon "${symbolName}" not found.`)
   }
-  const svgString = atob(base64Content)
 
-  return createSymbol(svgString, options)
+  return createSymbol(serializedPaths, options)
 }
 
-function createSymbol(svgString: string, options: SymbolOptions = {}) {
-  let currentStroke = options.stroke
-  let currentStrokeWidth = options.strokeWidth
-  let currentWidth = options.width
-  let currentHeight = options.height
+function createSymbol(paths: string, options: SymbolOptions = {}) {
+  return {
+    toString(): string {
+      const { nonScalingStroke, ...attributes } = options
 
-  const setStroke = (stroke: string) => {
-    currentStroke = stroke
-    return api
-  }
+      const svgAttributes = Object.entries({
+        ...DEFAULT_ATTRIBUTES,
+        ...attributes,
+      })
+        .map(([key, value]) => `${key}="${value}"`)
+        .join(' ')
 
-  const setStrokeWidth = (strokeWidth: number | string) => {
-    currentStrokeWidth = strokeWidth
-    return api
-  }
+      const pathAttributes = nonScalingStroke
+        ? ' vector-effect="non-scaling-stroke"'
+        : ''
 
-  const setWidth = (width: number | string) => {
-    currentWidth = width
-    return api
-  }
+      const svgPaths = paths
+        .split(',')
+        .filter(Boolean)
+        .map(d => `<path d="${d}"${pathAttributes} />`)
+        .join('')
 
-  const setHeight = (height: number | string) => {
-    currentHeight = height
-    return api
-  }
-
-  const toString = (): string => {
-    let modifiedSvgString = svgString
-    if (currentStroke) {
-      modifiedSvgString = modifiedSvgString.replace(
-        /stroke="[^"]*"/g,
-        `stroke="${currentStroke}"`,
-      )
+      return `<svg ${svgAttributes}>${svgPaths}</svg>`
+    },
+    toDataURL(): string {
+      const base64 = Buffer.from(this.toString()).toString('base64')
+      return `data:image/svg+xml;base64,${base64}`
     }
-    if (currentStrokeWidth) {
-      modifiedSvgString = modifiedSvgString.replace(
-        /stroke-width="[^"]*"/g,
-        `stroke-width="${currentStrokeWidth}"`,
-      )
-    }
-    if (currentWidth) {
-      modifiedSvgString = modifiedSvgString.replace(
-        /(\s)width="[^"]*"/g,
-        `$1width="${currentWidth}"`,
-      )
-    }
-    if (currentHeight) {
-      modifiedSvgString = modifiedSvgString.replace(
-        /height="[^"]*"/g,
-        `height="${currentHeight}"`,
-      )
-    }
-    return modifiedSvgString
   }
-
-  const toDataURL = (): string => {
-    const base64 = Buffer.from(toString()).toString('base64')
-    return `data:image/svg+xml;base64,${base64}`
-  }
-
-  const api = {
-    setStroke,
-    setStrokeWidth,
-    setWidth,
-    setHeight,
-    toString,
-    toDataURL,
-  }
-
-  return api
 }
+
+

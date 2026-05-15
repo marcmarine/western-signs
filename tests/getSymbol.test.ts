@@ -23,8 +23,8 @@ describe('getSymbol', () => {
 
   it.each(symbolNames)(
     'should read an SVG string for symbol "%s"',
-    symbolName => {
-      const symbol = getSymbol(symbolName as Symbols)
+    (symbolName: Symbols) => {
+      const symbol = getSymbol(symbolName)
 
       const svgString = symbol?.toString()
 
@@ -36,23 +36,23 @@ describe('getSymbol', () => {
 
   it.each(symbolNames)(
     'should modify stroke and stroke-width for symbol "%s"',
-    symbolName => {
+    (symbolName: Symbols) => {
       const options = {
         stroke: 'red',
-        strokeWidth: '3',
+        'stroke-width': '3',
       }
       const symbol = getSymbol(symbolName, options)
 
       const svgString = symbol?.toString()
 
       expect(svgString).toContain(`stroke="${options.stroke}"`)
-      expect(svgString).toContain(`stroke-width="${options.strokeWidth}"`)
+      expect(svgString).toContain(`stroke-width="${options['stroke-width']}"`)
     },
   )
 
   it.each(symbolNames)(
     'should modify width and height for symbol "%s"',
-    symbolName => {
+    (symbolName: Symbols) => {
       const options = {
         width: '32',
         height: '32',
@@ -80,13 +80,4 @@ describe('getSymbol', () => {
     )
   })
 
-  it('should allow for method chaining', () => {
-    const symbol = getSymbol('taurus')
-    const modifiedSymbol = symbol?.setStroke('green').setStrokeWidth('2')
-
-    const svgString = modifiedSymbol?.toString()
-
-    expect(svgString).toContain('stroke="green"')
-    expect(svgString).toContain('stroke-width="2"')
-  })
 })

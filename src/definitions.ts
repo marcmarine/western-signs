@@ -264,6 +264,10 @@ export type Dictionaries = Record<Language, Dictionary>
 export type SymbolOptions = {
   width?: number | string
   height?: number | string
+  fill?: string
   stroke?: string
-  strokeWidth?: number | string
+  'stroke-width'?: number | string
+  class?: string
+  style?: string
+  nonScalingStroke?: boolean
 }
