@@ -62,14 +62,25 @@ It should returns an object with the following properties:
 
 The `getSymbol` function allows you to retrieve SVG representations of astrological symbols, with options to customize their appearance.
 
+| parameter        | type                            | default          | description                                                    |
+| ---------------- | ------------------------------- | ---------------- | -------------------------------------------------------------- |
+| name             | `string`                        | —                | Symbol identifier. See constants `PLANETS`, `SIGNS`, `ASPECTS` |
+| width            | `number`                        | `24`             | Width in pixels of the generated SVG                           |
+| height           | `number`                        | `24`             | Height in pixels                                               |
+| stroke           | `string`                        | `'currentColor'` | Stroke color as hex, rgb, or CSS variable                      |
+| stroke-width     | `number`                        | `1`              | Stroke thickness in logical pixels                             |
+| stroke-linecap   | `'butt' \| 'round' \| 'square'` | `'round'`        | Shape of stroke endpoints                                      |
+| stroke-linejoin  | `'miter' \| 'round' \| 'bevel'` | `'round'`        | Shape of stroke corners and joins                              |
+| nonScalingStroke | `boolean`                       | `true`           | Prevents stroke from scaling when the SVG is resized           |
+
 ```js
 import { getSymbol, SIGNS } from 'western-signs'
 
 const symbol = getSymbol(SIGNS.TAURUS, {
-  width: 16,
-  height: 16,
+  width: 24,
+  height: 24,
   stroke: 'currentColor',
-  strokeWidth: 1,
+  'stroke-width': 1
 })
 
 console.log(symbol.toString())
@@ -79,19 +90,15 @@ console.log(symbol.toDataURL())
 // Outputs: A Data URL representation of the SVG
 ```
 
-Use method chaining to modify the attributes of the symbol for a more fluent coding style.
+#### Available symbols
 
-```js
-const chainedSymbol = getSymbol('taurus')
-  .setWidth(16)
-  .setHeight(16)
-  .setStroke('currentColor')
-  .setStrokeWidth(1)
+Three groups of exported constants. Use the identifier with getSymbol().
 
-console.log(chainedSymbol.toString())
-// Outputs: The SVG string with updated stroke attributes
-```
-
+| group   | symbols                                                                                                          |
+| ------- | ---------------------------------------------------------------------------------------------------------------- |
+| PLANETS | `SUN` `MOON` `MERCURY` `VENUS` `MARS` `JUPITER` `SATURN` `URANUS` `NEPTUNE` `PLUTO`                              |
+| SIGNS   | `ARIES` `TAURUS` `GEMINI` `CANCER` `LEO` `VIRGO` `LIBRA` `SCORPIO` `SAGITTARIUS` `CAPRICORN` `AQUARIUS` `PISCES` |
+| ASPECTS | `CONJUNCTION` `SEXTILE` `SQUARE` `TRINE` `OPPOSITION`                                                            |
 
 ### Translations
 
@@ -115,7 +122,6 @@ const aspectInSpanish = i18n.t`${ASPECTS.CONJUNCTION}`
 console.log(aspectInSpanish)
 // Output: Conjunción
 ```
-
 
 ## API Reference
 
