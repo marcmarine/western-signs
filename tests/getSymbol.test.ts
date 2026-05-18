@@ -79,5 +79,4 @@ describe('getSymbol', () => {
       'Icon "notexist" not found.',
     )
   })
-
 })
