@@ -128,6 +128,12 @@ const ca = {
   quincunx: 'Quincunci',
   opposition: 'Oposició',
 
+  major: 'Major',
+  minor: 'Menor',
+  harmonious: 'Harmònic',
+  disharmonious: 'Disharmònic',
+  neutral: 'Neutral',
+
   ascendant: 'Ascendent'
 } as Dictionary
 

@@ -128,6 +128,12 @@ const en = {
   quincunx: 'Quincunx',
   opposition: 'Opposition',
 
+  major: 'Major',
+  minor: 'Minor',
+  harmonious: 'Harmonious',
+  disharmonious: 'Disharmonious',
+  neutral: 'Neutral',
+
   ascendant: 'Ascendant'
 } as Dictionary
 

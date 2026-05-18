@@ -154,3 +154,14 @@ export const ASPECTS = {
   QUINCUNX: 'quincunx',
   OPPOSITION: 'opposition'
 } as const
+
+export const ASPECT_TYPE = {
+  MAJOR: 'major',
+  MINOR: 'minor'
+} as const
+
+export const ASPECT_QUALITY = {
+  HARMONIOUS: 'harmonious',
+  DISHARMONIOUS: 'disharmonious',
+  NEUTRAL: 'neutral'
+} as const

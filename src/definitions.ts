@@ -1,4 +1,6 @@
 import type {
+  ASPECT_QUALITY,
+  ASPECT_TYPE,
   ASPECTS,
   BODY_PARTS,
   CHARACTERS,
@@ -37,6 +39,8 @@ export type HouseTitles = (typeof HOUSE_TITLES)[number]
 export type HouseKeywords = (typeof HOUSE_KEYWORDS)[number]
 export type Houses = (typeof HOUSES)[number]
 export type Symbols = Signs | Planets | Aspects | 'ascendant'
+export type AspectType = ObjectValues<typeof ASPECT_TYPE>
+export type AspectQuality = ObjectValues<typeof ASPECT_QUALITY>
 
 export interface Sign {
   /**
@@ -256,7 +260,10 @@ export type Dictionary = {
     | PlanetType
     | Houses
     | HouseTitles
-    | HouseKeywords]: string
+    | HouseKeywords
+    | Aspects
+    | AspectType
+    | AspectQuality]: string
 }
 
 export type Dictionaries = Record<Language, Dictionary>
@@ -270,4 +277,33 @@ export type SymbolOptions = {
   class?: string
   style?: string
   nonScalingStroke?: boolean
+}
+
+export interface Aspect {
+  /**
+   * The name of the aspect.
+   * Examples: "Conjunction", "Opposition", "Square", "Trine", "Sextile".
+   */
+  name: string
+
+  /**
+   * The type of the aspect.
+   * Indicates the nature of the aspect's influence.
+   * Examples: "Major", "Minor".
+   */
+  type: AspectType
+
+  /**
+   * The quality of the aspect.
+   * Reflects the emotional or psychological impact of the aspect.
+   * Examples: "Harmonious", "Disharmonious", "Neutral".
+   */
+  quality: AspectQuality
+
+  /**
+   * The angle of the aspect in degrees.
+   * Represents the geometric relationship between the two celestial bodies.
+   * Examples: 0 for Conjunction, 180 for Opposition, 90 for Square, 120 for Trine, 60 for Sextile...
+   */
+  angle: number
 }
