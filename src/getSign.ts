@@ -5,7 +5,7 @@ import type { Dictionary, Language, Sign, Signs } from './definitions'
 /**
  * Get the astrological sign by its name with translations for the specified language.
  *
- * @param {Signs} signKey - The name of the astrological sign to retrieve.
+ * @param {Signs} signName - The name of the astrological sign to retrieve.
  * @param {Language} [language='en'] - The language code for which translations are needed. Defaults to 'en'.
  * @returns {Sign | null} An object representing the sign with translated values or null if the sign or dictionary is not found.
  *
@@ -25,11 +25,11 @@ import type { Dictionary, Language, Sign, Signs } from './definitions'
  * //   [...]
  * // }
  */
-export function getSignByName(
-  signKey: Signs,
+export function getSign(
+  signName: Signs,
   language: Language = 'en',
 ): Sign | null {
-  const sign = signs[signKey]
+  const sign = signs[signName]
 
   if (!sign) return null
 

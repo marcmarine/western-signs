@@ -5,7 +5,7 @@ import type { Dictionary, Language, Planet, Planets } from './definitions'
 /**
  * Get a single planet with its translated properties for a specified language.
  *
- * @param {Planets} planetKey - The key corresponding to the desired planet.
+ * @param {Planets} planetName - The key corresponding to the desired planet.
  * @param {Language} [language='en'] - The language code to use for translations. Defaults to 'en'.
  * @returns {Planet | null} An object with translated values based on the specified language, or null  if the planet key is invalid.
  *
@@ -23,10 +23,10 @@ import type { Dictionary, Language, Planet, Planets } from './definitions'
  * // }
  */
 export function getPlanet(
-  planetKey: Planets,
+  planetName: Planets,
   language: Language = 'en',
 ): Planet | null {
-  const planet = planets[planetKey]
+  const planet = planets[planetName]
 
   if (!planet) return null
 
