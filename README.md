@@ -27,16 +27,16 @@ npm install western-signs
 
 ## Usage
 
-To use the `getSignByName` function, import it along with the `SIGNS` constant from the `western-signs` package:
+To use the `getSign` function, import it along with the `SIGNS` constant from the `western-signs` package:
 
 ```js
-import { getSignByName, SIGNS } from 'western-signs'
+import { getSign, SIGNS } from "western-signs";
 ```
 
 Call the function with the desired astrological sign and optionally specify a language code. If no language code is provided, it defaults to English.
 
 ```js
-const data = getSignByName(SIGNS.TAURUS)
+const data = getSign(SIGNS.TAURUS);
 ```
 
 It should returns an object with the following properties:
@@ -58,6 +58,22 @@ It should returns an object with the following properties:
 }
 ```
 
+#### Translations
+
+By default, only English is included. Other languages must be explicitly imported to be available.
+
+To enable a language, import its side-effect module:
+
+```js
+import "western-signs/locale/es";
+```
+
+After importing, the language becomes available immediately:
+
+```js
+const sign = getSign(SIGNS.TAURUS, "es");
+```
+
 ### Symbols
 
 The `getSymbol` function allows you to retrieve SVG representations of astrological symbols, with options to customize their appearance.
@@ -74,19 +90,19 @@ The `getSymbol` function allows you to retrieve SVG representations of astrologi
 | nonScalingStroke | `boolean`                       | `true`           | Prevents stroke from scaling when the SVG is resized           |
 
 ```js
-import { getSymbol, SIGNS } from 'western-signs'
+import { getSymbol, SIGNS } from "western-signs";
 
 const symbol = getSymbol(SIGNS.TAURUS, {
   width: 24,
   height: 24,
-  stroke: 'currentColor',
-  'stroke-width': 1
-})
+  stroke: "currentColor",
+  "stroke-width": 1,
+});
 
-console.log(symbol.toString())
+console.log(symbol.toString());
 // Outputs: An SVG string with customized attributes
 
-console.log(symbol.toDataURL())
+console.log(symbol.toDataURL());
 // Outputs: A Data URL representation of the SVG
 ```
 
@@ -100,28 +116,39 @@ Three groups of exported constants. Use the identifier with getSymbol().
 | SIGNS   | `ARIES` `TAURUS` `GEMINI` `CANCER` `LEO` `VIRGO` `LIBRA` `SCORPIO` `SAGITTARIUS` `CAPRICORN` `AQUARIUS` `PISCES` |
 | ASPECTS | `CONJUNCTION` `SEXTILE` `SQUARE` `TRINE` `OPPOSITION`                                                            |
 
-### Translations
+### Internationalization
 
 You can easily translate aspects and other astrology-related terms using the `t` function provided by the library. The `t` function takes template strings and values to be translated based on the current language setting.
 
 To translate an aspect into the current language:
 
 ```js
-import { ASPECTS, i18n } from 'western-signs'
+import { ASPECTS, i18n } from "western-signs";
 
-const aspect = i18n.t`${ASPECTS.CONJUNCTION}`
-console.log(aspect)
+// Importing a locale registers it globally
+import "western-signs/locale/es";
+
+const aspect = i18n.t`${ASPECTS.CONJUNCTION}`;
+console.log(aspect);
 // Output: Conjunction
 ```
 
 To change the language, use the `setLanguage` function:
 
 ```js
-i18n.setLanguage('es')
-const aspectInSpanish = i18n.t`${ASPECTS.CONJUNCTION}`
-console.log(aspectInSpanish)
+i18n.setLanguage("es");
+const aspectInSpanish = i18n.t`${ASPECTS.CONJUNCTION}`;
+console.log(aspectInSpanish);
 // Output: Conjunción
 ```
+
+#### Available languages
+
+Languages are opt-in and must be imported explicitly:
+
+- `western-signs/locale/en` — English (default)
+- `western-signs/locale/es` — Spanish
+- `western-signs/locale/ca` — Catalan
 
 ## API Reference
 
@@ -137,6 +164,7 @@ console.log(aspectInSpanish)
 
 ### Interfaces
 
+- [Aspect](https://marcmarine.github.io/western-signs/interfaces/Aspect)
 - [House](https://marcmarine.github.io/western-signs/interfaces/House)
 - [Planet](https://marcmarine.github.io/western-signs/interfaces/Planet)
 - [Sign](https://marcmarine.github.io/western-signs/interfaces/Sign)
