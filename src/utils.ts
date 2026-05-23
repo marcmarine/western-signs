@@ -20,7 +20,8 @@ export function getAllSignWithTranslations() {
       const translatedSign: Partial<Sign> = {}
 
       Object.entries(signs[sign]).forEach(([key, value]) => {
-        const dictionaryValue = dictionaries[lang][value as keyof Dictionary]
+        const dictionaryValue =
+          dictionaries.get(lang)?.[value as keyof Dictionary]
         translatedSign[key as keyof Sign] = dictionaryValue || value
       })
 

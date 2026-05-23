@@ -36,7 +36,7 @@ export function getPlanets(language: Language = 'en'): Planet[] {
     const translatedPlanet = Object.fromEntries(
       Object.entries(planet).map(([key, value]) => [
         key,
-        dictionaries[language][value as keyof Dictionary] || value,
+        dictionaries.get(language)?.[value as keyof Dictionary] || value,
       ]),
     ) as Planet
 

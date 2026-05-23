@@ -1,5 +1,7 @@
 import { beforeEach, describe, expect, it } from 'bun:test'
 import { i18n } from '@/index'
+import '@/locale/es'
+import '@/locale/ca'
 
 const { t, setLanguage } = i18n
 

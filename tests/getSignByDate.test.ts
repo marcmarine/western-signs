@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'bun:test'
 import type { Sign } from '@/definitions'
 import { getSignByDate } from '@/index'
+import '@/locale/es'
 
 describe('getSignByDate', () => {
   const testCases = [

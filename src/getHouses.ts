@@ -36,7 +36,8 @@ export function getHouses(language: Language = 'en'): House[] {
     const translatedHouse = Object.fromEntries(
       Object.entries(house).map(([key, value]) => [
         key,
-        dictionaries[language as Language][value as keyof Dictionary] || value,
+        dictionaries.get(language as Language)?.[value as keyof Dictionary] ||
+          value,
       ]),
     ) as House
 

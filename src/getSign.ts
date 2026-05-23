@@ -36,7 +36,8 @@ export function getSign(
   const translatedSign = Object.fromEntries(
     Object.entries(sign).map(([key, value]) => [
       key,
-      dictionaries[language as Language][value as keyof Dictionary] || value,
+      dictionaries.get(language as Language)?.[value as keyof Dictionary] ||
+        value,
     ]),
   ) as Sign
 

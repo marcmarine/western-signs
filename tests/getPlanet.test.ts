@@ -3,6 +3,7 @@ import { dictionaries } from '@/data/dictionaries'
 import planets from '@/data/planets'
 import type { Dictionary, Language, Planet, Planets } from '@/definitions'
 import { getPlanet, PLANETS } from '@/index'
+import '@/locale/es'
 
 describe('getPlanet', () => {
   it('should return translated planet data for a given language', () => {
@@ -16,7 +17,8 @@ describe('getPlanet', () => {
 
     for (const [key, value] of Object.entries(originalData)) {
       const translated =
-        dictionaries[language as Language][value as keyof Dictionary] || value
+        dictionaries.get(language as Language)?.[value as keyof Dictionary] ||
+        value
       expected[key as keyof Planet] = translated
     }
 

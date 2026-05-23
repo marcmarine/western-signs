@@ -41,7 +41,7 @@ export function getSignByDate(
       return Object.fromEntries(
         Object.entries(sign).map(([key, value]) => [
           key,
-          dictionaries[language as Language][value as keyof Dictionary] ||
+          dictionaries.get(language as Language)?.[value as keyof Dictionary] ||
             value,
         ]),
       ) as Sign

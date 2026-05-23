@@ -1,9 +1,10 @@
+import type { Dictionary } from '../../definitions'
 import en from './en'
-import es from './es'
-import ca from './ca'
 
-export const dictionaries = {
-  en,
-  es,
-  ca
+export const dictionaries = new Map<string, Dictionary>()
+
+dictionaries.set('en', en)
+
+export function registerDictionary(lang: string, dictionary: Dictionary) {
+  dictionaries.set(lang, dictionary)
 }

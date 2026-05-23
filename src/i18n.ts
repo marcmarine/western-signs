@@ -42,7 +42,7 @@ export function t(strings: TemplateStringsArray, ...values: string[]): string {
     .map((string, index) => {
       const wordToTranslate = values[index - 1] || ''
       const translatedWord =
-        dictionaries[language][wordToTranslate as keyof Dictionary] ||
+        dictionaries.get(language)?.[wordToTranslate as keyof Dictionary] ||
         wordToTranslate
 
       return translatedWord + string

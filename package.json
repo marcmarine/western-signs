@@ -19,7 +19,9 @@
     "typescript": "^6.0.3"
   },
   "exports": {
-    ".": "./dist/index.js"
+    ".": "./dist/index.js",
+    "./locale/es": "./dist/locale/es.js",
+    "./locale/ca": "./dist/locale/ca.js"
   },
   "bugs": "https://github.com/marcmarine/western-signs/issues/new",
   "description": "Simple interface for western astrological signs.",
@@ -43,6 +45,8 @@
     "prebuild": "bun build-symbols.ts"
   },
   "type": "module",
-  "sideEffects": false,
+  "sideEffects": [
+    "./dist/locale/*.js"
+  ],
   "types": "./dist/index.d.ts"
 }

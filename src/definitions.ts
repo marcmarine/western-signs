@@ -17,9 +17,8 @@ import type {
   SEASONS,
   SIGNS,
 } from './data/constants'
-import type { dictionaries } from './data/dictionaries'
 
-export type Language = keyof typeof dictionaries
+export type Language = 'en' | 'es' | 'ca'
 
 type ObjectValues<T> = T[keyof T]
 

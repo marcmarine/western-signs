@@ -1,4 +1,5 @@
 await Bun.build({
+  root: './src',
   entrypoints: [
     './src/index.ts',
     './src/getSign.ts',
@@ -9,6 +10,8 @@ await Bun.build({
     './src/getHouses.ts',
     './src/getSymbol.ts',
     './src/i18n.ts',
+    './src/locale/es.ts',
+    './src/locale/ca.ts',
     './src/data/constants.ts',
   ],
   format: 'esm',
@@ -17,7 +20,7 @@ await Bun.build({
   target: 'node',
   splitting: true,
   naming: {
-    entry: '[name].js',
+    entry: '[dir]/[name].js',
     chunk: 'chunk-[hash].js',
   },
 })
