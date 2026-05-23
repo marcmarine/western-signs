@@ -8,6 +8,7 @@ export {
   SIGNS,
 } from './data/constants'
 export type {
+  Aspect,
   Aspects,
   Elements,
   Hemispheres,
