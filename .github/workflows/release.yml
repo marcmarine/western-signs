@@ -27,7 +27,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 'lts/*'
+          node-version: "lts/*"
 
       - uses: oven-sh/setup-bun@v1
 
@@ -41,7 +41,7 @@ jobs:
         run: bun run build
 
       - name: Verify the integrity of provenance attestations and registry signatures for installed dependencies
-        run: bun audit
+        run: bun audit --production
 
       - name: Release
         env:
