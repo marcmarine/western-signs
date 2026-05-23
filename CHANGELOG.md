@@ -1,3 +1,25 @@
+# [1.13.0](https://github.com/marcmarine/western-signs/compare/v1.12.2...v1.13.0) (2026-05-23)
+
+
+### Bug Fixes
+
+* Add missing Aspect type to exports ([8fa9b73](https://github.com/marcmarine/western-signs/commit/8fa9b7332bb1a391a5a3bbb5472e576ee26c5902))
+* Remove missing zodiac export ([d44741c](https://github.com/marcmarine/western-signs/commit/d44741c7b55bd87c2784a95259b91e22881d8ac5))
+* Reorder planets in constants ([bc38445](https://github.com/marcmarine/western-signs/commit/bc38445d4a446d10e9ccaedf823f0eb247574762))
+
+
+### Features
+
+* Add aspect data with type and quality metadata ([50e7a3c](https://github.com/marcmarine/western-signs/commit/50e7a3cfabce89bb6afb1c55293b79ecfbe3418c))
+* **i18n:** Enable translations with explicit locale imports ([b305dbd](https://github.com/marcmarine/western-signs/commit/b305dbd0cc83750b485463b057a204aa1d961d97))
+* **icons:** Improve symbol assets size and performance ([5729d16](https://github.com/marcmarine/western-signs/commit/5729d1676553afaf1432b61a70128758a08b9000))
+* **icons:** Refactor symbol generation to use path data ([a5a3741](https://github.com/marcmarine/western-signs/commit/a5a374199a3ac56510d1316acb67b5c98b159d9f))
+
+
+### Performance Improvements
+
+* Reorganize data and split bundle into chunks ([f4d5198](https://github.com/marcmarine/western-signs/commit/f4d519879f9206ba5ac65477617eb44ca4ef364f))
+
 ## [1.12.2](https://github.com/marcmarine/western-signs/compare/v1.12.1...v1.12.2) (2026-04-06)
 
 
