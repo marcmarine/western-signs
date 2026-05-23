@@ -1,5 +1,5 @@
-import { dictionaries } from '../data/dictionaries'
-import planets from '../data/planets'
+import { dictionaries } from './data/dictionaries'
+import planets from './data/planets'
 import type { Dictionary, Language, Planet, Planets } from './definitions'
 
 /**

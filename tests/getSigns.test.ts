@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'bun:test'
 import signs from '@/data/signs'
-import { getSigns } from '@/src/index'
+import { getSigns } from '@/index'
 
 describe('getSigns', () => {
   it('should return an array of 12 signs', () => {

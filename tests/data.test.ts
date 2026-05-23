@@ -2,7 +2,7 @@ import { describe, expect, it } from 'bun:test'
 
 import { SIGNS } from '@/data/constants'
 import signs from '@/data/signs'
-import type { Signs } from '@/src/definitions'
+import type { Signs } from '@/definitions'
 
 describe('Data', () => {
   it('should be return signs in the correct order', () => {

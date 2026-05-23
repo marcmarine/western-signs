@@ -3,8 +3,8 @@ import { ASPECTS } from '@/data/constants'
 import planets from '@/data/planets'
 import signs from '@/data/signs'
 import { SYMBOLS } from '@/data/symbols'
-import type { Aspects, Planets, Signs, Symbols } from '@/src/index'
-import { getSymbol } from '@/src/index'
+import type { Aspects, Planets, Signs, Symbols } from '@/index'
+import { getSymbol } from '@/index'
 
 const symbolNames: Symbols[] = [
   ...(Object.keys(signs) as Signs[]),

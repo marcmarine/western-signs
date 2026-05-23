@@ -1,4 +1,4 @@
-import type { Planets, Planet } from '@/src/definitions'
+import type { Planets, Planet } from '../definitions'
 import { PLANET_TYPE, PLANETS } from './constants'
 
 const planets: Record<Planets, Planet> = {

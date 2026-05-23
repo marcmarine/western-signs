@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it } from 'bun:test'
-import { i18n } from '@/src/index'
+import { i18n } from '@/index'
 
 const { t, setLanguage } = i18n
 

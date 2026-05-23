@@ -1,5 +1,5 @@
-import { dictionaries } from '@/data/dictionaries'
-import houses from '../data/houses'
+import { dictionaries } from './data/dictionaries'
+import houses from './data/houses'
 import type { Dictionary, House, Language } from './definitions'
 
 /**

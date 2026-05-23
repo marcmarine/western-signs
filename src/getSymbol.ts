@@ -1,4 +1,4 @@
-import { SYMBOLS } from '@/data/symbols.ts'
+import { SYMBOLS } from './data/symbols'
 import type { SymbolOptions, Symbols } from './definitions'
 
 const DEFAULT_ATTRIBUTES = {

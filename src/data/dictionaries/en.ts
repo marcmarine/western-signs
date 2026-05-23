@@ -1,4 +1,4 @@
-import type { Dictionary } from '@/src/definitions'
+import type { Dictionary } from '../../definitions'
 
 const en = {
   aries: 'Aries',

@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'bun:test'
 import { dictionaries } from '@/data/dictionaries'
 import planets from '@/data/planets'
-import type { Dictionary, Language, Planet, Planets } from '@/src/definitions'
-import { getPlanet, PLANETS } from '@/src/index'
+import type { Dictionary, Language, Planet, Planets } from '@/definitions'
+import { getPlanet, PLANETS } from '@/index'
 
 describe('getPlanet', () => {
   it('should return translated planet data for a given language', () => {

@@ -1,4 +1,4 @@
-import { dictionaries } from '@/data/dictionaries'
+import { dictionaries } from './data/dictionaries'
 import type { Dictionary, Language } from './definitions'
 
 let currentLanguage: Language = 'en'

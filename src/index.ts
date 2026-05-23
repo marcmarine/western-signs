@@ -6,7 +6,7 @@ export {
   MODALITIES,
   PLANETS,
   SIGNS,
-} from '@/data/constants'
+} from './data/constants'
 export type {
   Aspects,
   Elements,

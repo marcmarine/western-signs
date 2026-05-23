@@ -1,4 +1,4 @@
-import type { House } from '@/src/definitions'
+import type { House } from '../definitions'
 import { ELEMENTS, HEMISPHERES, HOUSE_KEYWORDS, HOUSE_TITLES, HOUSE_MODALITIES, PLANETS, SIGNS, HOUSES } from './constants'
 
 const houses: House[] = [

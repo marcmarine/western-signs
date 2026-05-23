@@ -1,4 +1,4 @@
-import type { Sign, Signs } from '../src/definitions'
+import type { Sign, Signs } from '../definitions'
 import { BODY_PARTS, CHARACTERS, ELEMENTS, MODALITIES, PLANETS, POLARITIES, SEASONS, SIGNS } from './constants'
 
 const signs: Record<Signs, Sign> = {

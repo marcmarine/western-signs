@@ -1,4 +1,4 @@
-import type { Aspect } from "@/src/definitions";
+import type { Aspect } from "../definitions";
 import { ASPECT_QUALITY, ASPECT_TYPE, ASPECTS } from "./constants";
 
 export const aspects: Aspect[] = [

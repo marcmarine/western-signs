@@ -1,4 +1,4 @@
-import type { Dictionary } from '@/src/definitions'
+import type { Dictionary } from '../../definitions'
 
 const es = {
   aries: 'Aries',
@@ -124,7 +124,7 @@ const es = {
   semisextile: 'Semisextil',
   sextile: 'Sextil',
   quadrature: 'Cuadratura',
-  trigone: 'Trigono',
+  trigone: 'Trígono',
   quincunx: 'Quincuncio',
   opposition: 'Oposición',
 

@@ -16,8 +16,8 @@ import type {
   POLARITIES,
   SEASONS,
   SIGNS,
-} from '../data/constants'
-import type { dictionaries } from '../data/dictionaries'
+} from './data/constants'
+import type { dictionaries } from './data/dictionaries'
 
 export type Language = keyof typeof dictionaries
 

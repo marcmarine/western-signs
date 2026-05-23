@@ -1,5 +1,5 @@
-import { dictionaries } from '@/data/dictionaries'
-import signs from '../data/signs'
+import { dictionaries } from './data/dictionaries'
+import signs from './data/signs'
 import type { Dictionary, Language, Sign, Signs } from './definitions'
 import { isDateInRange } from './utils'
 

@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'bun:test'
-import type { Language, Sign, Signs } from '@/src/definitions'
-import { getSignByName, SIGNS } from '@/src/index'
-import { getAllSignWithTranslations } from '@/src/utils'
+import type { Language, Sign, Signs } from '@/definitions'
+import { getSignByName, SIGNS } from '@/index'
+import { getAllSignWithTranslations } from '@/utils'
 
 const signs = getAllSignWithTranslations()
 

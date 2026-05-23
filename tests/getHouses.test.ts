@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'bun:test'
 import { dictionaries } from '@/data/dictionaries'
 import signs from '@/data/signs'
-import { getHouses } from '@/src/index'
+import { getHouses } from '@/index'
 
 describe('getHouses', () => {
   it('should return an array of 12 houses', () => {

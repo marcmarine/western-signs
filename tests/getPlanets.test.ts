@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'bun:test'
 import planets from '@/data/planets'
-import { getPlanets } from '@/src/index'
+import { getPlanets } from '@/index'
 
 describe('getPlanets', () => {
   it('should return an array of 10 planets', () => {
