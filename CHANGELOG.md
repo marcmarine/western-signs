@@ -1,3 +1,12 @@
+## [1.13.2](https://github.com/marcmarine/western-signs/compare/v1.13.1...v1.13.2) (2026-05-25)
+
+
+### Bug Fixes
+
+* Add Language type to exports ([430c57d](https://github.com/marcmarine/western-signs/commit/430c57dfa87c6c4b415883edcfc7ad33905ed59d))
+* Add TypeScript type definitions to exports ([e30a5e4](https://github.com/marcmarine/western-signs/commit/e30a5e4fbf711fc4382c035498985617033feb26))
+* Update build configuration for optimized output ([906dcd9](https://github.com/marcmarine/western-signs/commit/906dcd9503fdf9729c752cfaa713a793035f130f))
+
 ## [1.13.1](https://github.com/marcmarine/western-signs/compare/v1.13.0...v1.13.1) (2026-05-25)
 
 
