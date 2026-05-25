@@ -19,9 +19,18 @@
     "typescript": ">=5.0.0"
   },
   "exports": {
-    ".": "./dist/index.js",
-    "./locale/es": "./dist/locale/es.js",
-    "./locale/ca": "./dist/locale/ca.js"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./locale/es": {
+      "types": "./dist/locale/es.d.ts",
+      "default": "./dist/locale/es.js"
+    },
+    "./locale/ca": {
+      "types": "./dist/locale/ca.d.ts",
+      "default": "./dist/locale/ca.js"
+    }
   },
   "bugs": "https://github.com/marcmarine/western-signs/issues/new",
   "description": "Simple interface for western astrological signs.",
@@ -46,7 +55,7 @@
   },
   "type": "module",
   "sideEffects": [
-    "./dist/locale/*.js"
+    "./dist/locale/*"
   ],
   "types": "./dist/index.d.ts"
 }
