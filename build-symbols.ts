@@ -1,8 +1,8 @@
 import * as fs from 'fs'
 import * as path from 'path'
 
-const iconsDir: string = path.resolve(__dirname, 'assets')
-const outputFilePath: string = path.resolve(__dirname, 'src', 'data', 'symbols.ts')
+const iconsDir: string = path.resolve(import.meta.dir, 'assets')
+const outputFilePath: string = path.resolve(import.meta.dir, 'src', 'data', 'symbols.ts')
 
 function parseSVG(content: string): string {
   const pathMatches = [...content.matchAll(/<path[^>]*\sd="([^"]+)"/g)]
