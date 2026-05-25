@@ -1,3 +1,10 @@
+## [1.13.5](https://github.com/marcmarine/western-signs/compare/v1.13.4...v1.13.5) (2026-05-25)
+
+
+### Bug Fixes
+
+* Replace bundler with Rolldown to fix CI builds ([df512d9](https://github.com/marcmarine/western-signs/commit/df512d956d0fd8de2af7e1ce69b4623f55f837f5))
+
 ## [1.13.4](https://github.com/marcmarine/western-signs/compare/v1.13.3...v1.13.4) (2026-05-25)
 
 
