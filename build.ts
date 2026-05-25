@@ -1,4 +1,4 @@
-const result = await Bun.build({
+await Bun.build({
   entrypoints: [
     './src/index.ts',
     './src/locale/es.ts',
@@ -14,8 +14,3 @@ const result = await Bun.build({
     entry: '[dir]/[name].js',
   },
 })
-
-if (!result.success) {
-  console.error('Build failed:', result.logs)
-  process.exit(1)
-}
