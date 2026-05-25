@@ -42,6 +42,17 @@ jobs:
       - name: Build
         run: bun run build
 
+      - name: Debug build output
+        run: |
+          echo "=== src/data/symbols.ts (primeras 5 líneas) ==="
+          head -5 src/data/symbols.ts
+          echo "=== dist/ ==="
+          ls -la dist/
+          echo "=== dist/index.js ==="
+          cat dist/index.js
+          echo "=== dist/locale/ ==="
+          ls -la dist/locale/
+
       - name: Verify the integrity of provenance attestations and registry signatures for installed dependencies
         run: bun audit --production
 
