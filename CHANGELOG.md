@@ -1,3 +1,10 @@
+## [1.13.3](https://github.com/marcmarine/western-signs/compare/v1.13.2...v1.13.3) (2026-05-25)
+
+
+### Bug Fixes
+
+* **build:** Update Bun runtime for release builds ([3bcd349](https://github.com/marcmarine/western-signs/commit/3bcd349fa5ac05aa4d29421dbf335cbe137ce8fc))
+
 ## [1.13.2](https://github.com/marcmarine/western-signs/compare/v1.13.1...v1.13.2) (2026-05-25)
 
 
