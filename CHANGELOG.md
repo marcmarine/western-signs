@@ -1,3 +1,10 @@
+## [1.13.6](https://github.com/marcmarine/western-signs/compare/v1.13.5...v1.13.6) (2026-05-25)
+
+
+### Bug Fixes
+
+* Restore Bun bundler and pin pipeline version ([dcd3dbb](https://github.com/marcmarine/western-signs/commit/dcd3dbba5dcf00b7d5de335856928ae7b8f7c143))
+
 ## [1.13.5](https://github.com/marcmarine/western-signs/compare/v1.13.4...v1.13.5) (2026-05-25)
 
 
