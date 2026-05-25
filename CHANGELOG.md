@@ -1,3 +1,11 @@
+## [1.13.4](https://github.com/marcmarine/western-signs/compare/v1.13.3...v1.13.4) (2026-05-25)
+
+
+### Bug Fixes
+
+* Add build failure handling ([ce2352c](https://github.com/marcmarine/western-signs/commit/ce2352cc17e2d562ce1954200458fff0dc3ecf65))
+* Update build script to use import.meta.dir ([d4c29c9](https://github.com/marcmarine/western-signs/commit/d4c29c971cd58944695a3dfb6999906a96472bf8))
+
 ## [1.13.3](https://github.com/marcmarine/western-signs/compare/v1.13.2...v1.13.3) (2026-05-25)
 
 
