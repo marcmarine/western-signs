@@ -1,3 +1,10 @@
+## [1.13.1](https://github.com/marcmarine/western-signs/compare/v1.13.0...v1.13.1) (2026-05-25)
+
+
+### Bug Fixes
+
+* Relax typescript requirement to >=5.0.0 ([051e839](https://github.com/marcmarine/western-signs/commit/051e839ac2350708dc6bf1f2a84fdb9e161b12d5))
+
 # [1.13.0](https://github.com/marcmarine/western-signs/compare/v1.12.2...v1.13.0) (2026-05-23)
 
 
