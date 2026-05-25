@@ -21,6 +21,7 @@ export type {
   Signs,
   SymbolOptions,
   Symbols,
+  Language,
 } from './definitions'
 export { getHouses } from './getHouses'
 export { getPlanet } from './getPlanet'
