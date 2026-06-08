@@ -67,8 +67,9 @@ function createSymbol(paths: string, options: SymbolOptions = {}) {
       return `<svg ${svgAttributes}>${svgPaths}</svg>`
     },
     toDataURL(): string {
-      const base64 = Buffer.from(this.toString()).toString('base64')
-      return `data:image/svg+xml;base64,${base64}`
+      return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(
+        this.toString(),
+      )}`
     },
   }
 }

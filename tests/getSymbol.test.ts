@@ -66,12 +66,12 @@ describe('getSymbol', () => {
     },
   )
 
-  it('should return as Data URL (base64)', () => {
+  it('should return as Data URL', () => {
     const symbol = getSymbol('taurus')
 
     const dataUrl = symbol?.toDataURL()
 
-    expect(dataUrl?.startsWith('data:image/svg+xml;base64,')).toBe(true)
+    expect(dataUrl?.startsWith('data:image/svg+xml;charset=utf-8,')).toBe(true)
   })
 
   it('should throw an error if the file does not exist', () => {
