@@ -1,3 +1,18 @@
+# [1.14.0](https://github.com/marcmarine/western-signs/compare/v1.13.6...v1.14.0) (2026-07-21)
+
+
+### Bug Fixes
+
+* Update conjunction icon path ([c1b61d9](https://github.com/marcmarine/western-signs/commit/c1b61d942723a5613bb0a500b5298a194f1d8b6c))
+* Update opposition icon path ([3864c6f](https://github.com/marcmarine/western-signs/commit/3864c6f2f55f1e1ea3fa9bfbf93589fc4366eccb))
+* Update quadrature icon path ([994c05f](https://github.com/marcmarine/western-signs/commit/994c05f3d21ea42a7a052f7d1b52b0e24b6b3661))
+* Update scorpio icon path ([e0b7899](https://github.com/marcmarine/western-signs/commit/e0b78999c78401cde2e02862be019548b4399609))
+
+
+### Features
+
+* Support SVG data URL generation in browsers ([5669fe0](https://github.com/marcmarine/western-signs/commit/5669fe081cfe683ce293155eed1a67eddacbb896))
+
 ## [1.13.6](https://github.com/marcmarine/western-signs/compare/v1.13.5...v1.13.6) (2026-05-25)
 
 
