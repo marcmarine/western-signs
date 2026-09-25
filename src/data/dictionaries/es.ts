@@ -121,10 +121,10 @@ const es = {
   other: 'Otro',
 
   conjunction: 'Conjunción',
-  semisextile: 'Semisextil',
+  'semi-sextile': 'Semisextil',
   sextile: 'Sextil',
-  quadrature: 'Cuadratura',
-  trigone: 'Trígono',
+  square: 'Cuadratura',
+  trine: 'Trígono',
   quincunx: 'Quincuncio',
   opposition: 'Oposición',
 
