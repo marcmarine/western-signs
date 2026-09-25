@@ -30,13 +30,13 @@ npm install western-signs
 To use the `getSign` function, import it along with the `SIGNS` constant from the `western-signs` package:
 
 ```js
-import { getSign, SIGNS } from "western-signs";
+import { getSign, SIGNS } from 'western-signs'
 ```
 
 Call the function with the desired astrological sign and optionally specify a language code. If no language code is provided, it defaults to English.
 
 ```js
-const data = getSign(SIGNS.TAURUS);
+const data = getSign(SIGNS.TAURUS)
 ```
 
 It should returns an object with the following properties:
@@ -65,13 +65,13 @@ By default, only English is included. Other languages must be explicitly importe
 To enable a language, import its side-effect module:
 
 ```js
-import "western-signs/locale/es";
+import 'western-signs/locale/es'
 ```
 
 After importing, the language becomes available immediately:
 
 ```js
-const sign = getSign(SIGNS.TAURUS, "es");
+const sign = getSign(SIGNS.TAURUS, 'es')
 ```
 
 ### Symbols
@@ -90,19 +90,19 @@ The `getSymbol` function allows you to retrieve SVG representations of astrologi
 | nonScalingStroke | `boolean`                       | `true`           | Prevents stroke from scaling when the SVG is resized           |
 
 ```js
-import { getSymbol, SIGNS } from "western-signs";
+import { getSymbol, SIGNS } from 'western-signs'
 
 const symbol = getSymbol(SIGNS.TAURUS, {
   width: 24,
   height: 24,
-  stroke: "currentColor",
-  "stroke-width": 1,
-});
+  stroke: 'currentColor',
+  'stroke-width': 1,
+})
 
-console.log(symbol.toString());
+console.log(symbol.toString())
 // Outputs: An SVG string with customized attributes
 
-console.log(symbol.toDataURL());
+console.log(symbol.toDataURL())
 // Outputs: A Data URL representation of the SVG
 ```
 
@@ -115,6 +115,13 @@ Three groups of exported constants. Use the identifier with getSymbol().
 | PLANETS | `SUN` `MOON` `MERCURY` `VENUS` `MARS` `JUPITER` `SATURN` `URANUS` `NEPTUNE` `PLUTO`                              |
 | SIGNS   | `ARIES` `TAURUS` `GEMINI` `CANCER` `LEO` `VIRGO` `LIBRA` `SCORPIO` `SAGITTARIUS` `CAPRICORN` `AQUARIUS` `PISCES` |
 | ASPECTS | `CONJUNCTION` `SEXTILE` `SQUARE` `TRINE` `OPPOSITION`                                                            |
+| ANGLES  | `ASCENDANT`                                                                                                      |
+
+> [!TIP]
+>
+> #### React projects
+>
+> For React projects, you can find compatible astrology symbol components in the [Astroicons repository](https://github.com/marcmarine/astroicons).
 
 ### Internationalization
 
@@ -123,22 +130,22 @@ You can easily translate aspects and other astrology-related terms using the `t`
 To translate an aspect into the current language:
 
 ```js
-import { ASPECTS, i18n } from "western-signs";
+import { ASPECTS, i18n } from 'western-signs'
 
 // Importing a locale registers it globally
-import "western-signs/locale/es";
+import 'western-signs/locale/es'
 
-const aspect = i18n.t`${ASPECTS.CONJUNCTION}`;
-console.log(aspect);
+const aspect = i18n.t`${ASPECTS.CONJUNCTION}`
+console.log(aspect)
 // Output: Conjunction
 ```
 
 To change the language, use the `setLanguage` function:
 
 ```js
-i18n.setLanguage("es");
-const aspectInSpanish = i18n.t`${ASPECTS.CONJUNCTION}`;
-console.log(aspectInSpanish);
+i18n.setLanguage('es')
+const aspectInSpanish = i18n.t`${ASPECTS.CONJUNCTION}`
+console.log(aspectInSpanish)
 // Output: Conjunción
 ```
 
