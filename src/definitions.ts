@@ -15,7 +15,7 @@ import type {
   PLANETS,
   POLARITIES,
   SEASONS,
-  SIGNS,
+  SIGNS
 } from './data/constants'
 
 export type Language = 'en' | 'es' | 'ca'
@@ -89,7 +89,7 @@ export interface Sign {
    * The name of the zodiac sign.
    * Examples: "Aries", "Taurus".
    */
-  name: string
+  name: Signs
 
   /**
    * The number associated with the zodiac sign.
@@ -194,7 +194,7 @@ export interface House {
    * Reflects the natural energy or archetype that aligns with the house.
    * Example: "Aries", "Taurus"
    */
-  sign: string
+  sign: Signs
 
   /**
    * Title or name of the house.
