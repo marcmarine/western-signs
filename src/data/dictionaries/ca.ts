@@ -60,8 +60,8 @@ const ca = {
   scorpion: 'Escorpí',
   archer: 'Arquer',
   goat: 'Cabra',
-  'the-man': "L'Home",
-  'the-fishes': 'Els Peixos',
+  'water-bearer': 'Aiguader',
+  fishes: 'Peixos',
 
   spring: 'Primavera',
   summer: 'Estiu',

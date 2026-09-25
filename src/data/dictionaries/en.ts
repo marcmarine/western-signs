@@ -60,8 +60,8 @@ const en = {
   scorpion: 'Scorpion',
   archer: 'Archer',
   goat: 'Goat',
-  'the-man': 'The Man',
-  'the-fishes': 'The Fishes',
+  'water-bearer': 'Water bearer',
+  fishes: 'Fishes',
 
   spring: 'Spring',
   summer: 'Summer',

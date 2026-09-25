@@ -1,5 +1,14 @@
 import type { Sign, Signs } from '../definitions'
-import { BODY_PARTS, CHARACTERS, ELEMENTS, MODALITIES, PLANETS, POLARITIES, SEASONS, SIGNS } from './constants'
+import {
+  BODY_PARTS,
+  CHARACTERS,
+  ELEMENTS,
+  MODALITIES,
+  PLANETS,
+  POLARITIES,
+  SEASONS,
+  SIGNS
+} from './constants'
 
 const signs: Record<Signs, Sign> = {
   aries: {
@@ -144,7 +153,7 @@ const signs: Record<Signs, Sign> = {
   },
   aquarius: {
     bodyPart: BODY_PARTS.ANKLES,
-    character: CHARACTERS.THE_MAN,
+    character: CHARACTERS.WATER_BEARER,
     element: ELEMENTS.AIR,
     endDate: new Date(2020, 1, 20),
     glyph: '♒',
@@ -158,7 +167,7 @@ const signs: Record<Signs, Sign> = {
   },
   pisces: {
     bodyPart: BODY_PARTS.FEET,
-    character: CHARACTERS.THE_FISHES,
+    character: CHARACTERS.FISHES,
     element: ELEMENTS.WATER,
     endDate: new Date(2020, 2, 19),
     glyph: '♓',

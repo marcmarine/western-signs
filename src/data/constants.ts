@@ -23,7 +23,7 @@ export const PLANETS = {
   SATURN: 'saturn',
   URANUS: 'uranus',
   NEPTUNE: 'neptune',
-  PLUTO: 'pluto',
+  PLUTO: 'pluto'
 } as const
 
 export const MODALITIES = {
@@ -70,8 +70,8 @@ export const CHARACTERS = {
   SCORPION: 'scorpion',
   ARCHER: 'archer',
   GOAT: 'goat',
-  THE_MAN: 'the-man',
-  THE_FISHES: 'the-fishes'
+  WATER_BEARER: 'water-bearer',
+  FISHES: 'fishes'
 } as const
 
 export const SEASONS = {
@@ -93,7 +93,7 @@ export const HOUSES = [
   'house9',
   'house10',
   'house11',
-  'house12',
+  'house12'
 ] as const
 
 export const HOUSE_TITLES = [
