@@ -26,7 +26,8 @@
     "formatter": {
       "quoteStyle": "single",
       "semicolons": "asNeeded",
-      "arrowParentheses": "asNeeded"
+      "arrowParentheses": "asNeeded",
+      "trailingCommas": "none"
     }
   },
   "assist": {
