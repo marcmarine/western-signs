@@ -1,3 +1,14 @@
+## [1.14.1](https://github.com/marcmarine/western-signs/compare/v1.14.0...v1.14.1) (2026-09-25)
+
+
+### Bug Fixes
+
+* Rename astrology aspect assets ([9505801](https://github.com/marcmarine/western-signs/commit/9505801b189686f61e351d2130c69bcfb3908f21))
+* Rename house identifiers to use kebab-case ([c5c82aa](https://github.com/marcmarine/western-signs/commit/c5c82aa7927cb1cec27e46a35061e18e9c28422f))
+* Rename zodiac character constants ([29fb10f](https://github.com/marcmarine/western-signs/commit/29fb10fc0a7245eec967a27cb6a520ec6968b84b))
+* Standardize aspect naming ([bfcaaf5](https://github.com/marcmarine/western-signs/commit/bfcaaf592673223f9b1dc07308a325cf5d31fc23))
+* Use Signs type for zodiac sign fields ([fb89352](https://github.com/marcmarine/western-signs/commit/fb893529c6f88ae4269759a2507f203cf1a10822))
+
 # [1.14.0](https://github.com/marcmarine/western-signs/compare/v1.13.6...v1.14.0) (2026-07-21)
 
 
