@@ -8,6 +8,8 @@ import type { Dictionary, House, Language } from './definitions'
  * @param {Language} [language='en'] - The language code for which translations are needed. Defaults to 'en'.
  * @returns {House[]} An array of House objects with translated values based on the specified language.
  *
+ * @deprecated Use {@link zodiac | `zodiac.houses.all()`} instead. Will be removed in the next major version.
+ *
  * @example
  * import { getHouses } from 'western-houses';
  *

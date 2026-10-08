@@ -9,6 +9,8 @@ import type { Dictionary, Language, Planet, Planets } from './definitions'
  * @param {Language} [language='en'] - The language code to use for translations. Defaults to 'en'.
  * @returns {Planet | null} An object with translated values based on the specified language, or null  if the planet key is invalid.
  *
+ * @deprecated Use {@link zodiac | `zodiac.planets.get()`} instead. Will be removed in the next major version.
+ *
  * @example
  * import { getPlanet, PLANETS } from 'western-signs';
  *

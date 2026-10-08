@@ -9,6 +9,8 @@ import type { Dictionary, Language, Sign, Signs } from './definitions'
  * @param {Language} [language='en']  - The language code for which translations are needed. Defaults to 'en'.
  * @returns {Sign[]} An array of Sign objects with translated values based on the specified language.
  *
+ * @deprecated Use {@link zodiac | `zodiac.signs.all()`} instead. Will be removed in the next major version.
+ *
  * @example
  * import { getSigns } from 'western-signs';
  *

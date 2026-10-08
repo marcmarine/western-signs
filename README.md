@@ -27,19 +27,23 @@ npm install western-signs
 
 ## Usage
 
-To use the `getSign` function, import it along with the `SIGNS` constant from the `western-signs` package:
+### Zodiac
+
+The `zodiac` object groups signs, planets and houses under a single API. Every group uses the same methods: `get` returns one item by name and `all` returns the full list.
 
 ```js
-import { getSign, SIGNS } from 'western-signs'
+import { zodiac, SIGNS, PLANETS } from 'western-signs'
+
+zodiac.signs.get(SIGNS.TAURUS)
+zodiac.signs.all()
+
+zodiac.planets.get(PLANETS.VENUS)
+zodiac.planets.all()
+
+zodiac.houses.all()
 ```
 
-Call the function with the desired astrological sign and optionally specify a language code. If no language code is provided, it defaults to English.
-
-```js
-const data = getSign(SIGNS.TAURUS)
-```
-
-It should returns an object with the following properties:
+`zodiac.signs.get(SIGNS.TAURUS)` returns an object with the following properties:
 
 ```js
 {
@@ -60,7 +64,7 @@ It should returns an object with the following properties:
 
 #### Translations
 
-By default, only English is included. Other languages must be explicitly imported to be available.
+By default, `zodiac` uses the language set with [`i18n.setLanguage()`](#internationalization), which is English unless you change it. Only English is included by default. Other languages must be explicitly imported to be available.
 
 To enable a language, import its side-effect module:
 
@@ -68,11 +72,29 @@ To enable a language, import its side-effect module:
 import 'western-signs/locale/es'
 ```
 
-After importing, the language becomes available immediately:
+After importing, use `locale()` to pick the language for a single call or a group of calls:
 
 ```js
-const sign = getSign(SIGNS.TAURUS, 'es')
+const es = zodiac.locale('es')
+
+es.signs.get(SIGNS.TAURUS).name
+// Output: Tauro
 ```
+
+#### Migrating from functions
+
+The following standalone functions are deprecated and will stop being exported in the next major version. Replace them with their `zodiac` equivalent:
+
+| deprecated                  | replacement                             |
+| --------------------------- | --------------------------------------- |
+| `getSign(name, lang)`       | `zodiac.locale(lang).signs.get(name)`   |
+| `getSignByName(name, lang)` | `zodiac.locale(lang).signs.get(name)`   |
+| `getSigns(lang)`            | `zodiac.locale(lang).signs.all()`       |
+| `getPlanet(name, lang)`     | `zodiac.locale(lang).planets.get(name)` |
+| `getPlanets(lang)`          | `zodiac.locale(lang).planets.all()`     |
+| `getHouses(lang)`           | `zodiac.locale(lang).houses.all()`      |
+
+If you don't pass a language, drop `.locale(lang)`. `getSignByDate` and `getSymbol` are not deprecated.
 
 ### Symbols
 
@@ -159,7 +181,14 @@ Languages are opt-in and must be imported explicitly:
 
 ## API Reference
 
+### Variables
+
+- [zodiac](https://marcmarine.github.io/western-signs/variables/zodiac)
+
 ### Functions
+
+> [!WARNING]
+> All functions except `getSignByDate` and `getSymbol` are deprecated in favor of [`zodiac`](#zodiac).
 
 - [getHouses](https://marcmarine.github.io/western-signs/functions/getHouses)
 - [getPlanet](https://marcmarine.github.io/western-signs/functions/getPlanet)
