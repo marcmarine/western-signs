@@ -1,6 +1,6 @@
-import { dictionaries } from './data/dictionaries'
 import planets from './data/planets'
-import type { Dictionary, Language, Planet, Planets } from './definitions'
+import type { Language, Planet } from './definitions'
+import { translate } from './utils'
 
 /**
  * Get all planets with their translated properties for a specified language.
@@ -32,18 +32,5 @@ import type { Dictionary, Language, Planet, Planets } from './definitions'
  * // ]
  */
 export function getPlanets(language: Language = 'en'): Planet[] {
-  const translatedPlanets = Object.keys(planets).map(planetKey => {
-    const planet = planets[planetKey as Planets]
-
-    const translatedPlanet = Object.fromEntries(
-      Object.entries(planet).map(([key, value]) => [
-        key,
-        dictionaries.get(language)?.[value as keyof Dictionary] || value,
-      ]),
-    ) as Planet
-
-    return translatedPlanet
-  })
-
-  return translatedPlanets
+  return Object.values(planets).map(planet => translate(planet, language))
 }

@@ -1,6 +1,6 @@
-import { dictionaries } from './data/dictionaries'
 import signs from './data/signs'
-import type { Dictionary, Language, Sign, Signs } from './definitions'
+import type { Language, Sign } from './definitions'
+import { translate } from './utils'
 
 /**
 
@@ -37,19 +37,5 @@ import type { Dictionary, Language, Sign, Signs } from './definitions'
  * // ]
  */
 export function getSigns(language: Language = 'en'): Sign[] {
-  const translatedSigns = Object.keys(signs).map(signKey => {
-    const sign = signs[signKey as Signs]
-
-    const translatedSign = Object.fromEntries(
-      Object.entries(sign).map(([key, value]) => [
-        key,
-        dictionaries.get(language as Language)?.[value as keyof Dictionary] ||
-          value,
-      ]),
-    ) as Sign
-
-    return translatedSign
-  })
-
-  return translatedSigns
+  return Object.values(signs).map(sign => translate(sign, language))
 }

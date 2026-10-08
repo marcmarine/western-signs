@@ -1,7 +1,6 @@
-import { dictionaries } from './data/dictionaries'
 import signs from './data/signs'
-import type { Dictionary, Language, Sign, Signs } from './definitions'
-import { isDateInRange } from './utils'
+import type { Language, Sign, Signs } from './definitions'
+import { isDateInRange, translate } from './utils'
 
 /**
  * Retrieve the astrological sign corresponding to a given date, with optional translations for the specified language.
@@ -31,7 +30,7 @@ import { isDateInRange } from './utils'
  */
 export function getSignByDate(
   date: Date,
-  language: Language = 'en',
+  language: Language = 'en'
 ): Sign | null {
   if (!(date instanceof Date)) throw new Error('Invalid date')
 
@@ -40,13 +39,7 @@ export function getSignByDate(
     const { startDate, endDate } = sign
 
     if (isDateInRange(startDate, endDate, date)) {
-      return Object.fromEntries(
-        Object.entries(sign).map(([key, value]) => [
-          key,
-          dictionaries.get(language as Language)?.[value as keyof Dictionary] ||
-            value,
-        ]),
-      ) as Sign
+      return translate(sign, language)
     }
   }
 
