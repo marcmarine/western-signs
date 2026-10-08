@@ -3,6 +3,7 @@ import { getHouses } from './getHouses'
 import { getPlanet } from './getPlanet'
 import { getPlanets } from './getPlanets'
 import { getSign } from './getSign'
+import { getSignByDate } from './getSignByDate'
 import { getSigns } from './getSigns'
 import { getLanguage } from './i18n'
 
@@ -19,7 +20,12 @@ function createZodiac(resolveLanguage: () => Language) {
     },
     houses: {
       all: () => getHouses(resolveLanguage())
-    }
+    },
+    at: ({ date }: { date: Date }) => ({
+      sun: {
+        sign: () => getSignByDate(date, resolveLanguage())
+      }
+    })
   }
 }
 
@@ -38,5 +44,8 @@ export type Zodiac = ReturnType<typeof createZodiac>
  *
  * zodiac.locale('es').signs.get('taurus')?.name
  * // Output: 'Tauro'
+ *
+ * zodiac.at({ date: new Date(2024, 4, 5) }).sun.sign()?.name
+ * // Output: 'Taurus'
  */
 export const zodiac: Zodiac = createZodiac(getLanguage)

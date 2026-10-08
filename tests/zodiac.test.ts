@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it } from 'bun:test'
-import { i18n, PLANETS, SIGNS, zodiac } from '@/index'
+import { getSignByDate, i18n, PLANETS, SIGNS, zodiac } from '@/index'
 import '@/locale/es'
 import '@/locale/ca'
 
@@ -42,6 +42,42 @@ describe('zodiac', () => {
   describe('zodiac.houses', () => {
     it('should return all houses', () => {
       expect(zodiac.houses.all()).toHaveLength(12)
+    })
+  })
+
+  describe('zodiac.at()', () => {
+    it('should get the sun sign for a date', () => {
+      const result = zodiac.at({ date: new Date(2024, 4, 5) }).sun.sign()
+
+      expect(result?.name).toBe('Taurus')
+    })
+
+    it('should match getSignByDate', () => {
+      const date = new Date(1990, 11, 25)
+
+      expect(zodiac.at({ date }).sun.sign()).toEqual(getSignByDate(date))
+    })
+
+    it('should translate the sun sign', () => {
+      const result = zodiac
+        .locale('es')
+        .at({ date: new Date(2024, 4, 5) })
+        .sun.sign()
+
+      expect(result?.name).toBe('Tauro')
+    })
+
+    it('should follow i18n.setLanguage() at call time', () => {
+      const sun = zodiac.at({ date: new Date(2024, 4, 5) }).sun
+      i18n.setLanguage('es')
+
+      expect(sun.sign()?.name).toBe('Tauro')
+    })
+
+    it('should throw for a non-Date value', () => {
+      expect(() =>
+        zodiac.at({ date: '2024-05-05' as unknown as Date }).sun.sign()
+      ).toThrow('Invalid date')
     })
   })
 

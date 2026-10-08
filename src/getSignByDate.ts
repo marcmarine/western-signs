@@ -11,6 +11,8 @@ import { isDateInRange } from './utils'
  * @throws {Error} Will throw an error if the provided date is invalid.
  * @returns {Sign | null} An object representing the astrological sign with translated values or null if the sign is not found.
  *
+ * @deprecated Use {@link zodiac | `zodiac.at({ date }).sun.sign()`} instead. Will be removed in the next major version.
+ *
  * @example
  * import { getSignByDate } from 'western-signs';
  *

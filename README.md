@@ -62,6 +62,15 @@ zodiac.houses.all()
 }
 ```
 
+#### Sun sign by date
+
+Use `at()` to get the sun sign for a given date:
+
+```js
+zodiac.at({ date: new Date(2024, 4, 5) }).sun.sign()
+// Output: { name: 'Taurus', ... }
+```
+
 #### Translations
 
 By default, `zodiac` uses the language set with [`i18n.setLanguage()`](#internationalization), which is English unless you change it. Only English is included by default. Other languages must be explicitly imported to be available.
@@ -85,16 +94,17 @@ es.signs.get(SIGNS.TAURUS).name
 
 The following standalone functions are deprecated and will stop being exported in the next major version. Replace them with their `zodiac` equivalent:
 
-| deprecated                  | replacement                             |
-| --------------------------- | --------------------------------------- |
-| `getSign(name, lang)`       | `zodiac.locale(lang).signs.get(name)`   |
-| `getSignByName(name, lang)` | `zodiac.locale(lang).signs.get(name)`   |
-| `getSigns(lang)`            | `zodiac.locale(lang).signs.all()`       |
-| `getPlanet(name, lang)`     | `zodiac.locale(lang).planets.get(name)` |
-| `getPlanets(lang)`          | `zodiac.locale(lang).planets.all()`     |
-| `getHouses(lang)`           | `zodiac.locale(lang).houses.all()`      |
+| deprecated                  | replacement                                   |
+| --------------------------- | --------------------------------------------- |
+| `getSign(name, lang)`       | `zodiac.locale(lang).signs.get(name)`         |
+| `getSignByName(name, lang)` | `zodiac.locale(lang).signs.get(name)`         |
+| `getSignByDate(date, lang)` | `zodiac.locale(lang).at({ date }).sun.sign()` |
+| `getSigns(lang)`            | `zodiac.locale(lang).signs.all()`             |
+| `getPlanet(name, lang)`     | `zodiac.locale(lang).planets.get(name)`       |
+| `getPlanets(lang)`          | `zodiac.locale(lang).planets.all()`           |
+| `getHouses(lang)`           | `zodiac.locale(lang).houses.all()`            |
 
-If you don't pass a language, drop `.locale(lang)`. `getSignByDate` and `getSymbol` are not deprecated.
+If you don't pass a language, drop `.locale(lang)`. `getSymbol` is not deprecated.
 
 ### Symbols
 
@@ -188,7 +198,7 @@ Languages are opt-in and must be imported explicitly:
 ### Functions
 
 > [!WARNING]
-> All functions except `getSignByDate` and `getSymbol` are deprecated in favor of [`zodiac`](#zodiac).
+> All functions except `getSymbol` are deprecated in favor of [`zodiac`](#zodiac).
 
 - [getHouses](https://marcmarine.github.io/western-signs/functions/getHouses)
 - [getPlanet](https://marcmarine.github.io/western-signs/functions/getPlanet)
