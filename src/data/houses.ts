@@ -10,7 +10,8 @@ import {
   SIGNS
 } from './constants'
 
-const houses: House[] = [
+// `keywords` holds a dictionary key here; `getHouses` splits the translated value into a list
+const houses: (Omit<House, 'keywords'> & { keywords: string })[] = [
   {
     element: ELEMENTS.FIRE,
     hemisphere: HEMISPHERES.LOWER,

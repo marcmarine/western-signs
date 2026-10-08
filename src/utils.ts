@@ -29,7 +29,7 @@ export function translate<T extends object>(item: T, language: Language): T {
   return Object.fromEntries(
     Object.entries(item).map(([key, value]) => [
       key,
-      dictionary?.[value as keyof Dictionary] || value
+      dictionary?.[value as keyof Dictionary] ?? value
     ])
   ) as T
 }

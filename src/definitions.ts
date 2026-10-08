@@ -151,7 +151,7 @@ export interface House {
    * Represents the core ideas or psychological themes governed by the house.
    * Example: ['Self-image', 'Identity', 'Impressions on others', 'Personality']
    */
-  keywords: string[] | string // This type adds support for internal use
+  keywords: string[]
 
   /**
    * Number of the astrological house (1–12).

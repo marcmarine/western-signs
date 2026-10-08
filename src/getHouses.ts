@@ -34,5 +34,12 @@ import { translate } from './utils'
  * // ]
  */
 export function getHouses(language: Language = 'en'): House[] {
-  return houses.map(house => translate(house, language))
+  return houses.map(house => {
+    const translatedHouse = translate(house, language)
+
+    return {
+      ...translatedHouse,
+      keywords: translatedHouse.keywords.split(',')
+    }
+  })
 }

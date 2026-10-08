@@ -2,6 +2,8 @@ import { describe, expect, it } from 'bun:test'
 import { dictionaries } from '@/data/dictionaries'
 import signs from '@/data/signs'
 import { getHouses } from '@/index'
+import '@/locale/es'
+import '@/locale/ca'
 
 describe('getHouses', () => {
   it('should return an array of 12 houses', () => {
@@ -23,6 +25,41 @@ describe('getHouses', () => {
       expect(house.sign).toMatch(new RegExp(expectedSign, 'i'))
     },
   )
+
+  describe('keywords', () => {
+    it('should return keywords as a list', () => {
+      const [house] = getHouses()
+
+      expect(house.keywords).toEqual([
+        'Self-image',
+        'Identity',
+        'Impressions on others',
+        'Personality'
+      ])
+    })
+
+    it('should translate each keyword', () => {
+      const [house] = getHouses('es')
+
+      expect(house.keywords).toEqual([
+        'Autoimagen',
+        'Identidad',
+        'Impresiones en los demás',
+        'Personalidad'
+      ])
+    })
+
+    it.each(['en', 'es', 'ca'] as const)(
+      'should not have surrounding spaces in %s keywords',
+      language => {
+        for (const house of getHouses(language)) {
+          for (const keyword of house.keywords) {
+            expect(keyword).toBe(keyword.trim())
+          }
+        }
+      }
+    )
+  })
 
   describe('translations', () => {
     for (const language of Object.keys(

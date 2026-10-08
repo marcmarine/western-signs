@@ -104,7 +104,7 @@ const ca = {
   houseKeywords8: 'Transformacions,Crisi,Inicis,Renaixement',
   houseKeywords9: 'Filosofia,Viatges,Obertura,Saviesa',
   houseKeywords10: 'Públic,Llegat,Carrera,Ambició',
-  houseKeywords11: 'Amics, Comunitat,Somnis,Aspiracions',
+  houseKeywords11: 'Amics,Comunitat,Somnis,Aspiracions',
   houseKeywords12: 'Inconscient,Fantasies,Connexions,Sanació',
 
   lower: 'Inferior',
