@@ -1,3 +1,16 @@
+# [1.15.0](https://github.com/marcmarine/western-signs/compare/v1.14.1...v1.15.0) (2026-10-08)
+
+
+### Bug Fixes
+
+* Return translated house keywords as arrays ([0c78048](https://github.com/marcmarine/western-signs/commit/0c78048831f85f13b133eb99becd07c557873339))
+
+
+### Features
+
+* Add date-based sun sign lookup to zodiac API ([964561e](https://github.com/marcmarine/western-signs/commit/964561eccaae89ac53242065e5a0d4ca8f7832f2))
+* Add unified zodiac API with locale support ([d79c323](https://github.com/marcmarine/western-signs/commit/d79c3233215704e7b0dd2b503db7e8396ea24dbf))
+
 ## [1.14.1](https://github.com/marcmarine/western-signs/compare/v1.14.0...v1.14.1) (2026-09-25)
 
 
