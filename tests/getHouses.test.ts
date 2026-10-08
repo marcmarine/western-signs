@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'bun:test'
 import { dictionaries } from '@/data/dictionaries'
 import signs from '@/data/signs'
+import type { Dictionary, Language } from '@/definitions'
 import { getHouses } from '@/index'
 import '@/locale/es'
 import '@/locale/ca'
@@ -62,12 +63,10 @@ describe('getHouses', () => {
   })
 
   describe('translations', () => {
-    for (const language of Object.keys(
-      dictionaries,
-    ) as (keyof typeof dictionaries)[]) {
+    for (const language of [...dictionaries.keys()] as Language[]) {
       it(`should return houses with correct translated titles for language: ${language}`, () => {
         const result = getHouses(language)
-        const dict = dictionaries[language]
+        const dict = dictionaries.get(language) as Dictionary
 
         result.forEach((house, index) => {
           const expectedTitleKey = `houseTitle${index + 1}`

@@ -9,10 +9,10 @@ export function getAllSignWithTranslations() {
     const sign = signKey as Signs
     const translationData: Translations = {} as Translations
 
-    Object.keys(dictionaries).forEach(langKey => {
+    for (const langKey of dictionaries.keys()) {
       const lang = langKey as Language
       translationData[lang] = translate(signs[sign], lang)
-    })
+    }
 
     signData[sign] = translationData
   })

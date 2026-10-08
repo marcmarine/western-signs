@@ -2,6 +2,8 @@ import { describe, expect, it } from 'bun:test'
 import type { Language, Sign, Signs } from '@/definitions'
 import { getSignByName, SIGNS } from '@/index'
 import { getAllSignWithTranslations } from '@/utils'
+import '@/locale/es'
+import '@/locale/ca'
 
 const signs = getAllSignWithTranslations()
 
@@ -25,6 +27,20 @@ describe('getSignByName', () => {
     const result = getSignByName(signName as Signs)
 
     expect(result).toBeNull()
+  })
+
+  it('should cover every registered language', () => {
+    expect(new Set(mappedSigns.map(([, lang]) => lang))).toEqual(
+      new Set(['en', 'es', 'ca'])
+    )
+  })
+
+  it.each([
+    ['en', 'Taurus'],
+    ['es', 'Tauro'],
+    ['ca', 'Taure']
+  ] as const)('should translate the name in "%s"', (lang, expectedName) => {
+    expect(getSignByName(SIGNS.TAURUS, lang)?.name).toBe(expectedName)
   })
 
   it.each(mappedSigns)(
