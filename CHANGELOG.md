@@ -1,3 +1,12 @@
+# [1.16.0](https://github.com/marcmarine/western-signs/compare/v1.15.0...v1.16.0) (2026-10-24)
+
+
+### Features
+
+* Accept a key in i18n.t() and deprecate the template form ([84bdb14](https://github.com/marcmarine/western-signs/commit/84bdb140561e33c6d48a3fde0f17d120108348ae))
+* Add traditional ruler to signs and houses ([8884da4](https://github.com/marcmarine/western-signs/commit/8884da4aa6517e3e5da554c5fa7fd87558d23fe2))
+* Compute sun position with Meeus' algorithm ([117ede1](https://github.com/marcmarine/western-signs/commit/117ede16376063659bb209ee79758beb28b9a92a))
+
 # [1.15.0](https://github.com/marcmarine/western-signs/compare/v1.14.1...v1.15.0) (2026-10-08)
 
 
