@@ -168,7 +168,7 @@ Three groups of exported constants. Use the identifier with getSymbol().
 
 ### Internationalization
 
-You can easily translate aspects and other astrology-related terms using the `t` function provided by the library. The `t` function takes template strings and values to be translated based on the current language setting.
+You can easily translate aspects and other astrology-related terms using the `t` function provided by the library. The `t` function takes a key and returns its translation in the current language, or the key itself if no translation is found.
 
 To translate an aspect into the current language:
 
@@ -178,8 +178,7 @@ import { ASPECTS, i18n } from 'western-signs'
 // Importing a locale registers it globally
 import 'western-signs/locale/es'
 
-const aspect = i18n.t`${ASPECTS.CONJUNCTION}`
-console.log(aspect)
+i18n.t(ASPECTS.CONJUNCTION)
 // Output: Conjunction
 ```
 
@@ -187,10 +186,19 @@ To change the language, use the `setLanguage` function:
 
 ```js
 i18n.setLanguage('es')
-const aspectInSpanish = i18n.t`${ASPECTS.CONJUNCTION}`
-console.log(aspectInSpanish)
+i18n.t(ASPECTS.CONJUNCTION)
 // Output: Conjunción
 ```
+
+To translate into a specific language without changing the current one, pass it as the second argument:
+
+```js
+i18n.t(ASPECTS.CONJUNCTION, 'ca')
+// Output: Conjunció
+```
+
+> [!NOTE]
+> The template literal form, ``i18n.t`${ASPECTS.CONJUNCTION}` ``, still works but is deprecated and will be removed in the next major version.
 
 #### Available languages
 
