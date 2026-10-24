@@ -65,12 +65,22 @@ zodiac.houses.all()
 
 #### Sun sign by date
 
-Use `at()` to get the sun sign for a given date:
+Use `at()` to get the Sun's position at a given instant:
 
 ```js
-zodiac.at({ date: new Date(2024, 4, 5) }).sun.sign()
+const { sun } = zodiac.at({ date: new Date('2024-05-05T12:00:00Z') })
+
+sun.sign()
 // Output: { name: 'Taurus', ... }
+
+sun.longitude()
+// Output: 45.48... (degrees along the ecliptic, from 0° Aries)
+
+sun.degree()
+// Output: 15.48... (degrees within the sign)
 ```
+
+The position is computed from the exact instant with Jean Meeus' low-precision solar algorithm (accurate to about 0.01°), so the change of sign falls on the right day each year. Note that `new Date(2024, 4, 5)` is midnight in the local time zone: on the day the Sun changes sign, the result can depend on where the code runs.
 
 #### Translations
 

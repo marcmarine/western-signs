@@ -1,11 +1,13 @@
-import type { Language, Planets, Signs } from './definitions'
+import signs from './data/signs'
+import type { Language, Planets, Sign, Signs } from './definitions'
 import { getHouses } from './getHouses'
 import { getPlanet } from './getPlanet'
 import { getPlanets } from './getPlanets'
 import { getSign } from './getSign'
-import { getSignByDate } from './getSignByDate'
 import { getSigns } from './getSigns'
 import { getLanguage } from './i18n'
+import { sunLongitude } from './sun'
+import { translate } from './utils'
 
 function createZodiac(resolveLanguage: () => Language) {
   return {
@@ -47,19 +49,43 @@ function createZodiac(resolveLanguage: () => Language) {
     /**
      * Query the zodiac at a given moment.
      *
+     * Positions are computed for the exact instant, so `new Date(2024, 2, 20)`
+     * means local midnight and the result can differ between time zones on the day the Sun changes sign.
+     *
      * @param options - The moment to query.
      * @param options.date - The date to look up.
-     * @returns An object whose `sun.sign()` returns the sign the Sun is in on that date, or `null` if not found.
+     * @returns An object whose `sun` gives the Sun's position at that instant.
      */
     at: (options: { date: Date }) => ({
       sun: {
         /**
-         * Get the sign the Sun is in on the given date.
+         * Get the sign the Sun is in at the given instant.
          *
          * @throws {Error} If the date is invalid.
-         * @returns The sign, or `null` if not found.
+         * @returns The sign.
          */
-        sign: () => getSignByDate(options.date, resolveLanguage())
+        sign: (): Sign => {
+          const number = Math.floor(sunLongitude(options.date) / 30) + 1
+          const sign = Object.values(signs).find(
+            sign => sign.number === number
+          ) as Sign
+
+          return translate(sign, resolveLanguage())
+        },
+        /**
+         * Get the Sun's ecliptic longitude at the given instant.
+         *
+         * @throws {Error} If the date is invalid.
+         * @returns The longitude in degrees, from 0 (start of Aries) to 360.
+         */
+        longitude: () => sunLongitude(options.date),
+        /**
+         * Get the Sun's degree within its sign at the given instant.
+         *
+         * @throws {Error} If the date is invalid.
+         * @returns The degree, from 0 to 30.
+         */
+        degree: () => sunLongitude(options.date) % 30
       }
     })
   }
@@ -83,7 +109,7 @@ export type Zodiac = ReturnType<typeof createZodiac>
  * zodiac.locale('es').signs.get('taurus')?.name
  * // Output: 'Tauro'
  *
- * zodiac.at({ date: new Date(2024, 4, 5) }).sun.sign()?.name
+ * zodiac.at({ date: new Date(2024, 4, 5) }).sun.sign().name
  * // Output: 'Taurus'
  */
 export const zodiac: Zodiac = createZodiac(getLanguage)

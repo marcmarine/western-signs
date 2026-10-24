@@ -1,5 +1,6 @@
 import { afterEach, describe, expect, it } from 'bun:test'
-import { getSignByDate, i18n, PLANETS, SIGNS, zodiac } from '@/index'
+import { i18n, PLANETS, SIGNS, zodiac } from '@/index'
+import { CARDINAL_POINTS } from './fixtures'
 import '@/locale/es'
 import '@/locale/ca'
 
@@ -52,10 +53,57 @@ describe('zodiac', () => {
       expect(result?.name).toBe('Taurus')
     })
 
-    it('should match getSignByDate', () => {
-      const date = new Date(1990, 11, 25)
+    // The sign that starts at each cardinal point and the one before it
+    const SIGNS_AT_CARDINAL_POINTS = {
+      0: ['Pisces', 'Aries'],
+      90: ['Gemini', 'Cancer'],
+      180: ['Virgo', 'Libra'],
+      270: ['Sagittarius', 'Capricorn']
+    } as const
+    const HOUR = 60 * 60 * 1000
 
-      expect(zodiac.at({ date }).sun.sign()).toEqual(getSignByDate(date))
+    it.each(CARDINAL_POINTS)(
+      'should change sign around %s',
+      (date, longitude) => {
+        const instant = new Date(date).getTime()
+        const [before, after] = SIGNS_AT_CARDINAL_POINTS[longitude]
+
+        expect(
+          zodiac.at({ date: new Date(instant - HOUR) }).sun.sign().name
+        ).toBe(before)
+        expect(
+          zodiac.at({ date: new Date(instant + HOUR) }).sun.sign().name
+        ).toBe(after)
+      }
+    )
+
+    it('should get the sun longitude', () => {
+      const { sun } = zodiac.at({ date: new Date('2024-05-05T12:00:00Z') })
+
+      expect(sun.longitude()).toBeCloseTo(45.48, 2)
+    })
+
+    it('should get the sun degree within its sign', () => {
+      const { sun } = zodiac.at({ date: new Date('2024-05-05T12:00:00Z') })
+
+      expect(sun.degree()).toBeCloseTo(15.48, 2)
+      expect(sun.degree()).toBeCloseTo(sun.longitude() - 30, 10)
+    })
+
+    it('should return a sign for every day of the year', () => {
+      for (let day = 0; day < 366; day++) {
+        const date = new Date(Date.UTC(2024, 0, 1 + day))
+
+        expect(zodiac.at({ date }).sun.sign()).toBeObject()
+      }
+    })
+
+    it('should throw for an invalid date', () => {
+      const sun = zodiac.at({ date: new Date('not a date') }).sun
+
+      expect(() => sun.sign()).toThrow('Invalid date')
+      expect(() => sun.longitude()).toThrow('Invalid date')
+      expect(() => sun.degree()).toThrow('Invalid date')
     })
 
     it('should translate the sun sign', () => {
@@ -71,7 +119,7 @@ describe('zodiac', () => {
       const sun = zodiac.at({ date: new Date(2024, 4, 5) }).sun
       i18n.setLanguage('es')
 
-      expect(sun.sign()?.name).toBe('Tauro')
+      expect(sun.sign().name).toBe('Tauro')
     })
 
     it('should throw for a non-Date value', () => {
