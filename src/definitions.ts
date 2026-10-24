@@ -113,6 +113,13 @@ export interface Sign {
   rulingPlanet: string
 
   /**
+   * The traditional ruling planet of the zodiac sign, from before the discovery of the outer planets.
+   * Same as `rulingPlanet` except for Scorpio, Aquarius and Pisces.
+   * Examples: "Mars" for Scorpio (modern ruler: Pluto), "Saturn" for Aquarius (modern ruler: Uranus).
+   */
+  traditionalRuler: string
+
+  /**
    * The season in which the zodiac sign occurs.
    * Indicates the time of year the sign predominates.
    * Examples: "Spring" for Aries, "Spring" for Taurus.
@@ -187,6 +194,14 @@ export interface House {
    * Example: "Mars", "Venus"
    */
   rulingPlanet: string
+
+  /**
+   * Traditional ruling planet of the house, from before the discovery of the outer planets.
+   *
+   * Same as `rulingPlanet` except for Houses 8, 11 and 12.
+   * Example: "Mars" for House 8 (modern ruler: Pluto), "Jupiter" for House 12 (modern ruler: Neptune)
+   */
+  traditionalRuler: string
 
   /**
    * Zodiac sign associated with the house.

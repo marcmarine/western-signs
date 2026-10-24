@@ -21,6 +21,7 @@ const houses: (Omit<House, 'keywords'> & { keywords: string })[] = [
     phase: 1,
     quadrant: 1,
     rulingPlanet: PLANETS.MARS,
+    traditionalRuler: PLANETS.MARS,
     sign: SIGNS.ARIES,
     title: HOUSE_TITLES[0],
     name: HOUSES[0]
@@ -34,6 +35,7 @@ const houses: (Omit<House, 'keywords'> & { keywords: string })[] = [
     phase: 1,
     quadrant: 1,
     rulingPlanet: PLANETS.VENUS,
+    traditionalRuler: PLANETS.VENUS,
     sign: SIGNS.TAURUS,
     title: HOUSE_TITLES[1],
     name: HOUSES[1]
@@ -47,6 +49,7 @@ const houses: (Omit<House, 'keywords'> & { keywords: string })[] = [
     phase: 1,
     quadrant: 1,
     rulingPlanet: PLANETS.MERCURY,
+    traditionalRuler: PLANETS.MERCURY,
     sign: SIGNS.GEMINI,
     title: HOUSE_TITLES[2],
     name: HOUSES[2]
@@ -60,6 +63,7 @@ const houses: (Omit<House, 'keywords'> & { keywords: string })[] = [
     phase: 1,
     quadrant: 2,
     rulingPlanet: PLANETS.MOON,
+    traditionalRuler: PLANETS.MOON,
     sign: SIGNS.CANCER,
     title: HOUSE_TITLES[3],
     name: HOUSES[3]
@@ -73,6 +77,7 @@ const houses: (Omit<House, 'keywords'> & { keywords: string })[] = [
     phase: 2,
     quadrant: 2,
     rulingPlanet: PLANETS.SUN,
+    traditionalRuler: PLANETS.SUN,
     sign: SIGNS.LEO,
     title: HOUSE_TITLES[4],
     name: HOUSES[4]
@@ -86,6 +91,7 @@ const houses: (Omit<House, 'keywords'> & { keywords: string })[] = [
     phase: 2,
     quadrant: 2,
     rulingPlanet: PLANETS.MERCURY,
+    traditionalRuler: PLANETS.MERCURY,
     sign: SIGNS.VIRGO,
     title: HOUSE_TITLES[5],
     name: HOUSES[5]
@@ -99,6 +105,7 @@ const houses: (Omit<House, 'keywords'> & { keywords: string })[] = [
     phase: 2,
     quadrant: 3,
     rulingPlanet: PLANETS.VENUS,
+    traditionalRuler: PLANETS.VENUS,
     sign: SIGNS.LIBRA,
     title: HOUSE_TITLES[6],
     name: HOUSES[6]
@@ -112,6 +119,7 @@ const houses: (Omit<House, 'keywords'> & { keywords: string })[] = [
     phase: 2,
     quadrant: 3,
     rulingPlanet: PLANETS.PLUTO,
+    traditionalRuler: PLANETS.MARS,
     sign: SIGNS.SCORPIO,
     title: HOUSE_TITLES[7],
     name: HOUSES[7]
@@ -125,6 +133,7 @@ const houses: (Omit<House, 'keywords'> & { keywords: string })[] = [
     phase: 3,
     quadrant: 3,
     rulingPlanet: PLANETS.JUPITER,
+    traditionalRuler: PLANETS.JUPITER,
     sign: SIGNS.SAGITTARIUS,
     title: HOUSE_TITLES[8],
     name: HOUSES[8]
@@ -138,6 +147,7 @@ const houses: (Omit<House, 'keywords'> & { keywords: string })[] = [
     phase: 3,
     quadrant: 4,
     rulingPlanet: PLANETS.SATURN,
+    traditionalRuler: PLANETS.SATURN,
     sign: SIGNS.CAPRICORN,
     title: HOUSE_TITLES[9],
     name: HOUSES[9]
@@ -151,6 +161,7 @@ const houses: (Omit<House, 'keywords'> & { keywords: string })[] = [
     phase: 3,
     quadrant: 4,
     rulingPlanet: PLANETS.URANUS,
+    traditionalRuler: PLANETS.SATURN,
     sign: SIGNS.AQUARIUS,
     title: HOUSE_TITLES[10],
     name: HOUSES[10]
@@ -164,6 +175,7 @@ const houses: (Omit<House, 'keywords'> & { keywords: string })[] = [
     phase: 3,
     quadrant: 4,
     rulingPlanet: PLANETS.NEPTUNE,
+    traditionalRuler: PLANETS.JUPITER,
     sign: SIGNS.PISCES,
     title: HOUSE_TITLES[11],
     name: HOUSES[11]

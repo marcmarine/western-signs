@@ -22,6 +22,7 @@ const signs: Record<Signs, Sign> = {
     number: 1,
     pole: POLARITIES.POSITIVE,
     rulingPlanet: PLANETS.MARS,
+    traditionalRuler: PLANETS.MARS,
     season: SEASONS.SPRING,
     startDate: new Date(2020, 2, 20)
   },
@@ -36,6 +37,7 @@ const signs: Record<Signs, Sign> = {
     number: 2,
     pole: POLARITIES.NEGATIVE,
     rulingPlanet: PLANETS.VENUS,
+    traditionalRuler: PLANETS.VENUS,
     season: SEASONS.SPRING,
     startDate: new Date(2020, 3, 21)
   },
@@ -50,6 +52,7 @@ const signs: Record<Signs, Sign> = {
     number: 3,
     pole: POLARITIES.POSITIVE,
     rulingPlanet: PLANETS.MERCURY,
+    traditionalRuler: PLANETS.MERCURY,
     season: SEASONS.SPRING,
     startDate: new Date(2020, 4, 22)
   },
@@ -64,6 +67,7 @@ const signs: Record<Signs, Sign> = {
     number: 4,
     pole: POLARITIES.NEGATIVE,
     rulingPlanet: PLANETS.MOON,
+    traditionalRuler: PLANETS.MOON,
     season: SEASONS.SUMMER,
     startDate: new Date(2020, 5, 23)
   },
@@ -78,6 +82,7 @@ const signs: Record<Signs, Sign> = {
     number: 5,
     pole: POLARITIES.POSITIVE,
     rulingPlanet: PLANETS.SUN,
+    traditionalRuler: PLANETS.SUN,
     season: SEASONS.SUMMER,
     startDate: new Date(2020, 6, 23)
   },
@@ -92,6 +97,7 @@ const signs: Record<Signs, Sign> = {
     number: 6,
     pole: POLARITIES.NEGATIVE,
     rulingPlanet: PLANETS.MERCURY,
+    traditionalRuler: PLANETS.MERCURY,
     season: SEASONS.SUMMER,
     startDate: new Date(2020, 7, 23)
   },
@@ -106,6 +112,7 @@ const signs: Record<Signs, Sign> = {
     number: 7,
     pole: POLARITIES.POSITIVE,
     rulingPlanet: PLANETS.VENUS,
+    traditionalRuler: PLANETS.VENUS,
     season: SEASONS.AUTUMN,
     startDate: new Date(2020, 8, 23)
   },
@@ -120,6 +127,7 @@ const signs: Record<Signs, Sign> = {
     number: 8,
     pole: POLARITIES.NEGATIVE,
     rulingPlanet: PLANETS.PLUTO,
+    traditionalRuler: PLANETS.MARS,
     season: SEASONS.AUTUMN,
     startDate: new Date(2020, 9, 23)
   },
@@ -134,6 +142,7 @@ const signs: Record<Signs, Sign> = {
     number: 9,
     pole: POLARITIES.POSITIVE,
     rulingPlanet: PLANETS.JUPITER,
+    traditionalRuler: PLANETS.JUPITER,
     season: SEASONS.AUTUMN,
     startDate: new Date(2020, 10, 23)
   },
@@ -148,6 +157,7 @@ const signs: Record<Signs, Sign> = {
     number: 10,
     pole: POLARITIES.NEGATIVE,
     rulingPlanet: PLANETS.SATURN,
+    traditionalRuler: PLANETS.SATURN,
     season: SEASONS.WINTER,
     startDate: new Date(2020, 11, 23)
   },
@@ -162,6 +172,7 @@ const signs: Record<Signs, Sign> = {
     number: 11,
     pole: POLARITIES.POSITIVE,
     rulingPlanet: PLANETS.URANUS,
+    traditionalRuler: PLANETS.SATURN,
     season: SEASONS.WINTER,
     startDate: new Date(2020, 0, 22)
   },
@@ -176,6 +187,7 @@ const signs: Record<Signs, Sign> = {
     number: 12,
     pole: POLARITIES.NEGATIVE,
     rulingPlanet: PLANETS.NEPTUNE,
+    traditionalRuler: PLANETS.JUPITER,
     season: SEASONS.WINTER,
     startDate: new Date(2020, 1, 21)
   }

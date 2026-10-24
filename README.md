@@ -57,6 +57,7 @@ zodiac.houses.all()
   number: 2,
   pole: 'Negative',
   rulingPlanet: 'Venus',
+  traditionalRuler: 'Venus',
   season: 'Spring',
   startDate: 2020-04-20T22:00:00.000Z
 }

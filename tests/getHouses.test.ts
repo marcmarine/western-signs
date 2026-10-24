@@ -27,6 +27,34 @@ describe('getHouses', () => {
     },
   )
 
+  describe('traditionalRuler', () => {
+    it.each([
+      [8, 'Pluto', 'Mars'],
+      [11, 'Uranus', 'Saturn'],
+      [12, 'Neptune', 'Jupiter']
+    ])(
+      'house %i should be ruled by %s, traditionally by %s',
+      (number, rulingPlanet, traditionalRuler) => {
+        const house = getHouses()[number - 1]
+
+        expect(house.rulingPlanet).toBe(rulingPlanet)
+        expect(house.traditionalRuler).toBe(traditionalRuler)
+      }
+    )
+
+    it('should match rulingPlanet in every other house', () => {
+      for (const house of getHouses()) {
+        if ([8, 11, 12].includes(house.number)) continue
+
+        expect(house.traditionalRuler).toBe(house.rulingPlanet)
+      }
+    })
+
+    it('should be translated', () => {
+      expect(getHouses('es')[7].traditionalRuler).toBe('Marte')
+    })
+  })
+
   describe('keywords', () => {
     it('should return keywords as a list', () => {
       const [house] = getHouses()

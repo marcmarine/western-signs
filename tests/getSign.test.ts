@@ -43,6 +43,35 @@ describe('getSignByName', () => {
     expect(getSignByName(SIGNS.TAURUS, lang)?.name).toBe(expectedName)
   })
 
+  it.each([
+    [SIGNS.SCORPIO, 'Pluto', 'Mars'],
+    [SIGNS.AQUARIUS, 'Uranus', 'Saturn'],
+    [SIGNS.PISCES, 'Neptune', 'Jupiter']
+  ] as const)(
+    '%s should be ruled by %s, traditionally by %s',
+    (sign, rulingPlanet, traditionalRuler) => {
+      const result = getSignByName(sign)
+
+      expect(result?.rulingPlanet).toBe(rulingPlanet)
+      expect(result?.traditionalRuler).toBe(traditionalRuler)
+    }
+  )
+
+  it('should have traditionalRuler match rulingPlanet in every other sign', () => {
+    const differing: Signs[] = [SIGNS.SCORPIO, SIGNS.AQUARIUS, SIGNS.PISCES]
+
+    for (const sign of Object.values(SIGNS)) {
+      if (differing.includes(sign)) continue
+
+      const result = getSignByName(sign)
+      expect(result?.traditionalRuler).toBe(result?.rulingPlanet as string)
+    }
+  })
+
+  it('should translate traditionalRuler', () => {
+    expect(getSignByName(SIGNS.SCORPIO, 'es')?.traditionalRuler).toBe('Marte')
+  })
+
   it.each(mappedSigns)(
     'should return "%s" in "%s"',
     (sign, lang, expectedData) => {
