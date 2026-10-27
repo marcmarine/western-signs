@@ -33,7 +33,7 @@
     }
   },
   "bugs": "https://github.com/marcmarine/western-signs/issues/new",
-  "description": "Simple interface for western astrological signs.",
+  "description": "Western astrology data for signs, planets, houses and aspects, with translations, SVG symbols and the Sun's position for any date.",
   "files": [
     "dist"
   ],
@@ -41,9 +41,19 @@
   "keywords": [
     "astrology",
     "zodiac",
+    "zodiac-sign",
+    "star-sign",
+    "sun-sign",
     "horoscope",
-    "western-signs",
-    "signs"
+    "planets",
+    "houses",
+    "aspects",
+    "zodiac-icons",
+    "sun-position",
+    "meeus",
+    "i18n",
+    "typescript",
+    "zero-dependency"
   ],
   "license": "MIT",
   "scripts": {
