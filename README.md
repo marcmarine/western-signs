@@ -65,10 +65,13 @@ zodiac.houses.all()
 
 #### Sun sign by date
 
-Use `at()` to get the Sun's position at a given instant:
+Use `at()` to get the Sun's position at a given moment. Pass the local date and time with the time zone of the place, e.g. where someone was born:
 
 ```js
-const { sun } = zodiac.at({ date: new Date('2024-05-05T12:00:00Z') })
+const { sun } = zodiac.at({
+  date: '2024-05-05T14:00',
+  timeZone: 'Europe/Madrid',
+})
 
 sun.sign()
 // Output: { name: 'Taurus', ... }
@@ -80,7 +83,26 @@ sun.degree()
 // Output: 15.48... (degrees within the sign)
 ```
 
-The position is computed from the exact instant with Jean Meeus' low-precision solar algorithm (accurate to about 0.01°), so the change of sign falls on the right day each year. Note that `new Date(2024, 4, 5)` is midnight in the local time zone: on the day the Sun changes sign, the result can depend on where the code runs.
+The date is written as `YYYY-MM-DD`, optionally followed by a time, `THH:mm` or `THH:mm:ss`, the same format `<input type="datetime-local">` gives. The time zone is an [IANA name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) such as `'Europe/Madrid'`, so daylight saving time and historical changes are taken into account. If the time is unknown, noon is used, which can give the wrong sign on the day the Sun changes sign.
+
+You can also pass a `Date` if you already have the exact instant:
+
+```js
+zodiac.at({ date: new Date('2024-05-05T12:00:00Z') }).sun.sign()
+```
+
+Keep in mind that `new Date(2024, 4, 5)` is midnight in the time zone of the machine running the code, not of the place you mean.
+
+The position is computed with Jean Meeus' low-precision solar algorithm (accurate to about 0.01°), so the change of sign falls on the right day each year.
+
+> [!TIP]
+> If you only know the city, a library such as [`i18n-cities`](https://www.npmjs.com/package/i18n-cities) gives you its time zone:
+>
+> ```js
+> const [city] = cities.search('barcelona')
+>
+> zodiac.at({ date: '1990-03-20T05:00', timeZone: city.timezone })
+> ```
 
 #### Translations
 

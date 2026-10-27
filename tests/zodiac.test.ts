@@ -122,10 +122,61 @@ describe('zodiac', () => {
       expect(sun.sign().name).toBe('Tauro')
     })
 
-    it('should throw for a non-Date value', () => {
+    it('should throw for a local date without a time zone', () => {
       expect(() =>
         zodiac.at({ date: '2024-05-05' as unknown as Date }).sun.sign()
       ).toThrow('Invalid date')
+    })
+
+    describe('with a local date and time zone', () => {
+      // The March equinox of 2024 was at 03:06 UTC
+      it.each([
+        ['Europe/Madrid', 'Pisces'],
+        ['America/Mexico_City', 'Aries']
+      ])(
+        'should read the same local time in %s as %s',
+        (timeZone, expected) => {
+          const sun = zodiac.at({ date: '2024-03-20T04:00', timeZone }).sun
+
+          expect(sun.sign().name).toBe(expected)
+        }
+      )
+
+      it('should match the instant it refers to', () => {
+        const local = zodiac.at({
+          date: '1990-03-20T05:00',
+          timeZone: 'Europe/Madrid'
+        }).sun
+        const instant = zodiac.at({
+          date: new Date('1990-03-20T04:00:00Z')
+        }).sun
+
+        expect(local.longitude()).toBe(instant.longitude())
+        expect(local.degree()).toBe(instant.degree())
+        expect(local.sign()).toEqual(instant.sign())
+      })
+
+      it('should use noon when there is no time', () => {
+        const sun = zodiac.at({
+          date: '2024-03-20',
+          timeZone: 'Europe/Madrid'
+        }).sun
+
+        expect(sun.longitude()).toBe(
+          zodiac.at({ date: new Date('2024-03-20T11:00:00Z') }).sun.longitude()
+        )
+      })
+
+      it('should throw for an invalid date or time zone', () => {
+        const badDate = zodiac.at({ date: '2024-02-30', timeZone: 'UTC' }).sun
+        const badTimeZone = zodiac.at({
+          date: '2024-03-20',
+          timeZone: 'Mars/Olympus'
+        }).sun
+
+        expect(() => badDate.sign()).toThrow('Invalid date')
+        expect(() => badTimeZone.sign()).toThrow('Invalid time zone')
+      })
     })
   })
 

@@ -7,7 +7,14 @@ import { getSign } from './getSign'
 import { getSigns } from './getSigns'
 import { getLanguage } from './i18n'
 import { sunLongitude } from './sun'
+import { fromLocal } from './time'
 import { translate } from './utils'
+
+type AtOptions =
+  /** An instant. */
+  | { date: Date }
+  /** A local date and time in the given time zone. */
+  | { date: string; timeZone: string }
 
 function createZodiac(resolveLanguage: () => Language) {
   return {
@@ -49,45 +56,61 @@ function createZodiac(resolveLanguage: () => Language) {
     /**
      * Query the zodiac at a given moment.
      *
-     * Positions are computed for the exact instant, so `new Date(2024, 2, 20)`
-     * means local midnight and the result can differ between time zones on the day the Sun changes sign.
+     * Pass either a `Date`, which is already an instant, or a local date and time with
+     * the time zone of the place, e.g. where someone was born. The local form gives the
+     * same result wherever the code runs; with a `Date`, `new Date(2024, 2, 20)` means
+     * midnight in the time zone of the machine running the code.
      *
      * @param options - The moment to query.
-     * @param options.date - The date to look up.
+     * @param options.date - A `Date`, or a local date as `YYYY-MM-DD` with an optional time, `THH:mm` or `THH:mm:ss`. Without a time, noon is used, which can give the wrong sign on the day the Sun changes sign.
+     * @param options.timeZone - The IANA time zone of a local date, e.g. `'Europe/Madrid'`.
      * @returns An object whose `sun` gives the Sun's position at that instant.
+     *
+     * @example
+     * zodiac.at({ date: '1990-03-20T05:00', timeZone: 'Europe/Madrid' }).sun.sign().name
+     * // Output: 'Pisces'
      */
-    at: (options: { date: Date }) => ({
-      sun: {
-        /**
-         * Get the sign the Sun is in at the given instant.
-         *
-         * @throws {Error} If the date is invalid.
-         * @returns The sign.
-         */
-        sign: (): Sign => {
-          const number = Math.floor(sunLongitude(options.date) / 30) + 1
-          const sign = Object.values(signs).find(
-            sign => sign.number === number
-          ) as Sign
+    at: (options: AtOptions) => {
+      const longitude = () =>
+        sunLongitude(
+          'timeZone' in options
+            ? fromLocal(options.date, options.timeZone)
+            : options.date
+        )
 
-          return translate(sign, resolveLanguage())
-        },
-        /**
-         * Get the Sun's ecliptic longitude at the given instant.
-         *
-         * @throws {Error} If the date is invalid.
-         * @returns The longitude in degrees, from 0 (start of Aries) to 360.
-         */
-        longitude: () => sunLongitude(options.date),
-        /**
-         * Get the Sun's degree within its sign at the given instant.
-         *
-         * @throws {Error} If the date is invalid.
-         * @returns The degree, from 0 to 30.
-         */
-        degree: () => sunLongitude(options.date) % 30
+      return {
+        sun: {
+          /**
+           * Get the sign the Sun is in at the given instant.
+           *
+           * @throws {Error} If the date or the time zone is invalid.
+           * @returns The sign.
+           */
+          sign: (): Sign => {
+            const number = Math.floor(longitude() / 30) + 1
+            const sign = Object.values(signs).find(
+              sign => sign.number === number
+            ) as Sign
+
+            return translate(sign, resolveLanguage())
+          },
+          /**
+           * Get the Sun's ecliptic longitude at the given instant.
+           *
+           * @throws {Error} If the date or the time zone is invalid.
+           * @returns The longitude in degrees, from 0 (start of Aries) to 360.
+           */
+          longitude,
+          /**
+           * Get the Sun's degree within its sign at the given instant.
+           *
+           * @throws {Error} If the date or the time zone is invalid.
+           * @returns The degree, from 0 to 30.
+           */
+          degree: () => longitude() % 30
+        }
       }
-    })
+    }
   }
 }
 
