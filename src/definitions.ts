@@ -210,6 +210,28 @@ export interface Planet {
    * Examples: "luminary" for the Sun and the Moon, "personal" for Mercury, Venus and Mars.
    */
   type: PlanetTypeId
+
+  /**
+   * The signs where the planet is strong or weak by nature.
+   */
+  dignities: Dignities
+}
+
+/**
+ * The signs where a planet is in its essential dignities and debilities.
+ */
+export interface Dignities {
+  /**
+   * The signs the planet rules, in modern and in traditional astrology, following each sign's `rulers`.
+   * Example for Mars: `{ modern: ['aries'], traditional: ['aries', 'scorpio'] }`.
+   */
+  domicile: { modern: SignId[]; traditional: SignId[] }
+
+  /**
+   * The signs opposite those the planet rules, where it is weakest.
+   * Example for Mars: `{ modern: ['libra'], traditional: ['taurus', 'libra'] }`.
+   */
+  detriment: { modern: SignId[]; traditional: SignId[] }
 }
 
 export interface Aspect {
@@ -259,9 +281,11 @@ type LabeledValues<T> = {
     ? T[K]
     : T[K] extends string
       ? string
-      : T[K] extends object
-        ? LabeledValues<T[K]>
-        : T[K]
+      : T[K] extends readonly string[]
+        ? string[]
+        : T[K] extends object
+          ? LabeledValues<T[K]>
+          : T[K]
 }
 
 /**

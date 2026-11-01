@@ -1,7 +1,9 @@
-import type { Planet, PlanetId } from '../definitions'
-import { PLANET_TYPE, PLANETS } from './constants'
+import type { Planet, PlanetId, Rulers, SignId } from '../definitions'
+import { PLANET_TYPE, PLANETS, SIGNS } from './constants'
+import signs from './signs'
 
-const planets: Record<PlanetId, Planet> = {
+// The dignities are added below, from the rulers of each sign
+const entries: Record<PlanetId, Omit<Planet, 'dignities'>> = {
   sun: {
     id: PLANETS.SUN,
     glyph: '☉',
@@ -53,5 +55,42 @@ const planets: Record<PlanetId, Planet> = {
     type: PLANET_TYPE.TRANSPERSONAL
   }
 }
+
+const SIGN_IDS = Object.values(SIGNS)
+
+// The sign six places away, across the zodiac
+const opposite = (sign: SignId) =>
+  SIGN_IDS[(SIGN_IDS.indexOf(sign) + 6) % 12] as SignId
+
+// The signs opposite the given ones, in zodiac order
+const opposites = (ids: SignId[]) =>
+  SIGN_IDS.filter(sign => ids.includes(opposite(sign)))
+
+// The signs a planet rules in the given tradition, in zodiac order
+const ruledBy = (planet: PlanetId, tradition: keyof Rulers) =>
+  Object.values(signs)
+    .filter(sign => sign.rulers[tradition] === planet)
+    .map(sign => sign.id)
+
+const planets = Object.fromEntries(
+  Object.values(entries).map(planet => {
+    const modern = ruledBy(planet.id, 'modern')
+    const traditional = ruledBy(planet.id, 'traditional')
+
+    return [
+      planet.id,
+      {
+        ...planet,
+        dignities: {
+          domicile: { modern, traditional },
+          detriment: {
+            modern: opposites(modern),
+            traditional: opposites(traditional)
+          }
+        }
+      }
+    ]
+  })
+) as Record<PlanetId, Planet>
 
 export default planets

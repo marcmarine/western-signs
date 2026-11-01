@@ -24,6 +24,7 @@ export type {
   BodyPartId,
   CharacterId,
   Dictionary,
+  Dignities,
   ElementId,
   HorizonId,
   House,

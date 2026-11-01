@@ -73,3 +73,11 @@ describe('locale', () => {
     expect(ca.t(SIGNS.PISCES)).toBe('Peixos')
   })
 })
+
+describe('label with lists', () => {
+  it('should translate each value of a list and keep it a list', () => {
+    const { dignities } = i18n.label(zodiac.planets.get('mars'), 'es')
+
+    expect(dignities.domicile.traditional).toEqual(['Aries', 'Escorpio'])
+  })
+})

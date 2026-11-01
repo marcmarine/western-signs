@@ -40,12 +40,15 @@ export function label<T extends { id: string }>(
   language: Language = 'en'
 ): Labeled<T> {
   const dictionary = dictionaries.get(language)
-  const translate = (value: unknown): unknown =>
-    typeof value === 'object' && value !== null
-      ? Object.fromEntries(
-          Object.entries(value).map(([key, value]) => [key, translate(value)])
-        )
-      : (dictionary?.[value as keyof Dictionary] ?? value)
+  const translate = (value: unknown): unknown => {
+    if (Array.isArray(value)) return value.map(translate)
+    if (typeof value === 'object' && value !== null)
+      return Object.fromEntries(
+        Object.entries(value).map(([key, value]) => [key, translate(value)])
+      )
+
+    return dictionary?.[value as keyof Dictionary] ?? value
+  }
 
   const { id, ...rest } = item
 
