@@ -1,3 +1,47 @@
+## [2.0.0](https://github.com/marcmarine/western-signs/compare/v1.16.0...v2.0.0) (2026-11-01)
+
+### ⚠ BREAKING CHANGES
+
+* Rename getSymbol stroke options
+* Keep ids in i18n.label()
+* Return sun position as properties
+* Describe houses by horizon and meridian
+* Rename id types
+* Remove setLanguage() in favor of locale()
+* Return ids and translate with i18n.label()
+* Rename sign fields and add ids
+* Remove interpretive house data
+* Remove sign start and end dates
+* Remove deprecated functions
+
+### Features
+
+* Accept a local date and time zone ([2038102](https://github.com/marcmarine/western-signs/commit/20381024f36320405d0f22301fb2f1598a1f113b))
+* Accept any string in get() ([dc81606](https://github.com/marcmarine/western-signs/commit/dc8160607370b5e2b4cf883aeac31d934d82a62f))
+* Add aspects and houses.get() to zodiac ([562542a](https://github.com/marcmarine/western-signs/commit/562542a9afe247423a278fdc412c7d88a2506fd5))
+* Add longitude range to signs ([a383ec7](https://github.com/marcmarine/western-signs/commit/a383ec71ae37ce99cea0c825fefecd4fc0c07963))
+* Add minor aspects, glyphs and harmonics ([93d37fa](https://github.com/marcmarine/western-signs/commit/93d37faecad51741c6915f199fd1dbbff96b90f7))
+* Add planet domicile and detriment ([c867ce1](https://github.com/marcmarine/western-signs/commit/c867ce189f291b7acab1840562cbf3f5c967340c))
+* Add planet exaltation and fall ([359750f](https://github.com/marcmarine/western-signs/commit/359750fa748c4a98279a56808b4b3e8c51eeb485))
+* Add zodiac.dignities() ([50a36f9](https://github.com/marcmarine/western-signs/commit/50a36f987f45c76f0add3a0a22c8eaf23a2974b2))
+* Add zodiac.signs.at() and degree() ([aed267d](https://github.com/marcmarine/western-signs/commit/aed267d1bd8a5706767c6b6d1821cdd56dadd2d7))
+* Describe houses by horizon and meridian ([f13e0d7](https://github.com/marcmarine/western-signs/commit/f13e0d70224bca7f1eb88db796244440869a7fe3))
+* Keep ids in i18n.label() ([2de5ad6](https://github.com/marcmarine/western-signs/commit/2de5ad6f28dd9ae757bd56469011ed2a64c0df4e))
+* Publish data as JSON ([2b9282a](https://github.com/marcmarine/western-signs/commit/2b9282a0799cf99a1829036ebec87910d90b1465))
+* Remove deprecated functions ([9b060ff](https://github.com/marcmarine/western-signs/commit/9b060ff2542721325c29f463720754af6a7ad509))
+* Remove interpretive house data ([d7dea21](https://github.com/marcmarine/western-signs/commit/d7dea21cb8adf479870305b8d7352fa1b773ef2b))
+* Remove setLanguage() in favor of locale() ([898bead](https://github.com/marcmarine/western-signs/commit/898bead38f16c92f5699b82b693ce3b59755ef1f))
+* Remove sign start and end dates ([368b54b](https://github.com/marcmarine/western-signs/commit/368b54be7ae34deddf4a6a191c2c3b2547c3ed6d))
+* Rename getSymbol stroke options ([aa3f3a9](https://github.com/marcmarine/western-signs/commit/aa3f3a9574de96ef01d2b218cb8388d87fc42f5b))
+* Rename id types ([7d5682b](https://github.com/marcmarine/western-signs/commit/7d5682b506e0abcd3aeb53e297fe84ec5f106007))
+* Rename sign fields and add ids ([e77f427](https://github.com/marcmarine/western-signs/commit/e77f42795585c4ad2329f88ee67927c521038760))
+* Return ids and translate with i18n.label() ([df6a292](https://github.com/marcmarine/western-signs/commit/df6a292df0951bd45494e4b01fdf45a50b052adf))
+* Return sun position as properties ([32d4bd0](https://github.com/marcmarine/western-signs/commit/32d4bd023a559d49dd897f73b91c886720999eb2))
+
+### Bug Fixes
+
+* Build with Bun 1.4 ([0dbf9f4](https://github.com/marcmarine/western-signs/commit/0dbf9f4c8ed8b2220f9d4f093b52aba15f7e7566))
+
 # [1.16.0](https://github.com/marcmarine/western-signs/compare/v1.15.0...v1.16.0) (2026-10-24)
 
 
