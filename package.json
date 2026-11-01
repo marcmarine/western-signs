@@ -63,7 +63,7 @@
     "build:types": "bunx tsc --project tsconfig.types.json",
     "build:docs": "bunx typedoc",
     "format": "biome check --write",
-    "prebuild": "bun build-symbols.ts"
+    "prebuild": "rm -rf dist && bun build-symbols.ts"
   },
   "type": "module",
   "sideEffects": [
