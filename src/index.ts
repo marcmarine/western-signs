@@ -46,7 +46,8 @@ export type {
   Sign,
   SignId,
   SymbolId,
-  SymbolOptions
+  SymbolOptions,
+  ZodiacPosition
 } from './definitions'
 export { getSymbol } from './getSymbol'
 export * as i18n from './i18n'

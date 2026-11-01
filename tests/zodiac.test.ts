@@ -58,7 +58,7 @@ describe('zodiac', () => {
 
   describe('zodiac.at()', () => {
     it('should get the sun sign for a date', () => {
-      const result = zodiac.at({ date: new Date(2024, 4, 5) }).sun.sign()
+      const result = zodiac.at({ date: new Date(2024, 4, 5) }).sun.sign
 
       expect(result.id).toBe('taurus')
     })
@@ -81,7 +81,7 @@ describe('zodiac', () => {
     ])('should get the sun sign on %i-%i-%i', (year, month, day, expected) => {
       const date = new Date(Date.UTC(year, month, day, 12))
 
-      expect(zodiac.at({ date }).sun.sign().id).toBe(expected)
+      expect(zodiac.at({ date }).sun.sign.id).toBe(expected)
     })
 
     // The sign that starts at each cardinal point and the one before it
@@ -99,33 +99,33 @@ describe('zodiac', () => {
         const instant = new Date(date).getTime()
         const [before, after] = SIGNS_AT_CARDINAL_POINTS[longitude]
 
-        expect(
-          zodiac.at({ date: new Date(instant - HOUR) }).sun.sign().id
-        ).toBe(before)
-        expect(
-          zodiac.at({ date: new Date(instant + HOUR) }).sun.sign().id
-        ).toBe(after)
+        expect(zodiac.at({ date: new Date(instant - HOUR) }).sun.sign.id).toBe(
+          before
+        )
+        expect(zodiac.at({ date: new Date(instant + HOUR) }).sun.sign.id).toBe(
+          after
+        )
       }
     )
 
     it('should get the sun longitude', () => {
       const { sun } = zodiac.at({ date: new Date('2024-05-05T12:00:00Z') })
 
-      expect(sun.longitude()).toBeCloseTo(45.48, 2)
+      expect(sun.longitude).toBeCloseTo(45.48, 2)
     })
 
     it('should get the sun degree within its sign', () => {
       const { sun } = zodiac.at({ date: new Date('2024-05-05T12:00:00Z') })
 
-      expect(sun.degree()).toBeCloseTo(15.48, 2)
-      expect(sun.degree()).toBeCloseTo(sun.longitude() - 30, 10)
+      expect(sun.degree).toBeCloseTo(15.48, 2)
+      expect(sun.degree).toBeCloseTo(sun.longitude - 30, 10)
     })
 
     it('should return a sign for every day of the year', () => {
       for (let day = 0; day < 366; day++) {
         const date = new Date(Date.UTC(2024, 0, 1 + day))
 
-        expect(zodiac.at({ date }).sun.sign()).toBeObject()
+        expect(zodiac.at({ date }).sun.sign).toBeObject()
       }
     })
 
@@ -134,30 +134,35 @@ describe('zodiac', () => {
         const { sun } = zodiac.at({
           date: new Date(Date.UTC(2024, 0, 1 + day))
         })
-        const { longitude } = sun.sign()
+        const { longitude } = sun.sign
 
-        expect(sun.longitude()).toBeGreaterThanOrEqual(longitude.start)
-        expect(sun.longitude()).toBeLessThan(longitude.end)
+        expect(sun.longitude).toBeGreaterThanOrEqual(longitude.start)
+        expect(sun.longitude).toBeLessThan(longitude.end)
       }
     })
 
     it('should throw for an invalid date', () => {
-      const sun = zodiac.at({ date: new Date('not a date') }).sun
+      expect(() => zodiac.at({ date: new Date('not a date') })).toThrow(
+        'Invalid date'
+      )
+    })
 
-      expect(() => sun.sign()).toThrow('Invalid date')
-      expect(() => sun.longitude()).toThrow('Invalid date')
-      expect(() => sun.degree()).toThrow('Invalid date')
+    it('should return a frozen position that survives a round trip through JSON', () => {
+      const result = zodiac.at({ date: new Date('2024-05-05T12:00:00Z') })
+
+      expect(Object.isFrozen(result.sun)).toBe(true)
+      expect(JSON.parse(JSON.stringify(result))).toEqual(result)
     })
 
     it('should translate the sun sign with i18n.label()', () => {
-      const sign = zodiac.at({ date: new Date(2024, 4, 5) }).sun.sign()
+      const sign = zodiac.at({ date: new Date(2024, 4, 5) }).sun.sign
 
       expect(i18n.label(sign, 'es').name).toBe('Tauro')
     })
 
     it('should throw for a local date without a time zone', () => {
       expect(() =>
-        zodiac.at({ date: '2024-05-05' as unknown as Date }).sun.sign()
+        zodiac.at({ date: '2024-05-05' as unknown as Date })
       ).toThrow('Invalid date')
     })
 
@@ -171,7 +176,7 @@ describe('zodiac', () => {
         (timeZone, expected) => {
           const sun = zodiac.at({ date: '2024-03-20T04:00', timeZone }).sun
 
-          expect(sun.sign().id).toBe(expected)
+          expect(sun.sign.id).toBe(expected)
         }
       )
 
@@ -184,9 +189,9 @@ describe('zodiac', () => {
           date: new Date('1990-03-20T04:00:00Z')
         }).sun
 
-        expect(local.longitude()).toBe(instant.longitude())
-        expect(local.degree()).toBe(instant.degree())
-        expect(local.sign()).toEqual(instant.sign())
+        expect(local.longitude).toBe(instant.longitude)
+        expect(local.degree).toBe(instant.degree)
+        expect(local.sign).toEqual(instant.sign)
       })
 
       it('should use noon when there is no time', () => {
@@ -195,20 +200,18 @@ describe('zodiac', () => {
           timeZone: 'Europe/Madrid'
         }).sun
 
-        expect(sun.longitude()).toBe(
-          zodiac.at({ date: new Date('2024-03-20T11:00:00Z') }).sun.longitude()
+        expect(sun.longitude).toBe(
+          zodiac.at({ date: new Date('2024-03-20T11:00:00Z') }).sun.longitude
         )
       })
 
       it('should throw for an invalid date or time zone', () => {
-        const badDate = zodiac.at({ date: '2024-02-30', timeZone: 'UTC' }).sun
-        const badTimeZone = zodiac.at({
-          date: '2024-03-20',
-          timeZone: 'Mars/Olympus'
-        }).sun
-
-        expect(() => badDate.sign()).toThrow('Invalid date')
-        expect(() => badTimeZone.sign()).toThrow('Invalid time zone')
+        expect(() =>
+          zodiac.at({ date: '2024-02-30', timeZone: 'UTC' })
+        ).toThrow('Invalid date')
+        expect(() =>
+          zodiac.at({ date: '2024-03-20', timeZone: 'Mars/Olympus' })
+        ).toThrow('Invalid time zone')
       })
     })
   })

@@ -77,7 +77,7 @@ export interface Sign {
   /**
    * The range of the sign along the ecliptic, in degrees from 0° Aries.
    * A sign spans 30°, from `start` (included) to `end` (excluded). The Sun is in the sign
-   * while its longitude, as given by {@link zodiac | `zodiac.at().sun.longitude()`}, is in this range.
+   * while its longitude, as given by {@link zodiac | `zodiac.at().sun.longitude`}, is in this range.
    * Examples: `{ start: 0, end: 30 }` for Aries, `{ start: 30, end: 60 }` for Taurus.
    */
   longitude: { readonly start: number; readonly end: number }
@@ -247,6 +247,26 @@ export interface Dignities {
    * Examples: "libra" for the Sun, "cancer" for Mars, `null` for Uranus.
    */
   fall: SignId | null
+}
+
+/**
+ * Where a body is along the ecliptic.
+ */
+export interface ZodiacPosition {
+  /**
+   * The ecliptic longitude, in degrees from 0 (start of Aries) to 360.
+   */
+  longitude: number
+
+  /**
+   * The degree within the sign, from 0 to 30.
+   */
+  degree: number
+
+  /**
+   * The sign the body is in.
+   */
+  sign: Sign
 }
 
 export interface Aspect {

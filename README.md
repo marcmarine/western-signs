@@ -78,7 +78,7 @@ To show them, translate them with [`i18n.label()`](#translations). The returned 
 
 `rulers` holds the modern ruler and the traditional one, from before the discovery of the outer planets; they differ only for Scorpio, Aquarius and Pisces.
 
-`longitude` is the range of the sign along the ecliptic, in degrees from 0° Aries, the start included and the end excluded. The Sun is in Taurus while [`sun.longitude()`](#sun-sign-by-date) is between 30 and 60.
+`longitude` is the range of the sign along the ecliptic, in degrees from 0° Aries, the start included and the end excluded. The Sun is in Taurus while [`sun.longitude`](#sun-sign-by-date) is between 30 and 60.
 
 #### Sun sign by date
 
@@ -90,13 +90,13 @@ const { sun } = zodiac.at({
   timeZone: 'Europe/Madrid',
 })
 
-sun.sign()
+sun.sign
 // Output: { id: 'taurus', ... }
 
-sun.longitude()
+sun.longitude
 // Output: 45.48... (degrees along the ecliptic, from 0° Aries)
 
-sun.degree()
+sun.degree
 // Output: 15.48... (degrees within the sign)
 ```
 
@@ -105,7 +105,7 @@ The date is written as `YYYY-MM-DD`, optionally followed by a time, `THH:mm` or 
 You can also pass a `Date` if you already have the exact instant:
 
 ```js
-zodiac.at({ date: new Date('2024-05-05T12:00:00Z') }).sun.sign()
+zodiac.at({ date: new Date('2024-05-05T12:00:00Z') }).sun.sign
 ```
 
 Keep in mind that `new Date(2024, 4, 5)` is midnight in the time zone of the machine running the code, not of the place you mean.
@@ -138,7 +138,7 @@ i18n.label(zodiac.signs.get(SIGNS.TAURUS), 'es')
 // Output: { id: 'taurus', name: 'Tauro', element: 'Tierra', rulers: { modern: 'Venus', ... }, ... }
 
 i18n.label(
-  zodiac.at({ date: '2024-05-05', timeZone: 'Europe/Madrid' }).sun.sign(),
+  zodiac.at({ date: '2024-05-05', timeZone: 'Europe/Madrid' }).sun.sign,
   'es',
 ).name
 // Output: Tauro

@@ -13,7 +13,8 @@ import type {
   PlanetId,
   Rulers,
   Sign,
-  SignId
+  SignId,
+  ZodiacPosition
 } from './definitions'
 import { sunLongitude } from './sun'
 import { fromLocal } from './time'
@@ -36,6 +37,13 @@ function deepFreeze<T>(value: T): T {
 
 deepFreeze([signs, planets, houses, aspects])
 
+// The sign whose range along the ecliptic holds the given longitude
+function signAt(longitude: number): Sign {
+  return Object.values(signs).find(
+    sign => longitude >= sign.longitude.start && longitude < sign.longitude.end
+  ) as Sign
+}
+
 /**
  * Entry point grouping signs, planets, houses and aspects under a single API.
  *
@@ -55,7 +63,7 @@ deepFreeze([signs, planets, houses, aspects])
  * i18n.label(zodiac.signs.get('taurus'), 'es').name
  * // Output: 'Tauro'
  *
- * zodiac.at({ date: new Date(2024, 4, 5) }).sun.sign().id
+ * zodiac.at({ date: new Date(2024, 4, 5) }).sun.sign.id
  * // Output: 'taurus'
  */
 export const zodiac = {
@@ -153,52 +161,32 @@ export const zodiac = {
    * @param options - The moment to query.
    * @param options.date - A `Date`, or a local date as `YYYY-MM-DD` with an optional time, `THH:mm` or `THH:mm:ss`. Without a time, noon is used, which can give the wrong sign on the day the Sun changes sign.
    * @param options.timeZone - The IANA time zone of a local date, e.g. `'Europe/Madrid'`.
-   * @returns An object whose `sun` gives the Sun's position at that instant.
+   * @throws {Error} If the date or the time zone is invalid.
+   * @returns The position of the Sun at that instant, as a frozen object that can be serialized.
    *
    * @example
-   * zodiac.at({ date: '1990-03-20T05:00', timeZone: 'Europe/Madrid' }).sun.sign().id
+   * const { sun } = zodiac.at({ date: '1990-03-20T05:00', timeZone: 'Europe/Madrid' })
+   *
+   * sun.sign.id
    * // Output: 'pisces'
+   *
+   * sun.degree
+   * // Output: 29.28...
    */
-  at: (options: AtOptions) => {
-    const longitude = () =>
-      sunLongitude(
-        'timeZone' in options
-          ? fromLocal(options.date, options.timeZone)
-          : options.date
-      )
+  at: (options: AtOptions): { sun: ZodiacPosition } => {
+    const longitude = sunLongitude(
+      'timeZone' in options
+        ? fromLocal(options.date, options.timeZone)
+        : options.date
+    )
 
-    return {
-      sun: {
-        /**
-         * Get the sign the Sun is in at the given instant.
-         *
-         * @throws {Error} If the date or the time zone is invalid.
-         * @returns The sign.
-         */
-        sign: (): Sign => {
-          const degrees = longitude()
-
-          return Object.values(signs).find(
-            ({ longitude }) =>
-              degrees >= longitude.start && degrees < longitude.end
-          ) as Sign
-        },
-        /**
-         * Get the Sun's ecliptic longitude at the given instant.
-         *
-         * @throws {Error} If the date or the time zone is invalid.
-         * @returns The longitude in degrees, from 0 (start of Aries) to 360.
-         */
+    return Object.freeze({
+      sun: Object.freeze({
         longitude,
-        /**
-         * Get the Sun's degree within its sign at the given instant.
-         *
-         * @throws {Error} If the date or the time zone is invalid.
-         * @returns The degree, from 0 to 30.
-         */
-        degree: () => longitude() % 30
-      }
-    }
+        degree: longitude % 30,
+        sign: signAt(longitude)
+      })
+    })
   }
 }
 
