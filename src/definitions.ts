@@ -83,10 +83,10 @@ export interface Sign {
   modality: string
 
   /**
-   * The name of the zodiac sign.
-   * Examples: "Aries", "Taurus".
+   * The identifier of the zodiac sign. It is never translated.
+   * Examples: "aries", "taurus". See the `SIGNS` constant.
    */
-  name: Signs
+  id: Signs
 
   /**
    * The number associated with the zodiac sign.
@@ -100,21 +100,13 @@ export interface Sign {
    * Indicates its active (Positive) or passive (Negative) nature.
    * Examples: "Positive" for Aries, "Negative" for Taurus.
    */
-  pole: string
+  polarity: string
 
   /**
-   * The ruling planet of the zodiac sign.
-   * Represents the guiding celestial body influencing the sign.
-   * Examples: "Mars" for Aries, "Venus" for Taurus.
+   * The planets that rule the zodiac sign.
+   * Examples: `{ modern: 'Mars', traditional: 'Mars' }` for Aries, `{ modern: 'Pluto', traditional: 'Mars' }` for Scorpio.
    */
-  rulingPlanet: string
-
-  /**
-   * The traditional ruling planet of the zodiac sign, from before the discovery of the outer planets.
-   * Same as `rulingPlanet` except for Scorpio, Aquarius and Pisces.
-   * Examples: "Mars" for Scorpio (modern ruler: Pluto), "Saturn" for Aquarius (modern ruler: Uranus).
-   */
-  traditionalRuler: string
+  rulers: Rulers
 
   /**
    * The season in which the Sun is in the sign, in the Northern Hemisphere.
@@ -152,17 +144,10 @@ export interface House {
   quadrant: 1 | 2 | 3 | 4
 
   /**
-   * The ruling planet of the house's natural sign.
-   * Example: "Mars" for House 1, "Venus" for House 2.
+   * The planets that rule the house's natural sign.
+   * Example: `{ modern: 'Mars', traditional: 'Mars' }` for House 1, `{ modern: 'Pluto', traditional: 'Mars' }` for House 8.
    */
-  rulingPlanet: string
-
-  /**
-   * The traditional ruling planet of the house's natural sign, from before the discovery of the outer planets.
-   * Same as `rulingPlanet` except for Houses 8, 11 and 12.
-   * Example: "Mars" for House 8 (modern ruler: Pluto), "Jupiter" for House 12 (modern ruler: Neptune).
-   */
-  traditionalRuler: string
+  rulers: Rulers
 
   /**
    * The natural sign of the house: the sign with the same number.
@@ -180,18 +165,36 @@ export interface House {
   modality: HouseModalities
 
   /**
-   * The name of the house.
-   * Examples: "First House", "Second House", ... "Twelfth House".
+   * The identifier of the house. It is never translated.
+   * Examples: "house-1", "house-2", ... "house-12".
    */
-  name: Houses
+  id: Houses
+}
+
+/**
+ * The planets that rule a sign, or a house through its natural sign.
+ */
+export interface Rulers {
+  /**
+   * The ruler in modern astrology, which gives the outer planets to Scorpio, Aquarius and Pisces.
+   * Examples: "Mars" for Aries, "Pluto" for Scorpio.
+   */
+  modern: string
+
+  /**
+   * The ruler from before the discovery of the outer planets.
+   * Same as `modern` except for Scorpio, Aquarius and Pisces.
+   * Examples: "Mars" for Scorpio, "Saturn" for Aquarius, "Jupiter" for Pisces.
+   */
+  traditional: string
 }
 
 export interface Planet {
   /**
-   * The name of the celestial body.
-   * Examples: "Sun", "Moon".
+   * The identifier of the celestial body. It is never translated.
+   * Examples: "sun", "moon". See the `PLANETS` constant.
    */
-  name: string
+  id: Planets
 
   /**
    * The glyph or symbol associated with the celestial body.
@@ -240,10 +243,10 @@ export type SymbolOptions = {
 
 export interface Aspect {
   /**
-   * The name of the aspect.
-   * Examples: "Conjunction", "Opposition", "Square", "Trine", "Sextile".
+   * The identifier of the aspect. It is never translated.
+   * Examples: "conjunction", "trine", "semi-square". See the `ASPECTS` constant.
    */
-  name: string
+  id: Aspects
 
   /**
    * The type of the aspect.

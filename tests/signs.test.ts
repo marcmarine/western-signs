@@ -36,6 +36,15 @@ describe('zodiac.signs', () => {
     expect(zodiac.locale(lang).signs.get(SIGNS.TAURUS)?.name).toBe(expectedName)
   })
 
+  it('should keep the id and add the translated name', () => {
+    expect(zodiac.locale('es').signs.get(SIGNS.TAURUS)).toMatchObject({
+      id: 'taurus',
+      name: 'Tauro',
+      polarity: 'Negativo',
+      rulers: { modern: 'Venus', traditional: 'Venus' }
+    })
+  })
+
   it.each(languages)(
     'should translate every property of every sign in "%s"',
     lang => {
@@ -43,9 +52,15 @@ describe('zodiac.signs', () => {
         const result = zodiac.locale(lang).signs.get(id as Signs)
 
         expect(result).toMatchObject({
-          name: i18n.t(sign.name, lang),
+          name: i18n.t(sign.id, lang),
           element: i18n.t(sign.element, lang),
-          rulingPlanet: i18n.t(sign.rulingPlanet as keyof Dictionary, lang),
+          rulers: {
+            modern: i18n.t(sign.rulers.modern as keyof Dictionary, lang),
+            traditional: i18n.t(
+              sign.rulers.traditional as keyof Dictionary,
+              lang
+            )
+          },
           glyph: sign.glyph,
           longitude: sign.longitude
         })
@@ -59,27 +74,27 @@ describe('zodiac.signs', () => {
     [SIGNS.PISCES, 'Neptune', 'Jupiter']
   ] as const)(
     '%s should be ruled by %s, traditionally by %s',
-    (sign, rulingPlanet, traditionalRuler) => {
+    (sign, modern, traditional) => {
       const result = zodiac.signs.get(sign)
 
-      expect(result?.rulingPlanet).toBe(rulingPlanet)
-      expect(result?.traditionalRuler).toBe(traditionalRuler)
+      expect(result?.rulers.modern).toBe(modern)
+      expect(result?.rulers.traditional).toBe(traditional)
     }
   )
 
-  it('should have traditionalRuler match rulingPlanet in every other sign', () => {
+  it('should have the same modern and traditional ruler in every other sign', () => {
     const differing: Signs[] = [SIGNS.SCORPIO, SIGNS.AQUARIUS, SIGNS.PISCES]
 
     for (const sign of zodiac.signs.all()) {
-      if (differing.includes(sign.name.toLowerCase() as Signs)) continue
+      if (differing.includes(sign.id)) continue
 
-      expect(sign.traditionalRuler).toBe(sign.rulingPlanet)
+      expect(sign.rulers.traditional).toBe(sign.rulers.modern)
     }
   })
 
-  it('should translate traditionalRuler', () => {
-    expect(zodiac.locale('es').signs.get(SIGNS.SCORPIO)?.traditionalRuler).toBe(
-      'Marte'
-    )
+  it('should translate the rulers', () => {
+    expect(
+      zodiac.locale('es').signs.get(SIGNS.SCORPIO)?.rulers.traditional
+    ).toBe('Marte')
   })
 })

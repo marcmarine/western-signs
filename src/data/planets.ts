@@ -3,52 +3,52 @@ import { PLANET_TYPE, PLANETS } from './constants'
 
 const planets: Record<Planets, Planet> = {
   sun: {
-    name: PLANETS.SUN,
+    id: PLANETS.SUN,
     glyph: '☉',
     type: PLANET_TYPE.LUMINARY
   },
   moon: {
-    name: PLANETS.MOON,
+    id: PLANETS.MOON,
     glyph: '☽',
     type: PLANET_TYPE.LUMINARY
   },
   mercury: {
-    name: PLANETS.MERCURY,
+    id: PLANETS.MERCURY,
     glyph: '☿',
     type: PLANET_TYPE.PERSONAL
   },
   venus: {
-    name: PLANETS.VENUS,
+    id: PLANETS.VENUS,
     glyph: '♀',
     type: PLANET_TYPE.PERSONAL
   },
   mars: {
-    name: PLANETS.MARS,
+    id: PLANETS.MARS,
     glyph: '♂',
     type: PLANET_TYPE.PERSONAL
   },
   jupiter: {
-    name: PLANETS.JUPITER,
+    id: PLANETS.JUPITER,
     glyph: '♃',
     type: PLANET_TYPE.SOCIAL
   },
   saturn: {
-    name: PLANETS.SATURN,
+    id: PLANETS.SATURN,
     glyph: '♄',
     type: PLANET_TYPE.SOCIAL
   },
   uranus: {
-    name: PLANETS.URANUS,
+    id: PLANETS.URANUS,
     glyph: '♅',
     type: PLANET_TYPE.TRANSPERSONAL
   },
   neptune: {
-    name: PLANETS.NEPTUNE,
+    id: PLANETS.NEPTUNE,
     glyph: '♆',
     type: PLANET_TYPE.TRANSPERSONAL
   },
   pluto: {
-    name: PLANETS.PLUTO,
+    id: PLANETS.PLUTO,
     glyph: '♇',
     type: PLANET_TYPE.TRANSPERSONAL
   }

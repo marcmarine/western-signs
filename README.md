@@ -8,7 +8,7 @@ Simple interface for [western astrological](https://en.wikipedia.org/wiki/Wester
 [![TypeDoc](https://img.shields.io/badge/view-docs-yellow.svg)](https://marcmarine.github.io/western-signs)
 ![NPM Unpacked Size](https://img.shields.io/npm/unpacked-size/western-signs)
 
-The **Western Signs** library provides detailed information about each astrological sign, including its `name`, `element`, `modality`, `rulingPlanet` and `glyph`, among other things. Additionally, you can specify the language for translations.
+The **Western Signs** library provides detailed information about each astrological sign, including its `name`, `element`, `modality`, `rulers` and `glyph`, among other things. Additionally, you can specify the language for translations.
 
 <details close>
 <summary>WordArt</summary>
@@ -29,7 +29,7 @@ npm install western-signs
 
 ### Zodiac
 
-The `zodiac` object groups signs, planets, houses and aspects under a single API. Every group uses the same methods: `get` returns one item by name, or by number for houses, and `all` returns the full list.
+The `zodiac` object groups signs, planets, houses and aspects under a single API. Every group uses the same methods: `get` returns one item by its identifier, or by number for houses, and `all` returns the full list.
 
 ```js
 import { zodiac, ASPECTS, SIGNS, PLANETS } from 'western-signs'
@@ -51,20 +51,22 @@ zodiac.aspects.all()
 
 ```js
 {
+  id: 'taurus',
+  name: 'Taurus',
   bodyPart: 'Throat',
   character: 'Bull',
   element: 'Earth',
   glyph: '♉',
   longitude: { start: 30, end: 60 },
   modality: 'Fixed',
-  name: 'Taurus',
   number: 2,
-  pole: 'Negative',
-  rulingPlanet: 'Venus',
-  traditionalRuler: 'Venus',
+  polarity: 'Negative',
+  rulers: { modern: 'Venus', traditional: 'Venus' },
   season: 'Spring'
 }
 ```
+
+`id` is the identifier of the sign, the same in every language, and `name` is its translation. `rulers` holds the modern ruler and the traditional one, from before the discovery of the outer planets; they differ only for Scorpio, Aquarius and Pisces.
 
 `longitude` is the range of the sign along the ecliptic, in degrees from 0° Aries, the start included and the end excluded. The Sun is in Taurus while [`sun.longitude()`](#sun-sign-by-date) is between 30 and 60.
 
@@ -227,7 +229,7 @@ import data from 'western-signs/data.json' with { type: 'json' }
 import es from 'western-signs/locale/es.json' with { type: 'json' }
 
 const taurus = data.signs[1]
-// { name: 'taurus', element: 'earth', modality: 'fixed', longitude: { start: 30, end: 60 }, ... }
+// { id: 'taurus', element: 'earth', modality: 'fixed', longitude: { start: 30, end: 60 }, ... }
 
 es[taurus.element]
 // Output: Tierra

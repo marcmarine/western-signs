@@ -25,31 +25,33 @@ describe('zodiac.houses', () => {
     }
   )
 
-  describe('traditionalRuler', () => {
+  describe('rulers', () => {
     it.each([
       [8, 'Pluto', 'Mars'],
       [11, 'Uranus', 'Saturn'],
       [12, 'Neptune', 'Jupiter']
     ])(
       'house %i should be ruled by %s, traditionally by %s',
-      (number, rulingPlanet, traditionalRuler) => {
+      (number, modern, traditional) => {
         const house = zodiac.houses.all()[number - 1]
 
-        expect(house.rulingPlanet).toBe(rulingPlanet)
-        expect(house.traditionalRuler).toBe(traditionalRuler)
+        expect(house.rulers.modern).toBe(modern)
+        expect(house.rulers.traditional).toBe(traditional)
       }
     )
 
-    it('should match rulingPlanet in every other house', () => {
+    it('should have the same modern and traditional ruler in every other house', () => {
       for (const house of zodiac.houses.all()) {
         if ([8, 11, 12].includes(house.number)) continue
 
-        expect(house.traditionalRuler).toBe(house.rulingPlanet)
+        expect(house.rulers.traditional).toBe(house.rulers.modern)
       }
     })
 
     it('should be translated', () => {
-      expect(zodiac.locale('es').houses.all()[7].traditionalRuler).toBe('Marte')
+      expect(zodiac.locale('es').houses.all()[7].rulers.traditional).toBe(
+        'Marte'
+      )
     })
   })
 

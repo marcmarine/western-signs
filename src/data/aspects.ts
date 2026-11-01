@@ -3,7 +3,7 @@ import { ASPECT_QUALITY, ASPECT_TYPE, ASPECTS } from './constants'
 
 export const aspects: Aspect[] = [
   {
-    name: ASPECTS.CONJUNCTION,
+    id: ASPECTS.CONJUNCTION,
     angle: 0,
     glyph: '☌',
     harmonic: 1,
@@ -11,7 +11,7 @@ export const aspects: Aspect[] = [
     quality: ASPECT_QUALITY.NEUTRAL
   },
   {
-    name: ASPECTS.SEMISEXTILE,
+    id: ASPECTS.SEMISEXTILE,
     angle: 30,
     glyph: '⚺',
     harmonic: 12,
@@ -19,7 +19,7 @@ export const aspects: Aspect[] = [
     quality: ASPECT_QUALITY.HARMONIOUS
   },
   {
-    name: ASPECTS.SEMISQUARE,
+    id: ASPECTS.SEMISQUARE,
     angle: 45,
     glyph: '∠',
     harmonic: 8,
@@ -27,7 +27,7 @@ export const aspects: Aspect[] = [
     quality: ASPECT_QUALITY.DISHARMONIOUS
   },
   {
-    name: ASPECTS.SEXTILE,
+    id: ASPECTS.SEXTILE,
     angle: 60,
     glyph: '⚹',
     harmonic: 6,
@@ -35,7 +35,7 @@ export const aspects: Aspect[] = [
     quality: ASPECT_QUALITY.HARMONIOUS
   },
   {
-    name: ASPECTS.QUINTILE,
+    id: ASPECTS.QUINTILE,
     angle: 72,
     glyph: 'Q',
     harmonic: 5,
@@ -43,7 +43,7 @@ export const aspects: Aspect[] = [
     quality: ASPECT_QUALITY.HARMONIOUS
   },
   {
-    name: ASPECTS.SQUARE,
+    id: ASPECTS.SQUARE,
     angle: 90,
     glyph: '□',
     harmonic: 4,
@@ -51,7 +51,7 @@ export const aspects: Aspect[] = [
     quality: ASPECT_QUALITY.DISHARMONIOUS
   },
   {
-    name: ASPECTS.TRINE,
+    id: ASPECTS.TRINE,
     angle: 120,
     glyph: '△',
     harmonic: 3,
@@ -59,7 +59,7 @@ export const aspects: Aspect[] = [
     quality: ASPECT_QUALITY.HARMONIOUS
   },
   {
-    name: ASPECTS.SESQUISQUARE,
+    id: ASPECTS.SESQUISQUARE,
     angle: 135,
     glyph: '⚼',
     harmonic: 8,
@@ -67,7 +67,7 @@ export const aspects: Aspect[] = [
     quality: ASPECT_QUALITY.DISHARMONIOUS
   },
   {
-    name: ASPECTS.BIQUINTILE,
+    id: ASPECTS.BIQUINTILE,
     angle: 144,
     glyph: 'bQ',
     harmonic: 5,
@@ -75,7 +75,7 @@ export const aspects: Aspect[] = [
     quality: ASPECT_QUALITY.HARMONIOUS
   },
   {
-    name: ASPECTS.QUINCUNX,
+    id: ASPECTS.QUINCUNX,
     angle: 150,
     glyph: '⚻',
     harmonic: 12,
@@ -83,7 +83,7 @@ export const aspects: Aspect[] = [
     quality: ASPECT_QUALITY.DISHARMONIOUS
   },
   {
-    name: ASPECTS.OPPOSITION,
+    id: ASPECTS.OPPOSITION,
     angle: 180,
     glyph: '☍',
     harmonic: 2,

@@ -27,6 +27,7 @@ describe('zodiac.planets', () => {
 
   it('should translate a planet', () => {
     expect(zodiac.locale('es').planets.get(PLANETS.SATURN)).toEqual({
+      id: 'saturn',
       name: 'Saturno',
       glyph: '♄',
       type: 'Social'

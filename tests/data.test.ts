@@ -32,7 +32,7 @@ describe('Data', () => {
     )
   })
 
-  it.each(aspects.map(aspect => [aspect.name, aspect] as const))(
+  it.each(aspects.map(aspect => [aspect.id, aspect] as const))(
     'should give %s the smallest harmonic that holds its angle',
     (_, { angle, harmonic }) => {
       const holds = (n: number) => (angle * n) % 360 === 0
@@ -56,10 +56,10 @@ describe('data.json', () => {
 
   it('should hold ids instead of translated values', () => {
     expect(data.signs[1]).toMatchObject({
-      name: 'taurus',
+      id: 'taurus',
       element: 'earth',
       modality: 'fixed',
-      rulingPlanet: 'venus'
+      rulers: { modern: 'venus', traditional: 'venus' }
     })
   })
 

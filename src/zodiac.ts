@@ -23,6 +23,9 @@ type AtOptions =
   /** A local date and time in the given time zone. */
   | { date: string; timeZone: string }
 
+// Items come translated, with their translated `id` as `name`
+type Named<T> = T & { name: string }
+
 function createZodiac(resolveLanguage: () => Language) {
   return {
     /**
@@ -34,35 +37,35 @@ function createZodiac(resolveLanguage: () => Language) {
     /** Zodiac signs with their translated properties. */
     signs: {
       /**
-       * Get a single sign by name.
+       * Get a single sign by identifier.
        *
-       * @param name - The name of the sign, e.g. `'taurus'`.
+       * @param id - The identifier of the sign, e.g. `'taurus'`.
        * @returns The sign, or `null` if not found.
        */
-      get: (name: Signs): Sign | null => {
-        const sign = signs[name]
+      get: (id: Signs): Named<Sign> | null => {
+        const sign = signs[id]
 
         return sign ? translate(sign, resolveLanguage()) : null
       },
       /** Get all twelve signs. */
-      all: (): Sign[] =>
+      all: (): Named<Sign>[] =>
         Object.values(signs).map(sign => translate(sign, resolveLanguage()))
     },
     /** Planets with their translated properties. */
     planets: {
       /**
-       * Get a single planet by name.
+       * Get a single planet by identifier.
        *
-       * @param name - The name of the planet, e.g. `'venus'`.
+       * @param id - The identifier of the planet, e.g. `'venus'`.
        * @returns The planet, or `null` if not found.
        */
-      get: (name: Planets): Planet | null => {
-        const planet = planets[name]
+      get: (id: Planets): Named<Planet> | null => {
+        const planet = planets[id]
 
         return planet ? translate(planet, resolveLanguage()) : null
       },
       /** Get all planets. */
-      all: (): Planet[] =>
+      all: (): Named<Planet>[] =>
         Object.values(planets).map(planet =>
           translate(planet, resolveLanguage())
         )
@@ -75,30 +78,30 @@ function createZodiac(resolveLanguage: () => Language) {
        * @param number - The number of the house, from 1 to 12.
        * @returns The house, or `null` if not found.
        */
-      get: (number: number): House | null => {
+      get: (number: number): Named<House> | null => {
         const house = houses.find(house => house.number === number)
 
         return house ? translate(house, resolveLanguage()) : null
       },
       /** Get all twelve houses. */
-      all: (): House[] =>
+      all: (): Named<House>[] =>
         houses.map(house => translate(house, resolveLanguage()))
     },
     /** Aspects with their translated properties. */
     aspects: {
       /**
-       * Get a single aspect by name.
+       * Get a single aspect by identifier.
        *
-       * @param name - The name of the aspect, e.g. `'trine'`.
+       * @param id - The identifier of the aspect, e.g. `'trine'`.
        * @returns The aspect, or `null` if not found.
        */
-      get: (name: Aspects): Aspect | null => {
-        const aspect = aspects.find(aspect => aspect.name === name)
+      get: (id: Aspects): Named<Aspect> | null => {
+        const aspect = aspects.find(aspect => aspect.id === id)
 
         return aspect ? translate(aspect, resolveLanguage()) : null
       },
       /** Get all aspects, ordered by angle. */
-      all: (): Aspect[] =>
+      all: (): Named<Aspect>[] =>
         aspects.map(aspect => translate(aspect, resolveLanguage()))
     },
     /**
@@ -134,7 +137,7 @@ function createZodiac(resolveLanguage: () => Language) {
            * @throws {Error} If the date or the time zone is invalid.
            * @returns The sign.
            */
-          sign: (): Sign => {
+          sign: (): Named<Sign> => {
             const degrees = longitude()
             const sign = Object.values(signs).find(
               ({ longitude }) =>
