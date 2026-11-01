@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'bun:test'
 import type { Dictionary } from '@/definitions'
-import { ASPECTS, i18n, SIGNS, zodiac } from '@/index'
+import { ASPECTS, ELEMENTS, i18n, SIGNS, zodiac } from '@/index'
 import '@/locale/es'
 import '@/locale/ca'
 
@@ -30,24 +30,30 @@ describe('t', () => {
 describe('label', () => {
   const taurus = zodiac.signs.get(SIGNS.TAURUS)
 
-  it('should keep the id and add the translated name', () => {
-    expect(i18n.label(taurus, 'es')).toMatchObject({
-      id: 'taurus',
-      name: 'Tauro',
-      element: 'Tierra'
-    })
+  it('should keep every field and add the translations as labels', () => {
+    const result = i18n.label(taurus, 'es')
+
+    expect(result).toMatchObject(taurus)
+    expect(result.element).toBe(ELEMENTS.EARTH)
+    expect(result.labels).toMatchObject({ name: 'Tauro', element: 'Tierra' })
   })
 
   it('should translate into English by default', () => {
-    expect(i18n.label(taurus).name).toBe('Taurus')
+    expect(i18n.label(taurus).labels.name).toBe('Taurus')
   })
 
-  it('should leave numbers and glyphs as they are', () => {
-    expect(i18n.label(taurus, 'es')).toMatchObject({
-      glyph: '♉',
-      number: 2,
-      longitude: { start: 30, end: 60 }
-    })
+  it('should leave numbers and glyphs out of the labels', () => {
+    const { labels } = i18n.label(taurus, 'es')
+
+    expect(labels).not.toHaveProperty('glyph')
+    expect(labels).not.toHaveProperty('number')
+    expect(labels).not.toHaveProperty('longitude')
+  })
+
+  it('should leave out of the labels a string that is not an identifier', () => {
+    const item = { id: SIGNS.TAURUS, note: 'constructor' }
+
+    expect(i18n.label(item, 'es').labels).toEqual({ name: 'Tauro' })
   })
 
   it('should not change the item', () => {
@@ -62,7 +68,7 @@ describe('locale', () => {
     const es = i18n.locale('es')
 
     expect(es.t(SIGNS.TAURUS)).toBe('Tauro')
-    expect(es.label(zodiac.signs.get(SIGNS.TAURUS)).name).toBe('Tauro')
+    expect(es.label(zodiac.signs.get(SIGNS.TAURUS)).labels.name).toBe('Tauro')
   })
 
   it('should keep each locale to its own language', () => {
@@ -76,7 +82,7 @@ describe('locale', () => {
 
 describe('label with lists', () => {
   it('should translate each value of a list and keep it a list', () => {
-    const { dignities } = i18n.label(zodiac.planets.get('mars'), 'es')
+    const { dignities } = i18n.label(zodiac.planets.get('mars'), 'es').labels
 
     expect(dignities.domicile.traditional).toEqual(['Aries', 'Escorpio'])
   })

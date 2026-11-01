@@ -68,13 +68,13 @@ describe('zodiac.houses', () => {
     ] as const)('should translate the name in "%s"', (language, expected) => {
       const house = zodiac.houses.get(1)
 
-      expect(i18n.label(house, language).name).toBe(expected)
+      expect(i18n.label(house, language).labels.name).toBe(expected)
     })
 
     it('should translate the rulers', () => {
       const house = zodiac.houses.get(8)
 
-      expect(i18n.label(house, 'es').rulers).toEqual({
+      expect(i18n.label(house, 'es').labels.rulers).toEqual({
         modern: 'Plutón',
         traditional: 'Marte'
       })

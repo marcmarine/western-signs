@@ -157,7 +157,7 @@ describe('zodiac', () => {
     it('should translate the sun sign with i18n.label()', () => {
       const sign = zodiac.at({ date: new Date(2024, 4, 5) }).sun.sign
 
-      expect(i18n.label(sign, 'es').name).toBe('Tauro')
+      expect(i18n.label(sign, 'es').labels.name).toBe('Tauro')
     })
 
     it('should throw for a local date without a time zone', () => {

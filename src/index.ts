@@ -34,6 +34,7 @@ export type {
   HouseModalityId,
   HouseNumber,
   Labeled,
+  Labels,
   Language,
   MeridianId,
   ModalityId,

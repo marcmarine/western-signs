@@ -311,28 +311,43 @@ export interface Aspect {
   type: AspectTypeId
 }
 
-type LabeledValues<T> = {
-  [K in keyof T]: K extends 'id'
-    ? T[K]
-    : T[K] extends string
-      ? string
-      : T[K] extends string | null
-        ? string | null
-        : T[K] extends readonly string[]
-          ? string[]
-          : T[K] extends object
-            ? LabeledValues<T[K]>
-            : T[K]
+// The translation of a value made of identifiers, or `never` for one that holds none, e.g. a number
+type LabelOf<V> = V extends string
+  ? string
+  : V extends null
+    ? null
+    : V extends readonly string[]
+      ? string[]
+      : V extends object
+        ? keyof LabelFields<V> extends never
+          ? never
+          : LabelFields<V>
+        : never
+
+// The fields of an item that hold identifiers, translated. `glyph` is a string but not an identifier
+type LabelFields<T> = {
+  [K in keyof T as K extends 'id' | 'glyph'
+    ? never
+    : [LabelOf<T[K]>] extends [never]
+      ? never
+      : K]: LabelOf<T[K]>
 }
 
 /**
- * An item with every identifier translated, as returned by {@link i18n.label | `i18n.label()`}.
- * The `id` is kept, and `name` holds its translation.
+ * The translations of an item, as found in `labels` on what {@link i18n.label | `i18n.label()`} returns.
+ * It holds the translation of the `id` as `name`, and of every field made of identifiers, such as
+ * `element` or `rulers`. Numbers and glyphs are left out, as they are not translated.
  */
-export type Labeled<T extends { id: string }> = LabeledValues<T> & {
+export type Labels<T> = LabelFields<T> & {
   /** The translation of the item's `id`. */
   name: string
 }
+
+/**
+ * An item with its translations added as `labels`, as returned by {@link i18n.label | `i18n.label()`}.
+ * Every other field is kept as it is, so it can still be compared with the exported constants.
+ */
+export type Labeled<T extends { id: string }> = T & { labels: Labels<T> }
 
 export type Dictionary = {
   [key in

@@ -25,13 +25,17 @@ describe('zodiac.planets', () => {
   it('should translate a planet with i18n.label()', () => {
     const planet = zodiac.planets.get(PLANETS.SATURN)
 
-    expect(i18n.label(planet, 'es')).toMatchObject({
-      id: 'saturn',
+    expect(i18n.label(planet, 'es').labels).toEqual({
       name: 'Saturno',
-      glyph: '♄',
       type: 'Social',
       dignities: {
-        domicile: { modern: ['Capricornio'] }
+        domicile: {
+          modern: ['Capricornio'],
+          traditional: ['Capricornio', 'Acuario']
+        },
+        detriment: { modern: ['Cáncer'], traditional: ['Cáncer', 'Leo'] },
+        exaltation: 'Libra',
+        fall: 'Aries'
       }
     })
   })
@@ -73,10 +77,10 @@ describe('zodiac.planets', () => {
 
     it('should translate the exaltation and leave a missing one as null', () => {
       expect(
-        i18n.label(zodiac.planets.get(PLANETS.MARS), 'es').dignities
+        i18n.label(zodiac.planets.get(PLANETS.MARS), 'es').labels.dignities
       ).toMatchObject({ exaltation: 'Capricornio', fall: 'Cáncer' })
       expect(
-        i18n.label(zodiac.planets.get(PLANETS.PLUTO), 'es').dignities
+        i18n.label(zodiac.planets.get(PLANETS.PLUTO), 'es').labels.dignities
       ).toMatchObject({ exaltation: null, fall: null })
     })
 

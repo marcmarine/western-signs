@@ -22,40 +22,61 @@ export function t(key: keyof Dictionary, language: Language = 'en'): string {
 }
 
 /**
- * Translates every identifier of an item into the given language, or into English,
- * also inside nested objects such as `rulers`. The `id` is kept, and its translation is added as `name`.
+ * Adds the translations of an item into the given language, or into English, as `labels`.
+ * The item's fields are kept as they are, so they can still be compared with the exported constants.
+ * `labels` holds the translation of the `id` as `name`, and of every field made of identifiers,
+ * also inside nested objects such as `rulers`. Numbers and glyphs are left out.
  * @param item - A sign, planet, house or aspect, e.g. from `zodiac.signs.get()`.
  * @param {Language} [language] - The language to translate into. Defaults to English.
- * @returns A copy of the item with its values translated.
+ * @returns A copy of the item with its translations as `labels`.
  *
  * @example
- * import { SIGNS, i18n, zodiac } from 'western-signs'
+ * import { ELEMENTS, SIGNS, i18n, zodiac } from 'western-signs'
  * import 'western-signs/locale/es'
  *
- * i18n.label(zodiac.signs.get(SIGNS.TAURUS), 'es')
- * // Output: { id: 'taurus', name: 'Tauro', element: 'Tierra', ... }
+ * const taurus = i18n.label(zodiac.signs.get(SIGNS.TAURUS), 'es')
+ *
+ * taurus.labels
+ * // Output: { name: 'Tauro', element: 'Tierra', rulers: { modern: 'Venus', ... }, ... }
+ *
+ * taurus.element === ELEMENTS.EARTH
+ * // Output: true
  */
 export function label<T extends { id: string }>(
   item: T,
   language: Language = 'en'
 ): Labeled<T> {
   const dictionary = dictionaries.get(language)
-  const translate = (value: unknown): unknown => {
-    if (Array.isArray(value)) return value.map(translate)
-    if (typeof value === 'object' && value !== null)
-      return Object.fromEntries(
-        Object.entries(value).map(([key, value]) => [key, translate(value)])
-      )
+  // English is always registered and has every identifier, so it tells them apart from glyphs
+  const isId = (value: unknown): value is keyof Dictionary =>
+    typeof value === 'string' &&
+    Object.hasOwn(dictionaries.get('en') ?? {}, value)
 
-    return dictionary?.[value as keyof Dictionary] ?? value
+  // The translation of a value, or `undefined` for one that holds no identifier
+  const translate = (value: unknown): unknown => {
+    if (value === null) return null
+    if (isId(value)) return dictionary?.[value] ?? value
+    if (Array.isArray(value))
+      return value.every(isId) ? value.map(translate) : undefined
+    if (typeof value === 'object') {
+      const entries = Object.entries(value)
+        .map(([key, value]) => [key, translate(value)])
+        .filter(([, value]) => value !== undefined)
+
+      return entries.length > 0 ? Object.fromEntries(entries) : undefined
+    }
+
+    return undefined
   }
 
   const { id, ...rest } = item
 
   return {
-    id,
-    name: dictionary?.[id as keyof Dictionary] ?? id,
-    ...(translate(rest) as object)
+    ...item,
+    labels: {
+      name: dictionary?.[id as keyof Dictionary] ?? id,
+      ...(translate(rest) as object)
+    }
   } as Labeled<T>
 }
 

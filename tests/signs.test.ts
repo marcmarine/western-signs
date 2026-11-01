@@ -60,25 +60,24 @@ describe('zodiac.signs', () => {
     ] as const)('should translate the name in "%s"', (lang, expectedName) => {
       const sign = zodiac.signs.get(SIGNS.TAURUS)
 
-      expect(i18n.label(sign, lang).name).toBe(expectedName)
+      expect(i18n.label(sign, lang).labels.name).toBe(expectedName)
     })
 
-    it('should translate every value, including the rulers', () => {
+    it('should keep the sign and add every translated value, including the rulers', () => {
       const sign = zodiac.signs.get(SIGNS.SCORPIO)
 
       expect(i18n.label(sign, 'es')).toEqual({
-        id: 'scorpio',
-        name: 'Escorpio',
-        bodyPart: 'Genitales',
-        character: 'Escorpión',
-        element: 'Agua',
-        glyph: '♏',
-        longitude: { start: 210, end: 240 },
-        modality: 'Fijo',
-        number: 8,
-        polarity: 'Negativo',
-        rulers: { modern: 'Plutón', traditional: 'Marte' },
-        season: 'Otoño'
+        ...sign,
+        labels: {
+          name: 'Escorpio',
+          bodyPart: 'Genitales',
+          character: 'Escorpión',
+          element: 'Agua',
+          modality: 'Fijo',
+          polarity: 'Negativo',
+          rulers: { modern: 'Plutón', traditional: 'Marte' },
+          season: 'Otoño'
+        }
       })
     })
   })
