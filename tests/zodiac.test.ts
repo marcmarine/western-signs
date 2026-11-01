@@ -76,7 +76,7 @@ describe('zodiac', () => {
     it('should return all aspects ordered by angle', () => {
       const angles = zodiac.aspects.all().map(aspect => aspect.angle)
 
-      expect(angles).toEqual([0, 30, 60, 90, 120, 150, 180])
+      expect(angles).toEqual([0, 30, 45, 60, 72, 90, 120, 135, 144, 150, 180])
     })
 
     it('should translate an aspect', () => {

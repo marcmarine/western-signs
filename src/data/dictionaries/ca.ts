@@ -122,9 +122,13 @@ const ca = {
 
   conjunction: 'Conjunció',
   'semi-sextile': 'Semi-sextil',
+  'semi-square': 'Semi-quadratura',
   sextile: 'Sextil',
+  quintile: 'Quintil',
   square: 'Quadratura',
   trine: 'Trigon',
+  'sesqui-square': 'Sesquiquadratura',
+  'bi-quintile': 'Biquintil',
   quincunx: 'Quincunci',
   opposition: 'Oposició',
 

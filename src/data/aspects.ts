@@ -5,42 +5,88 @@ export const aspects: Aspect[] = [
   {
     name: ASPECTS.CONJUNCTION,
     angle: 0,
+    glyph: '☌',
+    harmonic: 1,
     type: ASPECT_TYPE.MAJOR,
     quality: ASPECT_QUALITY.NEUTRAL
   },
   {
     name: ASPECTS.SEMISEXTILE,
     angle: 30,
+    glyph: '⚺',
+    harmonic: 12,
     type: ASPECT_TYPE.MINOR,
     quality: ASPECT_QUALITY.HARMONIOUS
   },
   {
+    name: ASPECTS.SEMISQUARE,
+    angle: 45,
+    glyph: '∠',
+    harmonic: 8,
+    type: ASPECT_TYPE.MINOR,
+    quality: ASPECT_QUALITY.DISHARMONIOUS
+  },
+  {
     name: ASPECTS.SEXTILE,
     angle: 60,
+    glyph: '⚹',
+    harmonic: 6,
     type: ASPECT_TYPE.MAJOR,
+    quality: ASPECT_QUALITY.HARMONIOUS
+  },
+  {
+    name: ASPECTS.QUINTILE,
+    angle: 72,
+    glyph: 'Q',
+    harmonic: 5,
+    type: ASPECT_TYPE.MINOR,
     quality: ASPECT_QUALITY.HARMONIOUS
   },
   {
     name: ASPECTS.SQUARE,
     angle: 90,
+    glyph: '□',
+    harmonic: 4,
     type: ASPECT_TYPE.MAJOR,
     quality: ASPECT_QUALITY.DISHARMONIOUS
   },
   {
     name: ASPECTS.TRINE,
     angle: 120,
+    glyph: '△',
+    harmonic: 3,
     type: ASPECT_TYPE.MAJOR,
+    quality: ASPECT_QUALITY.HARMONIOUS
+  },
+  {
+    name: ASPECTS.SESQUISQUARE,
+    angle: 135,
+    glyph: '⚼',
+    harmonic: 8,
+    type: ASPECT_TYPE.MINOR,
+    quality: ASPECT_QUALITY.DISHARMONIOUS
+  },
+  {
+    name: ASPECTS.BIQUINTILE,
+    angle: 144,
+    glyph: 'bQ',
+    harmonic: 5,
+    type: ASPECT_TYPE.MINOR,
     quality: ASPECT_QUALITY.HARMONIOUS
   },
   {
     name: ASPECTS.QUINCUNX,
     angle: 150,
+    glyph: '⚻',
+    harmonic: 12,
     type: ASPECT_TYPE.MINOR,
     quality: ASPECT_QUALITY.DISHARMONIOUS
   },
   {
     name: ASPECTS.OPPOSITION,
     angle: 180,
+    glyph: '☍',
+    harmonic: 2,
     type: ASPECT_TYPE.MAJOR,
     quality: ASPECT_QUALITY.DISHARMONIOUS
   }

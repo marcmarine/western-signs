@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'bun:test'
 
+import { aspects } from '@/data/aspects'
 import { SIGNS } from '@/data/constants'
 import signs from '@/data/signs'
 import type { Signs } from '@/definitions'
@@ -21,6 +22,25 @@ describe('Data', () => {
       expect(sign.number).toBe(index + 1)
     })
   })
+
+  it('should order aspects by angle, each with its own glyph', () => {
+    const angles = aspects.map(aspect => aspect.angle)
+
+    expect(angles).toEqual([...angles].sort((a, b) => a - b))
+    expect(new Set(aspects.map(aspect => aspect.glyph)).size).toBe(
+      aspects.length
+    )
+  })
+
+  it.each(aspects.map(aspect => [aspect.name, aspect] as const))(
+    'should give %s the smallest harmonic that holds its angle',
+    (_, { angle, harmonic }) => {
+      const holds = (n: number) => (angle * n) % 360 === 0
+
+      expect(holds(harmonic)).toBe(true)
+      for (let n = 1; n < harmonic; n++) expect(holds(n)).toBe(false)
+    }
+  )
 })
 
 describe('data.json', () => {

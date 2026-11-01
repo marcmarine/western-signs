@@ -148,9 +148,13 @@ export const PLANET_TYPE = {
 export const ASPECTS = {
   CONJUNCTION: 'conjunction',
   SEMISEXTILE: 'semi-sextile',
+  SEMISQUARE: 'semi-square',
   SEXTILE: 'sextile',
+  QUINTILE: 'quintile',
   SQUARE: 'square',
   TRINE: 'trine',
+  SESQUISQUARE: 'sesqui-square',
+  BIQUINTILE: 'bi-quintile',
   QUINCUNX: 'quincunx',
   OPPOSITION: 'opposition'
 } as const

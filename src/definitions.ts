@@ -338,4 +338,19 @@ export interface Aspect {
    * Examples: 0 for Conjunction, 180 for Opposition, 90 for Square, 120 for Trine, 60 for Sextile...
    */
   angle: number
+
+  /**
+   * The glyph representing the aspect.
+   * Quintiles have no Unicode character, so they use the letters common in astrology software.
+   * Examples: "☌" for Conjunction, "△" for Trine, "Q" for Quintile, "bQ" for Bi-quintile.
+   */
+  glyph: string
+
+  /**
+   * The harmonic the aspect belongs to: the circle divided by this number gives the
+   * smallest angle of its family, and the aspect's angle is a multiple of it.
+   * Examples: 4 for Square (360° / 4 = 90°), 8 for Semi-square and Sesqui-square (45° and 3 × 45°),
+   * 12 for Semi-sextile and Quincunx (30° and 5 × 30°).
+   */
+  harmonic: number
 }

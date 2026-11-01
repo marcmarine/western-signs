@@ -187,7 +187,7 @@ Three groups of exported constants. Use the identifier with getSymbol().
 | ------- | ---------------------------------------------------------------------------------------------------------------- |
 | PLANETS | `SUN` `MOON` `MERCURY` `VENUS` `MARS` `JUPITER` `SATURN` `URANUS` `NEPTUNE` `PLUTO`                              |
 | SIGNS   | `ARIES` `TAURUS` `GEMINI` `CANCER` `LEO` `VIRGO` `LIBRA` `SCORPIO` `SAGITTARIUS` `CAPRICORN` `AQUARIUS` `PISCES` |
-| ASPECTS | `CONJUNCTION` `SEXTILE` `SQUARE` `TRINE` `OPPOSITION`                                                            |
+| ASPECTS | `CONJUNCTION` `SEMISEXTILE` `SEMISQUARE` `SEXTILE` `QUINTILE` `SQUARE` `TRINE` `SESQUISQUARE` `BIQUINTILE` `QUINCUNX` `OPPOSITION` |
 | ANGLES  | `ASCENDANT`                                                                                                      |
 
 > [!TIP]

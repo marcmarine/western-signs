@@ -122,9 +122,13 @@ const en = {
 
   conjunction: 'Conjunction',
   'semi-sextile': 'Semi-sextile',
+  'semi-square': 'Semi-square',
   sextile: 'Sextile',
+  quintile: 'Quintile',
   square: 'Square',
   trine: 'Trine',
+  'sesqui-square': 'Sesquiquadrate',
+  'bi-quintile': 'Biquintile',
   quincunx: 'Quincunx',
   opposition: 'Opposition',
 
