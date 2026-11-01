@@ -131,22 +131,6 @@ es.signs.get(SIGNS.TAURUS).name
 // Output: Tauro
 ```
 
-#### Migrating from functions
-
-The following standalone functions are deprecated and will stop being exported in the next major version. Replace them with their `zodiac` equivalent:
-
-| deprecated                  | replacement                                   |
-| --------------------------- | --------------------------------------------- |
-| `getSign(name, lang)`       | `zodiac.locale(lang).signs.get(name)`         |
-| `getSignByName(name, lang)` | `zodiac.locale(lang).signs.get(name)`         |
-| `getSignByDate(date, lang)` | `zodiac.locale(lang).at({ date }).sun.sign()` |
-| `getSigns(lang)`            | `zodiac.locale(lang).signs.all()`             |
-| `getPlanet(name, lang)`     | `zodiac.locale(lang).planets.get(name)`       |
-| `getPlanets(lang)`          | `zodiac.locale(lang).planets.all()`           |
-| `getHouses(lang)`           | `zodiac.locale(lang).houses.all()`            |
-
-If you don't pass a language, drop `.locale(lang)`. `getSymbol` is not deprecated.
-
 ### Symbols
 
 The `getSymbol` function allows you to retrieve SVG representations of astrological symbols, with options to customize their appearance.
@@ -227,9 +211,6 @@ i18n.t(ASPECTS.CONJUNCTION, 'ca')
 // Output: Conjunció
 ```
 
-> [!NOTE]
-> The template literal form, ``i18n.t`${ASPECTS.CONJUNCTION}` ``, still works but is deprecated and will be removed in the next major version.
-
 #### Available languages
 
 Languages are opt-in and must be imported explicitly:
@@ -270,15 +251,6 @@ https://cdn.jsdelivr.net/npm/western-signs@1/dist/locale/es.json
 
 ### Functions
 
-> [!WARNING]
-> All functions except `getSymbol` are deprecated in favor of [`zodiac`](#zodiac).
-
-- [getHouses](https://marcmarine.github.io/western-signs/functions/getHouses)
-- [getPlanet](https://marcmarine.github.io/western-signs/functions/getPlanet)
-- [getPlanets](https://marcmarine.github.io/western-signs/functions/getPlanets)
-- [getSignByDate](https://marcmarine.github.io/western-signs/functions/getSignByDate)
-- [getSignByName](https://marcmarine.github.io/western-signs/functions/getSignByName)
-- [getSigns](https://marcmarine.github.io/western-signs/functions/getSigns)
 - [getSymbol](https://marcmarine.github.io/western-signs/functions/getSymbol)
 
 ### Interfaces

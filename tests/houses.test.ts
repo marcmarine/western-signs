@@ -2,29 +2,29 @@ import { describe, expect, it } from 'bun:test'
 import { dictionaries } from '@/data/dictionaries'
 import signs from '@/data/signs'
 import type { Dictionary, Language } from '@/definitions'
-import { getHouses } from '@/index'
+import { zodiac } from '@/index'
 import '@/locale/es'
 import '@/locale/ca'
 
-describe('getHouses', () => {
+describe('zodiac.houses', () => {
   it('should return an array of 12 houses', () => {
-    const result = getHouses()
+    const result = zodiac.houses.all()
     expect(result).toBeArrayOfSize(12)
   })
 
   const housesWithSign = Object.keys(signs).map(
-    (sign, index): [number, string] => [index + 1, sign],
+    (sign, index): [number, string] => [index + 1, sign]
   )
 
   it.each(housesWithSign)(
     'house %i should have sign matching "%s"',
     (number, expectedSign) => {
-      const result = getHouses()
+      const result = zodiac.houses.all()
       const house = result[number - 1]
 
       expect(house).toHaveProperty('sign')
       expect(house.sign).toMatch(new RegExp(expectedSign, 'i'))
-    },
+    }
   )
 
   describe('traditionalRuler', () => {
@@ -35,7 +35,7 @@ describe('getHouses', () => {
     ])(
       'house %i should be ruled by %s, traditionally by %s',
       (number, rulingPlanet, traditionalRuler) => {
-        const house = getHouses()[number - 1]
+        const house = zodiac.houses.all()[number - 1]
 
         expect(house.rulingPlanet).toBe(rulingPlanet)
         expect(house.traditionalRuler).toBe(traditionalRuler)
@@ -43,7 +43,7 @@ describe('getHouses', () => {
     )
 
     it('should match rulingPlanet in every other house', () => {
-      for (const house of getHouses()) {
+      for (const house of zodiac.houses.all()) {
         if ([8, 11, 12].includes(house.number)) continue
 
         expect(house.traditionalRuler).toBe(house.rulingPlanet)
@@ -51,13 +51,13 @@ describe('getHouses', () => {
     })
 
     it('should be translated', () => {
-      expect(getHouses('es')[7].traditionalRuler).toBe('Marte')
+      expect(zodiac.locale('es').houses.all()[7].traditionalRuler).toBe('Marte')
     })
   })
 
   describe('keywords', () => {
     it('should return keywords as a list', () => {
-      const [house] = getHouses()
+      const [house] = zodiac.houses.all()
 
       expect(house.keywords).toEqual([
         'Self-image',
@@ -68,7 +68,7 @@ describe('getHouses', () => {
     })
 
     it('should translate each keyword', () => {
-      const [house] = getHouses('es')
+      const [house] = zodiac.locale('es').houses.all()
 
       expect(house.keywords).toEqual([
         'Autoimagen',
@@ -81,7 +81,7 @@ describe('getHouses', () => {
     it.each(['en', 'es', 'ca'] as const)(
       'should not have surrounding spaces in %s keywords',
       language => {
-        for (const house of getHouses(language)) {
+        for (const house of zodiac.locale(language).houses.all()) {
           for (const keyword of house.keywords) {
             expect(keyword).toBe(keyword.trim())
           }
@@ -93,7 +93,7 @@ describe('getHouses', () => {
   describe('translations', () => {
     for (const language of [...dictionaries.keys()] as Language[]) {
       it(`should return houses with correct translated titles for language: ${language}`, () => {
-        const result = getHouses(language)
+        const result = zodiac.locale(language).houses.all()
         const dict = dictionaries.get(language) as Dictionary
 
         result.forEach((house, index) => {

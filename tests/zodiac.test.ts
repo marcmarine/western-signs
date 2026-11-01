@@ -93,6 +93,27 @@ describe('zodiac', () => {
       expect(result?.name).toBe('Taurus')
     })
 
+    it.each([
+      [1452, 3, 15, 'Aries'],
+      [1987, 3, 20, 'Aries'],
+      [1616, 3, 23, 'Taurus'],
+      [1813, 4, 5, 'Taurus'],
+      [1875, 5, 6, 'Gemini'],
+      [1883, 6, 3, 'Cancer'],
+      [2023, 6, 24, 'Leo'],
+      [1994, 7, 23, 'Virgo'],
+      [1992, 8, 25, 'Libra'],
+      [1821, 10, 11, 'Scorpio'],
+      [1947, 11, 21, 'Sagittarius'],
+      [1929, 0, 15, 'Capricorn'],
+      [1882, 0, 25, 'Aquarius'],
+      [1788, 1, 22, 'Pisces']
+    ])('should get the sun sign on %i-%i-%i', (year, month, day, expected) => {
+      const date = new Date(Date.UTC(year, month, day, 12))
+
+      expect(zodiac.at({ date }).sun.sign().name).toBe(expected)
+    })
+
     // The sign that starts at each cardinal point and the one before it
     const SIGNS_AT_CARDINAL_POINTS = {
       0: ['Pisces', 'Aries'],

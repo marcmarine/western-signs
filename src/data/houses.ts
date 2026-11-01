@@ -9,7 +9,7 @@ import {
 } from './constants'
 import signs from './signs'
 
-// `keywords` holds a dictionary key here; `getHouses` splits the translated value into a list
+// `keywords` holds a dictionary key here; `zodiac` splits the translated value into a list
 type HouseData = Omit<House, 'keywords'> & { keywords: string }
 
 // Angular, succedent and cadent repeat in that order from the 1st house

@@ -5,7 +5,7 @@ export {
   HOUSE_MODALITIES,
   MODALITIES,
   PLANETS,
-  SIGNS,
+  SIGNS
 } from './data/constants'
 export type {
   Aspect,
@@ -14,22 +14,15 @@ export type {
   Hemispheres,
   House,
   HouseModalities,
+  Language,
   Modalities,
   Planet,
   Planets,
   Sign,
   Signs,
   SymbolOptions,
-  Symbols,
-  Language,
+  Symbols
 } from './definitions'
-export { getHouses } from './getHouses'
-export { getPlanet } from './getPlanet'
-export { getPlanets } from './getPlanets'
-export { getSignByDate } from './getSignByDate'
-export { getSign } from './getSign'
-export { getSign as getSignByName } from './getSign'
-export { getSigns } from './getSigns'
 export { getSymbol } from './getSymbol'
 export * as i18n from './i18n'
 export type { Zodiac } from './zodiac'

@@ -275,8 +275,6 @@ export interface Planet {
   type: PlanetType
 }
 
-export type Translations = Record<Language, Sign>
-
 export type Dictionary = {
   [key in
     | Signs

@@ -1,19 +1,17 @@
 import { aspects } from './data/aspects'
+import houses from './data/houses'
+import planets from './data/planets'
 import signs from './data/signs'
 import type {
   Aspect,
   Aspects,
   House,
   Language,
+  Planet,
   Planets,
   Sign,
   Signs
 } from './definitions'
-import { getHouses } from './getHouses'
-import { getPlanet } from './getPlanet'
-import { getPlanets } from './getPlanets'
-import { getSign } from './getSign'
-import { getSigns } from './getSigns'
 import { getLanguage } from './i18n'
 import { sunLongitude } from './sun'
 import { fromLocal } from './time'
@@ -24,6 +22,13 @@ type AtOptions =
   | { date: Date }
   /** A local date and time in the given time zone. */
   | { date: string; timeZone: string }
+
+// A house's `keywords` is a dictionary key whose translation is a comma-separated list
+function translateHouse(house: (typeof houses)[number], language: Language) {
+  const translated = translate(house, language)
+
+  return { ...translated, keywords: translated.keywords.split(',') } as House
+}
 
 function createZodiac(resolveLanguage: () => Language) {
   return {
@@ -41,9 +46,14 @@ function createZodiac(resolveLanguage: () => Language) {
        * @param name - The name of the sign, e.g. `'taurus'`.
        * @returns The sign, or `null` if not found.
        */
-      get: (name: Signs) => getSign(name, resolveLanguage()),
+      get: (name: Signs): Sign | null => {
+        const sign = signs[name]
+
+        return sign ? translate(sign, resolveLanguage()) : null
+      },
       /** Get all twelve signs. */
-      all: () => getSigns(resolveLanguage())
+      all: (): Sign[] =>
+        Object.values(signs).map(sign => translate(sign, resolveLanguage()))
     },
     /** Planets with their translated properties. */
     planets: {
@@ -53,9 +63,16 @@ function createZodiac(resolveLanguage: () => Language) {
        * @param name - The name of the planet, e.g. `'venus'`.
        * @returns The planet, or `null` if not found.
        */
-      get: (name: Planets) => getPlanet(name, resolveLanguage()),
+      get: (name: Planets): Planet | null => {
+        const planet = planets[name]
+
+        return planet ? translate(planet, resolveLanguage()) : null
+      },
       /** Get all planets. */
-      all: () => getPlanets(resolveLanguage())
+      all: (): Planet[] =>
+        Object.values(planets).map(planet =>
+          translate(planet, resolveLanguage())
+        )
     },
     /** Astrological houses with their translated properties. */
     houses: {
@@ -65,11 +82,14 @@ function createZodiac(resolveLanguage: () => Language) {
        * @param number - The number of the house, from 1 to 12.
        * @returns The house, or `null` if not found.
        */
-      get: (number: number): House | null =>
-        getHouses(resolveLanguage()).find(house => house.number === number) ??
-        null,
+      get: (number: number): House | null => {
+        const house = houses.find(house => house.number === number)
+
+        return house ? translateHouse(house, resolveLanguage()) : null
+      },
       /** Get all twelve houses. */
-      all: () => getHouses(resolveLanguage())
+      all: (): House[] =>
+        houses.map(house => translateHouse(house, resolveLanguage()))
     },
     /** Aspects with their translated properties. */
     aspects: {

@@ -37,46 +37,9 @@ export function getLanguage(): Language {
  * i18n.t(SIGNS.TAURUS, 'en')
  * // Output: Taurus
  */
-export function t(key: keyof Dictionary, language?: Language): string
-/**
- * Translates template strings into the current language using the provided values.
- * @param {TemplateStringsArray} strings - The template strings to be translated.
- * @param {string[]} values - The values to be translated within the template.
- * @returns {string} The translated string.
- *
- * @deprecated Use {@link t | `t(key)`} instead. Will be removed in the next major version.
- *
- * @example
- * import { SIGNS, i18n } from 'western-signs'
- *
- * i18n.setLanguage('es')
- *
- * const taurus = i18n.t`${SIGNS.TAURUS}`
- * console.log(taurus)
- * // Output: Tauro
- *
- */
-export function t(strings: TemplateStringsArray, ...values: string[]): string
 export function t(
-  input: keyof Dictionary | TemplateStringsArray,
-  ...args: (string | undefined)[]
+  key: keyof Dictionary,
+  language: Language = getLanguage()
 ): string {
-  if (typeof input === 'string') {
-    const [language = getLanguage()] = args as Language[]
-
-    return dictionaries.get(language)?.[input] ?? input
-  }
-
-  const language = getLanguage()
-
-  return input
-    .map((string, index) => {
-      const wordToTranslate = args[index - 1] || ''
-      const translatedWord =
-        dictionaries.get(language)?.[wordToTranslate as keyof Dictionary] ||
-        wordToTranslate
-
-      return translatedWord + string
-    })
-    .join('')
+  return dictionaries.get(language)?.[key] ?? key
 }

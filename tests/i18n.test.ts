@@ -49,39 +49,4 @@ describe('Translate function', () => {
   it('should return the key itself if no translation is found', () => {
     expect(t('unknown' as keyof Dictionary)).toBe('unknown')
   })
-
-  describe('template literal (deprecated)', () => {
-    it('should translate template literal strings using the default language', () => {
-      const result = t`${'capricorn'}`
-
-      expect(result).toBe('Capricorn')
-    })
-
-    it('should translate template literal strings correctly in Spanish', () => {
-      setLanguage('es')
-      const result = t`${'taurus'}`
-
-      expect(result).toBe('Tauro')
-    })
-
-    it('should translate template literal strings correctly in Catalan', () => {
-      setLanguage('ca')
-      const result = t`${'pisces'}`
-
-      expect(result).toBe('Peixos')
-    })
-
-    it('should translate every value and keep the surrounding text', () => {
-      setLanguage('es')
-      const result = t`${SIGNS.TAURUS} - ${SIGNS.PISCES}`
-
-      expect(result).toBe('Tauro - Piscis')
-    })
-
-    it('should return the original string if no translation is found', () => {
-      setLanguage('en')
-      const result = t`${'unknown'}`
-      expect(result).toBe('unknown')
-    })
-  })
 })
