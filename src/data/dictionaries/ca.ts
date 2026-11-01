@@ -115,6 +115,11 @@ const ca = {
   disharmonious: 'Disharmònic',
   neutral: 'Neutral',
 
+  domicile: 'Domicili',
+  exaltation: 'Exaltació',
+  detriment: 'Exili',
+  fall: 'Caiguda',
+
   ascendant: 'Ascendent'
 } as Dictionary
 

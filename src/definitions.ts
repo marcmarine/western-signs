@@ -4,6 +4,7 @@ import type {
   ASPECTS,
   BODY_PARTS,
   CHARACTERS,
+  DIGNITIES,
   ELEMENTS,
   HORIZONS,
   HOUSE_MODALITIES,
@@ -39,6 +40,7 @@ export type HouseNumber = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
 export type SymbolId = SignId | PlanetId | AspectId | 'ascendant'
 export type AspectTypeId = ObjectValues<typeof ASPECT_TYPE>
 export type AspectQualityId = ObjectValues<typeof ASPECT_QUALITY>
+export type DignityId = ObjectValues<typeof DIGNITIES>
 
 export interface Sign {
   /**
@@ -329,7 +331,8 @@ export type Dictionary = {
     | HouseId
     | AspectId
     | AspectTypeId
-    | AspectQualityId]: string
+    | AspectQualityId
+    | DignityId]: string
 }
 
 export type Dictionaries = Record<Language, Dictionary>

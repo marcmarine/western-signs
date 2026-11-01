@@ -1,14 +1,17 @@
 import { aspects } from './data/aspects'
+import { DIGNITIES } from './data/constants'
 import houses from './data/houses'
 import planets from './data/planets'
 import signs from './data/signs'
 import type {
   Aspect,
   AspectId,
+  DignityId,
   House,
   HouseNumber,
   Planet,
   PlanetId,
+  Rulers,
   Sign,
   SignId
 } from './definitions'
@@ -105,6 +108,39 @@ export const zodiac = {
       aspects.find(aspect => aspect.id === id) as Aspect,
     /** Get all aspects, ordered by angle. */
     all: (): Aspect[] => [...aspects]
+  },
+  /**
+   * Get the essential dignities and debilities of a planet in a sign.
+   *
+   * A planet can have more than one: Mercury is both in its domicile and exalted in Virgo,
+   * and both in its detriment and in its fall in Pisces. An empty list means the planet is peregrine.
+   *
+   * @param planet - The identifier of the planet, e.g. `'mars'`.
+   * @param sign - The identifier of the sign, e.g. `'capricorn'`.
+   * @param options.rulers - Which rulers give the domicile and detriment: `'modern'` (default) or `'traditional'`.
+   * @returns The dignities, in this order: `'domicile'`, `'exaltation'`, `'detriment'`, `'fall'`.
+   *
+   * @example
+   * zodiac.dignities('mars', 'capricorn')
+   * // Output: ['exaltation']
+   *
+   * zodiac.dignities('mars', 'scorpio', { rulers: 'traditional' })
+   * // Output: ['domicile']
+   */
+  dignities: (
+    planet: PlanetId,
+    sign: SignId,
+    { rulers = 'modern' }: { rulers?: keyof Rulers } = {}
+  ): DignityId[] => {
+    const { domicile, exaltation, detriment, fall } = planets[planet].dignities
+    const found: [DignityId, boolean][] = [
+      [DIGNITIES.DOMICILE, domicile[rulers].includes(sign)],
+      [DIGNITIES.EXALTATION, exaltation === sign],
+      [DIGNITIES.DETRIMENT, detriment[rulers].includes(sign)],
+      [DIGNITIES.FALL, fall === sign]
+    ]
+
+    return found.filter(([, holds]) => holds).map(([dignity]) => dignity)
   },
   /**
    * Query the zodiac at a given moment.

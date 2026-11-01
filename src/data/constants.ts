@@ -144,3 +144,10 @@ export const ASPECT_QUALITY = {
   DISHARMONIOUS: 'disharmonious',
   NEUTRAL: 'neutral'
 } as const
+
+export const DIGNITIES = {
+  DOMICILE: 'domicile',
+  EXALTATION: 'exaltation',
+  DETRIMENT: 'detriment',
+  FALL: 'fall'
+} as const

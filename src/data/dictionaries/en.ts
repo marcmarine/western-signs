@@ -115,6 +115,11 @@ const en = {
   disharmonious: 'Disharmonious',
   neutral: 'Neutral',
 
+  domicile: 'Domicile',
+  exaltation: 'Exaltation',
+  detriment: 'Detriment',
+  fall: 'Fall',
+
   ascendant: 'Ascendant'
 } as Dictionary
 
