@@ -226,8 +226,9 @@ export const zodiac = {
   dignities: (
     planet: PlanetId,
     sign: SignId,
-    { rulers = 'modern' }: { rulers?: keyof Rulers } = {}
+    options: { rulers?: keyof Rulers } = {}
   ): DignityId[] => {
+    const { rulers = 'modern' } = options
     const { domicile, exaltation, detriment, fall } = planets[planet].dignities
     const found: [DignityId, boolean][] = [
       [DIGNITIES.DOMICILE, domicile[rulers].includes(sign)],
