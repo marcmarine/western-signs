@@ -1,6 +1,7 @@
 const toRadians = (degrees: number) => (degrees * Math.PI) / 180
 
-const normalize = (degrees: number) => ((degrees % 360) + 360) % 360
+// The same angle within [0, 360)
+export const normalize = (degrees: number) => ((degrees % 360) + 360) % 360
 
 /**
  * Compute the apparent geocentric ecliptic longitude of the Sun with the

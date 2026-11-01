@@ -16,7 +16,7 @@ import type {
   SignId,
   ZodiacPosition
 } from './definitions'
-import { sunLongitude } from './sun'
+import { normalize, sunLongitude } from './sun'
 import { fromLocal } from './time'
 
 type AtOptions =
@@ -37,11 +37,25 @@ function deepFreeze<T>(value: T): T {
 
 deepFreeze([signs, planets, houses, aspects])
 
+// The longitude within [0, 360), however many turns it is given in
+function toLongitude(value: number): number {
+  if (!Number.isFinite(value)) throw new Error('Invalid longitude')
+
+  return normalize(value)
+}
+
 // The sign whose range along the ecliptic holds the given longitude
-function signAt(longitude: number): Sign {
+function signAt(value: number): Sign {
+  const longitude = toLongitude(value)
+
   return Object.values(signs).find(
     sign => longitude >= sign.longitude.start && longitude < sign.longitude.end
   ) as Sign
+}
+
+// The degree within its sign of the given longitude
+function degreeAt(value: number): number {
+  return toLongitude(value) % 30
 }
 
 /**
@@ -77,7 +91,31 @@ export const zodiac = {
      */
     get: (id: SignId): Sign => signs[id],
     /** Get all twelve signs, from Aries to Pisces. */
-    all: (): Sign[] => Object.values(signs)
+    all: (): Sign[] => Object.values(signs),
+    /**
+     * Get the sign at an ecliptic longitude, e.g. a planet's or a house cusp's from another library.
+     *
+     * @param longitude - The longitude in degrees from 0° Aries. Values outside 0–360, such as `-10` or `370`, are turned into it.
+     * @throws {Error} If the longitude is not a finite number.
+     * @returns The sign whose range holds the longitude.
+     *
+     * @example
+     * zodiac.signs.at(45.48).id
+     * // Output: 'taurus'
+     */
+    at: (longitude: number): Sign => signAt(longitude),
+    /**
+     * Get the degree within its sign of an ecliptic longitude.
+     *
+     * @param longitude - The longitude in degrees from 0° Aries. Values outside 0–360 are turned into it.
+     * @throws {Error} If the longitude is not a finite number.
+     * @returns The degree, from 0 to 30.
+     *
+     * @example
+     * zodiac.signs.degree(45.48)
+     * // Output: 15.48
+     */
+    degree: (longitude: number): number => degreeAt(longitude)
   },
   /** The planets, including the Sun and the Moon. */
   planets: {
@@ -183,7 +221,7 @@ export const zodiac = {
     return Object.freeze({
       sun: Object.freeze({
         longitude,
-        degree: longitude % 30,
+        degree: degreeAt(longitude),
         sign: signAt(longitude)
       })
     })
