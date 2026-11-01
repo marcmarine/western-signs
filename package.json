@@ -67,7 +67,8 @@
   },
   "type": "module",
   "sideEffects": [
-    "./dist/locale/*"
+    "./dist/locale/*",
+    "./src/index.ts"
   ],
   "types": "./dist/index.d.ts"
 }
