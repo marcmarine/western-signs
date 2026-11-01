@@ -15,7 +15,6 @@ const signs: Record<Signs, Sign> = {
     bodyPart: BODY_PARTS.HEAD,
     character: CHARACTERS.RAM,
     element: ELEMENTS.FIRE,
-    endDate: new Date(2020, 3, 20),
     glyph: '♈',
     longitude: { start: 0, end: 30 },
     modality: MODALITIES.CARDINAL,
@@ -24,14 +23,12 @@ const signs: Record<Signs, Sign> = {
     pole: POLARITIES.POSITIVE,
     rulingPlanet: PLANETS.MARS,
     traditionalRuler: PLANETS.MARS,
-    season: SEASONS.SPRING,
-    startDate: new Date(2020, 2, 20)
+    season: SEASONS.SPRING
   },
   taurus: {
     bodyPart: BODY_PARTS.THROAT,
     character: CHARACTERS.BULL,
     element: ELEMENTS.EARTH,
-    endDate: new Date(2020, 4, 21),
     glyph: '♉',
     longitude: { start: 30, end: 60 },
     modality: MODALITIES.FIXED,
@@ -40,14 +37,12 @@ const signs: Record<Signs, Sign> = {
     pole: POLARITIES.NEGATIVE,
     rulingPlanet: PLANETS.VENUS,
     traditionalRuler: PLANETS.VENUS,
-    season: SEASONS.SPRING,
-    startDate: new Date(2020, 3, 21)
+    season: SEASONS.SPRING
   },
   gemini: {
     bodyPart: BODY_PARTS.LUNGS,
     character: CHARACTERS.TWINS,
     element: ELEMENTS.AIR,
-    endDate: new Date(2020, 5, 22),
     glyph: '♊',
     longitude: { start: 60, end: 90 },
     modality: MODALITIES.MUTABLE,
@@ -56,14 +51,12 @@ const signs: Record<Signs, Sign> = {
     pole: POLARITIES.POSITIVE,
     rulingPlanet: PLANETS.MERCURY,
     traditionalRuler: PLANETS.MERCURY,
-    season: SEASONS.SPRING,
-    startDate: new Date(2020, 4, 22)
+    season: SEASONS.SPRING
   },
   cancer: {
     bodyPart: BODY_PARTS.STOMACH,
     character: CHARACTERS.CRAB,
     element: ELEMENTS.WATER,
-    endDate: new Date(2020, 6, 22),
     glyph: '♋',
     longitude: { start: 90, end: 120 },
     modality: MODALITIES.CARDINAL,
@@ -72,14 +65,12 @@ const signs: Record<Signs, Sign> = {
     pole: POLARITIES.NEGATIVE,
     rulingPlanet: PLANETS.MOON,
     traditionalRuler: PLANETS.MOON,
-    season: SEASONS.SUMMER,
-    startDate: new Date(2020, 5, 23)
+    season: SEASONS.SUMMER
   },
   leo: {
     bodyPart: BODY_PARTS.HEART,
     character: CHARACTERS.LION,
     element: ELEMENTS.FIRE,
-    endDate: new Date(2020, 7, 22),
     glyph: '♌',
     longitude: { start: 120, end: 150 },
     modality: MODALITIES.FIXED,
@@ -88,14 +79,12 @@ const signs: Record<Signs, Sign> = {
     pole: POLARITIES.POSITIVE,
     rulingPlanet: PLANETS.SUN,
     traditionalRuler: PLANETS.SUN,
-    season: SEASONS.SUMMER,
-    startDate: new Date(2020, 6, 23)
+    season: SEASONS.SUMMER
   },
   virgo: {
     bodyPart: BODY_PARTS.BOWELS,
     character: CHARACTERS.VIRGIN,
     element: ELEMENTS.EARTH,
-    endDate: new Date(2020, 8, 22),
     glyph: '♍',
     longitude: { start: 150, end: 180 },
     modality: MODALITIES.MUTABLE,
@@ -104,14 +93,12 @@ const signs: Record<Signs, Sign> = {
     pole: POLARITIES.NEGATIVE,
     rulingPlanet: PLANETS.MERCURY,
     traditionalRuler: PLANETS.MERCURY,
-    season: SEASONS.SUMMER,
-    startDate: new Date(2020, 7, 23)
+    season: SEASONS.SUMMER
   },
   libra: {
     bodyPart: BODY_PARTS.REINS,
     character: CHARACTERS.BALANCE,
     element: ELEMENTS.AIR,
-    endDate: new Date(2020, 9, 22),
     glyph: '♎',
     longitude: { start: 180, end: 210 },
     modality: MODALITIES.CARDINAL,
@@ -120,14 +107,12 @@ const signs: Record<Signs, Sign> = {
     pole: POLARITIES.POSITIVE,
     rulingPlanet: PLANETS.VENUS,
     traditionalRuler: PLANETS.VENUS,
-    season: SEASONS.AUTUMN,
-    startDate: new Date(2020, 8, 23)
+    season: SEASONS.AUTUMN
   },
   scorpio: {
     bodyPart: BODY_PARTS.SECRETS,
     character: CHARACTERS.SCORPION,
     element: ELEMENTS.WATER,
-    endDate: new Date(2020, 10, 22),
     glyph: '♏',
     longitude: { start: 210, end: 240 },
     modality: MODALITIES.FIXED,
@@ -136,14 +121,12 @@ const signs: Record<Signs, Sign> = {
     pole: POLARITIES.NEGATIVE,
     rulingPlanet: PLANETS.PLUTO,
     traditionalRuler: PLANETS.MARS,
-    season: SEASONS.AUTUMN,
-    startDate: new Date(2020, 9, 23)
+    season: SEASONS.AUTUMN
   },
   sagittarius: {
     bodyPart: BODY_PARTS.THIGHS,
     character: CHARACTERS.ARCHER,
     element: ELEMENTS.FIRE,
-    endDate: new Date(2020, 11, 22),
     glyph: '♐',
     longitude: { start: 240, end: 270 },
     modality: MODALITIES.MUTABLE,
@@ -152,14 +135,12 @@ const signs: Record<Signs, Sign> = {
     pole: POLARITIES.POSITIVE,
     rulingPlanet: PLANETS.JUPITER,
     traditionalRuler: PLANETS.JUPITER,
-    season: SEASONS.AUTUMN,
-    startDate: new Date(2020, 10, 23)
+    season: SEASONS.AUTUMN
   },
   capricorn: {
     bodyPart: BODY_PARTS.KNEES,
     character: CHARACTERS.GOAT,
     element: ELEMENTS.EARTH,
-    endDate: new Date(2021, 0, 21),
     glyph: '♑',
     longitude: { start: 270, end: 300 },
     modality: MODALITIES.CARDINAL,
@@ -168,14 +149,12 @@ const signs: Record<Signs, Sign> = {
     pole: POLARITIES.NEGATIVE,
     rulingPlanet: PLANETS.SATURN,
     traditionalRuler: PLANETS.SATURN,
-    season: SEASONS.WINTER,
-    startDate: new Date(2020, 11, 23)
+    season: SEASONS.WINTER
   },
   aquarius: {
     bodyPart: BODY_PARTS.ANKLES,
     character: CHARACTERS.WATER_BEARER,
     element: ELEMENTS.AIR,
-    endDate: new Date(2020, 1, 20),
     glyph: '♒',
     longitude: { start: 300, end: 330 },
     modality: MODALITIES.FIXED,
@@ -184,14 +163,12 @@ const signs: Record<Signs, Sign> = {
     pole: POLARITIES.POSITIVE,
     rulingPlanet: PLANETS.URANUS,
     traditionalRuler: PLANETS.SATURN,
-    season: SEASONS.WINTER,
-    startDate: new Date(2020, 0, 22)
+    season: SEASONS.WINTER
   },
   pisces: {
     bodyPart: BODY_PARTS.FEET,
     character: CHARACTERS.FISHES,
     element: ELEMENTS.WATER,
-    endDate: new Date(2020, 2, 19),
     glyph: '♓',
     longitude: { start: 330, end: 360 },
     modality: MODALITIES.MUTABLE,
@@ -200,8 +177,7 @@ const signs: Record<Signs, Sign> = {
     pole: POLARITIES.NEGATIVE,
     rulingPlanet: PLANETS.NEPTUNE,
     traditionalRuler: PLANETS.JUPITER,
-    season: SEASONS.WINTER,
-    startDate: new Date(2020, 1, 21)
+    season: SEASONS.WINTER
   }
 } as const
 

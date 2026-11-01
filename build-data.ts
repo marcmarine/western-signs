@@ -16,8 +16,7 @@ export const labels = { en, es, ca }
 // Values are ids; the files in `labels` translate them
 export function createData() {
   return {
-    // startDate and endDate are left out: they depend on the time zone of the machine running the build
-    signs: Object.values(signs).map(({ startDate, endDate, ...sign }) => sign),
+    signs: Object.values(signs),
     planets: Object.values(planets),
     houses,
     aspects

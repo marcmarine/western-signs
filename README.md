@@ -68,9 +68,6 @@ zodiac.aspects.all()
 
 `longitude` is the range of the sign along the ecliptic, in degrees from 0° Aries, the start included and the end excluded. The Sun is in Taurus while [`sun.longitude()`](#sun-sign-by-date) is between 30 and 60.
 
-> [!WARNING]
-> `startDate` and `endDate` are deprecated and will be removed in the next major version. They are midnight in the time zone of the machine running the code, in 2020, while the Sun changes sign on a different day and time each year. Use `longitude`, or [`zodiac.at()`](#sun-sign-by-date) to get the sign at a given moment.
-
 #### Sun sign by date
 
 Use `at()` to get the Sun's position at a given moment. Pass the local date and time with the time zone of the place, e.g. where someone was born:

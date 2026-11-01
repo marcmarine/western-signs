@@ -54,13 +54,6 @@ describe('data.json', () => {
     expect(data).not.toHaveProperty('labels')
   })
 
-  it('should leave out the deprecated sign dates', () => {
-    for (const sign of data.signs) {
-      expect(sign).not.toHaveProperty('startDate')
-      expect(sign).not.toHaveProperty('endDate')
-    }
-  })
-
   it('should hold ids instead of translated values', () => {
     expect(data.signs[1]).toMatchObject({
       name: 'taurus',

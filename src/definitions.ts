@@ -65,18 +65,6 @@ export interface Sign {
   element: Elements
 
   /**
-   * The end date of the zodiac sign period.
-   * This date marks the end of the zodiac sign's influence for the given year.
-   * Examples: new Date(2020, 3, 20) for Aries (April 20, 2020), new Date(2020, 4, 21) for Taurus (May 21, 2020).
-   *
-   * @deprecated The date is midnight in the time zone of the machine running the code, and the
-   * Sun changes sign on a different day and time each year. Use `longitude` to know where the
-   * sign ends, and {@link zodiac | `zodiac.at()`} to get the sign at a given moment. Will be
-   * removed in the next major version.
-   */
-  endDate: Date
-
-  /**
    * The glyph representing the zodiac sign.
    * A symbolic character or drawing associated with the sign.
    * Examples: "♈" for Aries, "♉" for Taurus.
@@ -138,18 +126,6 @@ export interface Sign {
    * Examples: "Spring" for Aries, "Spring" for Taurus.
    */
   season: string
-
-  /**
-   * The start date of the zodiac sign period.
-   * This date marks the beginning of the zodiac sign's influence for the given year.
-   * Examples: new Date(2020, 2, 20) for Aries (March 20, 2020), new Date(2020, 3, 21) for Taurus (April 21, 2020).
-   *
-   * @deprecated The date is midnight in the time zone of the machine running the code, and the
-   * Sun changes sign on a different day and time each year. Use `longitude` to know where the
-   * sign starts, and {@link zodiac | `zodiac.at()`} to get the sign at a given moment. Will be
-   * removed in the next major version.
-   */
-  startDate: Date
 }
 
 export interface House {
