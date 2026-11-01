@@ -3,19 +3,19 @@ import { ASPECTS } from '@/data/constants'
 import planets from '@/data/planets'
 import signs from '@/data/signs'
 import { SYMBOLS } from '@/data/symbols'
-import type { Aspects, Planets, Signs, Symbols } from '@/index'
+import type { AspectId, PlanetId, SignId, SymbolId } from '@/index'
 import { getSymbol } from '@/index'
 
-const symbolNames: Symbols[] = [
-  ...(Object.keys(signs) as Signs[]),
-  ...(Object.keys(planets) as Planets[]),
-  ...(Object.values(ASPECTS) as Aspects[]),
+const symbolNames: SymbolId[] = [
+  ...(Object.keys(signs) as SignId[]),
+  ...(Object.keys(planets) as PlanetId[]),
+  ...(Object.values(ASPECTS) as AspectId[]),
   'ascendant',
 ]
 
 describe('getSymbol', () => {
   it('symbolNames should include all SYMBOLS keys', () => {
-    const allSymbols = Object.keys(SYMBOLS).sort() as Symbols[]
+    const allSymbols = Object.keys(SYMBOLS).sort() as SymbolId[]
     const testedSymbols = symbolNames.slice().sort()
 
     expect(testedSymbols).toEqual(allSymbols)
@@ -23,7 +23,7 @@ describe('getSymbol', () => {
 
   it.each(symbolNames)(
     'should read an SVG string for symbol "%s"',
-    (symbolName: Symbols) => {
+    (symbolName: SymbolId) => {
       const symbol = getSymbol(symbolName)
 
       const svgString = symbol?.toString()
@@ -36,7 +36,7 @@ describe('getSymbol', () => {
 
   it.each(symbolNames)(
     'should modify stroke and stroke-width for symbol "%s"',
-    (symbolName: Symbols) => {
+    (symbolName: SymbolId) => {
       const options = {
         stroke: 'red',
         'stroke-width': '3',
@@ -52,7 +52,7 @@ describe('getSymbol', () => {
 
   it.each(symbolNames)(
     'should modify width and height for symbol "%s"',
-    (symbolName: Symbols) => {
+    (symbolName: SymbolId) => {
       const options = {
         width: '32',
         height: '32',
@@ -75,7 +75,7 @@ describe('getSymbol', () => {
   })
 
   it('should throw an error if the file does not exist', () => {
-    expect(() => getSymbol('notexist' as Symbols)).toThrow(
+    expect(() => getSymbol('notexist' as SymbolId)).toThrow(
       'Icon "notexist" not found.',
     )
   })

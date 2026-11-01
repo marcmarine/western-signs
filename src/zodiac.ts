@@ -4,12 +4,13 @@ import planets from './data/planets'
 import signs from './data/signs'
 import type {
   Aspect,
-  Aspects,
+  AspectId,
   House,
+  HouseNumber,
   Planet,
-  Planets,
+  PlanetId,
   Sign,
-  Signs
+  SignId
 } from './definitions'
 import { sunLongitude } from './sun'
 import { fromLocal } from './time'
@@ -63,7 +64,7 @@ export const zodiac = {
      * @param id - The identifier of the sign, e.g. `'taurus'`.
      * @returns The sign. For an identifier that doesn't exist, e.g. from JavaScript without types, it returns `undefined`.
      */
-    get: (id: Signs): Sign => signs[id],
+    get: (id: SignId): Sign => signs[id],
     /** Get all twelve signs, from Aries to Pisces. */
     all: (): Sign[] => Object.values(signs)
   },
@@ -75,7 +76,7 @@ export const zodiac = {
      * @param id - The identifier of the planet, e.g. `'venus'`.
      * @returns The planet. For an identifier that doesn't exist, e.g. from JavaScript without types, it returns `undefined`.
      */
-    get: (id: Planets): Planet => planets[id],
+    get: (id: PlanetId): Planet => planets[id],
     /** Get all planets. */
     all: (): Planet[] => Object.values(planets)
   },
@@ -85,10 +86,10 @@ export const zodiac = {
      * Get a single house by number.
      *
      * @param number - The number of the house, from 1 to 12.
-     * @returns The house, or `undefined` if there is no house with that number.
+     * @returns The house. For a number that isn't a house, e.g. from JavaScript without types, it returns `undefined`.
      */
-    get: (number: number): House | undefined =>
-      houses.find(house => house.number === number),
+    get: (number: HouseNumber): House =>
+      houses.find(house => house.number === number) as House,
     /** Get all twelve houses. */
     all: (): House[] => [...houses]
   },
@@ -100,7 +101,7 @@ export const zodiac = {
      * @param id - The identifier of the aspect, e.g. `'trine'`.
      * @returns The aspect. For an identifier that doesn't exist, e.g. from JavaScript without types, it returns `undefined`.
      */
-    get: (id: Aspects): Aspect =>
+    get: (id: AspectId): Aspect =>
       aspects.find(aspect => aspect.id === id) as Aspect,
     /** Get all aspects, ordered by angle. */
     all: (): Aspect[] => [...aspects]

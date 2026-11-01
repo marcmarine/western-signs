@@ -1,5 +1,5 @@
 import { SYMBOLS } from './data/symbols'
-import type { SymbolOptions, Symbols } from './definitions'
+import type { SymbolOptions, SymbolId } from './definitions'
 
 const DEFAULT_ATTRIBUTES = {
   xmlns: 'http://www.w3.org/2000/svg',
@@ -14,7 +14,7 @@ const DEFAULT_ATTRIBUTES = {
 /**
  * Gets an SVG as a string or as a Data URL, with option to modify attributes.
  *
- * @param {Symbols} symbolName Name of the icon without extension .svg
+ * @param {SymbolId} symbolName Name of the icon without extension .svg
  * @param {SymbolOptions} options Options to modify attributes or return as a Data URL
  * @returns SVG as string or Data URL
  *
@@ -32,7 +32,7 @@ const DEFAULT_ATTRIBUTES = {
  *
  * @throws Will throw an error if the specified SVG file is not found
  */
-export function getSymbol(symbolName: Symbols, options?: SymbolOptions) {
+export function getSymbol(symbolName: SymbolId, options?: SymbolOptions) {
   const serializedPaths = SYMBOLS[symbolName as keyof typeof SYMBOLS]
 
   if (!serializedPaths) {

@@ -3,13 +3,13 @@ import { describe, expect, it } from 'bun:test'
 import { aspects } from '@/data/aspects'
 import { SIGNS } from '@/data/constants'
 import signs from '@/data/signs'
-import type { Signs } from '@/definitions'
+import type { SignId } from '@/definitions'
 import { createData, labels } from '../build-data'
 
 describe('Data', () => {
   it('should be return signs in the correct order', () => {
     Object.values(SIGNS).map((sign, index) => {
-      expect(sign).toBe(Object.keys(signs)[index] as Signs)
+      expect(sign).toBe(Object.keys(signs)[index] as SignId)
     })
   })
 

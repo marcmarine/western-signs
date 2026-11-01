@@ -1,4 +1,4 @@
-import type { House } from '../definitions'
+import type { House, HouseNumber } from '../definitions'
 import { HEMISPHERES, HOUSE_MODALITIES, HOUSES, SIGNS } from './constants'
 import signs from './signs'
 
@@ -12,7 +12,7 @@ const MODALITY_CYCLE = [
 // Every value follows from the house's position: the nth house goes with the nth sign,
 // from which it takes its element and rulers
 const houses: House[] = HOUSES.map((id, index) => {
-  const number = index + 1
+  const number = (index + 1) as HouseNumber
   const sign = Object.values(SIGNS)[index]
   const { element, rulers } = signs[sign]
 

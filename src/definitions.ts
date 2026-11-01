@@ -20,48 +20,49 @@ export type Language = 'en' | 'es' | 'ca'
 
 type ObjectValues<T> = T[keyof T]
 
-export type Signs = ObjectValues<typeof SIGNS>
-export type Elements = ObjectValues<typeof ELEMENTS>
-export type Modalities = ObjectValues<typeof MODALITIES>
-export type Planets = ObjectValues<typeof PLANETS>
-export type Polarities = ObjectValues<typeof POLARITIES>
-export type BodyParts = ObjectValues<typeof BODY_PARTS>
-export type Characters = ObjectValues<typeof CHARACTERS>
-export type Seasons = ObjectValues<typeof SEASONS>
-export type Hemispheres = ObjectValues<typeof HEMISPHERES>
-export type HouseModalities = ObjectValues<typeof HOUSE_MODALITIES>
-export type PlanetType = ObjectValues<typeof PLANET_TYPE>
-export type Aspects = ObjectValues<typeof ASPECTS>
-export type Houses = (typeof HOUSES)[number]
-export type Symbols = Signs | Planets | Aspects | 'ascendant'
-export type AspectType = ObjectValues<typeof ASPECT_TYPE>
-export type AspectQuality = ObjectValues<typeof ASPECT_QUALITY>
+export type SignId = ObjectValues<typeof SIGNS>
+export type ElementId = ObjectValues<typeof ELEMENTS>
+export type ModalityId = ObjectValues<typeof MODALITIES>
+export type PlanetId = ObjectValues<typeof PLANETS>
+export type PolarityId = ObjectValues<typeof POLARITIES>
+export type BodyPartId = ObjectValues<typeof BODY_PARTS>
+export type CharacterId = ObjectValues<typeof CHARACTERS>
+export type SeasonId = ObjectValues<typeof SEASONS>
+export type HemisphereId = ObjectValues<typeof HEMISPHERES>
+export type HouseModalityId = ObjectValues<typeof HOUSE_MODALITIES>
+export type PlanetTypeId = ObjectValues<typeof PLANET_TYPE>
+export type AspectId = ObjectValues<typeof ASPECTS>
+export type HouseId = (typeof HOUSES)[number]
+export type HouseNumber = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
+export type SymbolId = SignId | PlanetId | AspectId | 'ascendant'
+export type AspectTypeId = ObjectValues<typeof ASPECT_TYPE>
+export type AspectQualityId = ObjectValues<typeof ASPECT_QUALITY>
 
 export interface Sign {
   /**
    * The identifier of the zodiac sign.
    * Examples: "aries", "taurus". See the `SIGNS` constant.
    */
-  id: Signs
+  id: SignId
 
   /**
    * The body part traditionally associated with the zodiac sign.
    * Examples: "head" for Aries, "throat" for Taurus.
    */
-  bodyPart: BodyParts
+  bodyPart: BodyPartId
 
   /**
    * The figure the zodiac sign is named after.
    * Examples: "ram" for Aries, "bull" for Taurus.
    */
-  character: Characters
+  character: CharacterId
 
   /**
    * The element of the zodiac sign, one of the four classical elements.
    * Signs of the same element form a triplicity.
    * Examples: "fire" for Aries, "earth" for Taurus. See the `ELEMENTS` constant.
    */
-  element: Elements
+  element: ElementId
 
   /**
    * The glyph representing the zodiac sign.
@@ -81,7 +82,7 @@ export interface Sign {
    * The modality of the sign: cardinal, fixed or mutable.
    * Examples: "cardinal" for Aries, "fixed" for Taurus. See the `MODALITIES` constant.
    */
-  modality: Modalities
+  modality: ModalityId
 
   /**
    * The position of the sign in the zodiac, from 1 for Aries to 12 for Pisces.
@@ -92,7 +93,7 @@ export interface Sign {
    * The polarity of the sign: positive for fire and air signs, negative for earth and water signs.
    * Examples: "positive" for Aries, "negative" for Taurus. See the `POLARITIES` constant.
    */
-  polarity: Polarities
+  polarity: PolarityId
 
   /**
    * The planets that rule the zodiac sign.
@@ -105,7 +106,7 @@ export interface Sign {
    * In the Southern Hemisphere the seasons are the other way around.
    * Examples: "spring" for Aries, "spring" for Taurus.
    */
-  season: Seasons
+  season: SeasonId
 }
 
 export interface House {
@@ -113,13 +114,13 @@ export interface House {
    * The identifier of the house.
    * Examples: "house-1", "house-2", ... "house-12".
    */
-  id: Houses
+  id: HouseId
 
   /**
    * The element of the house's natural sign.
    * Example: "fire" for House 1 (Aries), "earth" for House 2 (Taurus).
    */
-  element: Elements
+  element: ElementId
 
   /**
    * The half of the chart the house is in, divided by the horizon.
@@ -127,7 +128,7 @@ export interface House {
    * - **Lower (Houses 1–6):** below the horizon, the northern half of the chart.
    * - **Upper (Houses 7–12):** above the horizon, the southern half of the chart.
    */
-  hemisphere: Hemispheres
+  hemisphere: HemisphereId
 
   /**
    * The modality of the house, which repeats in this order from House 1:
@@ -136,12 +137,12 @@ export interface House {
    * - **Succedent (Houses 2, 5, 8, 11):** the houses that follow an angular house.
    * - **Cadent (Houses 3, 6, 9, 12):** the houses that come before the next angle.
    */
-  modality: HouseModalities
+  modality: HouseModalityId
 
   /**
    * The number of the house, from 1 to 12, counted counterclockwise from the Ascendant.
    */
-  number: number
+  number: HouseNumber
 
   /**
    * The quarter of the chart the house is in, divided by the horizon and the meridian.
@@ -160,7 +161,7 @@ export interface House {
    * The natural sign of the house: the sign with the same number.
    * Example: "aries" for House 1, "taurus" for House 2.
    */
-  sign: Signs
+  sign: SignId
 }
 
 /**
@@ -171,14 +172,14 @@ export interface Rulers {
    * The ruler in modern astrology, which gives the outer planets to Scorpio, Aquarius and Pisces.
    * Examples: "mars" for Aries, "pluto" for Scorpio.
    */
-  modern: Planets
+  modern: PlanetId
 
   /**
    * The ruler from before the discovery of the outer planets.
    * Same as `modern` except for Scorpio, Aquarius and Pisces.
    * Examples: "mars" for Scorpio, "saturn" for Aquarius, "jupiter" for Pisces.
    */
-  traditional: Planets
+  traditional: PlanetId
 }
 
 export interface Planet {
@@ -186,7 +187,7 @@ export interface Planet {
    * The identifier of the celestial body.
    * Examples: "sun", "moon". See the `PLANETS` constant.
    */
-  id: Planets
+  id: PlanetId
 
   /**
    * The glyph representing the celestial body.
@@ -198,7 +199,7 @@ export interface Planet {
    * The group the celestial body belongs to.
    * Examples: "luminary" for the Sun and the Moon, "personal" for Mercury, Venus and Mars.
    */
-  type: PlanetType
+  type: PlanetTypeId
 }
 
 export interface Aspect {
@@ -206,7 +207,7 @@ export interface Aspect {
    * The identifier of the aspect.
    * Examples: "conjunction", "trine", "semi-square". See the `ASPECTS` constant.
    */
-  id: Aspects
+  id: AspectId
 
   /**
    * The angle of the aspect in degrees.
@@ -234,13 +235,13 @@ export interface Aspect {
    * This varies between schools, especially for minor aspects.
    * Examples: "harmonious" for Trine, "disharmonious" for Square, "neutral" for Conjunction.
    */
-  quality: AspectQuality
+  quality: AspectQualityId
 
   /**
    * Whether the aspect is a major or a minor one.
    * Examples: "major" for Square, "minor" for Quincunx.
    */
-  type: AspectType
+  type: AspectTypeId
 }
 
 type LabeledValues<T> = {
@@ -264,21 +265,21 @@ export type Labeled<T extends { id: string }> = LabeledValues<T> & {
 
 export type Dictionary = {
   [key in
-    | Signs
-    | Elements
-    | Modalities
-    | Planets
-    | Polarities
-    | BodyParts
-    | Characters
-    | Seasons
-    | Hemispheres
-    | HouseModalities
-    | PlanetType
-    | Houses
-    | Aspects
-    | AspectType
-    | AspectQuality]: string
+    | SignId
+    | ElementId
+    | ModalityId
+    | PlanetId
+    | PolarityId
+    | BodyPartId
+    | CharacterId
+    | SeasonId
+    | HemisphereId
+    | HouseModalityId
+    | PlanetTypeId
+    | HouseId
+    | AspectId
+    | AspectTypeId
+    | AspectQualityId]: string
 }
 
 export type Dictionaries = Record<Language, Dictionary>

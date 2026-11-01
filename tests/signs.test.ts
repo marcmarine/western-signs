@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'bun:test'
-import type { Signs } from '@/definitions'
+import type { SignId } from '@/definitions'
 import { i18n, SIGNS, zodiac } from '@/index'
 import '@/locale/es'
 import '@/locale/ca'
@@ -22,7 +22,7 @@ describe('zodiac.signs', () => {
   })
 
   it('should return undefined for an unknown sign', () => {
-    expect(zodiac.signs.get('unknown' as Signs)).toBeUndefined()
+    expect(zodiac.signs.get('unknown' as SignId)).toBeUndefined()
   })
 
   it('should return the twelve signs in order', () => {
@@ -43,7 +43,7 @@ describe('zodiac.signs', () => {
   )
 
   it('should have the same modern and traditional ruler in every other sign', () => {
-    const differing: Signs[] = [SIGNS.SCORPIO, SIGNS.AQUARIUS, SIGNS.PISCES]
+    const differing: SignId[] = [SIGNS.SCORPIO, SIGNS.AQUARIUS, SIGNS.PISCES]
 
     for (const sign of zodiac.signs.all()) {
       if (differing.includes(sign.id)) continue

@@ -1,7 +1,7 @@
-import type { Planet, Planets } from '../definitions'
+import type { Planet, PlanetId } from '../definitions'
 import { PLANET_TYPE, PLANETS } from './constants'
 
-const planets: Record<Planets, Planet> = {
+const planets: Record<PlanetId, Planet> = {
   sun: {
     id: PLANETS.SUN,
     glyph: '☉',

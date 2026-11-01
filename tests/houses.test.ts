@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'bun:test'
-import type { House } from '@/index'
+import type { HouseNumber } from '@/index'
 import { i18n, SIGNS, zodiac } from '@/index'
 import '@/locale/es'
 import '@/locale/ca'
@@ -14,7 +14,7 @@ describe('zodiac.houses', () => {
   it.each(Object.values(SIGNS).map((sign, index) => [index + 1, sign]))(
     'house %i should have %s as its sign',
     (number, sign) => {
-      expect(zodiac.houses.get(number as number)?.sign).toBe(sign as string)
+      expect(zodiac.houses.get(number as HouseNumber).sign).toBe(sign as string)
     }
   )
 
@@ -52,13 +52,13 @@ describe('zodiac.houses', () => {
       ['es', 'Primera Casa'],
       ['ca', 'Primera Casa']
     ] as const)('should translate the name in "%s"', (language, expected) => {
-      const house = zodiac.houses.get(1) as House
+      const house = zodiac.houses.get(1)
 
       expect(i18n.label(house, language).name).toBe(expected)
     })
 
     it('should translate the rulers', () => {
-      const house = zodiac.houses.get(8) as House
+      const house = zodiac.houses.get(8)
 
       expect(i18n.label(house, 'es').rulers).toEqual({
         modern: 'Plutón',

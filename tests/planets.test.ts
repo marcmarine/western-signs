@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'bun:test'
-import type { Planets } from '@/definitions'
+import type { PlanetId } from '@/definitions'
 import { i18n, PLANETS, zodiac } from '@/index'
 import '@/locale/es'
 
@@ -13,7 +13,7 @@ describe('zodiac.planets', () => {
   })
 
   it('should return undefined for an unknown planet', () => {
-    expect(zodiac.planets.get('unknown' as Planets)).toBeUndefined()
+    expect(zodiac.planets.get('unknown' as PlanetId)).toBeUndefined()
   })
 
   it('should return every planet in order', () => {

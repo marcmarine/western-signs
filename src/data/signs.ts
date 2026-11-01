@@ -1,4 +1,4 @@
-import type { Sign, Signs } from '../definitions'
+import type { Sign, SignId } from '../definitions'
 import {
   BODY_PARTS,
   CHARACTERS,
@@ -10,7 +10,7 @@ import {
   SIGNS
 } from './constants'
 
-const signs: Record<Signs, Sign> = {
+const signs: Record<SignId, Sign> = {
   aries: {
     bodyPart: BODY_PARTS.HEAD,
     character: CHARACTERS.RAM,
