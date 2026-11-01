@@ -3,6 +3,7 @@ import { describe, expect, it } from 'bun:test'
 import { SIGNS } from '@/data/constants'
 import signs from '@/data/signs'
 import type { Signs } from '@/definitions'
+import { createData, labels } from '../build-data'
 
 describe('Data', () => {
   it('should be return signs in the correct order', () => {
@@ -20,4 +21,54 @@ describe('Data', () => {
       expect(sign.number).toBe(index + 1)
     })
   })
+})
+
+describe('data.json', () => {
+  const data = createData()
+
+  it('should survive a round trip through JSON', () => {
+    expect(JSON.parse(JSON.stringify(data))).toEqual(data)
+  })
+
+  it('should leave the labels out of the data', () => {
+    expect(data).not.toHaveProperty('labels')
+  })
+
+  it('should leave out the deprecated sign dates', () => {
+    for (const sign of data.signs) {
+      expect(sign).not.toHaveProperty('startDate')
+      expect(sign).not.toHaveProperty('endDate')
+    }
+  })
+
+  it('should hold ids instead of translated values', () => {
+    expect(data.signs[1]).toMatchObject({
+      name: 'taurus',
+      element: 'earth',
+      modality: 'fixed',
+      rulingPlanet: 'venus'
+    })
+  })
+
+  it.each(['en', 'es', 'ca'] as const)(
+    'should have a "%s" label for every id in signs, planets, houses and aspects',
+    language => {
+      const dictionary: Record<string, string> = labels[language]
+      const items = [
+        ...data.signs,
+        ...data.planets,
+        ...data.houses,
+        ...data.aspects
+      ]
+      const ids = items.flatMap(item =>
+        Object.entries(item)
+          .filter(
+            ([key, value]) => typeof value === 'string' && key !== 'glyph'
+          )
+          .map(([, value]) => value as string)
+      )
+
+      expect(ids.filter(id => !(id in dictionary))).toEqual([])
+    }
+  )
 })

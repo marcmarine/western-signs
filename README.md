@@ -234,6 +234,30 @@ Languages are opt-in and must be imported explicitly:
 - `western-signs/locale/es` — Spanish
 - `western-signs/locale/ca` — Catalan
 
+### Data as JSON
+
+The data behind the library is also published as JSON, for projects that don't run JavaScript or just want the data: a script in another language, a database seed, or the context given to a language model.
+
+`data.json` has `signs`, `planets`, `houses` and `aspects`, whose values are ids instead of translated text. Each language has its own file in `locale/` that maps every id to its label, so load `data.json` together with the languages you need, even if only English:
+
+```js
+import data from 'western-signs/data.json' with { type: 'json' }
+import es from 'western-signs/locale/es.json' with { type: 'json' }
+
+const taurus = data.signs[1]
+// { name: 'taurus', element: 'earth', modality: 'fixed', longitude: { start: 30, end: 60 }, ... }
+
+es[taurus.element]
+// Output: Tierra
+```
+
+Or without installing anything, from a CDN:
+
+```
+https://cdn.jsdelivr.net/npm/western-signs@1/dist/data.json
+https://cdn.jsdelivr.net/npm/western-signs@1/dist/locale/es.json
+```
+
 ## API Reference
 
 ### Variables

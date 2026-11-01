@@ -30,7 +30,9 @@
     "./locale/ca": {
       "types": "./dist/locale/ca.d.ts",
       "default": "./dist/locale/ca.js"
-    }
+    },
+    "./data.json": "./dist/data.json",
+    "./locale/*.json": "./dist/locale/*.json"
   },
   "bugs": "https://github.com/marcmarine/western-signs/issues/new",
   "description": "Western astrology data for signs, planets, houses and aspects, with translations, SVG symbols and the Sun's position for any date.",
@@ -57,7 +59,7 @@
   ],
   "license": "MIT",
   "scripts": {
-    "build": "bun run build:types && bun build.ts",
+    "build": "bun run build:types && bun build.ts && bun build-data.ts",
     "build:types": "bunx tsc --project tsconfig.types.json",
     "build:docs": "bunx typedoc",
     "format": "biome check --write",
