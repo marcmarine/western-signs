@@ -1,5 +1,14 @@
+import { aspects } from './data/aspects'
 import signs from './data/signs'
-import type { Language, Planets, Sign, Signs } from './definitions'
+import type {
+  Aspect,
+  Aspects,
+  House,
+  Language,
+  Planets,
+  Sign,
+  Signs
+} from './definitions'
 import { getHouses } from './getHouses'
 import { getPlanet } from './getPlanet'
 import { getPlanets } from './getPlanets'
@@ -50,8 +59,34 @@ function createZodiac(resolveLanguage: () => Language) {
     },
     /** Astrological houses with their translated properties. */
     houses: {
+      /**
+       * Get a single house by number.
+       *
+       * @param number - The number of the house, from 1 to 12.
+       * @returns The house, or `null` if not found.
+       */
+      get: (number: number): House | null =>
+        getHouses(resolveLanguage()).find(house => house.number === number) ??
+        null,
       /** Get all twelve houses. */
       all: () => getHouses(resolveLanguage())
+    },
+    /** Aspects with their translated properties. */
+    aspects: {
+      /**
+       * Get a single aspect by name.
+       *
+       * @param name - The name of the aspect, e.g. `'trine'`.
+       * @returns The aspect, or `null` if not found.
+       */
+      get: (name: Aspects): Aspect | null => {
+        const aspect = aspects.find(aspect => aspect.name === name)
+
+        return aspect ? translate(aspect, resolveLanguage()) : null
+      },
+      /** Get all aspects, ordered by angle. */
+      all: (): Aspect[] =>
+        aspects.map(aspect => translate(aspect, resolveLanguage()))
     },
     /**
      * Query the zodiac at a given moment.
@@ -118,7 +153,7 @@ function createZodiac(resolveLanguage: () => Language) {
 export type Zodiac = ReturnType<typeof createZodiac>
 
 /**
- * Entry point grouping signs, planets and houses under a single API.
+ * Entry point grouping signs, planets, houses and aspects under a single API.
  * Uses the language set with `i18n.setLanguage()` unless one is fixed with `locale()`.
  *
  * @namespace

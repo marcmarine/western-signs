@@ -29,10 +29,10 @@ npm install western-signs
 
 ### Zodiac
 
-The `zodiac` object groups signs, planets and houses under a single API. Every group uses the same methods: `get` returns one item by name and `all` returns the full list.
+The `zodiac` object groups signs, planets, houses and aspects under a single API. Every group uses the same methods: `get` returns one item by name, or by number for houses, and `all` returns the full list.
 
 ```js
-import { zodiac, SIGNS, PLANETS } from 'western-signs'
+import { zodiac, ASPECTS, SIGNS, PLANETS } from 'western-signs'
 
 zodiac.signs.get(SIGNS.TAURUS)
 zodiac.signs.all()
@@ -40,7 +40,11 @@ zodiac.signs.all()
 zodiac.planets.get(PLANETS.VENUS)
 zodiac.planets.all()
 
+zodiac.houses.get(7)
 zodiac.houses.all()
+
+zodiac.aspects.get(ASPECTS.TRINE)
+zodiac.aspects.all()
 ```
 
 `zodiac.signs.get(SIGNS.TAURUS)` returns an object with the following properties:

@@ -1,5 +1,6 @@
 import { afterEach, describe, expect, it } from 'bun:test'
-import { i18n, PLANETS, SIGNS, zodiac } from '@/index'
+import type { Aspects } from '@/index'
+import { ASPECTS, i18n, PLANETS, SIGNS, zodiac } from '@/index'
 import { CARDINAL_POINTS } from './fixtures'
 import '@/locale/es'
 import '@/locale/ca'
@@ -43,6 +44,45 @@ describe('zodiac', () => {
   describe('zodiac.houses', () => {
     it('should return all houses', () => {
       expect(zodiac.houses.all()).toHaveLength(12)
+    })
+
+    it('should get a house by number', () => {
+      const result = zodiac.houses.get(7)
+
+      expect(result?.number).toBe(7)
+      expect(result?.sign).toBe('Libra')
+    })
+
+    it.each([0, 13, 1.5])('should return null for house %d', number => {
+      expect(zodiac.houses.get(number)).toBeNull()
+    })
+
+    it('should translate a house', () => {
+      expect(zodiac.locale('es').houses.get(1)?.name).toBe('Primera Casa')
+    })
+  })
+
+  describe('zodiac.aspects', () => {
+    it('should get an aspect', () => {
+      const result = zodiac.aspects.get(ASPECTS.TRINE)
+
+      expect(result).toMatchObject({ name: 'Trine', angle: 120 })
+    })
+
+    it('should return null for an unknown aspect', () => {
+      expect(zodiac.aspects.get('unknown' as Aspects)).toBeNull()
+    })
+
+    it('should return all aspects ordered by angle', () => {
+      const angles = zodiac.aspects.all().map(aspect => aspect.angle)
+
+      expect(angles).toEqual([0, 30, 60, 90, 120, 150, 180])
+    })
+
+    it('should translate an aspect', () => {
+      expect(zodiac.locale('es').aspects.get(ASPECTS.SQUARE)?.name).toBe(
+        'Cuadratura'
+      )
     })
   })
 
