@@ -1,185 +1,46 @@
 import type { House } from '../definitions'
 import {
-  ELEMENTS,
   HEMISPHERES,
   HOUSE_KEYWORDS,
   HOUSE_MODALITIES,
   HOUSE_TITLES,
   HOUSES,
-  PLANETS,
   SIGNS
 } from './constants'
+import signs from './signs'
 
 // `keywords` holds a dictionary key here; `getHouses` splits the translated value into a list
-const houses: (Omit<House, 'keywords'> & { keywords: string })[] = [
-  {
-    element: ELEMENTS.FIRE,
-    hemisphere: HEMISPHERES.LOWER,
-    keywords: HOUSE_KEYWORDS[0],
-    modality: HOUSE_MODALITIES.ANGULAR,
-    number: 1,
-    phase: 1,
-    quadrant: 1,
-    rulingPlanet: PLANETS.MARS,
-    traditionalRuler: PLANETS.MARS,
-    sign: SIGNS.ARIES,
-    title: HOUSE_TITLES[0],
-    name: HOUSES[0]
-  },
-  {
-    element: ELEMENTS.EARTH,
-    hemisphere: HEMISPHERES.LOWER,
-    keywords: HOUSE_KEYWORDS[1],
-    modality: HOUSE_MODALITIES.SUCCEDENT,
-    number: 2,
-    phase: 1,
-    quadrant: 1,
-    rulingPlanet: PLANETS.VENUS,
-    traditionalRuler: PLANETS.VENUS,
-    sign: SIGNS.TAURUS,
-    title: HOUSE_TITLES[1],
-    name: HOUSES[1]
-  },
-  {
-    element: ELEMENTS.AIR,
-    hemisphere: HEMISPHERES.LOWER,
-    keywords: HOUSE_KEYWORDS[2],
-    modality: HOUSE_MODALITIES.CADENT,
-    number: 3,
-    phase: 1,
-    quadrant: 1,
-    rulingPlanet: PLANETS.MERCURY,
-    traditionalRuler: PLANETS.MERCURY,
-    sign: SIGNS.GEMINI,
-    title: HOUSE_TITLES[2],
-    name: HOUSES[2]
-  },
-  {
-    element: ELEMENTS.WATER,
-    hemisphere: HEMISPHERES.LOWER,
-    keywords: HOUSE_KEYWORDS[3],
-    modality: HOUSE_MODALITIES.ANGULAR,
-    number: 4,
-    phase: 1,
-    quadrant: 2,
-    rulingPlanet: PLANETS.MOON,
-    traditionalRuler: PLANETS.MOON,
-    sign: SIGNS.CANCER,
-    title: HOUSE_TITLES[3],
-    name: HOUSES[3]
-  },
-  {
-    element: ELEMENTS.FIRE,
-    hemisphere: HEMISPHERES.LOWER,
-    keywords: HOUSE_KEYWORDS[4],
-    modality: HOUSE_MODALITIES.SUCCEDENT,
-    number: 5,
-    phase: 2,
-    quadrant: 2,
-    rulingPlanet: PLANETS.SUN,
-    traditionalRuler: PLANETS.SUN,
-    sign: SIGNS.LEO,
-    title: HOUSE_TITLES[4],
-    name: HOUSES[4]
-  },
-  {
-    element: ELEMENTS.EARTH,
-    hemisphere: HEMISPHERES.LOWER,
-    keywords: HOUSE_KEYWORDS[5],
-    modality: HOUSE_MODALITIES.CADENT,
-    number: 6,
-    phase: 2,
-    quadrant: 2,
-    rulingPlanet: PLANETS.MERCURY,
-    traditionalRuler: PLANETS.MERCURY,
-    sign: SIGNS.VIRGO,
-    title: HOUSE_TITLES[5],
-    name: HOUSES[5]
-  },
-  {
-    element: ELEMENTS.AIR,
-    hemisphere: HEMISPHERES.UPPER,
-    keywords: HOUSE_KEYWORDS[6],
-    modality: HOUSE_MODALITIES.ANGULAR,
-    number: 7,
-    phase: 2,
-    quadrant: 3,
-    rulingPlanet: PLANETS.VENUS,
-    traditionalRuler: PLANETS.VENUS,
-    sign: SIGNS.LIBRA,
-    title: HOUSE_TITLES[6],
-    name: HOUSES[6]
-  },
-  {
-    element: ELEMENTS.WATER,
-    hemisphere: HEMISPHERES.UPPER,
-    keywords: HOUSE_KEYWORDS[7],
-    modality: HOUSE_MODALITIES.SUCCEDENT,
-    number: 8,
-    phase: 2,
-    quadrant: 3,
-    rulingPlanet: PLANETS.PLUTO,
-    traditionalRuler: PLANETS.MARS,
-    sign: SIGNS.SCORPIO,
-    title: HOUSE_TITLES[7],
-    name: HOUSES[7]
-  },
-  {
-    element: ELEMENTS.FIRE,
-    hemisphere: HEMISPHERES.UPPER,
-    keywords: HOUSE_KEYWORDS[8],
-    modality: HOUSE_MODALITIES.CADENT,
-    number: 9,
-    phase: 3,
-    quadrant: 3,
-    rulingPlanet: PLANETS.JUPITER,
-    traditionalRuler: PLANETS.JUPITER,
-    sign: SIGNS.SAGITTARIUS,
-    title: HOUSE_TITLES[8],
-    name: HOUSES[8]
-  },
-  {
-    element: ELEMENTS.EARTH,
-    hemisphere: HEMISPHERES.UPPER,
-    keywords: HOUSE_KEYWORDS[9],
-    modality: HOUSE_MODALITIES.ANGULAR,
-    number: 10,
-    phase: 3,
-    quadrant: 4,
-    rulingPlanet: PLANETS.SATURN,
-    traditionalRuler: PLANETS.SATURN,
-    sign: SIGNS.CAPRICORN,
-    title: HOUSE_TITLES[9],
-    name: HOUSES[9]
-  },
-  {
-    element: ELEMENTS.AIR,
-    hemisphere: HEMISPHERES.UPPER,
-    keywords: HOUSE_KEYWORDS[10],
-    modality: HOUSE_MODALITIES.SUCCEDENT,
-    number: 11,
-    phase: 3,
-    quadrant: 4,
-    rulingPlanet: PLANETS.URANUS,
-    traditionalRuler: PLANETS.SATURN,
-    sign: SIGNS.AQUARIUS,
-    title: HOUSE_TITLES[10],
-    name: HOUSES[10]
-  },
-  {
-    element: ELEMENTS.WATER,
-    hemisphere: HEMISPHERES.UPPER,
-    keywords: HOUSE_KEYWORDS[11],
-    modality: HOUSE_MODALITIES.CADENT,
-    number: 12,
-    phase: 3,
-    quadrant: 4,
-    rulingPlanet: PLANETS.NEPTUNE,
-    traditionalRuler: PLANETS.JUPITER,
-    sign: SIGNS.PISCES,
-    title: HOUSE_TITLES[11],
-    name: HOUSES[11]
-  }
+type HouseData = Omit<House, 'keywords'> & { keywords: string }
+
+// Angular, succedent and cadent repeat in that order from the 1st house
+const MODALITY_CYCLE = [
+  HOUSE_MODALITIES.ANGULAR,
+  HOUSE_MODALITIES.SUCCEDENT,
+  HOUSE_MODALITIES.CADENT
 ]
+
+// Every value follows from the house's position: the nth house goes with the nth sign,
+// from which it takes its element and rulers
+const houses: HouseData[] = HOUSES.map((name, index) => {
+  const number = index + 1
+  const sign = Object.values(SIGNS)[index]
+  const { element, rulingPlanet, traditionalRuler } = signs[sign]
+
+  return {
+    element,
+    // Houses 1 to 6 are below the horizon
+    hemisphere: number <= 6 ? HEMISPHERES.LOWER : HEMISPHERES.UPPER,
+    keywords: HOUSE_KEYWORDS[index],
+    modality: MODALITY_CYCLE[index % 3],
+    number,
+    phase: Math.ceil(number / 4) as House['phase'],
+    quadrant: Math.ceil(number / 3) as House['quadrant'],
+    rulingPlanet,
+    traditionalRuler,
+    sign,
+    title: HOUSE_TITLES[index],
+    name
+  }
+})
 
 export default houses
