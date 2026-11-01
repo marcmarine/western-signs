@@ -23,13 +23,6 @@ type AtOptions =
   /** A local date and time in the given time zone. */
   | { date: string; timeZone: string }
 
-// A house's `keywords` is a dictionary key whose translation is a comma-separated list
-function translateHouse(house: (typeof houses)[number], language: Language) {
-  const translated = translate(house, language)
-
-  return { ...translated, keywords: translated.keywords.split(',') } as House
-}
-
 function createZodiac(resolveLanguage: () => Language) {
   return {
     /**
@@ -85,11 +78,11 @@ function createZodiac(resolveLanguage: () => Language) {
       get: (number: number): House | null => {
         const house = houses.find(house => house.number === number)
 
-        return house ? translateHouse(house, resolveLanguage()) : null
+        return house ? translate(house, resolveLanguage()) : null
       },
       /** Get all twelve houses. */
       all: (): House[] =>
-        houses.map(house => translateHouse(house, resolveLanguage()))
+        houses.map(house => translate(house, resolveLanguage()))
     },
     /** Aspects with their translated properties. */
     aspects: {

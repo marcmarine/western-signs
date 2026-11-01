@@ -1,7 +1,5 @@
 import { describe, expect, it } from 'bun:test'
-import { dictionaries } from '@/data/dictionaries'
 import signs from '@/data/signs'
-import type { Dictionary, Language } from '@/definitions'
 import { zodiac } from '@/index'
 import '@/locale/es'
 import '@/locale/ca'
@@ -55,55 +53,30 @@ describe('zodiac.houses', () => {
     })
   })
 
-  describe('keywords', () => {
-    it('should return keywords as a list', () => {
-      const [house] = zodiac.houses.all()
-
-      expect(house.keywords).toEqual([
-        'Self-image',
-        'Identity',
-        'Impressions on others',
-        'Personality'
-      ])
-    })
-
-    it('should translate each keyword', () => {
-      const [house] = zodiac.locale('es').houses.all()
-
-      expect(house.keywords).toEqual([
-        'Autoimagen',
-        'Identidad',
-        'Impresiones en los demás',
-        'Personalidad'
-      ])
-    })
-
-    it.each(['en', 'es', 'ca'] as const)(
-      'should not have surrounding spaces in %s keywords',
-      language => {
-        for (const house of zodiac.locale(language).houses.all()) {
-          for (const keyword of house.keywords) {
-            expect(keyword).toBe(keyword.trim())
-          }
-        }
-      }
-    )
-  })
-
-  describe('translations', () => {
-    for (const language of [...dictionaries.keys()] as Language[]) {
-      it(`should return houses with correct translated titles for language: ${language}`, () => {
-        const result = zodiac.locale(language).houses.all()
-        const dict = dictionaries.get(language) as Dictionary
-
-        result.forEach((house, index) => {
-          const expectedTitleKey = `houseTitle${index + 1}`
-          const expectedTitle = dict[expectedTitleKey as keyof typeof dict]
-
-          expect(house).toHaveProperty('title')
-          expect(house.title).toBe(expectedTitle)
-        })
+  it.each([
+    [1, 'Lower', 1, 'Angular'],
+    [2, 'Lower', 1, 'Succedent'],
+    [3, 'Lower', 1, 'Cadent'],
+    [6, 'Lower', 2, 'Cadent'],
+    [7, 'Upper', 3, 'Angular'],
+    [10, 'Upper', 4, 'Angular'],
+    [12, 'Upper', 4, 'Cadent']
+  ] as const)(
+    'house %i should be in the %s hemisphere, quadrant %i, and %s',
+    (number, hemisphere, quadrant, modality) => {
+      expect(zodiac.houses.get(number)).toMatchObject({
+        hemisphere,
+        quadrant,
+        modality
       })
     }
+  )
+
+  it.each([
+    ['en', 'First House'],
+    ['es', 'Primera Casa'],
+    ['ca', 'Primera Casa']
+  ] as const)('should translate the name in "%s"', (language, expected) => {
+    expect(zodiac.locale(language).houses.get(1)?.name).toBe(expected)
   })
 })

@@ -96,36 +96,6 @@ export const HOUSES = [
   'house-12'
 ] as const
 
-export const HOUSE_TITLES = [
-  'houseTitle1',
-  'houseTitle2',
-  'houseTitle3',
-  'houseTitle4',
-  'houseTitle5',
-  'houseTitle6',
-  'houseTitle7',
-  'houseTitle8',
-  'houseTitle9',
-  'houseTitle10',
-  'houseTitle11',
-  'houseTitle12'
-] as const
-
-export const HOUSE_KEYWORDS = [
-  'houseKeywords1',
-  'houseKeywords2',
-  'houseKeywords3',
-  'houseKeywords4',
-  'houseKeywords5',
-  'houseKeywords6',
-  'houseKeywords7',
-  'houseKeywords8',
-  'houseKeywords9',
-  'houseKeywords10',
-  'houseKeywords11',
-  'houseKeywords12'
-] as const
-
 export const HEMISPHERES = {
   LOWER: 'lower',
   UPPER: 'upper'

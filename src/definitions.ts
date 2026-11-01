@@ -6,9 +6,7 @@ import type {
   CHARACTERS,
   ELEMENTS,
   HEMISPHERES,
-  HOUSE_KEYWORDS,
   HOUSE_MODALITIES,
-  HOUSE_TITLES,
   HOUSES,
   MODALITIES,
   PLANET_TYPE,
@@ -34,8 +32,6 @@ export type Hemispheres = ObjectValues<typeof HEMISPHERES>
 export type HouseModalities = ObjectValues<typeof HOUSE_MODALITIES>
 export type PlanetType = ObjectValues<typeof PLANET_TYPE>
 export type Aspects = ObjectValues<typeof ASPECTS>
-export type HouseTitles = (typeof HOUSE_TITLES)[number]
-export type HouseKeywords = (typeof HOUSE_KEYWORDS)[number]
 export type Houses = (typeof HOUSES)[number]
 export type Symbols = Signs | Planets | Aspects | 'ascendant'
 export type AspectType = ObjectValues<typeof ASPECT_TYPE>
@@ -121,8 +117,8 @@ export interface Sign {
   traditionalRuler: string
 
   /**
-   * The season in which the zodiac sign occurs.
-   * Indicates the time of year the sign predominates.
+   * The season in which the Sun is in the sign, in the Northern Hemisphere.
+   * In the Southern Hemisphere the seasons are the other way around.
    * Examples: "Spring" for Aries, "Spring" for Taurus.
    */
   season: string
@@ -130,103 +126,62 @@ export interface Sign {
 
 export interface House {
   /**
-   * Element associated with the house’s natural zodiac sign.
-   *
-   * Represents one of the four classical elements — Fire, Earth, Air, or Water — reflecting the essential nature and mode of expression of the house.
-   *
-   * Example: "Fire" for House 1 (Aries), "Earth" for House 2 (Taurus)
+   * The element of the house's natural sign.
+   * Example: "Fire" for House 1 (Aries), "Earth" for House 2 (Taurus).
    */
   element: Elements
 
   /**
-   * Hemisphere division based on the horizon line.
+   * The half of the chart the house is in, divided by the horizon.
    *
-   * - **Lower/Northern Hemisphere (Houses 1–6):** Known as the *Personal Houses*, these focus on individual development, personal identity, and foundational life needs.
-   * - **Upper/Southern Hemisphere (Houses 7–12):** Known as the *Collective Houses*, these reflect relationships with others, society, and broader humanity.
+   * - **Lower (Houses 1–6):** below the horizon, the northern half of the chart.
+   * - **Upper (Houses 7–12):** above the horizon, the southern half of the chart.
    */
   hemisphere: Hemispheres
 
   /**
-   * Key themes and associated concepts.
-   *
-   * Represents the core ideas or psychological themes governed by the house.
-   * Example: ['Self-image', 'Identity', 'Impressions on others', 'Personality']
-   */
-  keywords: string[]
-
-  /**
-   * Number of the astrological house (1–12).
-   *
-   * Each house corresponds to a specific domain of life experience.
-   * Example: 1 = Self and identity, 7 = Partnerships and relating.
+   * The number of the house, from 1 to 12, counted counterclockwise from the Ascendant.
    */
   number: number
 
   /**
-   * Developmental phase grouping.
-   *
-   * - **Phase I (Houses 1–4):** Focus on self-awareness and personal foundation — the “me-in-here”.
-   * - **Phase II (Houses 5–8):** Development of the autonomous self in relationship — the “me” meets the “you”.
-   * - **Phase III (Houses 9–12):** Expansion of self toward collective consciousness and universal understanding.
-   */
-  phase: 1 | 2 | 3
-
-  /**
-   * Quadrant of the chart based on the intersection of horizon and meridian axes.
-   *
-   * - **Quadrant I (Houses 1–3):** Formation of personal identity through the body, possessions, and environment.
-   * - **Quadrant II (Houses 4–6):** Further development of self via family, creativity, and refinement of skills.
-   * - **Quadrant III (Houses 7–9):** Expansion through relationships, transformation, and new vision of self.
-   * - **Quadrant IV (Houses 10–12):** Integration into society and pursuit of collective and spiritual purpose.
+   * The quarter of the chart the house is in, divided by the horizon and the meridian.
+   * Quadrant I holds Houses 1–3, Quadrant II Houses 4–6, Quadrant III Houses 7–9
+   * and Quadrant IV Houses 10–12.
    */
   quadrant: 1 | 2 | 3 | 4
 
   /**
-   * Ruling planet of the house.
-   *
-   * Indicates the primary planetary influence over the house’s themes.
-   * Example: "Mars", "Venus"
+   * The ruling planet of the house's natural sign.
+   * Example: "Mars" for House 1, "Venus" for House 2.
    */
   rulingPlanet: string
 
   /**
-   * Traditional ruling planet of the house, from before the discovery of the outer planets.
-   *
+   * The traditional ruling planet of the house's natural sign, from before the discovery of the outer planets.
    * Same as `rulingPlanet` except for Houses 8, 11 and 12.
-   * Example: "Mars" for House 8 (modern ruler: Pluto), "Jupiter" for House 12 (modern ruler: Neptune)
+   * Example: "Mars" for House 8 (modern ruler: Pluto), "Jupiter" for House 12 (modern ruler: Neptune).
    */
   traditionalRuler: string
 
   /**
-   * Zodiac sign associated with the house.
-   *
-   * Reflects the natural energy or archetype that aligns with the house.
-   * Example: "Aries", "Taurus"
+   * The natural sign of the house: the sign with the same number.
+   * Example: "Aries" for House 1, "Taurus" for House 2.
    */
   sign: Signs
 
   /**
-   * Title or name of the house.
+   * The modality of the house, which repeats in this order from House 1:
    *
-   * A formal or descriptive label that captures the house’s core function or domain.
-   * Example: "The Individual Personality", "Values and Possessions"
-   */
-  title: string
-
-  /**
-   * Modalities of the houses (Angular, Succedent, Cadent).
-   *
-   * Traditional classification describing the house’s dynamic strength and function:
-   * - **Angular (Houses 1, 4, 7, 10):** Active, initiating, most powerful.
-   * - **Succedent (Houses 2, 5, 8, 11):** Stabilizing, sustaining what was initiated.
-   * - **Cadent (Houses 3, 6, 9, 12):** Transitional, preparatory, often more internal or mental.
+   * - **Angular (Houses 1, 4, 7, 10):** the houses that start at an angle of the chart.
+   * - **Succedent (Houses 2, 5, 8, 11):** the houses that follow an angular house.
+   * - **Cadent (Houses 3, 6, 9, 12):** the houses that come before the next angle.
    */
   modality: HouseModalities
 
   /**
-   * The name of the astrological house.
-   * Refers to its designated number in the zodiac cycle, such as "First House", "Second House", etc.
-   * Examples: "First House", "Second House", "Third House", ... "Twelfth House".
+   * The name of the house.
+   * Examples: "First House", "Second House", ... "Twelfth House".
    */
   name: Houses
 }
@@ -265,8 +220,6 @@ export type Dictionary = {
     | HouseModalities
     | PlanetType
     | Houses
-    | HouseTitles
-    | HouseKeywords
     | Aspects
     | AspectType
     | AspectQuality]: string
