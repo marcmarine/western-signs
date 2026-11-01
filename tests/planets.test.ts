@@ -1,32 +1,31 @@
 import { describe, expect, it } from 'bun:test'
-import planets from '@/data/planets'
 import type { Planets } from '@/definitions'
-import { PLANETS, zodiac } from '@/index'
+import { i18n, PLANETS, zodiac } from '@/index'
 import '@/locale/es'
 
 describe('zodiac.planets', () => {
-  it('should get a planet by name', () => {
-    expect(zodiac.planets.get(PLANETS.VENUS)).toMatchObject({
-      name: 'Venus',
-      glyph: '♀'
+  it('should get a planet by identifier', () => {
+    expect(zodiac.planets.get(PLANETS.SATURN)).toEqual({
+      id: 'saturn',
+      glyph: '♄',
+      type: 'social'
     })
   })
 
-  it('should return null for an unknown planet', () => {
-    expect(zodiac.planets.get('unknown' as Planets)).toBeNull()
+  it('should return undefined for an unknown planet', () => {
+    expect(zodiac.planets.get('unknown' as Planets)).toBeUndefined()
   })
 
   it('should return every planet in order', () => {
-    const result = zodiac.planets.all()
-
-    expect(result).toHaveLength(Object.keys(planets).length)
-    expect(result.map(planet => planet.glyph)).toEqual(
-      Object.values(planets).map(planet => planet.glyph)
+    expect(zodiac.planets.all().map(planet => planet.id)).toEqual(
+      Object.values(PLANETS)
     )
   })
 
-  it('should translate a planet', () => {
-    expect(zodiac.locale('es').planets.get(PLANETS.SATURN)).toEqual({
+  it('should translate a planet with i18n.label()', () => {
+    const planet = zodiac.planets.get(PLANETS.SATURN)
+
+    expect(i18n.label(planet, 'es')).toEqual({
       id: 'saturn',
       name: 'Saturno',
       glyph: '♄',

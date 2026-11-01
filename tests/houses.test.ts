@@ -1,68 +1,40 @@
 import { describe, expect, it } from 'bun:test'
-import signs from '@/data/signs'
-import { zodiac } from '@/index'
+import type { House } from '@/index'
+import { i18n, SIGNS, zodiac } from '@/index'
 import '@/locale/es'
 import '@/locale/ca'
 
 describe('zodiac.houses', () => {
-  it('should return an array of 12 houses', () => {
-    const result = zodiac.houses.all()
-    expect(result).toBeArrayOfSize(12)
+  it('should return the twelve houses in order', () => {
+    expect(zodiac.houses.all().map(house => house.number)).toEqual([
+      1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
+    ])
   })
 
-  const housesWithSign = Object.keys(signs).map(
-    (sign, index): [number, string] => [index + 1, sign]
-  )
-
-  it.each(housesWithSign)(
-    'house %i should have sign matching "%s"',
-    (number, expectedSign) => {
-      const result = zodiac.houses.all()
-      const house = result[number - 1]
-
-      expect(house).toHaveProperty('sign')
-      expect(house.sign).toMatch(new RegExp(expectedSign, 'i'))
+  it.each(Object.values(SIGNS).map((sign, index) => [index + 1, sign]))(
+    'house %i should have %s as its sign',
+    (number, sign) => {
+      expect(zodiac.houses.get(number as number)?.sign).toBe(sign as string)
     }
   )
 
-  describe('rulers', () => {
-    it.each([
-      [8, 'Pluto', 'Mars'],
-      [11, 'Uranus', 'Saturn'],
-      [12, 'Neptune', 'Jupiter']
-    ])(
-      'house %i should be ruled by %s, traditionally by %s',
-      (number, modern, traditional) => {
-        const house = zodiac.houses.all()[number - 1]
+  it('should take the element and rulers of its sign', () => {
+    for (const house of zodiac.houses.all()) {
+      const sign = zodiac.signs.get(house.sign)
 
-        expect(house.rulers.modern).toBe(modern)
-        expect(house.rulers.traditional).toBe(traditional)
-      }
-    )
-
-    it('should have the same modern and traditional ruler in every other house', () => {
-      for (const house of zodiac.houses.all()) {
-        if ([8, 11, 12].includes(house.number)) continue
-
-        expect(house.rulers.traditional).toBe(house.rulers.modern)
-      }
-    })
-
-    it('should be translated', () => {
-      expect(zodiac.locale('es').houses.all()[7].rulers.traditional).toBe(
-        'Marte'
-      )
-    })
+      expect(house.element).toBe(sign?.element as string)
+      expect(house.rulers).toEqual(sign?.rulers as object)
+    }
   })
 
   it.each([
-    [1, 'Lower', 1, 'Angular'],
-    [2, 'Lower', 1, 'Succedent'],
-    [3, 'Lower', 1, 'Cadent'],
-    [6, 'Lower', 2, 'Cadent'],
-    [7, 'Upper', 3, 'Angular'],
-    [10, 'Upper', 4, 'Angular'],
-    [12, 'Upper', 4, 'Cadent']
+    [1, 'lower', 1, 'angular'],
+    [2, 'lower', 1, 'succedent'],
+    [3, 'lower', 1, 'cadent'],
+    [6, 'lower', 2, 'cadent'],
+    [7, 'upper', 3, 'angular'],
+    [10, 'upper', 4, 'angular'],
+    [12, 'upper', 4, 'cadent']
   ] as const)(
     'house %i should be in the %s hemisphere, quadrant %i, and %s',
     (number, hemisphere, quadrant, modality) => {
@@ -74,11 +46,24 @@ describe('zodiac.houses', () => {
     }
   )
 
-  it.each([
-    ['en', 'First House'],
-    ['es', 'Primera Casa'],
-    ['ca', 'Primera Casa']
-  ] as const)('should translate the name in "%s"', (language, expected) => {
-    expect(zodiac.locale(language).houses.get(1)?.name).toBe(expected)
+  describe('with i18n.label()', () => {
+    it.each([
+      ['en', 'First House'],
+      ['es', 'Primera Casa'],
+      ['ca', 'Primera Casa']
+    ] as const)('should translate the name in "%s"', (language, expected) => {
+      const house = zodiac.houses.get(1) as House
+
+      expect(i18n.label(house, language).name).toBe(expected)
+    })
+
+    it('should translate the rulers', () => {
+      const house = zodiac.houses.get(8) as House
+
+      expect(i18n.label(house, 'es').rulers).toEqual({
+        modern: 'Plutón',
+        traditional: 'Marte'
+      })
+    })
   })
 })

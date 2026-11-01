@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it } from 'bun:test'
 import type { Dictionary } from '@/definitions'
-import { ASPECTS, i18n, SIGNS } from '@/index'
+import { ASPECTS, i18n, SIGNS, zodiac } from '@/index'
 import '@/locale/es'
 import '@/locale/ca'
 
@@ -48,5 +48,60 @@ describe('Translate function', () => {
 
   it('should return the key itself if no translation is found', () => {
     expect(t('unknown' as keyof Dictionary)).toBe('unknown')
+  })
+})
+
+describe('label', () => {
+  beforeEach(() => {
+    setLanguage('en')
+  })
+
+  const taurus = zodiac.signs.get(SIGNS.TAURUS)
+
+  it('should keep the id and add the translated name', () => {
+    expect(i18n.label(taurus, 'es')).toMatchObject({
+      id: 'taurus',
+      name: 'Tauro',
+      element: 'Tierra'
+    })
+  })
+
+  it('should use the current language by default', () => {
+    setLanguage('ca')
+
+    expect(i18n.label(taurus).name).toBe('Taure')
+  })
+
+  it('should leave numbers and glyphs as they are', () => {
+    expect(i18n.label(taurus, 'es')).toMatchObject({
+      glyph: '♉',
+      number: 2,
+      longitude: { start: 30, end: 60 }
+    })
+  })
+
+  it('should not change the item', () => {
+    i18n.label(taurus, 'es')
+
+    expect(taurus.element).toBe('earth')
+  })
+})
+
+describe('locale', () => {
+  beforeEach(() => {
+    setLanguage('en')
+  })
+
+  it('should fix t and label to a language', () => {
+    const es = i18n.locale('es')
+
+    expect(es.t(SIGNS.TAURUS)).toBe('Tauro')
+    expect(es.label(zodiac.signs.get(SIGNS.TAURUS)).name).toBe('Tauro')
+  })
+
+  it('should ignore the current language', () => {
+    setLanguage('ca')
+
+    expect(i18n.locale('es').t(SIGNS.TAURUS)).toBe('Tauro')
   })
 })

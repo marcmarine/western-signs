@@ -6,16 +6,13 @@ import type {
   Aspect,
   Aspects,
   House,
-  Language,
   Planet,
   Planets,
   Sign,
   Signs
 } from './definitions'
-import { getLanguage } from './i18n'
 import { sunLongitude } from './sun'
 import { fromLocal } from './time'
-import { translate } from './utils'
 
 type AtOptions =
   /** An instant. */
@@ -23,168 +20,149 @@ type AtOptions =
   /** A local date and time in the given time zone. */
   | { date: string; timeZone: string }
 
-// Items come translated, with their translated `id` as `name`
-type Named<T> = T & { name: string }
+// The data is returned as is, so freeze it to keep a change in one place from reaching every caller
+function deepFreeze<T>(value: T): T {
+  if (typeof value === 'object' && value !== null) {
+    Object.values(value).forEach(deepFreeze)
+    Object.freeze(value)
+  }
 
-function createZodiac(resolveLanguage: () => Language) {
-  return {
+  return value
+}
+
+deepFreeze([signs, planets, houses, aspects])
+
+/**
+ * Entry point grouping signs, planets, houses and aspects under a single API.
+ *
+ * Values are identifiers, the same in every language, e.g. `element: 'earth'`.
+ * Use {@link i18n.label | `i18n.label()`} to translate an item, and copy it before changing it,
+ * as the returned objects are frozen.
+ *
+ * @namespace
+ *
+ * @example
+ * import { i18n, zodiac } from 'western-signs'
+ * import 'western-signs/locale/es'
+ *
+ * zodiac.signs.get('taurus').element
+ * // Output: 'earth'
+ *
+ * i18n.label(zodiac.signs.get('taurus'), 'es').name
+ * // Output: 'Tauro'
+ *
+ * zodiac.at({ date: new Date(2024, 4, 5) }).sun.sign().id
+ * // Output: 'taurus'
+ */
+export const zodiac = {
+  /** The twelve zodiac signs. */
+  signs: {
     /**
-     * Return a copy of the API fixed to the given language, ignoring `i18n.setLanguage()`.
+     * Get a single sign by identifier.
      *
-     * @param language - The language code used for translations.
+     * @param id - The identifier of the sign, e.g. `'taurus'`.
+     * @returns The sign. For an identifier that doesn't exist, e.g. from JavaScript without types, it returns `undefined`.
      */
-    locale: (language: Language) => createZodiac(() => language),
-    /** Zodiac signs with their translated properties. */
-    signs: {
-      /**
-       * Get a single sign by identifier.
-       *
-       * @param id - The identifier of the sign, e.g. `'taurus'`.
-       * @returns The sign, or `null` if not found.
-       */
-      get: (id: Signs): Named<Sign> | null => {
-        const sign = signs[id]
-
-        return sign ? translate(sign, resolveLanguage()) : null
-      },
-      /** Get all twelve signs. */
-      all: (): Named<Sign>[] =>
-        Object.values(signs).map(sign => translate(sign, resolveLanguage()))
-    },
-    /** Planets with their translated properties. */
-    planets: {
-      /**
-       * Get a single planet by identifier.
-       *
-       * @param id - The identifier of the planet, e.g. `'venus'`.
-       * @returns The planet, or `null` if not found.
-       */
-      get: (id: Planets): Named<Planet> | null => {
-        const planet = planets[id]
-
-        return planet ? translate(planet, resolveLanguage()) : null
-      },
-      /** Get all planets. */
-      all: (): Named<Planet>[] =>
-        Object.values(planets).map(planet =>
-          translate(planet, resolveLanguage())
-        )
-    },
-    /** Astrological houses with their translated properties. */
-    houses: {
-      /**
-       * Get a single house by number.
-       *
-       * @param number - The number of the house, from 1 to 12.
-       * @returns The house, or `null` if not found.
-       */
-      get: (number: number): Named<House> | null => {
-        const house = houses.find(house => house.number === number)
-
-        return house ? translate(house, resolveLanguage()) : null
-      },
-      /** Get all twelve houses. */
-      all: (): Named<House>[] =>
-        houses.map(house => translate(house, resolveLanguage()))
-    },
-    /** Aspects with their translated properties. */
-    aspects: {
-      /**
-       * Get a single aspect by identifier.
-       *
-       * @param id - The identifier of the aspect, e.g. `'trine'`.
-       * @returns The aspect, or `null` if not found.
-       */
-      get: (id: Aspects): Named<Aspect> | null => {
-        const aspect = aspects.find(aspect => aspect.id === id)
-
-        return aspect ? translate(aspect, resolveLanguage()) : null
-      },
-      /** Get all aspects, ordered by angle. */
-      all: (): Named<Aspect>[] =>
-        aspects.map(aspect => translate(aspect, resolveLanguage()))
-    },
+    get: (id: Signs): Sign => signs[id],
+    /** Get all twelve signs, from Aries to Pisces. */
+    all: (): Sign[] => Object.values(signs)
+  },
+  /** The planets, including the Sun and the Moon. */
+  planets: {
     /**
-     * Query the zodiac at a given moment.
+     * Get a single planet by identifier.
      *
-     * Pass either a `Date`, which is already an instant, or a local date and time with
-     * the time zone of the place, e.g. where someone was born. The local form gives the
-     * same result wherever the code runs; with a `Date`, `new Date(2024, 2, 20)` means
-     * midnight in the time zone of the machine running the code.
-     *
-     * @param options - The moment to query.
-     * @param options.date - A `Date`, or a local date as `YYYY-MM-DD` with an optional time, `THH:mm` or `THH:mm:ss`. Without a time, noon is used, which can give the wrong sign on the day the Sun changes sign.
-     * @param options.timeZone - The IANA time zone of a local date, e.g. `'Europe/Madrid'`.
-     * @returns An object whose `sun` gives the Sun's position at that instant.
-     *
-     * @example
-     * zodiac.at({ date: '1990-03-20T05:00', timeZone: 'Europe/Madrid' }).sun.sign().name
-     * // Output: 'Pisces'
+     * @param id - The identifier of the planet, e.g. `'venus'`.
+     * @returns The planet. For an identifier that doesn't exist, e.g. from JavaScript without types, it returns `undefined`.
      */
-    at: (options: AtOptions) => {
-      const longitude = () =>
-        sunLongitude(
-          'timeZone' in options
-            ? fromLocal(options.date, options.timeZone)
-            : options.date
-        )
+    get: (id: Planets): Planet => planets[id],
+    /** Get all planets. */
+    all: (): Planet[] => Object.values(planets)
+  },
+  /** The twelve astrological houses. */
+  houses: {
+    /**
+     * Get a single house by number.
+     *
+     * @param number - The number of the house, from 1 to 12.
+     * @returns The house, or `undefined` if there is no house with that number.
+     */
+    get: (number: number): House | undefined =>
+      houses.find(house => house.number === number),
+    /** Get all twelve houses. */
+    all: (): House[] => [...houses]
+  },
+  /** The aspects, from conjunction to opposition. */
+  aspects: {
+    /**
+     * Get a single aspect by identifier.
+     *
+     * @param id - The identifier of the aspect, e.g. `'trine'`.
+     * @returns The aspect. For an identifier that doesn't exist, e.g. from JavaScript without types, it returns `undefined`.
+     */
+    get: (id: Aspects): Aspect =>
+      aspects.find(aspect => aspect.id === id) as Aspect,
+    /** Get all aspects, ordered by angle. */
+    all: (): Aspect[] => [...aspects]
+  },
+  /**
+   * Query the zodiac at a given moment.
+   *
+   * Pass either a `Date`, which is already an instant, or a local date and time with
+   * the time zone of the place, e.g. where someone was born. The local form gives the
+   * same result wherever the code runs; with a `Date`, `new Date(2024, 2, 20)` means
+   * midnight in the time zone of the machine running the code.
+   *
+   * @param options - The moment to query.
+   * @param options.date - A `Date`, or a local date as `YYYY-MM-DD` with an optional time, `THH:mm` or `THH:mm:ss`. Without a time, noon is used, which can give the wrong sign on the day the Sun changes sign.
+   * @param options.timeZone - The IANA time zone of a local date, e.g. `'Europe/Madrid'`.
+   * @returns An object whose `sun` gives the Sun's position at that instant.
+   *
+   * @example
+   * zodiac.at({ date: '1990-03-20T05:00', timeZone: 'Europe/Madrid' }).sun.sign().id
+   * // Output: 'pisces'
+   */
+  at: (options: AtOptions) => {
+    const longitude = () =>
+      sunLongitude(
+        'timeZone' in options
+          ? fromLocal(options.date, options.timeZone)
+          : options.date
+      )
 
-      return {
-        sun: {
-          /**
-           * Get the sign the Sun is in at the given instant.
-           *
-           * @throws {Error} If the date or the time zone is invalid.
-           * @returns The sign.
-           */
-          sign: (): Named<Sign> => {
-            const degrees = longitude()
-            const sign = Object.values(signs).find(
-              ({ longitude }) =>
-                degrees >= longitude.start && degrees < longitude.end
-            ) as Sign
+    return {
+      sun: {
+        /**
+         * Get the sign the Sun is in at the given instant.
+         *
+         * @throws {Error} If the date or the time zone is invalid.
+         * @returns The sign.
+         */
+        sign: (): Sign => {
+          const degrees = longitude()
 
-            return translate(sign, resolveLanguage())
-          },
-          /**
-           * Get the Sun's ecliptic longitude at the given instant.
-           *
-           * @throws {Error} If the date or the time zone is invalid.
-           * @returns The longitude in degrees, from 0 (start of Aries) to 360.
-           */
-          longitude,
-          /**
-           * Get the Sun's degree within its sign at the given instant.
-           *
-           * @throws {Error} If the date or the time zone is invalid.
-           * @returns The degree, from 0 to 30.
-           */
-          degree: () => longitude() % 30
-        }
+          return Object.values(signs).find(
+            ({ longitude }) =>
+              degrees >= longitude.start && degrees < longitude.end
+          ) as Sign
+        },
+        /**
+         * Get the Sun's ecliptic longitude at the given instant.
+         *
+         * @throws {Error} If the date or the time zone is invalid.
+         * @returns The longitude in degrees, from 0 (start of Aries) to 360.
+         */
+        longitude,
+        /**
+         * Get the Sun's degree within its sign at the given instant.
+         *
+         * @throws {Error} If the date or the time zone is invalid.
+         * @returns The degree, from 0 to 30.
+         */
+        degree: () => longitude() % 30
       }
     }
   }
 }
 
-export type Zodiac = ReturnType<typeof createZodiac>
-
-/**
- * Entry point grouping signs, planets, houses and aspects under a single API.
- * Uses the language set with `i18n.setLanguage()` unless one is fixed with `locale()`.
- *
- * @namespace
- *
- * @example
- * import { zodiac } from 'western-signs';
- * import 'western-signs/locale/es';
- *
- * zodiac.signs.get('taurus')?.name
- * // Output: 'Taurus'
- *
- * zodiac.locale('es').signs.get('taurus')?.name
- * // Output: 'Tauro'
- *
- * zodiac.at({ date: new Date(2024, 4, 5) }).sun.sign().name
- * // Output: 'Taurus'
- */
-export const zodiac: Zodiac = createZodiac(getLanguage)
+export type Zodiac = typeof zodiac

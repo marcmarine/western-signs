@@ -1,84 +1,44 @@
 import { describe, expect, it } from 'bun:test'
-import signs from '@/data/signs'
-import type { Dictionary, Signs } from '@/definitions'
+import type { Signs } from '@/definitions'
 import { i18n, SIGNS, zodiac } from '@/index'
 import '@/locale/es'
 import '@/locale/ca'
 
-const languages = ['en', 'es', 'ca'] as const
-
 describe('zodiac.signs', () => {
-  it('should get a sign by name', () => {
-    expect(zodiac.signs.get(SIGNS.TAURUS)).toMatchObject({
-      name: 'Taurus',
+  it('should get a sign by identifier', () => {
+    expect(zodiac.signs.get(SIGNS.TAURUS)).toEqual({
+      id: 'taurus',
+      bodyPart: 'throat',
+      character: 'bull',
+      element: 'earth',
       glyph: '♉',
-      number: 2
+      longitude: { start: 30, end: 60 },
+      modality: 'fixed',
+      number: 2,
+      polarity: 'negative',
+      rulers: { modern: 'venus', traditional: 'venus' },
+      season: 'spring'
     })
   })
 
-  it('should return null for an unknown sign', () => {
-    expect(zodiac.signs.get('unknown' as Signs)).toBeNull()
+  it('should return undefined for an unknown sign', () => {
+    expect(zodiac.signs.get('unknown' as Signs)).toBeUndefined()
   })
 
   it('should return the twelve signs in order', () => {
-    const result = zodiac.signs.all()
-
-    expect(result.map(sign => sign.number)).toEqual([
-      1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
-    ])
+    expect(zodiac.signs.all().map(sign => sign.id)).toEqual(
+      Object.values(SIGNS)
+    )
   })
 
   it.each([
-    ['en', 'Taurus'],
-    ['es', 'Tauro'],
-    ['ca', 'Taure']
-  ] as const)('should translate the name in "%s"', (lang, expectedName) => {
-    expect(zodiac.locale(lang).signs.get(SIGNS.TAURUS)?.name).toBe(expectedName)
-  })
-
-  it('should keep the id and add the translated name', () => {
-    expect(zodiac.locale('es').signs.get(SIGNS.TAURUS)).toMatchObject({
-      id: 'taurus',
-      name: 'Tauro',
-      polarity: 'Negativo',
-      rulers: { modern: 'Venus', traditional: 'Venus' }
-    })
-  })
-
-  it.each(languages)(
-    'should translate every property of every sign in "%s"',
-    lang => {
-      for (const [id, sign] of Object.entries(signs)) {
-        const result = zodiac.locale(lang).signs.get(id as Signs)
-
-        expect(result).toMatchObject({
-          name: i18n.t(sign.id, lang),
-          element: i18n.t(sign.element, lang),
-          rulers: {
-            modern: i18n.t(sign.rulers.modern as keyof Dictionary, lang),
-            traditional: i18n.t(
-              sign.rulers.traditional as keyof Dictionary,
-              lang
-            )
-          },
-          glyph: sign.glyph,
-          longitude: sign.longitude
-        })
-      }
-    }
-  )
-
-  it.each([
-    [SIGNS.SCORPIO, 'Pluto', 'Mars'],
-    [SIGNS.AQUARIUS, 'Uranus', 'Saturn'],
-    [SIGNS.PISCES, 'Neptune', 'Jupiter']
+    [SIGNS.SCORPIO, 'pluto', 'mars'],
+    [SIGNS.AQUARIUS, 'uranus', 'saturn'],
+    [SIGNS.PISCES, 'neptune', 'jupiter']
   ] as const)(
     '%s should be ruled by %s, traditionally by %s',
     (sign, modern, traditional) => {
-      const result = zodiac.signs.get(sign)
-
-      expect(result?.rulers.modern).toBe(modern)
-      expect(result?.rulers.traditional).toBe(traditional)
+      expect(zodiac.signs.get(sign)?.rulers).toEqual({ modern, traditional })
     }
   )
 
@@ -92,9 +52,34 @@ describe('zodiac.signs', () => {
     }
   })
 
-  it('should translate the rulers', () => {
-    expect(
-      zodiac.locale('es').signs.get(SIGNS.SCORPIO)?.rulers.traditional
-    ).toBe('Marte')
+  describe('with i18n.label()', () => {
+    it.each([
+      ['en', 'Taurus'],
+      ['es', 'Tauro'],
+      ['ca', 'Taure']
+    ] as const)('should translate the name in "%s"', (lang, expectedName) => {
+      const sign = zodiac.signs.get(SIGNS.TAURUS)
+
+      expect(i18n.label(sign, lang).name).toBe(expectedName)
+    })
+
+    it('should translate every value, including the rulers', () => {
+      const sign = zodiac.signs.get(SIGNS.SCORPIO)
+
+      expect(i18n.label(sign, 'es')).toEqual({
+        id: 'scorpio',
+        name: 'Escorpio',
+        bodyPart: 'Genitales',
+        character: 'Escorpión',
+        element: 'Agua',
+        glyph: '♏',
+        longitude: { start: 210, end: 240 },
+        modality: 'Fijo',
+        number: 8,
+        polarity: 'Negativo',
+        rulers: { modern: 'Plutón', traditional: 'Marte' },
+        season: 'Otoño'
+      })
+    })
   })
 })

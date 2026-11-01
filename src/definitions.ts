@@ -39,30 +39,32 @@ export type AspectQuality = ObjectValues<typeof ASPECT_QUALITY>
 
 export interface Sign {
   /**
-   * The body part associated with the zodiac sign.
-   * Indicates the areas of the body influenced by the sign.
-   * Examples: "Head" for Aries, "Throat" for Taurus.
+   * The identifier of the zodiac sign.
+   * Examples: "aries", "taurus". See the `SIGNS` constant.
    */
-  bodyPart: string
+  id: Signs
 
   /**
-   * The character associated with the zodiac sign.
-   * A visual representation or icon associated with the sign.
-   * Examples: "The Ram" for Aries, "The Bull" for Taurus.
+   * The body part traditionally associated with the zodiac sign.
+   * Examples: "head" for Aries, "throat" for Taurus.
    */
-  character: string
+  bodyPart: BodyParts
 
   /**
-   * The element associated with the zodiac sign.
-   * Represents one of the four classical elements: Fire, Earth, Air, Water.
-   * Also known as triplicities in astrology.
-   * Examples: "Fire" for Aries, "Earth" for Taurus.
+   * The figure the zodiac sign is named after.
+   * Examples: "ram" for Aries, "bull" for Taurus.
+   */
+  character: Characters
+
+  /**
+   * The element of the zodiac sign, one of the four classical elements.
+   * Signs of the same element form a triplicity.
+   * Examples: "fire" for Aries, "earth" for Taurus. See the `ELEMENTS` constant.
    */
   element: Elements
 
   /**
    * The glyph representing the zodiac sign.
-   * A symbolic character or drawing associated with the sign.
    * Examples: "♈" for Aries, "♉" for Taurus.
    */
   glyph: string
@@ -76,50 +78,46 @@ export interface Sign {
   longitude: { readonly start: number; readonly end: number }
 
   /**
-   * The modality of the sign.
-   * Indicates its mode of operation: Cardinal, Fixed, or Mutable.
-   * Examples: "Cardinal" for Aries, "Fixed" for Taurus.
+   * The modality of the sign: cardinal, fixed or mutable.
+   * Examples: "cardinal" for Aries, "fixed" for Taurus. See the `MODALITIES` constant.
    */
-  modality: string
+  modality: Modalities
 
   /**
-   * The identifier of the zodiac sign. It is never translated.
-   * Examples: "aries", "taurus". See the `SIGNS` constant.
-   */
-  id: Signs
-
-  /**
-   * The number associated with the zodiac sign.
-   * Reflects its order in the zodiac cycle.
-   * Examples: 1 for Aries (the first sign), 2 for Taurus (the second sign).
+   * The position of the sign in the zodiac, from 1 for Aries to 12 for Pisces.
    */
   number: number
 
   /**
-   * The polarity of the sign.
-   * Indicates its active (Positive) or passive (Negative) nature.
-   * Examples: "Positive" for Aries, "Negative" for Taurus.
+   * The polarity of the sign: positive for fire and air signs, negative for earth and water signs.
+   * Examples: "positive" for Aries, "negative" for Taurus. See the `POLARITIES` constant.
    */
-  polarity: string
+  polarity: Polarities
 
   /**
    * The planets that rule the zodiac sign.
-   * Examples: `{ modern: 'Mars', traditional: 'Mars' }` for Aries, `{ modern: 'Pluto', traditional: 'Mars' }` for Scorpio.
+   * Examples: `{ modern: 'mars', traditional: 'mars' }` for Aries, `{ modern: 'pluto', traditional: 'mars' }` for Scorpio.
    */
   rulers: Rulers
 
   /**
    * The season in which the Sun is in the sign, in the Northern Hemisphere.
    * In the Southern Hemisphere the seasons are the other way around.
-   * Examples: "Spring" for Aries, "Spring" for Taurus.
+   * Examples: "spring" for Aries, "spring" for Taurus.
    */
-  season: string
+  season: Seasons
 }
 
 export interface House {
   /**
+   * The identifier of the house.
+   * Examples: "house-1", "house-2", ... "house-12".
+   */
+  id: Houses
+
+  /**
    * The element of the house's natural sign.
-   * Example: "Fire" for House 1 (Aries), "Earth" for House 2 (Taurus).
+   * Example: "fire" for House 1 (Aries), "earth" for House 2 (Taurus).
    */
   element: Elements
 
@@ -130,6 +128,15 @@ export interface House {
    * - **Upper (Houses 7–12):** above the horizon, the southern half of the chart.
    */
   hemisphere: Hemispheres
+
+  /**
+   * The modality of the house, which repeats in this order from House 1:
+   *
+   * - **Angular (Houses 1, 4, 7, 10):** the houses that start at an angle of the chart.
+   * - **Succedent (Houses 2, 5, 8, 11):** the houses that follow an angular house.
+   * - **Cadent (Houses 3, 6, 9, 12):** the houses that come before the next angle.
+   */
+  modality: HouseModalities
 
   /**
    * The number of the house, from 1 to 12, counted counterclockwise from the Ascendant.
@@ -145,30 +152,15 @@ export interface House {
 
   /**
    * The planets that rule the house's natural sign.
-   * Example: `{ modern: 'Mars', traditional: 'Mars' }` for House 1, `{ modern: 'Pluto', traditional: 'Mars' }` for House 8.
+   * Example: `{ modern: 'mars', traditional: 'mars' }` for House 1, `{ modern: 'pluto', traditional: 'mars' }` for House 8.
    */
   rulers: Rulers
 
   /**
    * The natural sign of the house: the sign with the same number.
-   * Example: "Aries" for House 1, "Taurus" for House 2.
+   * Example: "aries" for House 1, "taurus" for House 2.
    */
   sign: Signs
-
-  /**
-   * The modality of the house, which repeats in this order from House 1:
-   *
-   * - **Angular (Houses 1, 4, 7, 10):** the houses that start at an angle of the chart.
-   * - **Succedent (Houses 2, 5, 8, 11):** the houses that follow an angular house.
-   * - **Cadent (Houses 3, 6, 9, 12):** the houses that come before the next angle.
-   */
-  modality: HouseModalities
-
-  /**
-   * The identifier of the house. It is never translated.
-   * Examples: "house-1", "house-2", ... "house-12".
-   */
-  id: Houses
 }
 
 /**
@@ -177,36 +169,97 @@ export interface House {
 export interface Rulers {
   /**
    * The ruler in modern astrology, which gives the outer planets to Scorpio, Aquarius and Pisces.
-   * Examples: "Mars" for Aries, "Pluto" for Scorpio.
+   * Examples: "mars" for Aries, "pluto" for Scorpio.
    */
-  modern: string
+  modern: Planets
 
   /**
    * The ruler from before the discovery of the outer planets.
    * Same as `modern` except for Scorpio, Aquarius and Pisces.
-   * Examples: "Mars" for Scorpio, "Saturn" for Aquarius, "Jupiter" for Pisces.
+   * Examples: "mars" for Scorpio, "saturn" for Aquarius, "jupiter" for Pisces.
    */
-  traditional: string
+  traditional: Planets
 }
 
 export interface Planet {
   /**
-   * The identifier of the celestial body. It is never translated.
+   * The identifier of the celestial body.
    * Examples: "sun", "moon". See the `PLANETS` constant.
    */
   id: Planets
 
   /**
-   * The glyph or symbol associated with the celestial body.
+   * The glyph representing the celestial body.
    * Examples: "☉" for the Sun, "☽" for the Moon, "♂" for Mars.
    */
   glyph: string
 
   /**
-   * The type or category of the celestial body.
-   * Examples: "Personal", "Luminary".
+   * The group the celestial body belongs to.
+   * Examples: "luminary" for the Sun and the Moon, "personal" for Mercury, Venus and Mars.
    */
   type: PlanetType
+}
+
+export interface Aspect {
+  /**
+   * The identifier of the aspect.
+   * Examples: "conjunction", "trine", "semi-square". See the `ASPECTS` constant.
+   */
+  id: Aspects
+
+  /**
+   * The angle of the aspect in degrees.
+   * Examples: 0 for Conjunction, 90 for Square, 120 for Trine, 180 for Opposition.
+   */
+  angle: number
+
+  /**
+   * The glyph representing the aspect.
+   * Quintiles have no Unicode character, so they use the letters common in astrology software.
+   * Examples: "☌" for Conjunction, "△" for Trine, "Q" for Quintile, "bQ" for Bi-quintile.
+   */
+  glyph: string
+
+  /**
+   * The harmonic the aspect belongs to: the circle divided by this number gives the
+   * smallest angle of its family, and the aspect's angle is a multiple of it.
+   * Examples: 4 for Square (360° / 4 = 90°), 8 for Semi-square and Sesqui-square (45° and 3 × 45°),
+   * 12 for Semi-sextile and Quincunx (30° and 5 × 30°).
+   */
+  harmonic: number
+
+  /**
+   * Whether the aspect is usually read as harmonious, disharmonious or neutral.
+   * This varies between schools, especially for minor aspects.
+   * Examples: "harmonious" for Trine, "disharmonious" for Square, "neutral" for Conjunction.
+   */
+  quality: AspectQuality
+
+  /**
+   * Whether the aspect is a major or a minor one.
+   * Examples: "major" for Square, "minor" for Quincunx.
+   */
+  type: AspectType
+}
+
+type LabeledValues<T> = {
+  [K in keyof T]: K extends 'id'
+    ? T[K]
+    : T[K] extends string
+      ? string
+      : T[K] extends object
+        ? LabeledValues<T[K]>
+        : T[K]
+}
+
+/**
+ * An item with every identifier translated, as returned by {@link i18n.label | `i18n.label()`}.
+ * The `id` is kept, and `name` holds its translation.
+ */
+export type Labeled<T extends { id: string }> = LabeledValues<T> & {
+  /** The translation of the item's `id`. */
+  name: string
 }
 
 export type Dictionary = {
@@ -239,48 +292,4 @@ export type SymbolOptions = {
   class?: string
   style?: string
   nonScalingStroke?: boolean
-}
-
-export interface Aspect {
-  /**
-   * The identifier of the aspect. It is never translated.
-   * Examples: "conjunction", "trine", "semi-square". See the `ASPECTS` constant.
-   */
-  id: Aspects
-
-  /**
-   * The type of the aspect.
-   * Indicates the nature of the aspect's influence.
-   * Examples: "Major", "Minor".
-   */
-  type: AspectType
-
-  /**
-   * The quality of the aspect.
-   * Reflects the emotional or psychological impact of the aspect.
-   * Examples: "Harmonious", "Disharmonious", "Neutral".
-   */
-  quality: AspectQuality
-
-  /**
-   * The angle of the aspect in degrees.
-   * Represents the geometric relationship between the two celestial bodies.
-   * Examples: 0 for Conjunction, 180 for Opposition, 90 for Square, 120 for Trine, 60 for Sextile...
-   */
-  angle: number
-
-  /**
-   * The glyph representing the aspect.
-   * Quintiles have no Unicode character, so they use the letters common in astrology software.
-   * Examples: "☌" for Conjunction, "△" for Trine, "Q" for Quintile, "bQ" for Bi-quintile.
-   */
-  glyph: string
-
-  /**
-   * The harmonic the aspect belongs to: the circle divided by this number gives the
-   * smallest angle of its family, and the aspect's angle is a multiple of it.
-   * Examples: 4 for Square (360° / 4 = 90°), 8 for Semi-square and Sesqui-square (45° and 3 × 45°),
-   * 12 for Semi-sextile and Quincunx (30° and 5 × 30°).
-   */
-  harmonic: number
 }

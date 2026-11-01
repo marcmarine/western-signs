@@ -8,7 +8,7 @@ Simple interface for [western astrological](https://en.wikipedia.org/wiki/Wester
 [![TypeDoc](https://img.shields.io/badge/view-docs-yellow.svg)](https://marcmarine.github.io/western-signs)
 ![NPM Unpacked Size](https://img.shields.io/npm/unpacked-size/western-signs)
 
-The **Western Signs** library provides detailed information about each astrological sign, including its `name`, `element`, `modality`, `rulers` and `glyph`, among other things. Additionally, you can specify the language for translations.
+The **Western Signs** library provides detailed information about each astrological sign, including its `element`, `modality`, `rulers` and `glyph`, among other things, as identifiers you can compare and translate into several languages.
 
 <details close>
 <summary>WordArt</summary>
@@ -52,21 +52,31 @@ zodiac.aspects.all()
 ```js
 {
   id: 'taurus',
-  name: 'Taurus',
-  bodyPart: 'Throat',
-  character: 'Bull',
-  element: 'Earth',
+  bodyPart: 'throat',
+  character: 'bull',
+  element: 'earth',
   glyph: '♉',
   longitude: { start: 30, end: 60 },
-  modality: 'Fixed',
+  modality: 'fixed',
   number: 2,
-  polarity: 'Negative',
-  rulers: { modern: 'Venus', traditional: 'Venus' },
-  season: 'Spring'
+  polarity: 'negative',
+  rulers: { modern: 'venus', traditional: 'venus' },
+  season: 'spring'
 }
 ```
 
-`id` is the identifier of the sign, the same in every language, and `name` is its translation. `rulers` holds the modern ruler and the traditional one, from before the discovery of the outer planets; they differ only for Scorpio, Aquarius and Pisces.
+Values are identifiers, the same in every language, so you can compare them with the exported constants:
+
+```js
+import { ELEMENTS } from 'western-signs'
+
+zodiac.signs.get(SIGNS.TAURUS).element === ELEMENTS.EARTH
+// Output: true
+```
+
+To show them, translate them with [`i18n.label()`](#translations). The returned objects are frozen: copy one before changing it.
+
+`rulers` holds the modern ruler and the traditional one, from before the discovery of the outer planets; they differ only for Scorpio, Aquarius and Pisces.
 
 `longitude` is the range of the sign along the ecliptic, in degrees from 0° Aries, the start included and the end excluded. The Sun is in Taurus while [`sun.longitude()`](#sun-sign-by-date) is between 30 and 60.
 
@@ -81,7 +91,7 @@ const { sun } = zodiac.at({
 })
 
 sun.sign()
-// Output: { name: 'Taurus', ... }
+// Output: { id: 'taurus', ... }
 
 sun.longitude()
 // Output: 45.48... (degrees along the ecliptic, from 0° Aries)
@@ -113,20 +123,36 @@ The position is computed with Jean Meeus' low-precision solar algorithm (accurat
 
 #### Translations
 
-By default, `zodiac` uses the language set with [`i18n.setLanguage()`](#internationalization), which is English unless you change it. Only English is included by default. Other languages must be explicitly imported to be available.
-
-To enable a language, import its side-effect module:
+Only English is included by default. Other languages must be explicitly imported to be available:
 
 ```js
 import 'western-signs/locale/es'
 ```
 
-After importing, use `locale()` to pick the language for a single call or a group of calls:
+`i18n.label()` translates every value of a sign, planet, house or aspect. It keeps the `id` and adds its translation as `name`:
 
 ```js
-const es = zodiac.locale('es')
+import { i18n, SIGNS, zodiac } from 'western-signs'
 
-es.signs.get(SIGNS.TAURUS).name
+i18n.label(zodiac.signs.get(SIGNS.TAURUS), 'es')
+// Output: { id: 'taurus', name: 'Tauro', element: 'Tierra', rulers: { modern: 'Venus', ... }, ... }
+
+i18n.label(
+  zodiac.at({ date: '2024-05-05', timeZone: 'Europe/Madrid' }).sun.sign(),
+  'es',
+).name
+// Output: Tauro
+```
+
+Without a language, it uses the one set with [`i18n.setLanguage()`](#internationalization), which is English unless you change it. To work in one language without changing the global one, e.g. on a server where each request may need a different language, use `i18n.locale()`:
+
+```js
+const es = i18n.locale('es')
+
+es.label(zodiac.signs.get(SIGNS.TAURUS)).name
+// Output: Tauro
+
+es.t(SIGNS.TAURUS)
 // Output: Tauro
 ```
 
@@ -166,12 +192,12 @@ console.log(symbol.toDataURL())
 
 Three groups of exported constants. Use the identifier with getSymbol().
 
-| group   | symbols                                                                                                          |
-| ------- | ---------------------------------------------------------------------------------------------------------------- |
-| PLANETS | `SUN` `MOON` `MERCURY` `VENUS` `MARS` `JUPITER` `SATURN` `URANUS` `NEPTUNE` `PLUTO`                              |
-| SIGNS   | `ARIES` `TAURUS` `GEMINI` `CANCER` `LEO` `VIRGO` `LIBRA` `SCORPIO` `SAGITTARIUS` `CAPRICORN` `AQUARIUS` `PISCES` |
+| group   | symbols                                                                                                                            |
+| ------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| PLANETS | `SUN` `MOON` `MERCURY` `VENUS` `MARS` `JUPITER` `SATURN` `URANUS` `NEPTUNE` `PLUTO`                                                |
+| SIGNS   | `ARIES` `TAURUS` `GEMINI` `CANCER` `LEO` `VIRGO` `LIBRA` `SCORPIO` `SAGITTARIUS` `CAPRICORN` `AQUARIUS` `PISCES`                   |
 | ASPECTS | `CONJUNCTION` `SEMISEXTILE` `SEMISQUARE` `SEXTILE` `QUINTILE` `SQUARE` `TRINE` `SESQUISQUARE` `BIQUINTILE` `QUINCUNX` `OPPOSITION` |
-| ANGLES  | `ASCENDANT`                                                                                                      |
+| ANGLES  | `ASCENDANT`                                                                                                                        |
 
 > [!TIP]
 >
@@ -181,7 +207,7 @@ Three groups of exported constants. Use the identifier with getSymbol().
 
 ### Internationalization
 
-You can easily translate aspects and other astrology-related terms using the `t` function provided by the library. The `t` function takes a key and returns its translation in the current language, or the key itself if no translation is found.
+The `t` function translates a single identifier, such as an aspect or an element, into the current language. It returns the key itself if no translation is found. To translate a whole sign, planet, house or aspect, use [`i18n.label()`](#translations).
 
 To translate an aspect into the current language:
 
@@ -226,20 +252,20 @@ The data behind the library is also published as JSON, for projects that don't r
 
 ```js
 import data from 'western-signs/data.json' with { type: 'json' }
-import es from 'western-signs/locale/es.json' with { type: 'json' }
+import ca from 'western-signs/locale/ca.json' with { type: 'json' }
 
 const taurus = data.signs[1]
 // { id: 'taurus', element: 'earth', modality: 'fixed', longitude: { start: 30, end: 60 }, ... }
 
-es[taurus.element]
-// Output: Tierra
+ca[taurus.element]
+// Output: Terra
 ```
 
 Or without installing anything, from a CDN:
 
 ```
 https://cdn.jsdelivr.net/npm/western-signs@1/dist/data.json
-https://cdn.jsdelivr.net/npm/western-signs@1/dist/locale/es.json
+https://cdn.jsdelivr.net/npm/western-signs@1/dist/locale/ca.json
 ```
 
 ## API Reference
