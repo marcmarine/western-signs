@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'bun:test'
-import type { AspectId, HouseNumber } from '@/index'
+import type { HouseNumber } from '@/index'
 import { ASPECTS, i18n, SIGNS, zodiac } from '@/index'
 import { CARDINAL_POINTS } from './fixtures'
 import '@/locale/es'
@@ -46,7 +46,7 @@ describe('zodiac', () => {
     })
 
     it('should return undefined for an unknown aspect', () => {
-      expect(zodiac.aspects.get('unknown' as AspectId)).toBeUndefined()
+      expect(zodiac.aspects.get('unknown')).toBeUndefined()
     })
 
     it('should return all aspects ordered by angle', () => {

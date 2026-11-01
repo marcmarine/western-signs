@@ -21,9 +21,19 @@ describe('zodiac.signs', () => {
     })
   })
 
-  it('should return undefined for an unknown sign', () => {
-    expect(zodiac.signs.get('unknown' as SignId)).toBeUndefined()
+  it('should accept any string and return undefined for an unknown sign', () => {
+    const fromUrl: string = 'taurus'
+
+    expect(zodiac.signs.get(fromUrl)?.id).toBe('taurus')
+    expect(zodiac.signs.get('unknown')).toBeUndefined()
   })
+
+  it.each(['constructor', 'toString', '__proto__'])(
+    'should not take %s, inherited by every object, for a sign',
+    key => {
+      expect(zodiac.signs.get(key)).toBeUndefined()
+    }
+  )
 
   it('should return the twelve signs in order', () => {
     expect(zodiac.signs.all().map(sign => sign.id)).toEqual(

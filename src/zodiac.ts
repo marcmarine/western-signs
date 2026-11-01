@@ -59,6 +59,78 @@ function degreeAt(value: number): number {
 }
 
 /**
+ * Get a single sign by identifier.
+ *
+ * @param id - The identifier of the sign, e.g. `'taurus'`.
+ * @returns The sign.
+ */
+function getSign(id: SignId): Sign
+/**
+ * Get a single sign from any string, e.g. one read from a URL.
+ *
+ * @param id - A string that may be the identifier of a sign.
+ * @returns The sign, or `undefined` if the string is not the identifier of a sign.
+ */
+function getSign(id: string): Sign | undefined
+function getSign(id: string): Sign | undefined {
+  return Object.hasOwn(signs, id) ? signs[id as SignId] : undefined
+}
+
+/**
+ * Get a single planet by identifier.
+ *
+ * @param id - The identifier of the planet, e.g. `'venus'`.
+ * @returns The planet.
+ */
+function getPlanet(id: PlanetId): Planet
+/**
+ * Get a single planet from any string, e.g. one read from a URL.
+ *
+ * @param id - A string that may be the identifier of a planet.
+ * @returns The planet, or `undefined` if the string is not the identifier of a planet.
+ */
+function getPlanet(id: string): Planet | undefined
+function getPlanet(id: string): Planet | undefined {
+  return Object.hasOwn(planets, id) ? planets[id as PlanetId] : undefined
+}
+
+/**
+ * Get a single house by number.
+ *
+ * @param number - The number of the house, from 1 to 12.
+ * @returns The house.
+ */
+function getHouse(number: HouseNumber): House
+/**
+ * Get a single house from any number, e.g. one read from a URL.
+ *
+ * @param number - A number that may be the number of a house.
+ * @returns The house, or `undefined` if there is no house with that number.
+ */
+function getHouse(number: number): House | undefined
+function getHouse(number: number): House | undefined {
+  return houses.find(house => house.number === number)
+}
+
+/**
+ * Get a single aspect by identifier.
+ *
+ * @param id - The identifier of the aspect, e.g. `'trine'`.
+ * @returns The aspect.
+ */
+function getAspect(id: AspectId): Aspect
+/**
+ * Get a single aspect from any string, e.g. one read from a URL.
+ *
+ * @param id - A string that may be the identifier of an aspect.
+ * @returns The aspect, or `undefined` if the string is not the identifier of an aspect.
+ */
+function getAspect(id: string): Aspect | undefined
+function getAspect(id: string): Aspect | undefined {
+  return aspects.find(aspect => aspect.id === id)
+}
+
+/**
  * Entry point grouping signs, planets, houses and aspects under a single API.
  *
  * Values are identifiers, the same in every language, e.g. `element: 'earth'`.
@@ -74,7 +146,7 @@ function degreeAt(value: number): number {
  * zodiac.signs.get('taurus').element
  * // Output: 'earth'
  *
- * i18n.label(zodiac.signs.get('taurus'), 'es').name
+ * i18n.label(zodiac.signs.get('taurus'), 'es').labels.name
  * // Output: 'Tauro'
  *
  * zodiac.at({ date: new Date(2024, 4, 5) }).sun.sign.id
@@ -83,13 +155,8 @@ function degreeAt(value: number): number {
 export const zodiac = {
   /** The twelve zodiac signs. */
   signs: {
-    /**
-     * Get a single sign by identifier.
-     *
-     * @param id - The identifier of the sign, e.g. `'taurus'`.
-     * @returns The sign. For an identifier that doesn't exist, e.g. from JavaScript without types, it returns `undefined`.
-     */
-    get: (id: SignId): Sign => signs[id],
+    /** Get a single sign by identifier. */
+    get: getSign,
     /** Get all twelve signs, from Aries to Pisces. */
     all: (): Sign[] => Object.values(signs),
     /**
@@ -119,39 +186,22 @@ export const zodiac = {
   },
   /** The planets, including the Sun and the Moon. */
   planets: {
-    /**
-     * Get a single planet by identifier.
-     *
-     * @param id - The identifier of the planet, e.g. `'venus'`.
-     * @returns The planet. For an identifier that doesn't exist, e.g. from JavaScript without types, it returns `undefined`.
-     */
-    get: (id: PlanetId): Planet => planets[id],
+    /** Get a single planet by identifier. */
+    get: getPlanet,
     /** Get all planets. */
     all: (): Planet[] => Object.values(planets)
   },
   /** The twelve astrological houses. */
   houses: {
-    /**
-     * Get a single house by number.
-     *
-     * @param number - The number of the house, from 1 to 12.
-     * @returns The house. For a number that isn't a house, e.g. from JavaScript without types, it returns `undefined`.
-     */
-    get: (number: HouseNumber): House =>
-      houses.find(house => house.number === number) as House,
+    /** Get a single house by number. */
+    get: getHouse,
     /** Get all twelve houses. */
     all: (): House[] => [...houses]
   },
   /** The aspects, from conjunction to opposition. */
   aspects: {
-    /**
-     * Get a single aspect by identifier.
-     *
-     * @param id - The identifier of the aspect, e.g. `'trine'`.
-     * @returns The aspect. For an identifier that doesn't exist, e.g. from JavaScript without types, it returns `undefined`.
-     */
-    get: (id: AspectId): Aspect =>
-      aspects.find(aspect => aspect.id === id) as Aspect,
+    /** Get a single aspect by identifier. */
+    get: getAspect,
     /** Get all aspects, ordered by angle. */
     all: (): Aspect[] => [...aspects]
   },
