@@ -5,14 +5,6 @@ import { CARDINAL_POINTS } from './fixtures'
 import '@/locale/es'
 
 describe('zodiac', () => {
-  it('should return the same values in every language', () => {
-    i18n.setLanguage('es')
-
-    expect(zodiac.signs.get(SIGNS.TAURUS)?.element).toBe('earth')
-
-    i18n.setLanguage('en')
-  })
-
   it('should return frozen objects', () => {
     const sign = zodiac.signs.get(SIGNS.TAURUS)
 

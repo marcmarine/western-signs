@@ -144,7 +144,7 @@ i18n.label(
 // Output: Tauro
 ```
 
-Without a language, it uses the one set with [`i18n.setLanguage()`](#internationalization), which is English unless you change it. To work in one language without changing the global one, e.g. on a server where each request may need a different language, use `i18n.locale()`:
+Without a language, it translates into English. To work in one language without passing it on every call, use [`i18n.locale()`](#internationalization):
 
 ```js
 const es = i18n.locale('es')
@@ -207,34 +207,30 @@ Three groups of exported constants. Use the identifier with getSymbol().
 
 ### Internationalization
 
-The `t` function translates a single identifier, such as an aspect or an element, into the current language. It returns the key itself if no translation is found. To translate a whole sign, planet, house or aspect, use [`i18n.label()`](#translations).
-
-To translate an aspect into the current language:
+The `t` function translates a single identifier, such as an aspect or an element. It translates into English unless you pass a language, and returns the key itself if no translation is found. To translate a whole sign, planet, house or aspect, use [`i18n.label()`](#translations).
 
 ```js
 import { ASPECTS, i18n } from 'western-signs'
 
-// Importing a locale registers it globally
+// Importing a locale makes its translations available
 import 'western-signs/locale/es'
 
 i18n.t(ASPECTS.CONJUNCTION)
 // Output: Conjunction
-```
 
-To change the language, use the `setLanguage` function:
-
-```js
-i18n.setLanguage('es')
-i18n.t(ASPECTS.CONJUNCTION)
+i18n.t(ASPECTS.CONJUNCTION, 'es')
 // Output: Conjunción
 ```
 
-To translate into a specific language without changing the current one, pass it as the second argument:
+There is no global language. To work in one language, e.g. the one your app is shown in, fix it once with `i18n.locale()` and use the functions it returns:
 
 ```js
-i18n.t(ASPECTS.CONJUNCTION, 'ca')
-// Output: Conjunció
+const { t, label } = i18n.locale('es')
+
+t(ASPECTS.CONJUNCTION)
+// Output: Conjunción
 ```
+
 
 #### Available languages
 

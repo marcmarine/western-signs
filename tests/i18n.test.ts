@@ -1,26 +1,14 @@
-import { beforeEach, describe, expect, it } from 'bun:test'
+import { describe, expect, it } from 'bun:test'
 import type { Dictionary } from '@/definitions'
 import { ASPECTS, i18n, SIGNS, zodiac } from '@/index'
 import '@/locale/es'
 import '@/locale/ca'
 
-const { t, setLanguage, getLanguage } = i18n
+const { t } = i18n
 
-describe('Translate function', () => {
-  const defaultLanguage = 'en'
-
-  beforeEach(() => {
-    setLanguage(defaultLanguage)
-  })
-
-  it('should translate a key using the default language', () => {
+describe('t', () => {
+  it('should translate a key into English by default', () => {
     expect(t(SIGNS.CAPRICORN)).toBe('Capricorn')
-  })
-
-  it('should translate a key into the current language', () => {
-    setLanguage('es')
-
-    expect(t(SIGNS.TAURUS)).toBe('Tauro')
   })
 
   it.each([
@@ -34,28 +22,12 @@ describe('Translate function', () => {
     }
   )
 
-  it('should take the given language over the current one', () => {
-    setLanguage('es')
-
-    expect(t(SIGNS.PISCES, 'ca')).toBe('Peixos')
-  })
-
-  it('should not change the current language', () => {
-    t(SIGNS.PISCES, 'ca')
-
-    expect(getLanguage()).toBe(defaultLanguage)
-  })
-
   it('should return the key itself if no translation is found', () => {
     expect(t('unknown' as keyof Dictionary)).toBe('unknown')
   })
 })
 
 describe('label', () => {
-  beforeEach(() => {
-    setLanguage('en')
-  })
-
   const taurus = zodiac.signs.get(SIGNS.TAURUS)
 
   it('should keep the id and add the translated name', () => {
@@ -66,10 +38,8 @@ describe('label', () => {
     })
   })
 
-  it('should use the current language by default', () => {
-    setLanguage('ca')
-
-    expect(i18n.label(taurus).name).toBe('Taure')
+  it('should translate into English by default', () => {
+    expect(i18n.label(taurus).name).toBe('Taurus')
   })
 
   it('should leave numbers and glyphs as they are', () => {
@@ -88,10 +58,6 @@ describe('label', () => {
 })
 
 describe('locale', () => {
-  beforeEach(() => {
-    setLanguage('en')
-  })
-
   it('should fix t and label to a language', () => {
     const es = i18n.locale('es')
 
@@ -99,9 +65,11 @@ describe('locale', () => {
     expect(es.label(zodiac.signs.get(SIGNS.TAURUS)).name).toBe('Tauro')
   })
 
-  it('should ignore the current language', () => {
-    setLanguage('ca')
+  it('should keep each locale to its own language', () => {
+    const es = i18n.locale('es')
+    const ca = i18n.locale('ca')
 
-    expect(i18n.locale('es').t(SIGNS.TAURUS)).toBe('Tauro')
+    expect(es.t(SIGNS.PISCES)).toBe('Piscis')
+    expect(ca.t(SIGNS.PISCES)).toBe('Peixos')
   })
 })

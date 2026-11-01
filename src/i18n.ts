@@ -1,54 +1,31 @@
 import { dictionaries } from './data/dictionaries'
 import type { Dictionary, Labeled, Language } from './definitions'
 
-let currentLanguage: Language = 'en'
-
 /**
- * Sets the current language to the provided language.
- * @param {Language} language - The language to set as current.
- */
-export function setLanguage(language: Language): void {
-  currentLanguage = language
-}
-
-/**
- * Retrieves the current language.
- * @returns {Language} The current language.
- */
-export function getLanguage(): Language {
-  return currentLanguage
-}
-
-/**
- * Translates a key into the current language, or into the given one.
+ * Translates a key into the given language, or into English.
  * @param {keyof Dictionary} key - The key to translate, e.g. `SIGNS.TAURUS`.
- * @param {Language} [language] - The language to translate into. Defaults to the one set with `setLanguage()`.
+ * @param {Language} [language] - The language to translate into. Defaults to English.
  * @returns {string} The translated string, or the key itself if no translation is found.
  *
  * @example
  * import { SIGNS, i18n } from 'western-signs'
  * import 'western-signs/locale/es'
  *
- * i18n.setLanguage('es')
- *
  * i18n.t(SIGNS.TAURUS)
- * // Output: Tauro
- *
- * i18n.t(SIGNS.TAURUS, 'en')
  * // Output: Taurus
+ *
+ * i18n.t(SIGNS.TAURUS, 'es')
+ * // Output: Tauro
  */
-export function t(
-  key: keyof Dictionary,
-  language: Language = getLanguage()
-): string {
+export function t(key: keyof Dictionary, language: Language = 'en'): string {
   return dictionaries.get(language)?.[key] ?? key
 }
 
 /**
- * Translates every identifier of an item into the current language, or into the given one,
+ * Translates every identifier of an item into the given language, or into English,
  * also inside nested objects such as `rulers`. The `id` is kept, and its translation is added as `name`.
  * @param item - A sign, planet, house or aspect, e.g. from `zodiac.signs.get()`.
- * @param {Language} [language] - The language to translate into. Defaults to the one set with `setLanguage()`.
+ * @param {Language} [language] - The language to translate into. Defaults to English.
  * @returns A copy of the item with its values translated.
  *
  * @example
@@ -60,7 +37,7 @@ export function t(
  */
 export function label<T extends { id: string }>(
   item: T,
-  language: Language = getLanguage()
+  language: Language = 'en'
 ): Labeled<T> {
   const dictionary = dictionaries.get(language)
   const translate = (value: unknown): unknown =>
@@ -80,8 +57,7 @@ export function label<T extends { id: string }>(
 }
 
 /**
- * Returns `t` and `label` fixed to the given language, ignoring `setLanguage()`.
- * Useful on a server, where each request may need a different language.
+ * Returns `t` and `label` fixed to the given language, to work in it without passing it on every call.
  * @param {Language} language - The language to translate into.
  *
  * @example
