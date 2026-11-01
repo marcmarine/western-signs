@@ -10,7 +10,7 @@ const symbolNames: SymbolId[] = [
   ...(Object.keys(signs) as SignId[]),
   ...(Object.keys(planets) as PlanetId[]),
   ...(Object.values(ASPECTS) as AspectId[]),
-  'ascendant',
+  'ascendant'
 ]
 
 describe('getSymbol', () => {
@@ -31,7 +31,7 @@ describe('getSymbol', () => {
       expect(svgString).toContain('<svg')
       expect(svgString).toContain('stroke="currentColor"')
       expect(svgString).toContain('stroke-width="1"')
-    },
+    }
   )
 
   it.each(symbolNames)(
@@ -39,7 +39,7 @@ describe('getSymbol', () => {
     (symbolName: SymbolId) => {
       const options = {
         stroke: 'red',
-        strokeWidth: '3',
+        strokeWidth: '3'
       }
       const symbol = getSymbol(symbolName, options)
 
@@ -48,7 +48,7 @@ describe('getSymbol', () => {
       expect(svgString).toContain(`stroke="${options.stroke}"`)
       expect(svgString).toContain(`stroke-width="${options.strokeWidth}"`)
       expect(svgString).not.toContain('strokeWidth')
-    },
+    }
   )
 
   it('should write the stroke width once, replacing the default', () => {
@@ -70,7 +70,7 @@ describe('getSymbol', () => {
     (symbolName: SymbolId) => {
       const options = {
         width: '32',
-        height: '32',
+        height: '32'
       }
       const symbol = getSymbol(symbolName, options)
 
@@ -78,7 +78,7 @@ describe('getSymbol', () => {
 
       expect(svgString).toContain(`width="${options.width}"`)
       expect(svgString).toContain(`height="${options.height}"`)
-    },
+    }
   )
 
   it('should return as Data URL', () => {
@@ -91,7 +91,7 @@ describe('getSymbol', () => {
 
   it('should throw an error if the file does not exist', () => {
     expect(() => getSymbol('notexist' as SymbolId)).toThrow(
-      'Icon "notexist" not found.',
+      'Icon "notexist" not found.'
     )
   })
 })

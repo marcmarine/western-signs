@@ -1,5 +1,5 @@
 import { SYMBOLS } from './data/symbols'
-import type { SymbolOptions, SymbolId } from './definitions'
+import type { SymbolId, SymbolOptions } from './definitions'
 
 const DEFAULT_ATTRIBUTES = {
   xmlns: 'http://www.w3.org/2000/svg',
@@ -8,7 +8,7 @@ const DEFAULT_ATTRIBUTES = {
   viewBox: '0 0 24 24',
   fill: 'none',
   stroke: 'currentColor',
-  'stroke-width': 1,
+  'stroke-width': 1
 }
 
 /**
@@ -50,7 +50,7 @@ function createSymbol(paths: string, options: SymbolOptions = {}) {
       const svgAttributes = Object.entries({
         ...DEFAULT_ATTRIBUTES,
         ...attributes,
-        ...(strokeWidth !== undefined && { 'stroke-width': strokeWidth }),
+        ...(strokeWidth !== undefined && { 'stroke-width': strokeWidth })
       })
         .map(([key, value]) => `${key}="${value}"`)
         .join(' ')
@@ -69,8 +69,8 @@ function createSymbol(paths: string, options: SymbolOptions = {}) {
     },
     toDataURL(): string {
       return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(
-        this.toString(),
+        this.toString()
       )}`
-    },
+    }
   }
 }
