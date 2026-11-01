@@ -232,6 +232,19 @@ export interface Dignities {
    * Example for Mars: `{ modern: ['libra'], traditional: ['taurus', 'libra'] }`.
    */
   detriment: { modern: SignId[]; traditional: SignId[] }
+
+  /**
+   * The sign where the planet is exalted, following the tradition.
+   * The outer planets have none, as there is no agreement on theirs.
+   * Examples: "aries" for the Sun, "capricorn" for Mars, `null` for Uranus.
+   */
+  exaltation: SignId | null
+
+  /**
+   * The sign opposite the exaltation, where the planet is in its fall.
+   * Examples: "libra" for the Sun, "cancer" for Mars, `null` for Uranus.
+   */
+  fall: SignId | null
 }
 
 export interface Aspect {
@@ -281,11 +294,13 @@ type LabeledValues<T> = {
     ? T[K]
     : T[K] extends string
       ? string
-      : T[K] extends readonly string[]
-        ? string[]
-        : T[K] extends object
-          ? LabeledValues<T[K]>
-          : T[K]
+      : T[K] extends string | null
+        ? string | null
+        : T[K] extends readonly string[]
+          ? string[]
+          : T[K] extends object
+            ? LabeledValues<T[K]>
+            : T[K]
 }
 
 /**

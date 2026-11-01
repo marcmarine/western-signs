@@ -56,6 +56,20 @@ const entries: Record<PlanetId, Omit<Planet, 'dignities'>> = {
   }
 }
 
+// The traditional exaltations. The outer planets have none, as there is no agreement on theirs
+const EXALTATIONS: Record<PlanetId, SignId | null> = {
+  sun: SIGNS.ARIES,
+  moon: SIGNS.TAURUS,
+  mercury: SIGNS.VIRGO,
+  venus: SIGNS.PISCES,
+  mars: SIGNS.CAPRICORN,
+  jupiter: SIGNS.CANCER,
+  saturn: SIGNS.LIBRA,
+  uranus: null,
+  neptune: null,
+  pluto: null
+}
+
 const SIGN_IDS = Object.values(SIGNS)
 
 // The sign six places away, across the zodiac
@@ -76,6 +90,7 @@ const planets = Object.fromEntries(
   Object.values(entries).map(planet => {
     const modern = ruledBy(planet.id, 'modern')
     const traditional = ruledBy(planet.id, 'traditional')
+    const exaltation = EXALTATIONS[planet.id]
 
     return [
       planet.id,
@@ -86,7 +101,9 @@ const planets = Object.fromEntries(
           detriment: {
             modern: opposites(modern),
             traditional: opposites(traditional)
-          }
+          },
+          exaltation,
+          fall: exaltation && opposite(exaltation)
         }
       }
     ]

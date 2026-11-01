@@ -44,6 +44,42 @@ describe('zodiac.planets', () => {
       })
     })
 
+    it.each([
+      [PLANETS.SUN, 'aries', 'libra'],
+      [PLANETS.MOON, 'taurus', 'scorpio'],
+      [PLANETS.MERCURY, 'virgo', 'pisces'],
+      [PLANETS.VENUS, 'pisces', 'virgo'],
+      [PLANETS.MARS, 'capricorn', 'cancer'],
+      [PLANETS.JUPITER, 'cancer', 'capricorn'],
+      [PLANETS.SATURN, 'libra', 'aries']
+    ] as const)(
+      '%s should be exalted in %s and in its fall in %s',
+      (id, exaltation, fall) => {
+        expect(zodiac.planets.get(id).dignities).toMatchObject({
+          exaltation,
+          fall
+        })
+      }
+    )
+
+    it('should give no exaltation or fall to the outer planets', () => {
+      for (const id of [PLANETS.URANUS, PLANETS.NEPTUNE, PLANETS.PLUTO]) {
+        expect(zodiac.planets.get(id).dignities).toMatchObject({
+          exaltation: null,
+          fall: null
+        })
+      }
+    })
+
+    it('should translate the exaltation and leave a missing one as null', () => {
+      expect(
+        i18n.label(zodiac.planets.get(PLANETS.MARS), 'es').dignities
+      ).toMatchObject({ exaltation: 'Capricornio', fall: 'Cáncer' })
+      expect(
+        i18n.label(zodiac.planets.get(PLANETS.PLUTO), 'es').dignities
+      ).toMatchObject({ exaltation: null, fall: null })
+    })
+
     it('should rule no sign traditionally for the outer planets', () => {
       for (const id of [PLANETS.URANUS, PLANETS.NEPTUNE, PLANETS.PLUTO]) {
         const { dignities } = zodiac.planets.get(id)
