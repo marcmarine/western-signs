@@ -377,7 +377,8 @@ export type SymbolOptions = {
   height?: number | string
   fill?: string
   stroke?: string
-  'stroke-width'?: number | string
+  /** Stroke thickness, written to the SVG as `stroke-width`. */
+  strokeWidth?: number | string
   class?: string
   style?: string
   nonScalingStroke?: boolean

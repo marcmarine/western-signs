@@ -166,10 +166,8 @@ The `getSymbol` function allows you to retrieve SVG representations of astrologi
 | width            | `number`                        | `24`             | Width in pixels of the generated SVG                           |
 | height           | `number`                        | `24`             | Height in pixels                                               |
 | stroke           | `string`                        | `'currentColor'` | Stroke color as hex, rgb, or CSS variable                      |
-| stroke-width     | `number`                        | `1`              | Stroke thickness in logical pixels                             |
-| stroke-linecap   | `'butt' \| 'round' \| 'square'` | `'round'`        | Shape of stroke endpoints                                      |
-| stroke-linejoin  | `'miter' \| 'round' \| 'bevel'` | `'round'`        | Shape of stroke corners and joins                              |
-| nonScalingStroke | `boolean`                       | `true`           | Prevents stroke from scaling when the SVG is resized           |
+| strokeWidth      | `number`                        | `1`              | Stroke thickness in logical pixels                             |
+| nonScalingStroke | `boolean`                       | `false`          | Prevents stroke from scaling when the SVG is resized           |
 
 ```js
 import { getSymbol, SIGNS } from 'western-signs'
@@ -178,7 +176,7 @@ const symbol = getSymbol(SIGNS.TAURUS, {
   width: 24,
   height: 24,
   stroke: 'currentColor',
-  'stroke-width': 1,
+  strokeWidth: 1,
 })
 
 console.log(symbol.toString())

@@ -35,20 +35,35 @@ describe('getSymbol', () => {
   )
 
   it.each(symbolNames)(
-    'should modify stroke and stroke-width for symbol "%s"',
+    'should modify stroke and stroke width for symbol "%s"',
     (symbolName: SymbolId) => {
       const options = {
         stroke: 'red',
-        'stroke-width': '3',
+        strokeWidth: '3',
       }
       const symbol = getSymbol(symbolName, options)
 
       const svgString = symbol?.toString()
 
       expect(svgString).toContain(`stroke="${options.stroke}"`)
-      expect(svgString).toContain(`stroke-width="${options['stroke-width']}"`)
+      expect(svgString).toContain(`stroke-width="${options.strokeWidth}"`)
+      expect(svgString).not.toContain('strokeWidth')
     },
   )
+
+  it('should write the stroke width once, replacing the default', () => {
+    const svgString = getSymbol('taurus', { strokeWidth: 2 }).toString()
+
+    expect(svgString.match(/stroke-width=/g)).toHaveLength(1)
+    expect(svgString).toContain('stroke-width="2"')
+  })
+
+  it('should add vector-effect to every path with nonScalingStroke', () => {
+    const svgString = getSymbol('taurus', { nonScalingStroke: true }).toString()
+
+    expect(svgString).toContain('vector-effect="non-scaling-stroke"')
+    expect(svgString).not.toContain('nonScalingStroke')
+  })
 
   it.each(symbolNames)(
     'should modify width and height for symbol "%s"',

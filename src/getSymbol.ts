@@ -22,7 +22,7 @@ const DEFAULT_ATTRIBUTES = {
  * import { getSymbol, SIGNS } from 'western-signs'
  *
  * // Get the symbol with initial options
- * const symbol = getSymbol(SIGNS.TAURUS, { stroke: 'blue', stroke-width: 2 })
+ * const symbol = getSymbol(SIGNS.TAURUS, { stroke: 'blue', strokeWidth: 2 })
  *
  * // Log the modified SVG as a string
  * console.log(symbol.toString())
@@ -45,11 +45,12 @@ export function getSymbol(symbolName: SymbolId, options?: SymbolOptions) {
 function createSymbol(paths: string, options: SymbolOptions = {}) {
   return {
     toString(): string {
-      const { nonScalingStroke, ...attributes } = options
+      const { nonScalingStroke, strokeWidth, ...attributes } = options
 
       const svgAttributes = Object.entries({
         ...DEFAULT_ATTRIBUTES,
         ...attributes,
+        ...(strokeWidth !== undefined && { 'stroke-width': strokeWidth }),
       })
         .map(([key, value]) => `${key}="${value}"`)
         .join(' ')
