@@ -96,9 +96,14 @@ export const HOUSES = [
   'house-12'
 ] as const
 
-export const HEMISPHERES = {
-  LOWER: 'lower',
-  UPPER: 'upper'
+export const HORIZONS = {
+  ABOVE: 'above',
+  BELOW: 'below'
+} as const
+
+export const MERIDIANS = {
+  EAST: 'east',
+  WEST: 'west'
 } as const
 
 export const HOUSE_MODALITIES = {

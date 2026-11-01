@@ -5,9 +5,10 @@ import type {
   BODY_PARTS,
   CHARACTERS,
   ELEMENTS,
-  HEMISPHERES,
+  HORIZONS,
   HOUSE_MODALITIES,
   HOUSES,
+  MERIDIANS,
   MODALITIES,
   PLANET_TYPE,
   PLANETS,
@@ -28,7 +29,8 @@ export type PolarityId = ObjectValues<typeof POLARITIES>
 export type BodyPartId = ObjectValues<typeof BODY_PARTS>
 export type CharacterId = ObjectValues<typeof CHARACTERS>
 export type SeasonId = ObjectValues<typeof SEASONS>
-export type HemisphereId = ObjectValues<typeof HEMISPHERES>
+export type HorizonId = ObjectValues<typeof HORIZONS>
+export type MeridianId = ObjectValues<typeof MERIDIANS>
 export type HouseModalityId = ObjectValues<typeof HOUSE_MODALITIES>
 export type PlanetTypeId = ObjectValues<typeof PLANET_TYPE>
 export type AspectId = ObjectValues<typeof ASPECTS>
@@ -123,12 +125,20 @@ export interface House {
   element: ElementId
 
   /**
-   * The half of the chart the house is in, divided by the horizon.
+   * The side of the horizon the house is on.
    *
-   * - **Lower (Houses 1–6):** below the horizon, the northern half of the chart.
-   * - **Upper (Houses 7–12):** above the horizon, the southern half of the chart.
+   * - **Below (Houses 1–6):** the lower half of the chart, from the Ascendant to the Descendant.
+   * - **Above (Houses 7–12):** the upper half of the chart, from the Descendant to the Ascendant.
    */
-  hemisphere: HemisphereId
+  horizon: HorizonId
+
+  /**
+   * The side of the meridian the house is on.
+   *
+   * - **East (Houses 10–12 and 1–3):** the left half of the chart, around the Ascendant.
+   * - **West (Houses 4–9):** the right half of the chart, around the Descendant.
+   */
+  meridian: MeridianId
 
   /**
    * The modality of the house, which repeats in this order from House 1:
@@ -273,7 +283,8 @@ export type Dictionary = {
     | BodyPartId
     | CharacterId
     | SeasonId
-    | HemisphereId
+    | HorizonId
+    | MeridianId
     | HouseModalityId
     | PlanetTypeId
     | HouseId

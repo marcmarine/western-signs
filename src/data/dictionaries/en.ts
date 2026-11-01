@@ -81,8 +81,11 @@ const en = {
   'house-11': 'Eleventh House',
   'house-12': 'Twelfth House',
 
-  lower: 'Lower',
-  upper: 'Upper',
+  above: 'Above the horizon',
+  below: 'Below the horizon',
+
+  east: 'East',
+  west: 'West',
 
   angular: 'Angular',
   succedent: 'Succedent',

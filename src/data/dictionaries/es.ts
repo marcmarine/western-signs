@@ -81,8 +81,11 @@ const es = {
   'house-11': 'Undécima Casa',
   'house-12': 'Duodécima Casa',
 
-  lower: 'Inferior',
-  upper: 'Superior',
+  above: 'Sobre el horizonte',
+  below: 'Bajo el horizonte',
+
+  east: 'Este',
+  west: 'Oeste',
 
   angular: 'Angular',
   succedent: 'Sucedente',

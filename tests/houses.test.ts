@@ -28,23 +28,37 @@ describe('zodiac.houses', () => {
   })
 
   it.each([
-    [1, 'lower', 1, 'angular'],
-    [2, 'lower', 1, 'succedent'],
-    [3, 'lower', 1, 'cadent'],
-    [6, 'lower', 2, 'cadent'],
-    [7, 'upper', 3, 'angular'],
-    [10, 'upper', 4, 'angular'],
-    [12, 'upper', 4, 'cadent']
+    [1, 'below', 'east', 1, 'angular'],
+    [2, 'below', 'east', 1, 'succedent'],
+    [3, 'below', 'east', 1, 'cadent'],
+    [4, 'below', 'west', 2, 'angular'],
+    [6, 'below', 'west', 2, 'cadent'],
+    [7, 'above', 'west', 3, 'angular'],
+    [9, 'above', 'west', 3, 'cadent'],
+    [10, 'above', 'east', 4, 'angular'],
+    [12, 'above', 'east', 4, 'cadent']
   ] as const)(
-    'house %i should be in the %s hemisphere, quadrant %i, and %s',
-    (number, hemisphere, quadrant, modality) => {
+    'house %i should be %s the horizon, %s of the meridian, in quadrant %i, and %s',
+    (number, horizon, meridian, quadrant, modality) => {
       expect(zodiac.houses.get(number)).toMatchObject({
-        hemisphere,
+        horizon,
+        meridian,
         quadrant,
         modality
       })
     }
   )
+
+  it('should have six houses on each side of the horizon and of the meridian', () => {
+    const houses = zodiac.houses.all()
+    const count = (key: 'horizon' | 'meridian', value: string) =>
+      houses.filter(house => house[key] === value).length
+
+    expect(count('horizon', 'above')).toBe(6)
+    expect(count('horizon', 'below')).toBe(6)
+    expect(count('meridian', 'east')).toBe(6)
+    expect(count('meridian', 'west')).toBe(6)
+  })
 
   describe('with i18n.label()', () => {
     it.each([

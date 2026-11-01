@@ -81,8 +81,11 @@ const ca = {
   'house-11': 'Onzena Casa',
   'house-12': 'Dotzena Casa',
 
-  lower: 'Inferior',
-  upper: 'Superior',
+  above: "Sobre l'horitzó",
+  below: "Sota l'horitzó",
+
+  east: 'Est',
+  west: 'Oest',
 
   angular: 'Angular',
   succedent: 'Successiva',

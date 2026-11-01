@@ -1,5 +1,11 @@
 import type { House, HouseNumber } from '../definitions'
-import { HEMISPHERES, HOUSE_MODALITIES, HOUSES, SIGNS } from './constants'
+import {
+  HORIZONS,
+  HOUSE_MODALITIES,
+  HOUSES,
+  MERIDIANS,
+  SIGNS
+} from './constants'
 import signs from './signs'
 
 // Angular, succedent and cadent repeat in that order from the 1st house
@@ -19,8 +25,10 @@ const houses: House[] = HOUSES.map((id, index) => {
   return {
     element,
     // Houses 1 to 6 are below the horizon
-    hemisphere: number <= 6 ? HEMISPHERES.LOWER : HEMISPHERES.UPPER,
+    horizon: number <= 6 ? HORIZONS.BELOW : HORIZONS.ABOVE,
     id,
+    // Houses 10 to 3 are east of the meridian, around the Ascendant
+    meridian: number >= 10 || number <= 3 ? MERIDIANS.EAST : MERIDIANS.WEST,
     modality: MODALITY_CYCLE[index % 3],
     number,
     quadrant: Math.ceil(number / 3) as House['quadrant'],
