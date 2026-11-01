@@ -87,9 +87,10 @@ function createZodiac(resolveLanguage: () => Language) {
            * @returns The sign.
            */
           sign: (): Sign => {
-            const number = Math.floor(longitude() / 30) + 1
+            const degrees = longitude()
             const sign = Object.values(signs).find(
-              sign => sign.number === number
+              ({ longitude }) =>
+                degrees >= longitude.start && degrees < longitude.end
             ) as Sign
 
             return translate(sign, resolveLanguage())

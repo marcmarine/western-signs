@@ -68,6 +68,11 @@ export interface Sign {
    * The end date of the zodiac sign period.
    * This date marks the end of the zodiac sign's influence for the given year.
    * Examples: new Date(2020, 3, 20) for Aries (April 20, 2020), new Date(2020, 4, 21) for Taurus (May 21, 2020).
+   *
+   * @deprecated The date is midnight in the time zone of the machine running the code, and the
+   * Sun changes sign on a different day and time each year. Use `longitude` to know where the
+   * sign ends, and {@link zodiac | `zodiac.at()`} to get the sign at a given moment. Will be
+   * removed in the next major version.
    */
   endDate: Date
 
@@ -77,6 +82,14 @@ export interface Sign {
    * Examples: "♈" for Aries, "♉" for Taurus.
    */
   glyph: string
+
+  /**
+   * The range of the sign along the ecliptic, in degrees from 0° Aries.
+   * A sign spans 30°, from `start` (included) to `end` (excluded). The Sun is in the sign
+   * while its longitude, as given by {@link zodiac | `zodiac.at().sun.longitude()`}, is in this range.
+   * Examples: `{ start: 0, end: 30 }` for Aries, `{ start: 30, end: 60 }` for Taurus.
+   */
+  longitude: { readonly start: number; readonly end: number }
 
   /**
    * The modality of the sign.
@@ -130,6 +143,11 @@ export interface Sign {
    * The start date of the zodiac sign period.
    * This date marks the beginning of the zodiac sign's influence for the given year.
    * Examples: new Date(2020, 2, 20) for Aries (March 20, 2020), new Date(2020, 3, 21) for Taurus (April 21, 2020).
+   *
+   * @deprecated The date is midnight in the time zone of the machine running the code, and the
+   * Sun changes sign on a different day and time each year. Use `longitude` to know where the
+   * sign starts, and {@link zodiac | `zodiac.at()`} to get the sign at a given moment. Will be
+   * removed in the next major version.
    */
   startDate: Date
 }

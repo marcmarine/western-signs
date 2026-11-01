@@ -98,6 +98,18 @@ describe('zodiac', () => {
       }
     })
 
+    it('should return the sign whose longitude range holds the sun', () => {
+      for (let day = 0; day < 366; day += 7) {
+        const { sun } = zodiac.at({
+          date: new Date(Date.UTC(2024, 0, 1 + day))
+        })
+        const { longitude } = sun.sign()
+
+        expect(sun.longitude()).toBeGreaterThanOrEqual(longitude.start)
+        expect(sun.longitude()).toBeLessThan(longitude.end)
+      }
+    })
+
     it('should throw for an invalid date', () => {
       const sun = zodiac.at({ date: new Date('not a date') }).sun
 
