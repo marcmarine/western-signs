@@ -1,16 +1,16 @@
 import { describe, expect, it } from 'bun:test'
-import { ASPECTS } from '@/data/constants'
+import { ANGLES, ASPECTS } from '@/data/constants'
 import planets from '@/data/planets'
 import signs from '@/data/signs'
 import { SYMBOLS } from '@/data/symbols'
-import type { AspectId, PlanetId, SignId, SymbolId } from '@/index'
+import type { AngleId, AspectId, PlanetId, SignId, SymbolId } from '@/index'
 import { getSymbol } from '@/index'
 
 const symbolNames: SymbolId[] = [
   ...(Object.keys(signs) as SignId[]),
   ...(Object.keys(planets) as PlanetId[]),
   ...(Object.values(ASPECTS) as AspectId[]),
-  'ascendant'
+  ...(Object.values(ANGLES) as AngleId[])
 ]
 
 describe('getSymbol', () => {

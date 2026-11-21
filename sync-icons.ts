@@ -2,7 +2,7 @@
 // Usage: bun sync-icons.ts [ref], where ref is a tag, branch or commit of astroicons (default: main)
 import * as fs from 'fs'
 import * as path from 'path'
-import { ASPECTS, PLANETS, SIGNS } from './src/data/constants'
+import { ANGLES, ASPECTS, PLANETS, SIGNS } from './src/data/constants'
 
 const REPOSITORY = 'marcmarine/astroicons'
 const outputFilePath: string = path.resolve(
@@ -17,7 +17,7 @@ const ICONS: string[] = [
   ...Object.values(SIGNS),
   ...Object.values(PLANETS),
   ...Object.values(ASPECTS),
-  'ascendant'
+  ...Object.values(ANGLES)
 ].sort()
 
 function parseSVG(content: string): string {
