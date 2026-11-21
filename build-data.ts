@@ -4,6 +4,7 @@ import { aspects } from './src/data/aspects'
 import ca from './src/data/dictionaries/ca'
 import de from './src/data/dictionaries/de'
 import fr from './src/data/dictionaries/fr'
+import it from './src/data/dictionaries/it'
 import en from './src/data/dictionaries/en'
 import es from './src/data/dictionaries/es'
 import houses from './src/data/houses'
@@ -13,7 +14,7 @@ import signs from './src/data/signs'
 const outputDir: string = path.resolve(import.meta.dir, 'dist')
 
 // Each language goes in its own file, so a project only loads the ones it uses
-export const labels = { en, es, ca, de, fr }
+export const labels = { en, es, ca, de, fr, it }
 
 // Values are ids; the files in `labels` translate them
 export function createData() {

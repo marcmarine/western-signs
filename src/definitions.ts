@@ -18,7 +18,7 @@ import type {
   SIGNS
 } from './data/constants'
 
-export type Language = 'en' | 'es' | 'ca' | 'de' | 'fr'
+export type Language = 'en' | 'es' | 'ca' | 'de' | 'fr' | 'it'
 
 type ObjectValues<T> = T[keyof T]
 

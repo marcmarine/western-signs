@@ -5,6 +5,7 @@ import '@/locale/es'
 import '@/locale/ca'
 import '@/locale/de'
 import '@/locale/fr'
+import '@/locale/it'
 
 describe('zodiac.signs', () => {
   it('should get a sign by identifier', () => {
@@ -70,7 +71,8 @@ describe('zodiac.signs', () => {
       ['es', 'Tauro'],
       ['ca', 'Taure'],
       ['de', 'Stier'],
-      ['fr', 'Taureau']
+      ['fr', 'Taureau'],
+      ['it', 'Toro']
     ] as const)('should translate the name in "%s"', (lang, expectedName) => {
       const sign = zodiac.signs.get(SIGNS.TAURUS)
 
