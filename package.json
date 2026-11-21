@@ -24,16 +24,12 @@
       "types": "./dist/index.d.ts",
       "default": "./dist/index.js"
     },
-    "./locale/es": {
-      "types": "./dist/locale/es.d.ts",
-      "default": "./dist/locale/es.js"
+    "./locale/*.json": "./dist/locale/*.json",
+    "./locale/*": {
+      "types": "./dist/locale/*.d.ts",
+      "default": "./dist/locale/*.js"
     },
-    "./locale/ca": {
-      "types": "./dist/locale/ca.d.ts",
-      "default": "./dist/locale/ca.js"
-    },
-    "./data.json": "./dist/data.json",
-    "./locale/*.json": "./dist/locale/*.json"
+    "./data.json": "./dist/data.json"
   },
   "bugs": "https://github.com/marcmarine/western-signs/issues/new",
   "description": "Western astrology data for signs, planets, houses and aspects, with translations, SVG symbols and the Sun's position for any date.",

@@ -1,8 +1,7 @@
 await Bun.build({
   entrypoints: [
     './src/index.ts',
-    './src/locale/es.ts',
-    './src/locale/ca.ts',
+    ...[...new Bun.Glob('./src/locale/*.ts').scanSync()].sort()
   ],
   format: 'esm',
   outdir: './dist',
