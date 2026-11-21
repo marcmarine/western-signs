@@ -8,7 +8,7 @@ Simple interface for [western astrological](https://en.wikipedia.org/wiki/Wester
 [![TypeDoc](https://img.shields.io/badge/view-docs-yellow.svg)](https://marcmarine.github.io/western-signs)
 ![NPM Unpacked Size](https://img.shields.io/npm/unpacked-size/western-signs)
 
-The **Western Signs** library provides the data of western astrology: signs, planets, houses and aspects, with their elements, modalities, rulers, dignities and glyphs, among other things. Values are identifiers you can compare and translate into several languages. It also finds the sign of any position along the ecliptic, and the Sun's position for any date.
+The **Western Signs** library provides the data of western astrology: signs, planets, houses, angles and aspects, with their elements, modalities, rulers, dignities and glyphs, among other things. Values are identifiers you can compare and translate into several languages. It also finds the sign of any position along the ecliptic, and the Sun's position for any date.
 
 <details close>
 <summary>WordArt</summary>

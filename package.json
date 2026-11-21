@@ -32,7 +32,7 @@
     "./data.json": "./dist/data.json"
   },
   "bugs": "https://github.com/marcmarine/western-signs/issues/new",
-  "description": "Western astrology data for signs, planets, houses and aspects, with translations, SVG symbols and the Sun's position for any date.",
+  "description": "Western astrology data for signs, planets, houses, angles and aspects, with translations, SVG symbols and the Sun's position for any date.",
   "files": [
     "dist"
   ],
