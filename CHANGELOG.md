@@ -1,3 +1,19 @@
+## [2.1.0](https://github.com/marcmarine/western-signs/compare/v2.0.0...v2.1.0) (2026-11-21)
+
+### Features
+
+* Add angle icons ([131c139](https://github.com/marcmarine/western-signs/commit/131c1390c57300f30b7809c91cd4ff6a47385d79))
+* Add Brazilian Portuguese translations ([79b6291](https://github.com/marcmarine/western-signs/commit/79b6291c09f4b81a90751bf0197afb896867660b))
+* Add chart angles ([734a721](https://github.com/marcmarine/western-signs/commit/734a721219dcec5351f1915fa82e3d03de609d23))
+* Add French translations ([685e199](https://github.com/marcmarine/western-signs/commit/685e199e9de66be0c5ad39b71130a3d86ebb5b2d))
+* Add German translations ([6f0a3b0](https://github.com/marcmarine/western-signs/commit/6f0a3b081bffae3b05c63cc5eeb694a2782a5f2d))
+* Add Italian translations ([03c52eb](https://github.com/marcmarine/western-signs/commit/03c52eb3882fe4202968d5d26186c7862b9404e3))
+* Sync icons from Astroicons ([4ebbf4e](https://github.com/marcmarine/western-signs/commit/4ebbf4e3a562daee1ee2e9f89275e26a54726348))
+
+### Bug Fixes
+
+* Check dictionaries for missing keys ([dfdbabe](https://github.com/marcmarine/western-signs/commit/dfdbabe8cfc10dd4530e0f12953b11161b5330e0))
+
 ## [2.0.0](https://github.com/marcmarine/western-signs/compare/v1.16.0...v2.0.0) (2026-11-01)
 
 ### ⚠ BREAKING CHANGES
