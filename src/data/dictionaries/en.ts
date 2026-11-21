@@ -1,6 +1,6 @@
 import type { Dictionary } from '../../definitions'
 
-const en = {
+const en: Dictionary = {
   aries: 'Aries',
   taurus: 'Taurus',
   gemini: 'Gemini',
@@ -127,6 +127,6 @@ const en = {
 
   horizon: 'Horizon',
   meridian: 'Meridian'
-} as Dictionary
+}
 
 export default en

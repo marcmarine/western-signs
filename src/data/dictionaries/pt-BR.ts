@@ -1,6 +1,6 @@
 import type { Dictionary } from '../../definitions'
 
-const ptBR = {
+const ptBR: Dictionary = {
   aries: 'Áries',
   taurus: 'Touro',
   gemini: 'Gêmeos',
@@ -127,6 +127,6 @@ const ptBR = {
 
   horizon: 'Horizonte',
   meridian: 'Meridiano'
-} as Dictionary
+}
 
 export default ptBR
