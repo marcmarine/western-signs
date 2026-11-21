@@ -64,13 +64,14 @@ describe('data.json', () => {
   })
 
   it.each(['en', 'es', 'ca', 'de', 'fr', 'it', 'pt-BR'] as const)(
-    'should have a "%s" label for every id in signs, planets, houses and aspects',
+    'should have a "%s" label for every id in signs, planets, houses, angles and aspects',
     language => {
       const dictionary: Record<string, string> = labels[language]
       const items = [
         ...data.signs,
         ...data.planets,
         ...data.houses,
+        ...data.angles,
         ...data.aspects
       ]
       const ids = items.flatMap(item =>

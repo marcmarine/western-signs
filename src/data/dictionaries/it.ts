@@ -120,7 +120,13 @@ const it = {
   detriment: 'Esilio',
   fall: 'Caduta',
 
-  ascendant: 'Ascendente'
+  ascendant: 'Ascendente',
+  descendant: 'Discendente',
+  'medium-coeli': 'Medio Cielo',
+  'imum-coeli': 'Fondo Cielo',
+
+  horizon: 'Orizzonte',
+  meridian: 'Meridiano'
 } as Dictionary
 
 export default it

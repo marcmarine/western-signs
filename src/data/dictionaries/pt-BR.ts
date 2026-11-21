@@ -120,7 +120,13 @@ const ptBR = {
   detriment: 'Exílio',
   fall: 'Queda',
 
-  ascendant: 'Ascendente'
+  ascendant: 'Ascendente',
+  descendant: 'Descendente',
+  'medium-coeli': 'Meio do Céu',
+  'imum-coeli': 'Fundo do Céu',
+
+  horizon: 'Horizonte',
+  meridian: 'Meridiano'
 } as Dictionary
 
 export default ptBR

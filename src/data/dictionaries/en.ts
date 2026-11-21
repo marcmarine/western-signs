@@ -120,7 +120,13 @@ const en = {
   detriment: 'Detriment',
   fall: 'Fall',
 
-  ascendant: 'Ascendant'
+  ascendant: 'Ascendant',
+  descendant: 'Descendant',
+  'medium-coeli': 'Midheaven',
+  'imum-coeli': 'Imum Coeli',
+
+  horizon: 'Horizon',
+  meridian: 'Meridian'
 } as Dictionary
 
 export default en

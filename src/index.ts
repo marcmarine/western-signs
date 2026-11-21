@@ -1,7 +1,9 @@
 export {
+  ANGLES,
   ASPECT_QUALITY,
   ASPECT_TYPE,
   ASPECTS,
+  AXES,
   BODY_PARTS,
   CHARACTERS,
   DIGNITIES,
@@ -18,10 +20,13 @@ export {
   SIGNS
 } from './data/constants'
 export type {
+  Angle,
+  AngleId,
   Aspect,
   AspectId,
   AspectQualityId,
   AspectTypeId,
+  AxisId,
   BodyPartId,
   CharacterId,
   Dictionary,

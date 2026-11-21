@@ -120,7 +120,13 @@ const ca = {
   detriment: 'Exili',
   fall: 'Caiguda',
 
-  ascendant: 'Ascendent'
+  ascendant: 'Ascendent',
+  descendant: 'Descendent',
+  'medium-coeli': 'Mig Cel',
+  'imum-coeli': 'Fons del Cel',
+
+  horizon: 'Horitzó',
+  meridian: 'Meridià'
 } as Dictionary
 
 export default ca

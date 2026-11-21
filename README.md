@@ -30,10 +30,10 @@ npm install western-signs
 
 ### Zodiac
 
-The `zodiac` object groups signs, planets, houses and aspects under a single API. Every group uses the same methods: `get` returns one item by its identifier, or by number for houses, and `all` returns the full list.
+The `zodiac` object groups signs, planets, houses, angles and aspects under a single API. Every group uses the same methods: `get` returns one item by its identifier, or by number for houses, and `all` returns the full list.
 
 ```js
-import { zodiac, ASPECTS, SIGNS, PLANETS } from 'western-signs'
+import { zodiac, ANGLES, ASPECTS, SIGNS, PLANETS } from 'western-signs'
 
 zodiac.signs.get(SIGNS.TAURUS)
 zodiac.signs.all()
@@ -43,6 +43,9 @@ zodiac.planets.all()
 
 zodiac.houses.get(7)
 zodiac.houses.all()
+
+zodiac.angles.get(ANGLES.ASCENDANT)
+zodiac.angles.all()
 
 zodiac.aspects.get(ASPECTS.TRINE)
 zodiac.aspects.all()
@@ -193,6 +196,29 @@ zodiac.houses.get(10)
 | `horizon`  | `below` the horizon (houses 1–6) or `above` it (7–12)                                                              |
 | `meridian` | `east` of the meridian, around the Ascendant (houses 10–12 and 1–3), or `west` of it, around the Descendant (4–9) |
 | `quadrant` | The quarter of the chart, from 1 (houses 1–3) to 4 (houses 10–12)                                                  |
+
+### Angles
+
+```js
+zodiac.angles.get(ANGLES.MEDIUM_COELI)
+// Output:
+{
+  id: 'medium-coeli',
+  axis: 'meridian',
+  glyph: 'MC',
+  house: 10,
+  opposite: 'imum-coeli'
+}
+```
+
+| property   | description                                                                                                   |
+| ---------- | ------------------------------------------------------------------------------------------------------------- |
+| `axis`     | `horizon` for the Ascendant and the Descendant, `meridian` for the Medium Coeli and the Imum Coeli            |
+| `glyph`    | The abbreviation used in charts, as angles have no Unicode character: `AC`, `DC`, `MC` and `IC`               |
+| `house`    | The house whose cusp the angle marks: 1, 7, 10 and 4. Use it with `zodiac.houses.get()` for its sign and more |
+| `opposite` | The angle at the other end of the same axis                                                                   |
+
+`all` returns them in the order of their houses: Ascendant, Imum Coeli, Descendant and Medium Coeli.
 
 ### Aspects
 
@@ -387,14 +413,14 @@ symbol.toDataURL()
 
 #### Available symbols
 
-The symbols of the planets, signs and aspects use the identifiers of their exported constants. The Ascendant, the only angle with a symbol, has no constant: pass `'ascendant'`.
+Symbols use the identifiers of their exported constants.
 
 | constant | symbols                                                                                                                            |
 | -------- | ---------------------------------------------------------------------------------------------------------------------------------- |
 | PLANETS  | `SUN` `MOON` `MERCURY` `VENUS` `MARS` `JUPITER` `SATURN` `URANUS` `NEPTUNE` `PLUTO`                                                |
 | SIGNS    | `ARIES` `TAURUS` `GEMINI` `CANCER` `LEO` `VIRGO` `LIBRA` `SCORPIO` `SAGITTARIUS` `CAPRICORN` `AQUARIUS` `PISCES`                   |
 | ASPECTS  | `CONJUNCTION` `SEMISEXTILE` `SEMISQUARE` `SEXTILE` `QUINTILE` `SQUARE` `TRINE` `SESQUISQUARE` `BIQUINTILE` `QUINCUNX` `OPPOSITION` |
-| —        | `'ascendant'`                                                                                                                      |
+| ANGLES   | `ASCENDANT`                                                                                                                        |
 
 There are no symbols yet for the houses or for the other angles (Descendant, Midheaven and Imum Coeli).
 
@@ -416,7 +442,7 @@ const html = `<span role="img" aria-label="${t(PLANETS.MARS)}">${getSymbol(PLANE
 
 The data behind the library is also published as JSON, for projects that don't run JavaScript or just want the data: a script in another language, a database seed, or the context given to a language model.
 
-`data.json` has `signs`, `planets`, `houses` and `aspects`, with the same values as `zodiac`. Each language has its own file in `locale/` that maps every identifier to its label, so load `data.json` together with the languages you need, even if only English:
+`data.json` has `signs`, `planets`, `houses`, `angles` and `aspects`, with the same values as `zodiac`. Each language has its own file in `locale/` that maps every identifier to its label, so load `data.json` together with the languages you need, even if only English:
 
 ```js
 import data from 'western-signs/data.json' with { type: 'json' }
@@ -512,6 +538,7 @@ The 1.x documentation of `getSymbol` also listed `nonScalingStroke` as `true` by
 
 ### Interfaces
 
+- [Angle](https://marcmarine.github.io/western-signs/interfaces/Angle)
 - [Aspect](https://marcmarine.github.io/western-signs/interfaces/Aspect)
 - [Dignities](https://marcmarine.github.io/western-signs/interfaces/Dignities)
 - [House](https://marcmarine.github.io/western-signs/interfaces/House)

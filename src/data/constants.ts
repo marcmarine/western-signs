@@ -96,6 +96,18 @@ export const HOUSES = [
   'house-12'
 ] as const
 
+export const ANGLES = {
+  ASCENDANT: 'ascendant',
+  DESCENDANT: 'descendant',
+  MEDIUM_COELI: 'medium-coeli',
+  IMUM_COELI: 'imum-coeli'
+} as const
+
+export const AXES = {
+  HORIZON: 'horizon',
+  MERIDIAN: 'meridian'
+} as const
+
 export const HORIZONS = {
   ABOVE: 'above',
   BELOW: 'below'

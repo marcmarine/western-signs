@@ -1,9 +1,12 @@
+import { angles } from './data/angles'
 import { aspects } from './data/aspects'
 import { DIGNITIES } from './data/constants'
 import houses from './data/houses'
 import planets from './data/planets'
 import signs from './data/signs'
 import type {
+  Angle,
+  AngleId,
   Aspect,
   AspectId,
   DignityId,
@@ -35,7 +38,7 @@ function deepFreeze<T>(value: T): T {
   return value
 }
 
-deepFreeze([signs, planets, houses, aspects])
+deepFreeze([signs, planets, houses, angles, aspects])
 
 // The longitude within [0, 360), however many turns it is given in
 function toLongitude(value: number): number {
@@ -131,7 +134,25 @@ function getAspect(id: string): Aspect | undefined {
 }
 
 /**
- * Entry point grouping signs, planets, houses and aspects under a single API.
+ * Get a single angle by identifier.
+ *
+ * @param id - The identifier of the angle, e.g. `'medium-coeli'`.
+ * @returns The angle.
+ */
+function getAngle(id: AngleId): Angle
+/**
+ * Get a single angle from any string, e.g. one read from a URL.
+ *
+ * @param id - A string that may be the identifier of an angle.
+ * @returns The angle, or `undefined` if the string is not the identifier of an angle.
+ */
+function getAngle(id: string): Angle | undefined
+function getAngle(id: string): Angle | undefined {
+  return angles.find(angle => angle.id === id)
+}
+
+/**
+ * Entry point grouping signs, planets, houses, angles and aspects under a single API.
  *
  * Values are identifiers, the same in every language, e.g. `element: 'earth'`.
  * Use {@link i18n.label | `i18n.label()`} to translate an item, and copy it before changing it,
@@ -197,6 +218,13 @@ export const zodiac = {
     get: getHouse,
     /** Get all twelve houses. */
     all: (): House[] => [...houses]
+  },
+  /** The four angles of the chart, where the horizon and the meridian cross the ecliptic. */
+  angles: {
+    /** Get a single angle by identifier. */
+    get: getAngle,
+    /** Get all four angles, in the order of their houses: Ascendant, Imum Coeli, Descendant and Medium Coeli. */
+    all: (): Angle[] => [...angles]
   },
   /** The aspects, from conjunction to opposition. */
   aspects: {

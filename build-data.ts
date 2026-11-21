@@ -1,5 +1,6 @@
 import * as fs from 'fs'
 import * as path from 'path'
+import { angles } from './src/data/angles'
 import { aspects } from './src/data/aspects'
 import ca from './src/data/dictionaries/ca'
 import de from './src/data/dictionaries/de'
@@ -23,6 +24,7 @@ export function createData() {
     signs: Object.values(signs),
     planets: Object.values(planets),
     houses,
+    angles,
     aspects
   }
 }

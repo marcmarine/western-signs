@@ -120,7 +120,13 @@ const fr = {
   detriment: 'Exil',
   fall: 'Chute',
 
-  ascendant: 'Ascendant'
+  ascendant: 'Ascendant',
+  descendant: 'Descendant',
+  'medium-coeli': 'Milieu du Ciel',
+  'imum-coeli': 'Fond du Ciel',
+
+  horizon: 'Horizon',
+  meridian: 'Méridien'
 } as Dictionary
 
 export default fr

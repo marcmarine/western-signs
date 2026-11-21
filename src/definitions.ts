@@ -1,7 +1,9 @@
 import type {
+  ANGLES,
   ASPECT_QUALITY,
   ASPECT_TYPE,
   ASPECTS,
+  AXES,
   BODY_PARTS,
   CHARACTERS,
   DIGNITIES,
@@ -37,6 +39,8 @@ export type PlanetTypeId = ObjectValues<typeof PLANET_TYPE>
 export type AspectId = ObjectValues<typeof ASPECTS>
 export type HouseId = (typeof HOUSES)[number]
 export type HouseNumber = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
+export type AngleId = ObjectValues<typeof ANGLES>
+export type AxisId = ObjectValues<typeof AXES>
 export type SymbolId = SignId | PlanetId | AspectId | 'ascendant'
 export type AspectTypeId = ObjectValues<typeof ASPECT_TYPE>
 export type AspectQualityId = ObjectValues<typeof ASPECT_QUALITY>
@@ -174,6 +178,39 @@ export interface House {
    * Example: "aries" for House 1, "taurus" for House 2.
    */
   sign: SignId
+}
+
+export interface Angle {
+  /**
+   * The identifier of the angle.
+   * Examples: "ascendant", "medium-coeli". See the `ANGLES` constant.
+   */
+  id: AngleId
+
+  /**
+   * The axis the angle is an end of: the horizon joins the Ascendant and the Descendant,
+   * the meridian joins the Medium Coeli and the Imum Coeli.
+   * Examples: "horizon" for the Ascendant, "meridian" for the Medium Coeli. See the `AXES` constant.
+   */
+  axis: AxisId
+
+  /**
+   * The abbreviation of the angle used in charts, as angles have no Unicode character.
+   * Examples: "AC" for the Ascendant, "MC" for the Medium Coeli.
+   */
+  glyph: string
+
+  /**
+   * The number of the house whose cusp the angle marks.
+   * Examples: 1 for the Ascendant, 10 for the Medium Coeli.
+   */
+  house: HouseNumber
+
+  /**
+   * The angle at the other end of the same axis.
+   * Examples: "descendant" for the Ascendant, "imum-coeli" for the Medium Coeli.
+   */
+  opposite: AngleId
 }
 
 /**
@@ -367,7 +404,9 @@ export type Dictionary = {
     | AspectId
     | AspectTypeId
     | AspectQualityId
-    | DignityId]: string
+    | DignityId
+    | AngleId
+    | AxisId]: string
 }
 
 export type Dictionaries = Record<Language, Dictionary>
