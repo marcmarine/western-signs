@@ -6,6 +6,7 @@ import '@/locale/ca'
 import '@/locale/de'
 import '@/locale/fr'
 import '@/locale/it'
+import '@/locale/pt-BR'
 
 describe('zodiac.houses', () => {
   it('should return the twelve houses in order', () => {
@@ -70,7 +71,8 @@ describe('zodiac.houses', () => {
       ['ca', 'Primera Casa'],
       ['de', 'Erstes Haus'],
       ['fr', 'Première maison'],
-      ['it', 'Prima casa']
+      ['it', 'Prima casa'],
+      ['pt-BR', 'Primeira casa']
     ] as const)('should translate the name in "%s"', (language, expected) => {
       const house = zodiac.houses.get(1)
 

@@ -6,6 +6,7 @@ import '@/locale/ca'
 import '@/locale/de'
 import '@/locale/fr'
 import '@/locale/it'
+import '@/locale/pt-BR'
 
 const { t } = i18n
 
@@ -20,7 +21,8 @@ describe('t', () => {
     ['ca', 'Conjunció'],
     ['de', 'Konjunktion'],
     ['fr', 'Conjonction'],
-    ['it', 'Congiunzione']
+    ['it', 'Congiunzione'],
+    ['pt-BR', 'Conjunção']
   ] as const)(
     'should translate into the given language "%s"',
     (lang, expected) => {
