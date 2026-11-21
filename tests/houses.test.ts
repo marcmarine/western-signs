@@ -3,6 +3,7 @@ import type { HouseNumber } from '@/index'
 import { i18n, SIGNS, zodiac } from '@/index'
 import '@/locale/es'
 import '@/locale/ca'
+import '@/locale/de'
 
 describe('zodiac.houses', () => {
   it('should return the twelve houses in order', () => {
@@ -64,7 +65,8 @@ describe('zodiac.houses', () => {
     it.each([
       ['en', 'First House'],
       ['es', 'Primera Casa'],
-      ['ca', 'Primera Casa']
+      ['ca', 'Primera Casa'],
+      ['de', 'Erstes Haus']
     ] as const)('should translate the name in "%s"', (language, expected) => {
       const house = zodiac.houses.get(1)
 

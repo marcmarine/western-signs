@@ -3,6 +3,7 @@ import type { SignId } from '@/definitions'
 import { i18n, SIGNS, zodiac } from '@/index'
 import '@/locale/es'
 import '@/locale/ca'
+import '@/locale/de'
 
 describe('zodiac.signs', () => {
   it('should get a sign by identifier', () => {
@@ -66,7 +67,8 @@ describe('zodiac.signs', () => {
     it.each([
       ['en', 'Taurus'],
       ['es', 'Tauro'],
-      ['ca', 'Taure']
+      ['ca', 'Taure'],
+      ['de', 'Stier']
     ] as const)('should translate the name in "%s"', (lang, expectedName) => {
       const sign = zodiac.signs.get(SIGNS.TAURUS)
 

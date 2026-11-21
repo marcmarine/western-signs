@@ -3,6 +3,7 @@ import type { Dictionary } from '@/definitions'
 import { ASPECTS, ELEMENTS, i18n, SIGNS, zodiac } from '@/index'
 import '@/locale/es'
 import '@/locale/ca'
+import '@/locale/de'
 
 const { t } = i18n
 
@@ -14,7 +15,8 @@ describe('t', () => {
   it.each([
     ['en', 'Conjunction'],
     ['es', 'Conjunción'],
-    ['ca', 'Conjunció']
+    ['ca', 'Conjunció'],
+    ['de', 'Konjunktion']
   ] as const)(
     'should translate into the given language "%s"',
     (lang, expected) => {
