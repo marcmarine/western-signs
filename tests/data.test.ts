@@ -63,7 +63,7 @@ describe('data.json', () => {
     })
   })
 
-  it.each(['en', 'es', 'ca', 'de'] as const)(
+  it.each(['en', 'es', 'ca', 'de', 'fr'] as const)(
     'should have a "%s" label for every id in signs, planets, houses and aspects',
     language => {
       const dictionary: Record<string, string> = labels[language]

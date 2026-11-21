@@ -292,6 +292,7 @@ English is included. Other languages must be imported to be available:
 import 'western-signs/locale/es'
 import 'western-signs/locale/ca'
 import 'western-signs/locale/de'
+import 'western-signs/locale/fr'
 ```
 
 | language | import                    |
@@ -300,6 +301,7 @@ import 'western-signs/locale/de'
 | Spanish  | `western-signs/locale/es` |
 | Catalan  | `western-signs/locale/ca` |
 | German   | `western-signs/locale/de` |
+| French   | `western-signs/locale/fr` |
 
 > [!IMPORTANT]
 > A language you haven't imported gives no error: its translations are just missing, so you get the identifiers back, e.g. `'taurus'` instead of `'Tauro'`. If you see identifiers where you expected text, check the import.

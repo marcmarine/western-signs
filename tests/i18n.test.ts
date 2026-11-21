@@ -4,6 +4,7 @@ import { ASPECTS, ELEMENTS, i18n, SIGNS, zodiac } from '@/index'
 import '@/locale/es'
 import '@/locale/ca'
 import '@/locale/de'
+import '@/locale/fr'
 
 const { t } = i18n
 
@@ -16,7 +17,8 @@ describe('t', () => {
     ['en', 'Conjunction'],
     ['es', 'Conjunción'],
     ['ca', 'Conjunció'],
-    ['de', 'Konjunktion']
+    ['de', 'Konjunktion'],
+    ['fr', 'Conjonction']
   ] as const)(
     'should translate into the given language "%s"',
     (lang, expected) => {
