@@ -12,11 +12,11 @@ const DEFAULT_ATTRIBUTES = {
 }
 
 /**
- * Gets an SVG as a string or as a Data URL, with option to modify attributes.
+ * Gets the SVG of a sign, planet, aspect or angle, as a string or as a Data URL.
  *
- * @param {SymbolId} symbolName Name of the icon without extension .svg
- * @param {SymbolOptions} options Options to modify attributes or return as a Data URL
- * @returns SVG as string or Data URL
+ * @param {SymbolId} symbolName The identifier of the symbol, e.g. `SIGNS.TAURUS` or `'taurus'`
+ * @param {SymbolOptions} options Attributes of the SVG, such as its size or stroke
+ * @returns An object with `toString()` for the SVG and `toDataURL()` for it as a Data URL
  *
  * @example
  * import { getSymbol, SIGNS } from 'western-signs'
@@ -30,7 +30,7 @@ const DEFAULT_ATTRIBUTES = {
  * // Log the modified SVG as a Data URL
  * console.log(symbol.toDataURL())
  *
- * @throws Will throw an error if the specified SVG file is not found
+ * @throws {Error} If there is no symbol with that identifier
  */
 export function getSymbol(symbolName: SymbolId, options?: SymbolOptions) {
   const serializedPaths = SYMBOLS[symbolName as keyof typeof SYMBOLS]
